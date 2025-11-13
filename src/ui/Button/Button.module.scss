@@ -9,6 +9,7 @@
   font-weight: 600;
   font-family: inherit;
   transition: all 0.2s ease;
+  text-wrap: nowrap;
   outline: none;
 
   &:focus-visible {
@@ -57,6 +58,20 @@
 
     &:active:not(.disabled) {
       background-color: #3730a3;
+      transform: translateY(0);
+    }
+  }
+  &.variant-bgblue {
+    background-color: var(--color-blue-400);
+    color: white;
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-blue-400);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-blue-400);
       transform: translateY(0);
     }
   }

@@ -39,7 +39,7 @@
 
   /* SIZES */
   &.size-sm {
-    max-width: 400px;
+    max-width: 200px;
   }
 
   &.size-md {
@@ -60,7 +60,7 @@
   }
 
   &.padding-sm {
-    padding: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 
   &.padding-md {
