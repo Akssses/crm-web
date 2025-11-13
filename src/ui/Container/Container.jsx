@@ -17,6 +17,5 @@ export default function Container({
   ]
     .filter(Boolean)
     .join(" ");
-
   return <div className={containerClasses}>{children}</div>;
 }
