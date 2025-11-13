@@ -1,8 +1,9 @@
 import React from "react";
+import s from "../styles/Profile.module.scss";
 import MyProfile from "./MyProfile";
 import PersonalData from "./PersonalData";
-import s from "../styles/Profile.module.scss";
 import Safety from "./Safety";
+import Integrations from "./Integrations";
 
 export default function Profile() {
   return (
@@ -12,6 +13,7 @@ export default function Profile() {
         <PersonalData />
         <Safety />
       </div>
+      <Integrations />
     </div>
   );
 }
