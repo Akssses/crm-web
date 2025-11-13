@@ -1,0 +1,70 @@
+.header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.section {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+.block {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.passwordDots {
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.twoFactorContent {
+  span {
+    color: var(--color-gray-500);
+  }
+}
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.sessionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.span {
+  color: var(--color-gray-500);
+}
+.sessionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: var(--color-gray-50);
+  border-radius: 8px;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .toggleSwitch {
+    align-self: flex-start;
+  }
+}
