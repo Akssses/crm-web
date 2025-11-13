@@ -5,3 +5,6 @@ export { default as Modal } from "./Modal/Modal";
 export { default as Container } from "./Container/Container";
 export { default as Switch } from "./Switch/Switch";
 export { default as Checkbox } from "./Checkbox/Checkbox";
+export { default as Statcard } from "./StatCard/StatCard";
+export { default as Piechart } from "./Piechart/Piechart";
+export { default as Chart } from "./Chart/Chart";
