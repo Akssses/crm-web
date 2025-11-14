@@ -1,0 +1,18 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.flex {
+  display: flex;
+  gap: 20px;
+}
+.width {
+  width: 100%;
+}
+.width1 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
