@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdClose } from "react-icons/io";
 import s from "./Modal.module.scss";
 
 export default function Modal({
@@ -7,10 +8,11 @@ export default function Modal({
   title = "",
   children = null,
   position = "right",
-  width = "500px",
+  width = "600px",
   size = "md",
   showOverlay = true,
   className = "",
+  icon: Icon = null,
 }) {
   const modalClasses = [
     s.modal,
@@ -59,25 +61,18 @@ export default function Modal({
       )}
 
       <div className={modalClasses} style={{ width }}>
-        {/* Header */}
         <div className={s.header}>
-          <h2 className={s.title}>{title}</h2>
+          <p>
+            {" "}
+            {Icon && <Icon size={18} className={s.icon} />}
+            {title}
+          </p>
           <button
             className={s.closeButton}
             onClick={onClose}
             aria-label="Close modal"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <IoMdClose size={24} />
           </button>
         </div>
 

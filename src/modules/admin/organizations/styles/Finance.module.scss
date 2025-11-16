@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  span {
+    color: var(--color-gray-400);
+  }
+  p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .email {
+    color: var(--color-blue);
+  }
+}

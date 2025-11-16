@@ -1,3 +1,5 @@
+import { OrganizationsDetail } from "@/modules/admin";
+
 export default function OrganizationsPageID() {
-  return <div>OrganizationsPage</div>;
+  return <OrganizationsDetail />;
 }

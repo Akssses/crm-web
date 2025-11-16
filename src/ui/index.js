@@ -8,3 +8,5 @@ export { default as Checkbox } from "./Checkbox/Checkbox";
 export { default as Statcard } from "./StatCard/StatCard";
 export { default as Piechart } from "./Piechart/Piechart";
 export { default as Chart } from "./Chart/Chart";
+export { default as UITable } from "./UITable/UITable";
+export { default as Textarea } from "./Textarea/Textarea";
