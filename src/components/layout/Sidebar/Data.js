@@ -1,27 +1,56 @@
-import { CiHome, CiBank, CiUser, CiCalendar, CiBookmark } from "react-icons/ci";
-import { HiOutlineUsers } from "react-icons/hi";
-import { BiBarChartSquare } from "react-icons/bi";
-import { HiOutlineChartBar } from "react-icons/hi2";
-import { TbDownload } from "react-icons/tb";
-
 export const menuItems = [
-  { id: "dashboard", label: "Дашборд", icon: CiHome, href: "#" },
-  { id: "organizations", label: "Организации", icon: CiBank, href: "#" },
-  { id: "users", label: "Пользователи и роли", icon: CiUser, href: "#" },
-  { id: "suppliers", label: "Поставщики", icon: HiOutlineUsers, href: "#" },
-  { id: "documents", label: "Документы", icon: CiCalendar, href: "#" },
-  { id: "finance", label: "Финансы", icon: BiBarChartSquare, href: "#" },
+  {
+    id: "dashboard",
+    label: "Дашборд",
+    icon: "/assets/icons/home-02.svg",
+    href: "#",
+  },
+  {
+    id: "organizations",
+    label: "Организации",
+    icon: "/assets/icons/bank-02.svg",
+    href: "#",
+  },
+  {
+    id: "users",
+    label: "Пользователи и роли",
+    icon: "/assets/icons/user-01.svg",
+    href: "#",
+  },
+  {
+    id: "suppliers",
+    label: "Поставщики",
+    icon: "/assets/icons/users-01.svg",
+    href: "#",
+  },
+  {
+    id: "documents",
+    label: "Документы",
+    icon: "/assets/icons/calendar.svg",
+    href: "#",
+  },
+  {
+    id: "finance",
+    label: "Финансы",
+    icon: "/assets/icons/square-bar-chart-03.svg",
+    href: "#",
+  },
   {
     id: "analytics",
     label: "Отчёты и аналитика",
-    icon: HiOutlineChartBar,
+    icon: "/assets/icons/bar-chart-12.svg",
     href: "#",
   },
-  { id: "handbook", label: "Справочник", icon: CiBookmark, href: "#" },
+  {
+    id: "handbook",
+    label: "Справочник",
+    icon: "/assets/icons/bookmark.svg",
+    href: "#",
+  },
   {
     id: "integration",
     label: "CMS Интеграции",
-    icon: TbDownload,
+    icon: "/assets/icons/download-circle-05.svg",
     href: "#",
   },
 ];

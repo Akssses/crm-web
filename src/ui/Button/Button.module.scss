@@ -75,6 +75,62 @@
       transform: translateY(0);
     }
   }
+  &.variant-bgyellow {
+    background-color: var(--color-yellow);
+    color: white;
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-yellow);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-yellow);
+      transform: translateY(0);
+    }
+  }
+  &.variant-bgred {
+    background-color: var(--color-danger);
+    color: white;
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-danger);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-danger);
+      transform: translateY(0);
+    }
+  }
+  &.variant-bggreen {
+    background-color: var(--color-green);
+    color: white;
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-green);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-green);
+      transform: translateY(0);
+    }
+  }
+  &.variant-bggray {
+    background-color: var(--color-gray-500);
+    color: white;
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-gray-500);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-gray-500);
+      transform: translateY(0);
+    }
+  }
   &.variant-red {
     background-color: var(--color-white);
     color: var(--color-danger);
@@ -122,6 +178,23 @@
 
     &:active:not(.disabled) {
       background-color: var(--color-green);
+      color: var(--color-white);
+      transform: translateY(0);
+    }
+  }
+  &.variant-yellow {
+    background-color: var(--color-white);
+    color: var(--color-yellow);
+    border: 1px solid var(--color-yellow-light);
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-yellow);
+      color: var(--color-white);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-yellow);
       color: var(--color-white);
       transform: translateY(0);
     }

@@ -35,10 +35,10 @@ export default function Input({
   return (
     <div className={s.container}>
       {label && (
-        <label className={s.label}>
+        <span className={s.label}>
           {label}
           {required && <span className={s.required}>*</span>}
-        </label>
+        </span>
       )}
 
       <div className={inputClasses}>

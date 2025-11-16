@@ -1,0 +1,273 @@
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  background-color: var(--bg-primary);
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 10px;
+
+    &:hover {
+      background: var(--color-gray-400);
+    }
+  }
+}
+
+.tableHeader {
+  background-color: var(--bg-secondary);
+  border: 0.1px solid var(--color-gray-300);
+  border-radius: 13px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  border-radius: 12px 12px 0 0;
+}
+
+.headerCell {
+  padding: 6px 12px;
+  color: var(--text-tertiary);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.checkboxHeader {
+  padding: 12px 8px;
+  text-align: center;
+  width: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionHeader {
+  padding: 12px 8px;
+  text-align: center;
+  width: 44px;
+  flex-shrink: 0;
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.bodyRow {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color var(--transition-base);
+  padding: 0;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
+
+  &.selected {
+    background-color: #eff6ff;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.bodyCell {
+  padding: 16px;
+  color: var(--text-primary);
+  font-size: 14px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+
+  @media (max-width: 768px) {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+}
+
+.checkboxCell {
+  padding: 12px 8px;
+  text-align: center;
+  width: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.actionCell {
+  padding: 12px 8px;
+  text-align: center;
+  width: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.cellContent {
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+}
+
+.checkbox {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-300);
+  &:hover {
+    color: var(--color-gray-300);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.checkboxIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxPartial {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 6px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 2px;
+    background-color: var(--color-gray-300);
+  }
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  transition: all var(--transition-base);
+  border-radius: 4px;
+
+  &:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.footer {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all var(--transition-base);
+
+  &:hover {
+    color: var(--color-primary);
+    background-color: var(--bg-secondary);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.emptyState {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .headerCell {
+    font-size: 11px;
+  }
+
+  .bodyCell {
+    font-size: 13px;
+  }
+
+  .bodyRow {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerCell {
+    padding: 8px 6px;
+    font-size: 10px;
+  }
+
+  .bodyCell {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .bodyRow {
+    min-height: 44px;
+  }
+}

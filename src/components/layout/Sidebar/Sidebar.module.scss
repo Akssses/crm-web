@@ -12,6 +12,7 @@
   scrollbar-width: thin;
   scrollbar-color: var(--color-gray-300) transparent;
   transition: width var(--transition-base);
+  z-index: 10;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -35,7 +36,6 @@
 
     .header {
       justify-content: center;
-      padding: var(--spacing-md);
     }
 
     .collapseButton {
@@ -62,7 +62,6 @@
     }
 
     .userInfo {
-      padding: var(--spacing-md);
       justify-content: center;
     }
 
@@ -82,7 +81,7 @@
   align-items: center;
   transition: all var(--transition-base);
 
-  h5 {
+  h4 {
     font-size: 14px;
     font-weight: 600;
     color: var(--text-primary);
@@ -151,9 +150,8 @@
     color: var(--color-primary);
     border-left-color: transparent;
 
-    .icon {
-      color: var(--color-primary);
-      font-weight: 700;
+    img {
+      color: red;
     }
 
     &::before {
@@ -176,8 +174,10 @@
   width: 24px;
   height: 24px;
   color: var(--text-secondary);
-  transition: color var(--transition-base);
+  transition: filter var(--transition-base);
   flex-shrink: 0;
+
+  color: #667eea;
 }
 
 .label {
@@ -292,6 +292,7 @@
     top: 0;
     z-index: 999;
     transition: left var(--transition-base);
+    width: 280px;
 
     &.open {
       left: 0;

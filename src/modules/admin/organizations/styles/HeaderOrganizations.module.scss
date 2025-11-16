@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.buttons {
+  display: flex;
+  gap: 12px;
+}
