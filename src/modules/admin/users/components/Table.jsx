@@ -121,7 +121,7 @@ export function UsersTable() {
 }
 
 // Таблица с поставщиками
-export function SuppliersTable() {
+export function SuppliersTable({ onRowClick }) {
   const suppliersData = [
     {
       id: 1,
@@ -131,6 +131,30 @@ export function SuppliersTable() {
       services: "Авиабилеты",
       organization: "Asia Travel",
       status: "Подключен",
+      // Дополнительные поля для информационного модала
+      supplierType: "Локальный",
+      commission: "12%",
+      contactPerson: "Иван Иванов",
+      email: "ivan@mail.com",
+      phone: "+996 555 123 456",
+      address: "г. Бишкек, пр. Чуй 250",
+      channel: "Telegram",
+      chatId: "@supplier1",
+      apiEndpoint: "https://api.supplier1.com",
+      apiKey: "api_key_123",
+      apiSecret: "secret_123",
+      responseTime: "30 мин",
+      deadline: "6 ч",
+      notificationChannel: "Telegram",
+      priority: "Высокий",
+      commissionType: "Фикс",
+      paymentTerms: "Предоплата 50%",
+      avgResponseSpeed: "25 мин",
+      confirmationRate: "92%",
+      cancellationRate: "5%",
+      avgCheck: "$250",
+      margin: "15%",
+      lastSync: "23.10.2025, 16:30",
     },
     {
       id: 2,
@@ -140,6 +164,30 @@ export function SuppliersTable() {
       services: "Отели",
       organization: "Asia Travel",
       status: "Не активен",
+      // Дополнительные поля
+      supplierType: "API",
+      commission: "8%",
+      contactPerson: "Алина Исмаилова",
+      email: "alina@hotel.kg",
+      phone: "+996 700 555 444",
+      address: "г. Бишкек, пр. Чуй 250, офис 3",
+      channel: "WhatsApp",
+      chatId: "+996700555444",
+      apiEndpoint: "https://api.amadeus.com/v2/bookings",
+      apiKey: "api_12345abcdef",
+      apiSecret: "secret_12345",
+      responseTime: "15 мин",
+      deadline: "4 ч",
+      notificationChannel: "Email",
+      priority: "Средний",
+      commissionType: "Процент",
+      paymentTerms: "По факту",
+      avgResponseSpeed: "18 мин",
+      confirmationRate: "88%",
+      cancellationRate: "8%",
+      avgCheck: "$300",
+      margin: "12%",
+      lastSync: "24.10.2025, 14:45",
     },
   ];
 
@@ -163,17 +211,13 @@ export function SuppliersTable() {
 
   return (
     <UITable
-      title="Поставщики"
       columns={suppliersColumns}
       rows={suppliersData}
-      showCheckbox={true}
-      onAddClick={() => alert("Добавить поставщика")}
-      addButtonText="Добавить поставщика"
-      onRowAction={(row) => alert(`Action for ${row.name}`)}
+      showCheckbox={false}
+      onRowClick={(row) => onRowClick?.(row)}
     />
   );
 }
-
 // Таблица с заказами
 export function OrdersTable() {
   const ordersData = [
