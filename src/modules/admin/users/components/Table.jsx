@@ -1,34 +1,11 @@
 "use client";
 import { UITable } from "@/ui";
+import Link from "next/link";
 import React, { useState } from "react";
-
-// Badge компонент
-function Badge({ text, color = "blue" }) {
-  const colors = {
-    blue: "#3b82f6",
-    red: "#ef4444",
-    green: "#10b981",
-    yellow: "#fbbf24",
-    pink: "#ec4899",
-    cyan: "#06b6d4",
-  };
-
-  return (
-    <span
-      style={{
-        backgroundColor: `${colors[color]}20`,
-        color: colors[color],
-        padding: "4px 8px",
-        borderRadius: "4px",
-        fontSize: "12px",
-        fontWeight: "600",
-        whiteSpace: "nowrap",
-      }}
-    >
-      • {text}
-    </span>
-  );
-}
+import { FaCheckCircle } from "react-icons/fa";
+import { IoEyeSharp } from "react-icons/io5";
+import { LuForward } from "react-icons/lu";
+import { MdEdit, MdDelete } from "react-icons/md";
 
 // Avatar компонент
 function Avatar({ src, name }) {
@@ -259,4 +236,712 @@ export function OrdersTable() {
       showCheckbox={false}
     />
   );
+}
+
+// Badge компонент
+function Badge({ text, color = "blue" }) {
+  const colors = {
+    blue: "#3b82f6",
+    red: "#ef4444",
+    green: "#10b981",
+    yellow: "#fbbf24",
+    pink: "#ec4899",
+    cyan: "#06b6d4",
+    purple: "#a855f7",
+    orange: "#f97316",
+  };
+
+  return (
+    <span
+      style={{
+        backgroundColor: `${colors[color]}20`,
+        color: colors[color],
+        padding: "4px 8px",
+        borderRadius: "4px",
+        fontSize: "12px",
+        fontWeight: "600",
+        whiteSpace: "nowrap",
+      }}
+    >
+      • {text}
+    </span>
+  );
+}
+
+// ActionButtons компонент
+function ActionButtons() {
+  return (
+    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+      <a href="#" style={{ color: "#3b82f6", cursor: "pointer" }}>
+        <MdEdit size={18} />
+      </a>
+      <button
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          color: "#ef4444",
+        }}
+      >
+        <MdDelete size={18} />
+      </button>
+    </div>
+  );
+}
+
+// StatusIcon компонент
+function StatusIcon({ active = true }) {
+  return (
+    // <div
+    //   style={{
+    //     width: "12px",
+    //     height: "12px",
+    //     borderRadius: "50%",
+    //     backgroundColor: active ? "#10b981" : "#9ca3af",
+    //     display: "inline-block",
+    //   }}
+    // />
+    <>
+      <FaCheckCircle size={16} color={active ? "#10b981" : "#9ca3af"} />
+    </>
+  );
+}
+
+// ===== ТАБЛИЦА СБОРОК И ТАКСИ =====
+export function CollectionsTable() {
+  const data = [
+    {
+      id: 1,
+      service: "Авиа",
+      type: "1",
+      value: "5",
+      rate: "800",
+      currency: "KGS",
+      comment: "сервисный сбор",
+      active: true,
+    },
+    {
+      id: 2,
+      service: "Отель",
+      type: "финс",
+      value: "1 000",
+      rate: "—",
+      currency: "KGS",
+      comment: "финс. комиссия",
+      active: true,
+    },
+    {
+      id: 3,
+      service: "Виза",
+      type: "К",
+      value: "0",
+      rate: "—",
+      currency: "KGS",
+      comment: "визовая комиссия",
+      active: true,
+    },
+    {
+      id: 4,
+      service: "Трансфер",
+      type: "финс",
+      value: "500",
+      rate: "—",
+      currency: "KGS",
+      comment: "логистика",
+      active: true,
+    },
+  ];
+
+  const columns = [
+    { key: "service", label: "Услуга" },
+    { key: "type", label: "Тип сбора" },
+    { key: "value", label: "Значение" },
+    { key: "rate", label: "Такса" },
+    { key: "currency", label: "Валюта" },
+    { key: "comment", label: "Комментарий" },
+    {
+      key: "active",
+      label: "Действие",
+      render: () => <ActionButtons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА БАНКОВСКИХ РЕКВИЗИТОВ =====
+export function BankDetailsTable() {
+  const data = [
+    {
+      id: 1,
+      bank: "Демир Банк",
+      account: "4070281030001",
+      currency: "KGS",
+      comment: "основной",
+      active: true,
+    },
+    {
+      id: 2,
+      bank: "БТА Банк",
+      account: "4070281061222",
+      currency: "USD",
+      comment: "международные платежи",
+      active: false,
+    },
+  ];
+
+  const columns = [
+    { key: "bank", label: "Банк" },
+    { key: "account", label: "Расчётный счёт" },
+    { key: "currency", label: "Валюта" },
+    { key: "comment", label: "Комментарий" },
+    {
+      key: "active",
+      label: "Активный",
+      render: (value) => <StatusIcon active={value} />,
+    },
+    {
+      key: "id",
+      label: "Действия",
+      render: () => <ActionButtons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА ФИЛИАЛОВ =====
+export function BranchesTable() {
+  const data = [
+    {
+      id: 1,
+      name: "ПСЦ Тур Бишкек",
+      city: "Бишкек",
+      address: "5",
+      phone: "+996 700 555 444",
+      manager: "Азгарим Т.",
+      employees: "10",
+    },
+    {
+      id: 2,
+      name: "ПСЦ Тур Казахстан",
+      city: "Алматы",
+      address: "1000",
+      phone: "+996 707 222 888",
+      manager: "Айбек К.",
+      employees: "45",
+    },
+  ];
+
+  const columns = [
+    { key: "name", label: "Название филиала" },
+    { key: "city", label: "Город / Регион" },
+    { key: "address", label: "Адрес" },
+    { key: "phone", label: "Телефон" },
+    { key: "manager", label: "Руководитель" },
+    { key: "employees", label: "Кол-во сотрудников" },
+    {
+      key: "id",
+      label: "Действия",
+      render: () => <ActionButtons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА КАНАЛОВ СВЯЗЕЙ =====
+export function CommunicationChannelsTable() {
+  const data = [
+    {
+      id: 1,
+      type: "Telegram",
+      identifier: "@psctour_bot",
+      responsible: "Азгарим",
+      description: "бот для заявок",
+      active: true,
+    },
+    {
+      id: 2,
+      type: "WhatsApp",
+      identifier: "+996 700 111 222",
+      responsible: "Азамат",
+      description: "чат с клиентами",
+      active: true,
+    },
+    {
+      id: 3,
+      type: "Email",
+      identifier: "booking@psctour.kg",
+      responsible: "Руслан",
+      description: "документы и счета",
+      active: true,
+    },
+    {
+      id: 4,
+      type: "Веб-форма",
+      identifier: "crm.psctour.kg/form",
+      responsible: "CRM",
+      description: "заявки с сайта",
+      active: true,
+    },
+  ];
+
+  const columns = [
+    { key: "type", label: "Тип канала" },
+    { key: "identifier", label: "Идентификатор" },
+    { key: "responsible", label: "Ответственный" },
+    { key: "description", label: "Примечание" },
+    {
+      key: "active",
+      label: "Активен",
+      render: (value) => <StatusIcon active={value} />,
+    },
+    {
+      key: "id",
+      label: "Действия",
+      render: () => <ActionButtons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА ИСТОРИИ ЗАКАЗОВ =====
+export function OrdersHistoryTable() {
+  const data = [
+    {
+      id: "#ORD-2357",
+      service: "Авиа + Отель",
+      sum: "141 700 KGS",
+      status: "В работе",
+      paid: "Частичный",
+      date: "25.10.25",
+    },
+    {
+      id: "#ORD-2210",
+      service: "Виза",
+      sum: "4,200 KGS",
+      status: "Завершен",
+      paid: "Оплачен",
+      date: "12.09.25",
+    },
+  ];
+
+  const columns = [
+    {
+      key: "id",
+      label: "№",
+      render: (value) => (
+        <span style={{ color: "#3b82f6", fontWeight: "600" }}>{value}</span>
+      ),
+    },
+    { key: "service", label: "Услуга" },
+    { key: "sum", label: "Сумма" },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value) => {
+        const statusColors = {
+          "В работе": "yellow",
+          Завершен: "green",
+          Отменен: "red",
+        };
+        return <Badge text={value} color={statusColors[value] || "blue"} />;
+      },
+    },
+    {
+      key: "paid",
+      label: "Оплата",
+      render: (value) => {
+        const paidColors = {
+          Оплачен: "green",
+          Частичный: "orange",
+          "Не оплачен": "red",
+        };
+        return <Badge text={value} color={paidColors[value] || "blue"} />;
+      },
+    },
+    { key: "date", label: "Дата" },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА СОТРУДНИКОВ ОРГАНИЗАЦИИ =====
+export function EmployeesTable() {
+  const data = [
+    {
+      id: 1,
+      name: "Азгарим Турсунбаева",
+      position: "Менеджер",
+      phone: "+996 555 555 123",
+      email: "agerini@psctour.kg",
+      active: true,
+    },
+    {
+      id: 2,
+      name: "Руслан Азаматов",
+      position: "Бухгалтер",
+      phone: "+996 700 444 888",
+      email: "ruslan@psctour.kg",
+      active: true,
+    },
+  ];
+
+  const columns = [
+    { key: "name", label: "ФИО" },
+    { key: "position", label: "Должность" },
+    { key: "phone", label: "Телефон" },
+    { key: "email", label: "Email" },
+    {
+      key: "active",
+      label: "Активен",
+      render: (value) => <StatusIcon active={value} />,
+    },
+    {
+      key: "id",
+      label: "Действия",
+      render: () => <ActionButtons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+/////////////////
+
+// DocumentLink компонент
+function DocumentLink({ value, isLink = true }) {
+  return isLink ? (
+    <Link
+      href="#"
+      style={{ color: "#3b82f6", fontWeight: "600", textDecoration: "none" }}
+    >
+      {value}
+    </Link>
+  ) : (
+    <span style={{ color: "#3b82f6", fontWeight: "600" }}>{value}</span>
+  );
+}
+
+// ActionIcons компонент
+function ActionIcons() {
+  return (
+    <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+      <Link href="#" style={{ color: "#3b82f6", cursor: "pointer" }}>
+        <IoEyeSharp size={18} />
+      </Link>
+      <Link href="#" style={{ color: "#16A34A", cursor: "pointer" }}>
+        <LuForward size={18} />
+      </Link>
+    </div>
+  );
+}
+
+// ===== ТАБЛИЦА ЮРИДИЧЕСКИХ ДОКУМЕНТОВ ОРГАНИЗАЦИИ =====
+export function LegalDocumentsTable() {
+  const data = [
+    {
+      id: "DOC-0123",
+      type: "Договор",
+      order: "ORD-125",
+      date: "10.10.25",
+      validity: "бессрочно",
+      status: "Подписан",
+      sent: "Дидюк",
+    },
+    {
+      id: "ACT-0154",
+      type: "Тарифы",
+      order: "ORD-126",
+      date: "11.10.25",
+      validity: "бессрочно",
+      status: "Утверждены",
+      sent: "Дидюк",
+    },
+  ];
+
+  const columns = [
+    { key: "id", label: "№" },
+    { key: "type", label: "Тип" },
+    {
+      key: "order",
+      label: "Заказ",
+      render: (value) => <DocumentLink value={value} isLink={true} />,
+    },
+    { key: "date", label: "Дата" },
+    { key: "validity", label: "Срок действия" },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value) => {
+        const statusColors = {
+          Подписан: "green",
+          Утверждены: "cyan",
+          "На подпись": "yellow",
+          Отклонен: "red",
+        };
+        return <Badge text={value} color={statusColors[value] || "blue"} />;
+      },
+    },
+    { key: "sent", label: "Отправлено в" },
+    {
+      key: "actions",
+      label: "Действия",
+      render: () => <ActionIcons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА ДОКУМЕНТОВ =====
+export function DocumentsTable() {
+  const data = [
+    {
+      id: "DOC-0123",
+      type: "Счет",
+      order: "ORD-125",
+      date: "10.10.25",
+      sum: "52 000 ₽",
+      status: "Оплачен",
+      sent: "1С",
+    },
+    {
+      id: "ACT-0154",
+      type: "Акт",
+      order: "ORD-126",
+      date: "11.10.25",
+      sum: "52 000 ₽",
+      status: "Утверждён",
+      sent: "Яндекс",
+    },
+  ];
+
+  const columns = [
+    { key: "id", label: "№" },
+    { key: "type", label: "Тип" },
+    {
+      key: "order",
+      label: "Заказ",
+      render: (value) => <DocumentLink value={value} isLink={true} />,
+    },
+    { key: "date", label: "Дата" },
+    { key: "sum", label: "Сумма" },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value) => {
+        const statusColors = {
+          Оплачен: "green",
+          Утверждён: "cyan",
+          Ожидает: "yellow",
+          Отклонен: "red",
+          Проверяется: "blue",
+        };
+        return <Badge text={value} color={statusColors[value] || "blue"} />;
+      },
+    },
+    { key: "sent", label: "Отправлено в" },
+    {
+      key: "actions",
+      label: "Действия",
+      render: () => <ActionIcons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА ДОГОВОРОВ =====
+export function ContractsTable() {
+  const data = [
+    {
+      id: "CNT-0001",
+      type: "Договор поставки",
+      partner: "Asia Travel",
+      date: "01.09.25",
+      validity: "01.09.25 - 31.08.26",
+      status: "Действует",
+      responsible: "Азгарим Т.",
+    },
+    {
+      id: "CNT-0002",
+      type: "Договор услуг",
+      partner: "Best Hotels",
+      date: "15.08.25",
+      validity: "15.08.25 - 14.08.26",
+      status: "Действует",
+      responsible: "Азамат А.",
+    },
+    {
+      id: "CNT-0003",
+      type: "Договор комиссии",
+      partner: "Travel Pro",
+      date: "10.10.25",
+      validity: "10.10.25 - 30.11.25",
+      status: "Истекает",
+      responsible: "Руслан Р.",
+    },
+  ];
+
+  const columns = [
+    { key: "id", label: "№" },
+    { key: "type", label: "Тип" },
+    { key: "partner", label: "Партнер" },
+    { key: "date", label: "Дата подписания" },
+    { key: "validity", label: "Срок действия" },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value) => {
+        const statusColors = {
+          Действует: "green",
+          Истекает: "yellow",
+          Истек: "red",
+          "На подпись": "blue",
+        };
+        return <Badge text={value} color={statusColors[value] || "blue"} />;
+      },
+    },
+    { key: "responsible", label: "Ответственный" },
+    {
+      key: "actions",
+      label: "Действия",
+      render: () => <ActionIcons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА СЧЕТОВ-ФАКТУР =====
+export function InvoicesTable() {
+  const data = [
+    {
+      id: "INV-0001",
+      number: "001",
+      type: "Счет-фактура",
+      order: "ORD-125",
+      date: "10.10.25",
+      sum: "52 000 ₽",
+      paid: "Оплачен",
+      dueDate: "20.10.25",
+    },
+    {
+      id: "INV-0002",
+      number: "002",
+      type: "Счет-фактура",
+      order: "ORD-126",
+      date: "11.10.25",
+      sum: "32 500 ₽",
+      paid: "Ожидает",
+      dueDate: "25.10.25",
+    },
+    {
+      id: "INV-0003",
+      number: "003",
+      type: "Счет-фактура",
+      order: "ORD-127",
+      date: "12.10.25",
+      sum: "18 000 ₽",
+      paid: "Частичный",
+      dueDate: "30.10.25",
+    },
+  ];
+
+  const columns = [
+    { key: "id", label: "№" },
+    { key: "number", label: "Номер" },
+    { key: "type", label: "Тип" },
+    {
+      key: "order",
+      label: "Заказ",
+      render: (value) => <DocumentLink value={value} isLink={true} />,
+    },
+    { key: "date", label: "Дата" },
+    { key: "sum", label: "Сумма" },
+    {
+      key: "paid",
+      label: "Статус оплаты",
+      render: (value) => {
+        const paidColors = {
+          Оплачен: "green",
+          Ожидает: "yellow",
+          Частичный: "orange",
+          "Не оплачен": "red",
+        };
+        return <Badge text={value} color={paidColors[value] || "blue"} />;
+      },
+    },
+    { key: "dueDate", label: "Срок оплаты" },
+    {
+      key: "actions",
+      label: "Действия",
+      render: () => <ActionIcons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
+}
+
+// ===== ТАБЛИЦА АКТОВ =====
+export function ActsTable() {
+  const data = [
+    {
+      id: "ACT-0001",
+      number: "001",
+      type: "Акт выполненных работ",
+      order: "ORD-125",
+      date: "10.10.25",
+      sum: "52 000 ₽",
+      status: "Подписан",
+      sent: "1С",
+    },
+    {
+      id: "ACT-0002",
+      number: "002",
+      type: "Акт сверки",
+      order: "ORD-126",
+      date: "11.10.25",
+      sum: "32 500 ₽",
+      status: "На подпись",
+      sent: "Email",
+    },
+  ];
+
+  const columns = [
+    { key: "id", label: "№" },
+    { key: "number", label: "Номер" },
+    { key: "type", label: "Тип" },
+    {
+      key: "order",
+      label: "Заказ",
+      render: (value) => <DocumentLink value={value} isLink={true} />,
+    },
+    { key: "date", label: "Дата" },
+    { key: "sum", label: "Сумма" },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value) => {
+        const statusColors = {
+          Подписан: "green",
+          "На подпись": "yellow",
+          Отклонен: "red",
+          Утверждён: "cyan",
+        };
+        return <Badge text={value} color={statusColors[value] || "blue"} />;
+      },
+    },
+    { key: "sent", label: "Отправлено в" },
+    {
+      key: "actions",
+      label: "Действия",
+      render: () => <ActionIcons />,
+    },
+  ];
+
+  return <UITable columns={columns} rows={data} showCheckbox={false} />;
 }
