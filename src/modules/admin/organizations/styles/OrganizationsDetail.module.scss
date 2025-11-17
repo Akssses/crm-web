@@ -7,3 +7,24 @@
   display: flex;
   gap: 20px;
 }
+.justi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.infos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  span {
+    margin-left: 20px;
+    color: var(--color-gray-500);
+  }
+}
+.center {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}

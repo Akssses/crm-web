@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 
 export default function UITable({
+  Icon: icon = null,
   type = "default",
   columns = [],
   rows = [],
@@ -40,13 +41,6 @@ export default function UITable({
   const isAllSelected = selectedRows.length === rows.length && rows.length > 0;
   const isPartialSelected =
     selectedRows.length > 0 && selectedRows.length < rows.length;
-
-  const calculateColumnWidth = (index) => {
-    if (showCheckbox && index === 0) return "48px";
-    if (onRowAction && index === columns.length + (showCheckbox ? 1 : 0))
-      return "44px";
-    return `${100 / columns.length}%`;
-  };
 
   return (
     <>
