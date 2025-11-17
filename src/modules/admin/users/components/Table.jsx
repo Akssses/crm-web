@@ -121,7 +121,7 @@ export function UsersTable() {
 }
 
 // Таблица с поставщиками
-export function SuppliersTable() {
+export function SuppliersTable({ onRowClick }) {
   const suppliersData = [
     {
       id: 1,
@@ -131,6 +131,30 @@ export function SuppliersTable() {
       services: "Авиабилеты",
       organization: "Asia Travel",
       status: "Подключен",
+      // Дополнительные поля для информационного модала
+      supplierType: "Локальный",
+      commission: "12%",
+      contactPerson: "Иван Иванов",
+      email: "ivan@mail.com",
+      phone: "+996 555 123 456",
+      address: "г. Бишкек, пр. Чуй 250",
+      channel: "Telegram",
+      chatId: "@supplier1",
+      apiEndpoint: "https://api.supplier1.com",
+      apiKey: "api_key_123",
+      apiSecret: "secret_123",
+      responseTime: "30 мин",
+      deadline: "6 ч",
+      notificationChannel: "Telegram",
+      priority: "Высокий",
+      commissionType: "Фикс",
+      paymentTerms: "Предоплата 50%",
+      avgResponseSpeed: "25 мин",
+      confirmationRate: "92%",
+      cancellationRate: "5%",
+      avgCheck: "$250",
+      margin: "15%",
+      lastSync: "23.10.2025, 16:30",
     },
     {
       id: 2,
@@ -140,6 +164,30 @@ export function SuppliersTable() {
       services: "Отели",
       organization: "Asia Travel",
       status: "Не активен",
+      // Дополнительные поля
+      supplierType: "API",
+      commission: "8%",
+      contactPerson: "Алина Исмаилова",
+      email: "alina@hotel.kg",
+      phone: "+996 700 555 444",
+      address: "г. Бишкек, пр. Чуй 250, офис 3",
+      channel: "WhatsApp",
+      chatId: "+996700555444",
+      apiEndpoint: "https://api.amadeus.com/v2/bookings",
+      apiKey: "api_12345abcdef",
+      apiSecret: "secret_12345",
+      responseTime: "15 мин",
+      deadline: "4 ч",
+      notificationChannel: "Email",
+      priority: "Средний",
+      commissionType: "Процент",
+      paymentTerms: "По факту",
+      avgResponseSpeed: "18 мин",
+      confirmationRate: "88%",
+      cancellationRate: "8%",
+      avgCheck: "$300",
+      margin: "12%",
+      lastSync: "24.10.2025, 14:45",
     },
   ];
 
@@ -163,17 +211,13 @@ export function SuppliersTable() {
 
   return (
     <UITable
-      title="Поставщики"
       columns={suppliersColumns}
       rows={suppliersData}
-      showCheckbox={true}
-      onAddClick={() => alert("Добавить поставщика")}
-      addButtonText="Добавить поставщика"
-      onRowAction={(row) => alert(`Action for ${row.name}`)}
+      showCheckbox={false}
+      onRowClick={(row) => onRowClick?.(row)}
     />
   );
 }
-
 // Таблица с заказами
 export function OrdersTable() {
   const ordersData = [
@@ -695,7 +739,100 @@ export function LegalDocumentsTable() {
 
   return <UITable columns={columns} rows={data} showCheckbox={false} />;
 }
+export function TransactionsTable({ onRowClick }) {
+  const transactionsData = [
+    {
+      id: "PAY-2025-101",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Оплата",
+      sum: "54,000 RUB",
+      status: "Оплачено",
+      statusColor: "green",
+      date: "23.10.2025",
+      paymentMethod: "Банковская карта",
+      currency: "RUB",
+      commission: "1500",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+    {
+      id: "PAY-2025-102",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Задолженность",
+      sum: "34,450 RUB",
+      status: "Просрочено",
+      statusColor: "pink",
+      date: "22.10.2025",
+      paymentMethod: "Кредит",
+      currency: "RUB",
+      commission: "1200",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+    {
+      id: "PAY-2025-103",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Оплата",
+      sum: "12,500 RUB",
+      status: "Возврат",
+      statusColor: "orange",
+      date: "21.10.2025",
+      paymentMethod: "Банковская карта",
+      currency: "RUB",
+      commission: "500",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+    {
+      id: "PAY-2025-104",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Оплата",
+      sum: "12,500 RUB",
+      status: "Частично",
+      statusColor: "purple",
+      date: "20.10.2025",
+      paymentMethod: "Банковская карта",
+      currency: "RUB",
+      commission: "500",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+  ];
 
+  const columns = [
+    {
+      key: "orderId",
+      label: "ID Заказа",
+      render: (value) => <span>{value}</span>,
+    },
+    { key: "client", label: "Клиент" },
+    { key: "organization", label: "Организация" },
+    { key: "operationType", label: "Тип операции" },
+    {
+      key: "sum",
+      label: "Сумма",
+      render: (value) => <span style={{ fontWeight: "600" }}>{value}</span>,
+    },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value, row) => <Badge text={value} color={row.statusColor} />,
+    },
+  ];
+
+  return (
+    <UITable
+      columns={columns}
+      rows={transactionsData}
+      showCheckbox={true}
+      onRowClick={(row) => onRowClick?.(row)}
+    />
+  );
+}
 // ===== ТАБЛИЦА ДОКУМЕНТОВ =====
 export function DocumentsTable() {
   const data = [

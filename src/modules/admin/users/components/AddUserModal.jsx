@@ -31,6 +31,7 @@ export default function AddUserModal({ isOpen, onClose, onSubmit }) {
       title="Добавить пользователя"
       position="right"
       size="lg"
+      width="40%"
       icon={FaRegUser}
     >
       <div className={s.modalContent}>
