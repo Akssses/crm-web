@@ -1,3 +1,5 @@
+import { Organizations } from "@/modules/admin";
+
 export default function OrganizationsPage() {
-  return <div>OrganizationsPage</div>;
+  return <Organizations />;
 }

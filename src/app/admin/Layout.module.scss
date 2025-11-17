@@ -9,6 +9,7 @@
   margin-left: 280px;
   display: flex;
   flex-direction: column;
+  transition: margin-left 0.3s ease;
 
   @media (max-width: 1024px) {
     margin-left: 240px;
@@ -23,4 +24,13 @@
   flex: 1;
   min-height: calc(100vh - 65px);
   padding: 30px;
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px;
+  }
 }

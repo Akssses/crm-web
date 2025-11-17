@@ -1,13 +1,37 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import s from "./Sidebar.module.scss";
 import { menuItems } from "./Data";
-import { MdKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown } from "react-icons/md";
 import Link from "next/link";
 
-export default function Sidebar() {
-  const [activeItem, setActiveItem] = useState("dashboard");
+// Context для передачи состояния collapse
+export const SidebarContext = createContext({
+  isCollapsed: false,
+  setIsCollapsed: () => {},
+});
+
+export function useSidebar() {
+  const context = useContext(SidebarContext);
+  if (!context) {
+    return { isCollapsed: false, setIsCollapsed: () => {} };
+  }
+  return context;
+}
+
+export function SidebarProvider({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  return (
+    <SidebarContext.Provider value={{ isCollapsed, setIsCollapsed }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+}
+
+function SidebarComponent() {
+  const { isCollapsed, setIsCollapsed } = useSidebar();
+  const [activeItem, setActiveItem] = useState("dashboard");
 
   return (
     <aside className={`${s.sidebar} ${isCollapsed ? s.collapsed : ""}`}>
@@ -27,7 +51,6 @@ export default function Sidebar() {
 
       <nav className={s.menu}>
         {menuItems.map((item) => {
-          const IconComponent = item.icon;
           const isActive = activeItem === item.id;
 
           return (
@@ -38,7 +61,11 @@ export default function Sidebar() {
               onClick={() => setActiveItem(item.id)}
               title={isCollapsed ? item.label : ""}
             >
-              <IconComponent className={s.icon} />
+              <img
+                src={item.icon}
+                alt={item.label}
+                className={`${s.icon} ${isActive ? s.active : ""}`}
+              />
               {!isCollapsed && <span className={s.label}>{item.label}</span>}
             </Link>
           );
@@ -55,7 +82,7 @@ export default function Sidebar() {
                 <p className={s.userEmail}>andrey@mail.com</p>
               </div>
               <button className={s.moreButton}>
-                <MdKeyboardArrowRight />
+                <MdKeyboardArrowDown size={18} />
               </button>
             </>
           )}
@@ -64,3 +91,5 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+export default SidebarComponent;
