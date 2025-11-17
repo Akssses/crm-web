@@ -89,6 +89,20 @@
       transform: translateY(0);
     }
   }
+  &.variant-bgyellowdark {
+    background-color: var(--color-yellow-dark);
+    color: white;
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-yellow-dark);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-yellow-dark);
+      transform: translateY(0);
+    }
+  }
   &.variant-bgred {
     background-color: var(--color-danger);
     color: white;
