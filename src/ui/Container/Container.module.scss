@@ -10,13 +10,13 @@
   /* VARIANTS */
   &.variant-default {
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    border-radius: 16px;
   }
 
   &.variant-card {
     background-color: var(--bg-primary);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    border-radius: 16px;
     box-shadow: var(--shadow-sm);
   }
 
@@ -28,13 +28,13 @@
   &.variant-outlined {
     background-color: transparent;
     border: 2px solid var(--border-color);
-    border-radius: var(--radius-md);
+    border-radius: 16px;
   }
 
   &.variant-filled {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
+    border-radius: 16px;
   }
 
   /* SIZES */
