@@ -739,7 +739,100 @@ export function LegalDocumentsTable() {
 
   return <UITable columns={columns} rows={data} showCheckbox={false} />;
 }
+export function TransactionsTable({ onRowClick }) {
+  const transactionsData = [
+    {
+      id: "PAY-2025-101",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Оплата",
+      sum: "54,000 RUB",
+      status: "Оплачено",
+      statusColor: "green",
+      date: "23.10.2025",
+      paymentMethod: "Банковская карта",
+      currency: "RUB",
+      commission: "1500",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+    {
+      id: "PAY-2025-102",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Задолженность",
+      sum: "34,450 RUB",
+      status: "Просрочено",
+      statusColor: "pink",
+      date: "22.10.2025",
+      paymentMethod: "Кредит",
+      currency: "RUB",
+      commission: "1200",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+    {
+      id: "PAY-2025-103",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Оплата",
+      sum: "12,500 RUB",
+      status: "Возврат",
+      statusColor: "orange",
+      date: "21.10.2025",
+      paymentMethod: "Банковская карта",
+      currency: "RUB",
+      commission: "500",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+    {
+      id: "PAY-2025-104",
+      orderId: "#ORD-145",
+      client: "Фио клиента",
+      organization: "Asia Travel",
+      operationType: "Оплата",
+      sum: "12,500 RUB",
+      status: "Частично",
+      statusColor: "purple",
+      date: "20.10.2025",
+      paymentMethod: "Банковская карта",
+      currency: "RUB",
+      commission: "500",
+      exchangeRate: "1 USD = 89.5 KGS",
+    },
+  ];
 
+  const columns = [
+    {
+      key: "orderId",
+      label: "ID Заказа",
+      render: (value) => <span>{value}</span>,
+    },
+    { key: "client", label: "Клиент" },
+    { key: "organization", label: "Организация" },
+    { key: "operationType", label: "Тип операции" },
+    {
+      key: "sum",
+      label: "Сумма",
+      render: (value) => <span style={{ fontWeight: "600" }}>{value}</span>,
+    },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value, row) => <Badge text={value} color={row.statusColor} />,
+    },
+  ];
+
+  return (
+    <UITable
+      columns={columns}
+      rows={transactionsData}
+      showCheckbox={true}
+      onRowClick={(row) => onRowClick?.(row)}
+    />
+  );
+}
 // ===== ТАБЛИЦА ДОКУМЕНТОВ =====
 export function DocumentsTable() {
   const data = [

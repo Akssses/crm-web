@@ -44,7 +44,6 @@ export default function SupplierInfoModal({
       icon={FaRegBuilding}
     >
       <div className={s.modalContent}>
-        {/* Header with avatar and title */}
         <div>
           {" "}
           <div className={s.header}>

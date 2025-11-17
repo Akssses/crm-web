@@ -33,13 +33,13 @@ export const menuItems = [
     id: "finance",
     label: "Финансы",
     icon: "/assets/icons/square-bar-chart-03.svg",
-    href: "#",
+    href: "/admin/finance",
   },
   {
     id: "analytics",
     label: "Отчёты и аналитика",
     icon: "/assets/icons/bar-chart-12.svg",
-    href: "#",
+    href: "/admin/reports",
   },
   {
     id: "handbook",

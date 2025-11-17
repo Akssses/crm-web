@@ -7,67 +7,29 @@
 
 .header {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  align-items: flex-start;
   padding: 0 16px 16px 16px;
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 16px;
 }
 
-.avatar {
-  width: 60px;
-  height: 60px;
-  min-width: 60px;
-  border-radius: 50px;
-  background: var(--color-gray-300);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 28px;
-
-  @media (max-width: 640px) {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    font-size: 20px;
-  }
-}
-
-.headerInfo {
-  flex: 1;
-
+.headerTitle {
   h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--text-primary);
   }
 
-  .organization {
-    margin: 4px 0 0 0;
-    font-size: 13px;
+  p {
     color: var(--text-secondary);
-  }
-
-  @media (max-width: 640px) {
-    h3 {
-      font-size: 14px;
-    }
-
-    .organization {
-      font-size: 12px;
-    }
   }
 }
 
-.status {
-  padding: 4px 6px;
-  border-radius: 8px;
-  background: #fef1ed;
-  .badge {
-    color: #f36f4a;
-  }
+.headerStatus {
+  display: flex;
+  align-items: center;
 }
 
 .tabs {
@@ -76,35 +38,6 @@
   gap: 8px;
   margin: 0 16px;
   padding: 0 0 12px 0;
-  overflow-x: auto;
-}
-
-.tab {
-  background: none;
-  border: none;
-  padding: 8px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -14px;
-
-  &:hover {
-    color: var(--text-primary);
-  }
-
-  &.active {
-    color: #3b82f6;
-    border-bottom-color: #3b82f6;
-  }
-
-  @media (max-width: 640px) {
-    padding: 8px 10px;
-    font-size: 12px;
-  }
 }
 
 .tabContent {
@@ -118,17 +51,6 @@
   @media (max-width: 640px) {
     padding: 0 12px;
     min-height: 200px;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -151,19 +73,27 @@
 
 .value {
   color: var(--text-primary);
-
   text-align: right;
-
   &.bold {
     color: #3b82f6;
   }
 }
 
+.emptyMessage {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 20px;
+  margin: 0;
+}
+
 .actions {
   display: flex;
-  gap: 12px;
+  justify-content: center;
+  gap: 20px;
   padding: 16px;
   border-top: 1px solid var(--border-color);
+  margin-top: 16px;
 
   button {
     flex: 1;
@@ -194,6 +124,30 @@
   }
 }
 
+// Плавные переходы
+.tab {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #3b82f6;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  &.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+// Hover эффекты
 .infoRow {
   transition: background-color 0.2s ease;
 
