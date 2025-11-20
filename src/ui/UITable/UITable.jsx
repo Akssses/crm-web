@@ -16,6 +16,7 @@ export default function UITable({
   showCheckbox = true,
   onAddClick = null,
   onRowAction = null,
+  onRowClick = null,
   addButtonText = "Добавить",
 }) {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -36,6 +37,17 @@ export default function UITable({
         return [...prev, index];
       }
     });
+  };
+
+  const handleRowClick = (row, rowIdx, e) => {
+    // Если кликнули на checkbox или action button - не открываем модал
+    if (
+      e.target.closest(`.${s.checkbox}`) ||
+      e.target.closest(`.${s.actionButton}`)
+    ) {
+      return;
+    }
+    onRowClick?.(row, rowIdx);
   };
 
   const isAllSelected = selectedRows.length === rows.length && rows.length > 0;
@@ -90,7 +102,8 @@ export default function UITable({
                 key={rowIdx}
                 className={`${s.bodyRow} ${
                   selectedRows.includes(rowIdx) ? s.selected : ""
-                }`}
+                } ${onRowClick ? s.clickable : ""}`}
+                onClick={(e) => handleRowClick(row, rowIdx, e)}
               >
                 {showCheckbox && (
                   <div className={s.checkboxCell}>
