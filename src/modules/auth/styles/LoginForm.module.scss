@@ -14,13 +14,14 @@
   background-attachment: fixed;
   padding: 20px;
 }
+
 .card {
   width: 100%;
-  max-width: 440px;
+  max-width: 500px;
   background: white;
-  border-radius: 12px;
-  padding: 40px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 26px;
+  padding: 30px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .header {
@@ -31,7 +32,7 @@
 .title {
   margin: 0;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--color-gray-900);
 }
 
@@ -109,15 +110,14 @@
 .link {
   background: none;
   border: none;
-  color: #4f46e5;
-  font-size: 14px;
+  color: #2181ff;
+  font-size: 16px;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.2s ease;
-  font-weight: 500;
 
   &:hover {
-    color: #4338ca;
+    color: #000000;
   }
 
   &:disabled {

@@ -22,13 +22,13 @@
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
   background-color: #ffffff;
   transition: all 0.2s ease;
 
   &:focus-within {
-    border-color: #4f46e5;
+    border-color: #1a94ff;
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
   }
 
@@ -59,7 +59,7 @@
   }
 
   &.size-md {
-    padding: 10px 16px;
+    padding: 14px 16px;
 
     .input {
       font-size: 16px;
@@ -79,7 +79,7 @@
     border-color: #e5e7eb;
 
     &:focus-within {
-      border-color: #4f46e5;
+      border-color: #1a94ff;
     }
   }
 
