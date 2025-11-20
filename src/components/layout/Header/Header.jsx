@@ -1,11 +1,29 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { usePathname } from "next/navigation";
+import { menuItems } from "../Sidebar/Data";
 import s from "./Header.module.scss";
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const pathname = usePathname();
+
+  const pageTitle = useMemo(() => {
+    if (!pathname) {
+      return "Профиль";
+    }
+
+    const matchedItem = menuItems.find((item) => {
+      if (!item.href || item.href === "#") {
+        return false;
+      }
+      return pathname.startsWith(item.href);
+    });
+
+    return matchedItem?.label || "Профиль";
+  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -21,14 +39,16 @@ export default function Header() {
   return (
     <header className={s.header}>
       <div className={s.container}>
-        <h4>Профиль</h4>
+        <h4 className={s.title}>{pageTitle}</h4>
 
         <div className={s.profileSection} ref={dropdownRef}>
           <button
             className={s.profileButton}
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <div className={s.avatar}>A</div>
+            <div className={s.avatar}>
+              <img src="/assets/images/avatar.svg" alt="avatar" />
+            </div>
             <div className={s.userInfo}>
               <p className={s.userName}>Andrey Klaud</p>
               <p className={s.userRole}>Администратор</p>

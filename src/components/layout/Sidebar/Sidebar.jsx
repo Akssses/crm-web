@@ -2,7 +2,7 @@
 import React, { useState, createContext, useContext } from "react";
 import s from "./Sidebar.module.scss";
 import { menuItems } from "./Data";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowLeft, MdKeyboardArrowDown } from "react-icons/md";
 import Link from "next/link";
 
 // Context для передачи состояния collapse
@@ -35,14 +35,19 @@ function SidebarComponent() {
 
   return (
     <aside className={`${s.sidebar} ${isCollapsed ? s.collapsed : ""}`}>
-      <div className={s.header}>
-        {!isCollapsed && <h4>ПСЦ Админ</h4>}
+      <div className={`${s.header} ${isCollapsed ? s.headerCollapsed : ""}`}>
+        <h4
+          className={`${s.title} ${isCollapsed ? s.titleCollapsed : ""}`}
+          aria-hidden={isCollapsed}
+        >
+          ПСЦ Админ
+        </h4>
         <button
           className={s.collapseButton}
           onClick={() => setIsCollapsed(!isCollapsed)}
           title={isCollapsed ? "Развернуть" : "Свернуть"}
         >
-          <MdKeyboardArrowDown
+          <MdKeyboardArrowLeft
             size={18}
             className={`${s.arrowIcon} ${isCollapsed ? s.collapsed : ""}`}
           />
@@ -74,7 +79,9 @@ function SidebarComponent() {
 
       <div className={s.footer}>
         <div className={s.userInfo}>
-          <div className={s.avatar}>A</div>
+          <div className={s.avatar}>
+            <img src="/assets/images/avatar.svg" alt="avatar" />
+          </div>
           {!isCollapsed && (
             <>
               <div className={s.userDetails}>
