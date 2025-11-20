@@ -39,7 +39,6 @@ export default function SuppliersTable() {
     <Container size="full">
       <div className={s.header}>
         <div className={s.headerLeft}>
-          <MdPeople size={24} />
           <h3 className={s.headerTitle}>Топ поставщики</h3>
         </div>
         <div className={s.headerRight}>

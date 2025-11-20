@@ -2,20 +2,27 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { usePathname } from "next/navigation";
-import { menuItems } from "../Sidebar/Data";
+import { menuItems as adminMenuItems } from "../Sidebar/Data";
 import s from "./Header.module.scss";
 
-export default function Header() {
+export default function Header({ menuItems = adminMenuItems }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const pathname = usePathname();
+
+  const resolvedMenuItems = useMemo(() => {
+    if (Array.isArray(menuItems) && menuItems.length) {
+      return menuItems;
+    }
+    return adminMenuItems;
+  }, [menuItems]);
 
   const pageTitle = useMemo(() => {
     if (!pathname) {
       return "Профиль";
     }
 
-    const matchedItem = menuItems.find((item) => {
+    const matchedItem = resolvedMenuItems.find((item) => {
       if (!item.href || item.href === "#") {
         return false;
       }
@@ -23,7 +30,7 @@ export default function Header() {
     });
 
     return matchedItem?.label || "Профиль";
-  }, [pathname]);
+  }, [pathname, resolvedMenuItems]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
