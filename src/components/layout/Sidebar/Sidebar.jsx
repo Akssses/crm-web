@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, createContext, useContext } from "react";
 import s from "./Sidebar.module.scss";
-import { menuItems } from "./Data";
+import { menuItems as adminMenuItems } from "./Data";
 import { MdKeyboardArrowLeft, MdKeyboardArrowDown } from "react-icons/md";
 import Link from "next/link";
 
@@ -29,9 +29,9 @@ export function SidebarProvider({ children }) {
   );
 }
 
-function SidebarComponent() {
+function SidebarComponent({ items = adminMenuItems }) {
   const { isCollapsed, setIsCollapsed } = useSidebar();
-  const [activeItem, setActiveItem] = useState("dashboard");
+  const [activeItem, setActiveItem] = useState(items?.[0]?.id || "dashboard");
 
   return (
     <aside className={`${s.sidebar} ${isCollapsed ? s.collapsed : ""}`}>
@@ -55,7 +55,7 @@ function SidebarComponent() {
       </div>
 
       <nav className={s.menu}>
-        {menuItems.map((item) => {
+        {items.map((item) => {
           const isActive = activeItem === item.id;
 
           return (
