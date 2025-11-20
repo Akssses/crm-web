@@ -1,12 +1,6 @@
 import React from "react";
 import s from "./StatCard.module.scss";
-import {
-  MdOutlineArrowDownward,
-  MdOutlineArrowUpward,
-  MdTrendingDown,
-  MdTrendingUp,
-} from "react-icons/md";
-import { BiRightTopArrowCircle } from "react-icons/bi";
+import { MdOutlineArrowDownward, MdOutlineArrowUpward } from "react-icons/md";
 
 export default function StatCard({
   icon: Icon,
@@ -30,9 +24,6 @@ export default function StatCard({
             <p className={s.unit}>{unit}</p>
           </div>
         </div>
-        <button className={s.refreshButton} title="Обновить">
-          <BiRightTopArrowCircle size={24} />
-        </button>
       </div>
       <div
         className={`${s.changeSection} ${isNegative ? s.negative : s.positive}`}

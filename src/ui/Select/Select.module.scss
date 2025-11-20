@@ -17,30 +17,16 @@
 .selectWrapper {
   position: relative;
   width: 100%;
-  border-radius: 8px;
-  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
   background-color: #ffffff;
   transition: all 0.2s ease;
-
-  &:focus-within {
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-  }
 
   &.error {
     border-color: #ef4444;
 
     &:focus-within {
       box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-    }
-  }
-
-  &.disabled {
-    background-color: #f3f4f6;
-    color: #9ca3af;
-
-    .trigger {
-      cursor: not-allowed;
     }
   }
 
@@ -52,7 +38,7 @@
   /* SIZES */
   &.size-sm {
     .trigger {
-      padding: 8px 12px;
+      padding: 10px 12px;
       font-size: 14px;
       min-height: 32px;
     }
@@ -60,7 +46,7 @@
 
   &.size-md {
     .trigger {
-      padding: 10px 16px;
+      padding: 14px 16px;
       font-size: 16px;
       min-height: 44px;
     }
@@ -139,7 +125,8 @@
   background-color: #ffffff;
   border: 2px solid #e5e7eb;
   border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 12px;
+  margin-top: 5px;
   max-height: 300px;
   overflow-y: auto;
   z-index: 1000;

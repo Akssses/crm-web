@@ -1,9 +1,8 @@
 .card {
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
-  //   border-radius: 12px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   padding: 20px;
   display: flex;
   justify-content: space-between;

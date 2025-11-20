@@ -22,10 +22,9 @@ export default function ResetPasswordForm() {
       <div className={s.card}>
         {/* Header */}
         <div className={s.header}>
-          <h1 className={s.title}>Введите код</h1>
+          <h1 className={s.title}>Новый пароль</h1>
           <p className={s.subtitle}>
-            Мы отправили проверочный код на адрес электронной почты
-            alexandra@mail.com
+            Создайте новый пароль для вашей учетной записи
           </p>
         </div>
 
