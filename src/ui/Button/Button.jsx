@@ -4,7 +4,7 @@ import s from "./Button.module.scss";
 export default function Button({
   children,
   variant = "primary",
-  size = "md",
+  size = "sm",
   icon: Icon = null,
   disabled = false,
   onClick = null,

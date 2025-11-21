@@ -1,0 +1,142 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    padding: 16px 12px;
+  }
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 250px 200px 250px 180px 1fr 60px;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  font-size: 12px;
+  color: #6b7280;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+  max-height: 600px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f9fafb;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+
+    &:hover {
+      background: #9ca3af;
+    }
+  }
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 250px 200px 250px 180px 1fr 60px;
+  gap: 12px;
+  padding: 12px 16px;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col1 {
+  font-weight: 500;
+}
+
+.col3 {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.col4 {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ef4444;
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #fee2e2;
+  }
+}
+
+.addMappingBtn {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: none;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.1);
+  }
+}
