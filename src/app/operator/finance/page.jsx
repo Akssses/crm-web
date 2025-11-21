@@ -1,5 +1,7 @@
+import Finance from "@/modules/operator/finance/components/Finance";
+
 export default function OperatorFinancePage() {
-  return <div>Страница финансов оператора.</div>;
+  return <Finance />;
 }
 
 

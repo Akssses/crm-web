@@ -1,5 +1,5 @@
+import Dashboard from "@/modules/operator/dashboard/components/Dashboard";
+
 export default function OperatorDashboardPage() {
-  return <div>Страница дашборда оператора.</div>;
+  return <Dashboard />;
 }
-
-

@@ -1,0 +1,36 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.firstBlock {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+
+  .firstBlockChildMain {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .firstBlockChild {
+    display: flex;
+    gap: 20px;
+  }
+}
+.firstBlock > :first-child {
+  flex: 2.5; /* шире */
+}
+
+.firstBlock > :last-child {
+  flex: 1; /* уже */
+}
+
+.secondBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

@@ -1,0 +1,166 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: var(--color-gray-600);
+  font-size: 14px;
+}
+
+.dateTime {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-gray-900);
+}
+
+.time {
+  color: var(--color-gray-600);
+  font-weight: 400;
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.metric:last-child {
+  border-bottom: none;
+}
+
+.metricLabel {
+  color: var(--color-gray-600);
+  font-size: 14px;
+}
+
+.metricValue {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  font-size: 16px;
+}
+
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fbbf24;
+}
+
+.statusText {
+  font-weight: 500;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.financialBreakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.financialItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.financialItem:last-child {
+  border-bottom: none;
+}
+
+.financialLabel {
+  color: var(--color-gray-600);
+  font-size: 14px;
+}
+
+.financialValue {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  font-size: 14px;
+
+  &.negative {
+    color: var(--color-red-600);
+  }
+}
+
+.totalBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.totalLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.totalValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-blue-600);
+}
+
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+

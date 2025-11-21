@@ -1,0 +1,180 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.selectWrapper {
+  flex-shrink: 0;
+  min-width: 150px;
+  max-width: 200px;
+  width: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.orderLink {
+  color: var(--color-blue-600);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.serviceTypeBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.serviceType-blue {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-blue-700);
+}
+
+.serviceType-purple {
+  background: rgba(168, 85, 247, 0.1);
+  color: var(--color-purple-700);
+}
+
+.serviceType-orange {
+  background: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+}
+
+.amount {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.commission {
+  font-weight: 500;
+  color: var(--color-gray-700);
+  font-size: 14px;
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.statusDot-green {
+  background: var(--color-green-500);
+}
+
+.statusDot-gray {
+  background: var(--color-gray-500);
+}
+
+.statusDot-red {
+  background: var(--color-red-500);
+}
+
+.statusText {
+  font-size: 14px;
+  color: var(--color-gray-900);
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  color: var(--color-gray-600);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-blue-600);
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--color-gray-200);
+  flex-wrap: wrap;
+}
+
+.footerLabel {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.footerValue {
+  color: var(--color-gray-700);
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterGroup {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: stretch;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
