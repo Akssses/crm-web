@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { usePathname } from "next/navigation";
 import s from "./Layout.module.scss";
 import Sidebar, {
   SidebarProvider,
@@ -10,6 +11,9 @@ import { operatorMenuItems } from "@/components/layout/Sidebar/OperatorData";
 
 function LayoutContent({ children }) {
   const { isCollapsed } = useSidebar();
+  const pathname = usePathname();
+  const isChatDetail =
+    pathname?.startsWith("/operator/chat/") && pathname !== "/operator/chat";
 
   return (
     <div
@@ -19,7 +23,7 @@ function LayoutContent({ children }) {
         transition: "margin-left 0.1s ease",
       }}
     >
-      <Header menuItems={operatorMenuItems} />
+      {!isChatDetail && <Header menuItems={operatorMenuItems} />}
       <main className={s.main}>{children}</main>
     </div>
   );
@@ -35,5 +39,3 @@ export default function Layout({ children }) {
     </SidebarProvider>
   );
 }
-
-

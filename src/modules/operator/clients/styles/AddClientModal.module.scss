@@ -1,0 +1,160 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tabButton {
+  flex: 1;
+}
+
+.avatarSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatarPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 99px;
+  background: var(--color-gray-100);
+  border: 2px dashed var(--color-gray-300);
+  color: var(--color-gray-400);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.phoneInput {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phoneLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.phoneInputRow {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.countryCode {
+  flex-shrink: 0;
+  width: 100px;
+}
+
+.phoneNumber {
+  flex: 1;
+}
+
+.fullWidthTextarea {
+  grid-column: 1 / -1;
+}
+
+.documentsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--color-gray-50);
+  border-radius: 8px;
+  border: 1px solid var(--color-gray-200);
+}
+
+.fileName {
+  font-weight: 500;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.fileInfo {
+  color: var(--color-gray-600);
+  font-size: 12px;
+}
+
+.tagsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tagsLabel {
+  font-weight: 500;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 6px 16px;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 99px;
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &.tagActive {
+    background: #016dff;
+    border-color: #016dff;
+    color: var(--color-white);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray-200);
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+    }
+  }
+}
