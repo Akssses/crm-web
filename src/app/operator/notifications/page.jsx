@@ -1,5 +1,7 @@
+import Notifications from "@/modules/operator/notifications/components/Notifications";
+
 export default function OperatorNotificationsPage() {
-  return <div>Страница уведомлений оператора.</div>;
+  return <Notifications />;
 }
 
 
