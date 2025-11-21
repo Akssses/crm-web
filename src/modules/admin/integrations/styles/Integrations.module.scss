@@ -1,0 +1,260 @@
+.integrations {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.justi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex {
+  display: flex;
+  gap: 20px;
+}
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 6px;
+  color: #10b981;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.headerMeta {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  .metaLabel {
+    color: #10b981;
+    margin-top: -10px;
+  }
+}
+
+// Stats Grid
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  margin: 0;
+  font-size: 11px;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.statSublabel {
+  margin: 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+// Search Area
+.searchArea {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+// Section
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+// Scenarios Grid
+.scenariosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.scenarioCard {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background: var(--color-gray-50);
+  border-radius: 13px;
+  cursor: pointer;
+}
+
+.scenarioHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scenarioTitle {
+  flex: 1;
+  min-width: 0;
+
+  h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.4;
+  }
+}
+
+.scenarioStatus {
+  display: flex;
+}
+
+// Services Grid
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.serviceHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.serviceNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #fce7f3;
+  border-radius: 6px;
+  color: #ec4899;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.serviceInfo {
+  flex: 1;
+  min-width: 0;
+
+  h4 {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  p {
+    margin: 0;
+    font-size: 12px;
+    color: #9ca3af;
+  }
+}
+
+.serviceStatus {
+  display: flex;
+}
+
+.serviceFields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.fieldRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  gap: 8px;
+}
+
+.fieldLabel {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.fieldValue {
+  color: #1f2937;
+  font-weight: 600;
+  text-align: right;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -27,7 +27,7 @@ export const menuItems = [
     id: "documents",
     label: "Документы",
     icon: "/assets/icons/calendar.svg",
-    href: "#",
+    href: "/admin/documents",
   },
   {
     id: "finance",
@@ -51,6 +51,6 @@ export const menuItems = [
     id: "integration",
     label: "CMS Интеграции",
     icon: "/assets/icons/download-circle-05.svg",
-    href: "#",
+    href: "/admin/integrations",
   },
 ];
