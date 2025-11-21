@@ -145,6 +145,20 @@
       transform: translateY(0);
     }
   }
+  &.variant-bggray100 {
+    background-color: var(--color-gray-100);
+    color: #000;
+
+    &:hover:not(.disabled) {
+      background-color: var(--color-gray-100);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(.disabled) {
+      background-color: var(--color-gray-100);
+      transform: translateY(0);
+    }
+  }
   &.variant-red {
     background-color: var(--color-white);
     color: var(--color-danger);

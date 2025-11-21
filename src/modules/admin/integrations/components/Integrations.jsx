@@ -1,0 +1,341 @@
+"use client";
+import React, { useState } from "react";
+import s from "../styles/Integrations.module.scss";
+import { Button, Container, Input } from "@/ui";
+import { IoDocumentText, IoSearchOutline } from "react-icons/io5";
+import { TiPlus } from "react-icons/ti";
+import { MdCheckCircle, MdError, MdWarning } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+
+function Badge({ text, color = "green", icon: Icon = MdCheckCircle }) {
+  const colors = {
+    green: "#10b981",
+    red: "#ef4444",
+    yellow: "#fbbf24",
+    blue: "#3b82f6",
+    orange: "#f97316",
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        color: colors[color],
+        fontSize: "12px",
+        fontWeight: "600",
+      }}
+    >
+      <Icon size={16} />
+      {text}
+    </div>
+  );
+}
+
+function StatCard({ label, value, sublabel, color = "blue" }) {
+  const colors = {
+    blue: "#EFF6FF",
+    yellow: "#FFFBEB",
+    purple: "#F9FAFB",
+    pink: "#FEF2F2",
+  };
+  const colorstext = {
+    blue: "#2563EB",
+    yellow: "#D97706",
+    purple: "#000",
+    pink: "#DC2626",
+  };
+
+  return (
+    <div className={s.statCard} style={{ backgroundColor: colors[color] }}>
+      <p className={s.statLabel}>{label}</p>
+      <p className={s.statValue} style={{ color: colorstext[color] }}>
+        {value}
+      </p>
+      {sublabel && <p className={s.statSublabel}>{sublabel}</p>}
+    </div>
+  );
+}
+
+function ScenarioCard({ title, icon: Icon, status, statusColor, color }) {
+  return (
+    <div className={s.scenarioCard}>
+      <div className={s.scenarioHeader}>
+        <div className={s.scenarioIcon}>
+          <Icon size={24} color={color} />
+        </div>
+        <div className={s.scenarioTitle}>
+          <h4>{title}</h4>
+        </div>
+      </div>
+      <div className={s.scenarioStatus}>
+        <Badge text={status} color={statusColor} />
+      </div>
+    </div>
+  );
+}
+
+// ServiceCard компонент
+function ServiceCard({ title, code, status, statusColor, fields }) {
+  return (
+    <Container className={s.serviceCard}>
+      <div className={s.serviceHeader}>
+        <div className={s.serviceNumber}>1</div>
+        <div className={s.serviceInfo}>
+          <h4>{title}</h4>
+          <p>{code}</p>
+        </div>
+        <div className={s.serviceStatus}>
+          <Badge text={status} color={statusColor} />
+        </div>
+      </div>
+      <div className={s.serviceFields}>
+        {fields.map((field, idx) => (
+          <div key={idx} className={s.fieldRow}>
+            <span className={s.fieldLabel}>{field.label}:</span>
+            <span className={s.fieldValue}>{field.value}</span>
+          </div>
+        ))}
+      </div>
+    </Container>
+  );
+}
+
+export default function Integrations() {
+  const [search, setSearch] = useState("");
+
+  const scenarios = [
+    {
+      title: "Выставление счета → отправка в бухгалтерию",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Работает",
+      statusColor: "green",
+    },
+    {
+      title: "Формирование PDF документов",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Работает",
+      statusColor: "green",
+    },
+    {
+      title: "Подписание ЭЦП (одной или двух сторон)",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Требует настройки",
+      statusColor: "yellow",
+    },
+    {
+      title: "Передача актов / УПД",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Работает",
+      statusColor: "green",
+    },
+    {
+      title: "Импорт статуса оплаты",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Работает",
+      statusColor: "green",
+    },
+    {
+      title: "Отправка чеков ОФД",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Работает",
+      statusColor: "green",
+    },
+    {
+      title: "Передача данных по НПД",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Выключено",
+      statusColor: "red",
+    },
+    {
+      title: "Ежедневная сверка",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Работает",
+      statusColor: "green",
+    },
+    {
+      title: "Хранение электронных оригиналов",
+      icon: IoDocumentText,
+      color: "#2563EB",
+      status: "Работает",
+      statusColor: "green",
+    },
+  ];
+
+  // Интегрированные сервисы
+  const services = [
+    {
+      title: "1С",
+      code: "1C v8.3 FTP",
+      status: "Активен",
+      statusColor: "green",
+      fields: [
+        { label: "Endpoint", value: "iq-1c.local:v1" },
+        { label: "Последняя выгрузка", value: "14:28" },
+        { label: "Ошибок", value: "0" },
+      ],
+    },
+    {
+      title: "Эльба",
+      code: "Илько ООО",
+      status: "Активен",
+      statusColor: "green",
+      fields: [
+        { label: "Статус", value: "Подключено" },
+        { label: "Ошибки интеграции", value: "2" },
+      ],
+    },
+    {
+      title: "Диадок",
+      code: "ООО",
+      status: "Активен",
+      statusColor: "green",
+      fields: [
+        { label: "Отправлено за месяц", value: "247" },
+        { label: "Подписки клиентов", value: "189" },
+        { label: "Ошибки", value: "1" },
+      ],
+    },
+    {
+      title: "ЭЦП проверяемы",
+      code: "КремлиБро ООС",
+      status: "Истекает",
+      statusColor: "yellow",
+      fields: [
+        { label: "Хранение ключей", value: "Защищено" },
+        { label: "Статус ключей", value: "Активен" },
+        { label: "Дата истечения", value: "12.12.2024" },
+      ],
+    },
+    {
+      title: "ОФД",
+      code: "Оператор ФД",
+      status: "Активен",
+      statusColor: "green",
+      fields: [
+        { label: "URL", value: "" },
+        { label: "Статус отправки чеков", value: "Норме" },
+        { label: "Чеков за сутки", value: "1,243" },
+      ],
+    },
+    {
+      title: "НПД / ФНС",
+      code: "АП ФНС",
+      status: "Выключено",
+      statusColor: "red",
+      fields: [
+        { label: "API статус", value: "Не поддерживаны" },
+        { label: "Лимиты", value: "" },
+        { label: "Ошибки передачи", value: "" },
+      ],
+    },
+  ];
+
+  return (
+    <div className={s.integrations}>
+      <div className={s.justi}>
+        <div></div>
+        <div className={s.flex}>
+          <Input
+            icon={IoSearchOutline}
+            placeholder="Поиск..."
+            value={search}
+            onChange={setSearch}
+          />
+          <Button variant="bgblue" icon={FaPlus}>
+            Добавить
+          </Button>
+        </div>
+      </div>
+      <Container size="full">
+        <div className={s.headerTop}>
+          <div className={s.headerInfo}>
+            <div className={s.statusBadge}>
+              <MdCheckCircle size={20} style={{ color: "#10b981" }} />
+            </div>
+            <div className={s.headerMeta}>
+              <h4>Статус FinanceHub</h4>
+              <span className={s.metaLabel}>• Активен</span>
+            </div>
+          </div>
+          <Button variant="bggray100" icon={IoMdSettings}>
+            Настройки FinanceHub
+          </Button>
+        </div>
+
+        <div className={s.statsGrid}>
+          <StatCard
+            label="Последняя синхронизация"
+            value="14:32:15"
+            sublabel="15.11.2024"
+            color="purple"
+          />
+          <StatCard
+            label="В обработке"
+            value="12"
+            sublabel="ошибок"
+            color="blue"
+          />
+          <StatCard
+            label="Ожидают"
+            value="8"
+            sublabel="ошибок"
+            color="yellow"
+          />
+          <StatCard
+            label="Ошибки за сутки"
+            value="3"
+            sublabel="Посмотреть лог →"
+            color="pink"
+          />
+        </div>
+      </Container>
+
+      {/* Scenarios Section */}
+      <Container size="full">
+        <section className={s.section}>
+          <h2 className={s.sectionTitle}>Поддерживаемые сценарии обмена</h2>
+          <div className={s.scenariosGrid}>
+            {scenarios.map((scenario, idx) => (
+              <ScenarioCard
+                key={idx}
+                title={scenario.title}
+                icon={scenario.icon}
+                status={scenario.status}
+                statusColor={scenario.statusColor}
+                color={scenario.color}
+              />
+            ))}
+          </div>
+        </section>
+      </Container>
+
+      {/* Services Section */}
+      <section className={s.section}>
+        <h2 className={s.sectionTitle}>Интегрированные сервисы</h2>
+        <div className={s.servicesGrid}>
+          {services.map((service, idx) => (
+            <ServiceCard
+              key={idx}
+              title={service.title}
+              code={service.code}
+              status={service.status}
+              statusColor={service.statusColor}
+              fields={service.fields}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
