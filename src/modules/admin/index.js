@@ -6,3 +6,5 @@ export { default as OrganizationsDetail } from "./organizations/components/detai
 export { default as Suppliers } from "./suppliers/components/Suppliers";
 export { default as Finance } from "./finance/components/Finance";
 export { default as Reports } from "./reports/components/Reports";
+export { default as Documents } from "./documents/components/Documents";
+export { default as Integrations } from "./integrations/components/Integrations"
