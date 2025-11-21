@@ -1,5 +1,6 @@
-export default function OperatorChatPage() {
-  return <div>Страница чата оператора.</div>;
-}
+import Chat from "@/modules/operator/chat/components/Chat";
 
+export default function OperatorChatPage() {
+  return <Chat />;
+}
 

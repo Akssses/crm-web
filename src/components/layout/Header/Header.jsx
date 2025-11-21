@@ -58,7 +58,7 @@ export default function Header({ menuItems = adminMenuItems }) {
             </div>
             <div className={s.userInfo}>
               <p className={s.userName}>Andrey Klaud</p>
-              <p className={s.userRole}>Администратор</p>
+              <p className={s.userRole}>Роль</p>
             </div>
             <MdKeyboardArrowDown
               size={20}

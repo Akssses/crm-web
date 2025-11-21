@@ -1,0 +1,253 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tab {
+  padding: 10px 20px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: 12px;
+  color: var(--color-gray-600);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: var(--color-gray-400);
+  }
+
+  &.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+
+    &:hover {
+      background: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+    }
+  }
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.datePicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 12px;
+  color: var(--color-gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--color-white);
+  height: 44px;
+  box-sizing: border-box;
+
+  svg {
+    color: var(--color-gray-500);
+    flex-shrink: 0;
+  }
+
+  span {
+    white-space: nowrap;
+  }
+}
+
+.searchInput {
+  width: 300px;
+
+  :global(.inputWrapper) {
+    height: 44px;
+  }
+}
+
+.chatList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chatItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  background: var(--color-gray-50);
+  border-radius: 12px;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-gray-100);
+  }
+}
+
+.chatLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.orderId {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-gray-900);
+}
+
+.clientName {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-gray-900);
+}
+
+.slaBadge {
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sla-red {
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+}
+
+.location {
+  font-size: 14px;
+  color: var(--color-gray-600);
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-gray-700);
+
+  .messageIcon {
+    color: var(--color-gray-500);
+    flex-shrink: 0;
+  }
+}
+
+.chatRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.time {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  white-space: nowrap;
+}
+
+.statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  .statusIcon {
+    flex-shrink: 0;
+  }
+}
+
+.status-red {
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+}
+
+.status-yellow {
+  background: var(--color-yellow-light);
+  color: var(--color-yellow-dark);
+}
+
+.status-green {
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+}
+
+.status-blue {
+  background: var(--color-blue-light);
+  color: var(--color-blue);
+}
+
+.status-orange {
+  background: var(--color-warning-light);
+  color: var(--color-warning-dark);
+}
+
+.status-gray {
+  background: var(--color-gray-100);
+  color: var(--color-gray-500);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .headerRight {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .chatItem {
+    flex-direction: column;
+  }
+
+  .chatRight {
+    align-items: flex-start;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
