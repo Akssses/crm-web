@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.orderId {
+  color: var(--color-blue-600);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.amount {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.statusBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-yellow {
+  background: rgba(251, 191, 36, 0.1);
+  color: var(--color-yellow-700);
+}
+
+.status-green {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-green-700);
+}
+
+.status-orange {
+  background: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

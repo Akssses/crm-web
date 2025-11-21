@@ -1,5 +1,7 @@
+import Clients from "@/modules/operator/clients/components/Clients";
+
 export default function OperatorClientsPage() {
-  return <div>Страница клиентов оператора.</div>;
+  return <Clients />;
 }
 
 
