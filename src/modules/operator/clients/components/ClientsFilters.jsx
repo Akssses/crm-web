@@ -12,17 +12,16 @@ export default function ClientsFilters({ onAddClick }) {
       <Button variant="outline" icon={CiFilter}>
         Filter
       </Button>
-      <div className={s.searchWrapper}>
+      <div className={s.searchWrapperContainer}>
         <Input
           icon={IoSearchOutline}
           placeholder="Поиск..."
           onChange={() => {}}
         />
+        <Button variant="primary" icon={MdAdd} onClick={onAddClick}>
+          Добавить клиента
+        </Button>
       </div>
-      <Button variant="primary" icon={MdAdd} onClick={onAddClick}>
-        Добавить клиента
-      </Button>
     </div>
   );
 }
-

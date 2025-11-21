@@ -14,9 +14,15 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
   const tags = ["VIP", "Срочно", "Новичок", "Проблемный"];
 
   const toggleTag = (tag) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
+    setSelectedTags((prev) => {
+      if (prev.includes(tag)) {
+        // Если тег уже выбран, удаляем его из выбранных
+        return prev.filter((t) => t !== tag);
+      } else {
+        // Если тег не выбран, добавляем его в выбранные
+        return [...prev, tag];
+      }
+    });
   };
 
   const handleSubmit = () => {
@@ -35,18 +41,20 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
       <div className={s.modalContent}>
         {/* Client Type Tabs */}
         <div className={s.tabs}>
-          <button
-            className={`${s.tab} ${clientType === "individual" ? s.active : ""}`}
+          <Button
+            variant={clientType === "individual" ? "primary" : "outline"}
             onClick={() => setClientType("individual")}
+            className={s.tabButton}
           >
             Физическое лицо
-          </button>
-          <button
-            className={`${s.tab} ${clientType === "legal" ? s.active : ""}`}
+          </Button>
+          <Button
+            variant={clientType === "legal" ? "primary" : "outline"}
             onClick={() => setClientType("legal")}
+            className={s.tabButton}
           >
             Юридическое лицо
-          </button>
+          </Button>
         </div>
 
         {/* Avatar/Logo Section */}
@@ -101,12 +109,6 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
               ]}
               onChange={() => {}}
             />
-            <Textarea
-              label="Комментарий"
-              value="Descriptions..."
-              onChange={() => {}}
-              placeholder="Введите комментарий"
-            />
           </div>
           <div className={s.column}>
             <Input
@@ -115,23 +117,25 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
               onChange={() => {}}
             />
             <div className={s.phoneInput}>
-              <Select
-                value="+1"
-                options={[
-                  { value: "+1", label: "+1" },
-                  { value: "+996", label: "+996" },
-                  { value: "+7", label: "+7" },
-                ]}
-                onChange={() => {}}
-                className={s.countryCode}
-              />
-              <Input
-                label="Контактный номер телефона"
-                value="(303) 555-0105"
-                onChange={() => {}}
-                placeholder="Введите номер"
-                className={s.phoneNumber}
-              />
+              <span className={s.phoneLabel}>Контактный номер телефона</span>
+              <div className={s.phoneInputRow}>
+                <Select
+                  value="+1"
+                  options={[
+                    { value: "+1", label: "+1" },
+                    { value: "+996", label: "+996" },
+                    { value: "+7", label: "+7" },
+                  ]}
+                  onChange={() => {}}
+                  className={s.countryCode}
+                />
+                <Input
+                  value="(303) 555-0105"
+                  onChange={() => {}}
+                  placeholder="Введите номер"
+                  className={s.phoneNumber}
+                />
+              </div>
             </div>
             <Select
               label="Организация"
@@ -154,6 +158,15 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
             />
           </div>
         </div>
+
+        {/* Comment - Full Width */}
+        <Textarea
+          label="Комментарий"
+          value="Descriptions..."
+          onChange={() => {}}
+          placeholder="Введите комментарий"
+          className={s.fullWidthTextarea}
+        />
 
         {/* Document Upload */}
         <div className={s.documentsSection}>
