@@ -2,11 +2,11 @@
 import React, { useState } from "react";
 import s from "../styles/Integrations.module.scss";
 import { Button, Container, Input } from "@/ui";
-import { IoDocumentText, IoSearchOutline } from "react-icons/io5";
-import { TiPlus } from "react-icons/ti";
-import { MdCheckCircle, MdError, MdWarning } from "react-icons/md";
+import { IoSearchOutline } from "react-icons/io5";
+import { MdCheckCircle } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
+import { scenarios, services } from "../hooks/Data";
 
 function Badge({ text, color = "green", icon: Icon = MdCheckCircle }) {
   const colors = {
@@ -15,6 +15,32 @@ function Badge({ text, color = "green", icon: Icon = MdCheckCircle }) {
     yellow: "#fbbf24",
     blue: "#3b82f6",
     orange: "#f97316",
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        color: colors[color],
+        fontSize: "12px",
+        fontWeight: "600",
+      }}
+    >
+      <Icon size={16} />
+      {text}
+    </div>
+  );
+}
+function Badge1({ text, color = "green", icon: Icon = MdCheckCircle }) {
+  const colors = {
+    blue: "#2563EB",
+    yellow: "#D97706",
+    purple: "#000",
+    pink: "#DC2626",
+    green: "#166534",
+    red: "#991B1B",
   };
 
   return (
@@ -78,17 +104,48 @@ function ScenarioCard({ title, icon: Icon, status, statusColor, color }) {
 }
 
 // ServiceCard компонент
-function ServiceCard({ title, code, status, statusColor, fields }) {
+function ServiceCard({
+  title,
+  code,
+  status,
+  icon: Icon,
+  iconColor,
+  bgColor,
+  statusColor,
+  fields,
+}) {
+  const colors = {
+    blue: "#EFF6FF",
+    yellow: "#FFFBEB",
+    purple: "#F9FAFB",
+    pink: "#FEF2F2",
+    green: "#DCFCE7",
+    red: "#FEE2E2",
+  };
+  const colorstext = {
+    blue: "#2563EB",
+    yellow: "#D97706",
+    purple: "#000",
+    pink: "#DC2626",
+    green: "#166534",
+    red: "#991B1B",
+  };
+
   return (
     <Container className={s.serviceCard}>
       <div className={s.serviceHeader}>
-        <div className={s.serviceNumber}>1</div>
+        <div className={s.serviceNumber} style={{ background: bgColor }}>
+          <Icon size={24} color={iconColor} />
+        </div>
         <div className={s.serviceInfo}>
           <h4>{title}</h4>
           <p>{code}</p>
         </div>
-        <div className={s.serviceStatus}>
-          <Badge text={status} color={statusColor} />
+        <div
+          className={s.serviceStatus}
+          style={{ background: colors[statusColor] }}
+        >
+          <Badge1 text={status} color={statusColor} />
         </div>
       </div>
       <div className={s.serviceFields}>
@@ -105,141 +162,6 @@ function ServiceCard({ title, code, status, statusColor, fields }) {
 
 export default function Integrations() {
   const [search, setSearch] = useState("");
-
-  const scenarios = [
-    {
-      title: "Выставление счета → отправка в бухгалтерию",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Работает",
-      statusColor: "green",
-    },
-    {
-      title: "Формирование PDF документов",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Работает",
-      statusColor: "green",
-    },
-    {
-      title: "Подписание ЭЦП (одной или двух сторон)",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Требует настройки",
-      statusColor: "yellow",
-    },
-    {
-      title: "Передача актов / УПД",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Работает",
-      statusColor: "green",
-    },
-    {
-      title: "Импорт статуса оплаты",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Работает",
-      statusColor: "green",
-    },
-    {
-      title: "Отправка чеков ОФД",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Работает",
-      statusColor: "green",
-    },
-    {
-      title: "Передача данных по НПД",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Выключено",
-      statusColor: "red",
-    },
-    {
-      title: "Ежедневная сверка",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Работает",
-      statusColor: "green",
-    },
-    {
-      title: "Хранение электронных оригиналов",
-      icon: IoDocumentText,
-      color: "#2563EB",
-      status: "Работает",
-      statusColor: "green",
-    },
-  ];
-
-  // Интегрированные сервисы
-  const services = [
-    {
-      title: "1С",
-      code: "1C v8.3 FTP",
-      status: "Активен",
-      statusColor: "green",
-      fields: [
-        { label: "Endpoint", value: "iq-1c.local:v1" },
-        { label: "Последняя выгрузка", value: "14:28" },
-        { label: "Ошибок", value: "0" },
-      ],
-    },
-    {
-      title: "Эльба",
-      code: "Илько ООО",
-      status: "Активен",
-      statusColor: "green",
-      fields: [
-        { label: "Статус", value: "Подключено" },
-        { label: "Ошибки интеграции", value: "2" },
-      ],
-    },
-    {
-      title: "Диадок",
-      code: "ООО",
-      status: "Активен",
-      statusColor: "green",
-      fields: [
-        { label: "Отправлено за месяц", value: "247" },
-        { label: "Подписки клиентов", value: "189" },
-        { label: "Ошибки", value: "1" },
-      ],
-    },
-    {
-      title: "ЭЦП проверяемы",
-      code: "КремлиБро ООС",
-      status: "Истекает",
-      statusColor: "yellow",
-      fields: [
-        { label: "Хранение ключей", value: "Защищено" },
-        { label: "Статус ключей", value: "Активен" },
-        { label: "Дата истечения", value: "12.12.2024" },
-      ],
-    },
-    {
-      title: "ОФД",
-      code: "Оператор ФД",
-      status: "Активен",
-      statusColor: "green",
-      fields: [
-        { label: "URL", value: "" },
-        { label: "Статус отправки чеков", value: "Норме" },
-        { label: "Чеков за сутки", value: "1,243" },
-      ],
-    },
-    {
-      title: "НПД / ФНС",
-      code: "АП ФНС",
-      status: "Выключено",
-      statusColor: "red",
-      fields: [
-        { label: "API статус", value: "Не поддерживаны" },
-        { label: "Лимиты", value: "" },
-        { label: "Ошибки передачи", value: "" },
-      ],
-    },
-  ];
 
   return (
     <div className={s.integrations}>
@@ -326,7 +248,10 @@ export default function Integrations() {
         <div className={s.servicesGrid}>
           {services.map((service, idx) => (
             <ServiceCard
+              icon={service.icon}
               key={idx}
+              iconColor={service.iconColor}
+              bgColor={service.bgColor}
               title={service.title}
               code={service.code}
               status={service.status}

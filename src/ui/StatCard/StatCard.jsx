@@ -8,6 +8,7 @@ export default function StatCard({
   change = 0,
   trend = "down",
   unit = "",
+  color = null || "#2563eb",
 }) {
   const isNegative = trend === "down" || change < 0;
   const absChange = Math.abs(change);
@@ -17,7 +18,7 @@ export default function StatCard({
       <div className={s.card}>
         <div>
           <div className={s.iconWrapper}>
-            {Icon && <Icon className={s.icon} />}
+            {Icon && <Icon className={s.icon} color={color} />}
           </div>
           <div className={s.content}>
             <span className={s.title}>{title}</span>
