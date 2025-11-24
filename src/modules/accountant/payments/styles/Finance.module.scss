@@ -1,0 +1,14 @@
+.transactions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.flex {
+  display: flex;
+  gap: 20px;
+}
+.justi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

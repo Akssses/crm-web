@@ -48,5 +48,3 @@ export const customerMenuItems = [
     href: "/customer/chat",
   },
 ];
-
-
