@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приглашение в ПСЦ Тревел Хаб</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background-color: #f3f4f6;
+        padding: 20px;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .header-title {
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .content {
+        padding: 40px 30px;
+      }
+
+      .greeting {
+        font-size: 18px;
+        color: #1f2937;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .intro-text {
+        font-size: 16px;
+        color: #4b5563;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      .benefits-section {
+        background-color: #f9fafb;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 30px;
+      }
+
+      .benefits-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 16px;
+      }
+
+      .benefits-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .benefits-list li {
+        padding: 10px 0;
+        padding-left: 28px;
+        position: relative;
+        font-size: 15px;
+        color: #4b5563;
+        line-height: 1.5;
+      }
+
+      .benefits-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #10b981;
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      .after-registration {
+        background-color: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+      }
+
+      .after-registration-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 12px;
+      }
+
+      .after-registration-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .after-registration-list li {
+        padding: 6px 0;
+        padding-left: 24px;
+        position: relative;
+        font-size: 15px;
+        color: #4b5563;
+      }
+
+      .after-registration-list li::before {
+        content: "•";
+        position: absolute;
+        left: 8px;
+        color: #3b82f6;
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #3b82f6;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        margin: 30px 0;
+        transition: background-color 0.2s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #2563eb;
+      }
+
+      .cta-container {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .link-text {
+        font-size: 14px;
+        color: #6b7280;
+        margin-top: 12px;
+        word-break: break-all;
+      }
+
+      .contacts {
+        border-top: 1px solid #e5e7eb;
+        padding-top: 24px;
+        margin-top: 30px;
+      }
+
+      .contacts-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 12px;
+      }
+
+      .contacts-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .contacts-list li {
+        padding: 4px 0;
+        font-size: 14px;
+        color: #4b5563;
+      }
+
+      .contacts-list a {
+        color: #3b82f6;
+        text-decoration: none;
+      }
+
+      .contacts-list a:hover {
+        text-decoration: underline;
+      }
+
+      .footer {
+        background-color: #f9fafb;
+        padding: 24px 30px;
+        text-align: center;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .footer-text {
+        font-size: 13px;
+        color: #6b7280;
+        margin: 0;
+      }
+
+      @media only screen and (max-width: 600px) {
+        body {
+          padding: 10px;
+        }
+
+        .email-container {
+          border-radius: 8px;
+        }
+
+        .header {
+          padding: 30px 20px;
+        }
+
+        .header-title {
+          font-size: 24px;
+        }
+
+        .content {
+          padding: 30px 20px;
+        }
+
+        .benefits-section,
+        .after-registration {
+          padding: 20px;
+        }
+
+        .cta-button {
+          padding: 14px 24px;
+          font-size: 15px;
+        }
+
+        .footer {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <!-- Header -->
+      <div class="header">
+        <!-- Logo placeholder - замените на реальный логотип -->
+        <div
+          style="
+            width: 120px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+            font-weight: 700;
+            font-size: 18px;
+          "
+        >
+          ПСЦ Тревел Хаб
+        </div>
+        <h1 class="header-title">Добро пожаловать в CRM</h1>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <p class="greeting">Здравствуйте!</p>
+
+        <p class="intro-text">
+          Мы рады пригласить вас в систему управления командировками ПСЦ Тревел
+          Хаб. Наша CRM-система поможет вам упростить процесс оформления
+          командировок и управления документами.
+        </p>
+
+        <!-- Benefits -->
+        <div class="benefits-section">
+          <h2 class="benefits-title">Преимущества CRM:</h2>
+          <ul class="benefits-list">
+            <li>Все командировки вашей компании в едином кабинете</li>
+            <li>Билеты, квитанции и документы — сразу после оформления</li>
+            <li>Прозрачные статусы и хранение всей переписки</li>
+            <li>Без e-mail хаоса — все заявки в одном месте</li>
+            <li>Привязка Telegram-бота для мгновенных уведомлений</li>
+            <li>Доступность 24/7</li>
+          </ul>
+        </div>
+
+        <!-- After Registration -->
+        <div class="after-registration">
+          <h2 class="after-registration-title">
+            После регистрации вы сможете:
+          </h2>
+          <ul class="after-registration-list">
+            <li>Создавать заявки на командировки в 2 клика</li>
+            <li>Отслеживать статусы и загрузку документов</li>
+            <li>Загружать чеки и файлы</li>
+            <li>Получать уведомления о готовности услуг</li>
+            <li>Работать с сотрудниками вашей компании в одном кабинете</li>
+          </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-container">
+          <a href="[ВСТАВИТЬ ПЕРСОНАЛЬНУЮ ССЫЛКУ]" class="cta-button">
+            Зарегистрироваться
+          </a>
+          <p class="link-text">
+            Или скопируйте ссылку:<br />
+            [ВСТАВИТЬ ПЕРСОНАЛЬНУЮ ССЫЛКУ]
+          </p>
+        </div>
+
+        <!-- Contacts -->
+        <div class="contacts">
+          <h3 class="contacts-title">Контакты</h3>
+          <ul class="contacts-list">
+            <li>
+              Email:
+              <a href="mailto:support@travelhub.com">support@travelhub.com</a>
+            </li>
+            <li>Телефон: <a href="tel:+996555123456">+996 555 123 456</a></li>
+            <li>Сайт: <a href="https://travelhub.com">travelhub.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="footer-text">
+          © 2025 ПСЦ Тревел Хаб. Все права защищены.<br />
+          Это автоматическое письмо, пожалуйста, не отвечайте на него.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,237 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/assets/icons/Background.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.content {
+  width: 100%;
+  max-width: 700px;
+  background: white;
+  border-radius: 26px;
+  padding: 32px 32px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.instructionsTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stepItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.stepText {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  padding-top: 2px;
+}
+
+.qrSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.qrPlaceholder {
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+  border: 2px dashed var(--border-color);
+  color: var(--text-tertiary);
+}
+
+.qrText {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 24px 20px;
+    gap: 18px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin: 6px 0 0;
+  }
+
+  .instructions {
+    gap: 10px;
+  }
+
+  .instructionsTitle {
+    font-size: 16px;
+  }
+
+  .stepItem {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .stepNumber {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .stepText {
+    font-size: 13px;
+  }
+
+  .qrSection {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .qrPlaceholder {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    margin: 4px 0 0;
+  }
+
+  .instructions {
+    gap: 8px;
+  }
+
+  .instructionsTitle {
+    font-size: 15px;
+  }
+
+  .stepItem {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .stepNumber {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+
+  .stepText {
+    font-size: 12px;
+  }
+
+  .qrSection {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .qrPlaceholder {
+    width: 120px;
+    height: 120px;
+  }
+}
+
