@@ -19,6 +19,7 @@
   background: var(--color-primary);
   color: var(--color-white);
 }
+
 .buttons {
   display: flex;
   gap: 12px;
@@ -26,9 +27,13 @@
 
 .navigation {
   display: flex;
-  gap: 8px;
+  gap: 0px;
   border-bottom: 2px solid var(--border-color);
   margin-bottom: 20px;
+
+  button {
+    white-space: nowrap;
+  }
 }
 
 .navItem {

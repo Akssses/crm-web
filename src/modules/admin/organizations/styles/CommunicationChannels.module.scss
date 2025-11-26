@@ -1,0 +1,124 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.statusBadge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+
+  &.connected {
+    background: var(--color-green-light);
+    color: var(--color-green);
+  }
+
+  &.disconnected {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
+  }
+
+  &.green {
+    background: var(--color-green-light);
+    color: var(--color-green);
+  }
+
+  &.red {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
+  }
+
+  &.gray {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+  }
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.logsTable {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tableHeader,
+.tableRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+  gap: 16px;
+  padding: 12px 16px;
+  align-items: center;
+}
+
+.tableHeader {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.tableRow {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
