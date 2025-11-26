@@ -4,7 +4,7 @@ import s from "../styles/Finance.module.scss";
 import { CiFilter } from "react-icons/ci";
 import { Button, Input } from "@/ui";
 import { IoSearchOutline } from "react-icons/io5";
-import { TransactionsTable } from "../../users/components/Table";
+import { TransactionsTable } from "../../../admin/users/components/Table";
 import TransactionInfoModal from "./Transactioninfomodal";
 
 export default function Payments() {
