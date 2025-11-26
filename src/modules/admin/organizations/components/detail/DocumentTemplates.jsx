@@ -8,7 +8,6 @@ import s from "../../styles/DocumentTemplates.module.scss";
 export default function DocumentTemplates() {
   const router = useRouter();
   const pathname = usePathname();
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [templates, setTemplates] = useState([
     { id: 1, type: "Счёт", version: 3, isActive: true },
     { id: 2, type: "Акт", version: 2, isActive: true },
@@ -17,6 +16,10 @@ export default function DocumentTemplates() {
     { id: 5, type: "Приложение", version: 1, isActive: false },
     { id: 6, type: "Документы госконтракта", version: 1, isActive: false },
   ]);
+  
+  // По умолчанию открываем шаблон "Счёт"
+  const defaultTemplate = templates.find((t) => t.type === "Счёт");
+  const [selectedTemplate, setSelectedTemplate] = useState(defaultTemplate || null);
 
   const [templateSettings, setTemplateSettings] = useState({
     numbering: {
@@ -58,9 +61,15 @@ export default function DocumentTemplates() {
         if (template) {
           setSelectedTemplate(template);
         }
+      } else {
+        // Если нет хэша, открываем шаблон "Счёт" по умолчанию
+        const defaultTemplate = templates.find((t) => t.type === "Счёт");
+        if (defaultTemplate) {
+          setSelectedTemplate(defaultTemplate);
+        }
       }
     }
-  }, []);
+  }, [templates]);
 
   return (
     <div className={s.main}>
