@@ -1,6 +1,7 @@
 "use client";
 import { UITable } from "@/ui";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
@@ -38,6 +39,7 @@ export function UsersTable({
   columns: customColumns,
   onFilterApply,
 } = {}) {
+  const router = useRouter();
   const defaultUsersData = [
     {
       id: 1,
@@ -156,6 +158,12 @@ export function UsersTable({
     });
   }, [usersData, onFilterApply]);
 
+  const handleRowClick = (row) => {
+    if (row.id) {
+      router.push(`/admin/users/${row.id}`);
+    }
+  };
+
   return (
     <UITable
       title="Пользователи"
@@ -164,6 +172,7 @@ export function UsersTable({
       showCheckbox={true}
       onAddClick={() => alert("Добавить пользователя")}
       addButtonText="Добавить пользователя"
+      onRowClick={handleRowClick}
       onRowAction={(row) => alert(`Action for ${row.name}`)}
     />
   );
