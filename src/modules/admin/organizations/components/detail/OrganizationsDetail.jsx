@@ -50,7 +50,7 @@ export default function OrganizationsDetail() {
           <h4>Сборы и таксы</h4>
           <div className={s.flex}>
             <Button
-              variant="bggreen"
+              variant="bgblue"
               icon={FaPlus}
               onClick={() => setModals((p) => ({ ...p, collection: true }))}
             >
@@ -77,7 +77,7 @@ export default function OrganizationsDetail() {
           <h4>Банковские реквизиты</h4>
           <div className={s.flex}>
             <Button
-              variant="bggreen"
+              variant="bgblue"
               icon={FaPlus}
               onClick={() => setModals((p) => ({ ...p, account: true }))}
             >
@@ -92,7 +92,7 @@ export default function OrganizationsDetail() {
           <h4>Филиалы</h4>
           <div className={s.flex}>
             <Button
-              variant="bggreen"
+              variant="bgblue"
               icon={FaPlus}
               onClick={() => setModals((p) => ({ ...p, branch: true }))}
             >
@@ -107,7 +107,7 @@ export default function OrganizationsDetail() {
           <h4>Сотрудники организации</h4>
           <div className={s.flex}>
             <Button
-              variant="bggreen"
+              variant="bgblue"
               icon={FaPlus}
               onClick={() => setModals((p) => ({ ...p, employee: true }))}
             >
@@ -115,13 +115,14 @@ export default function OrganizationsDetail() {
             </Button>
 
             <Button
+              variant="bgblue"
               icon={FaPlus}
               onClick={() => setModals((p) => ({ ...p, group: true }))}
             >
               Добавить группу
             </Button>
             <Button
-              variant="bgyellowdark"
+              variant="bgblue"
               icon={FaPlus}
               onClick={() => setModals((p) => ({ ...p, passenger: true }))}
             >
@@ -139,7 +140,7 @@ export default function OrganizationsDetail() {
           <h4>Каналы связей</h4>
           <div className={s.flex}>
             <Button
-              variant="bggreen"
+              variant="bgblue"
               icon={FaPlus}
               onClick={() => setModals((p) => ({ ...p, channel: true }))}
             >
