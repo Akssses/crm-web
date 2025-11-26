@@ -33,8 +33,12 @@ function Avatar({ src, name }) {
 }
 
 // Таблица с пользователями
-export function UsersTable() {
-  const usersData = [
+export function UsersTable({
+  data,
+  columns: customColumns,
+  onFilterApply,
+} = {}) {
+  const defaultUsersData = [
     {
       id: 1,
       name: "Leslie Alexander",
@@ -43,6 +47,7 @@ export function UsersTable() {
       phone: "(702) 555-0122",
       organization: "Asia Travel",
       role: "Админ",
+      status: "Активен",
     },
     {
       id: 2,
@@ -52,6 +57,7 @@ export function UsersTable() {
       phone: "(219) 555-0114",
       organization: "Турбай",
       role: "Оператор",
+      status: "Активен",
     },
     {
       id: 3,
@@ -61,6 +67,7 @@ export function UsersTable() {
       phone: "(217) 555-0113",
       organization: "Best Travel",
       role: "Бухгалтер",
+      status: "Не активен",
     },
     {
       id: 4,
@@ -70,6 +77,7 @@ export function UsersTable() {
       phone: "(205) 555-0100",
       organization: "Asia Travel",
       role: "Супервайзор",
+      status: "В архиве",
     },
     {
       id: 5,
@@ -79,10 +87,13 @@ export function UsersTable() {
       phone: "(205) 555-0100",
       organization: "Asia Travel",
       role: "Закупщик",
+      status: "Активен",
     },
   ];
 
-  const usersColumns = [
+  const usersData = data || defaultUsersData;
+
+  const defaultUsersColumns = [
     {
       key: "name",
       label: "ФИО",
@@ -105,13 +116,51 @@ export function UsersTable() {
         return <Badge text={value} color={roleColors[value]} />;
       },
     },
+    {
+      key: "status",
+      label: "Статус",
+      render: (value) => {
+        const statusColors = {
+          Активен: "green",
+          "Не активен": "red",
+          "В архиве": "gray",
+        };
+        return <Badge text={value} color={statusColors[value] || "blue"} />;
+      },
+    },
   ];
+
+  const usersColumns = customColumns || defaultUsersColumns;
+
+  // Если передан onFilterApply, применяем фильтры
+  const filteredData = React.useMemo(() => {
+    if (!onFilterApply || Object.keys(onFilterApply).length === 0) {
+      return usersData;
+    }
+
+    return usersData.filter((row) => {
+      return Object.keys(onFilterApply).every((key) => {
+        const filterValue = onFilterApply[key];
+        if (!filterValue) return true;
+
+        const rowValue = String(row[key] || "").toLowerCase();
+        const filterValueLower = String(filterValue).toLowerCase();
+
+        // Для булевых значений
+        if (filterValue === "true" || filterValue === "false") {
+          return String(row[key]) === filterValue;
+        }
+
+        return rowValue.includes(filterValueLower);
+      });
+    });
+  }, [usersData, onFilterApply]);
 
   return (
     <UITable
       title="Пользователи"
       columns={usersColumns}
-      rows={usersData}
+      rows={filteredData}
       showCheckbox={true}
       onAddClick={() => alert("Добавить пользователя")}
       addButtonText="Добавить пользователя"
@@ -119,6 +168,82 @@ export function UsersTable() {
     />
   );
 }
+
+// Экспорт данных и колонок для использования в фильтрах
+export const getUsersTableData = () => {
+  return [
+    {
+      id: 1,
+      name: "Leslie Alexander",
+      avatar: "https://i.pravatar.cc/32?img=1",
+      email: "lesliealx01@mail.com",
+      phone: "(702) 555-0122",
+      organization: "Asia Travel",
+      role: "Админ",
+      status: "Активен",
+    },
+    {
+      id: 2,
+      name: "Floyd Miles",
+      avatar: "https://i.pravatar.cc/32?img=2",
+      email: "floydmiles@mail.com",
+      phone: "(219) 555-0114",
+      organization: "Турбай",
+      role: "Оператор",
+      status: "Активен",
+    },
+    {
+      id: 3,
+      name: "Jerome Bell",
+      avatar: "https://i.pravatar.cc/32?img=3",
+      email: "jromebell@mail.com",
+      phone: "(217) 555-0113",
+      organization: "Best Travel",
+      role: "Бухгалтер",
+      status: "Не активен",
+    },
+    {
+      id: 4,
+      name: "Savannah Nguyen",
+      avatar: "https://i.pravatar.cc/32?img=4",
+      email: "nguyensav@mail.com",
+      phone: "(205) 555-0100",
+      organization: "Asia Travel",
+      role: "Супервайзор",
+      status: "В архиве",
+    },
+    {
+      id: 5,
+      name: "Savannah Nguyen",
+      avatar: "https://i.pravatar.cc/32?img=5",
+      email: "nguyensav@mail.com",
+      phone: "(205) 555-0100",
+      organization: "Asia Travel",
+      role: "Закупщик",
+      status: "Активен",
+    },
+  ];
+};
+
+export const getUsersTableColumns = () => {
+  return [
+    {
+      key: "name",
+      label: "ФИО",
+    },
+    { key: "email", label: "Email" },
+    { key: "phone", label: "Номер телефона" },
+    { key: "organization", label: "Организация" },
+    {
+      key: "role",
+      label: "Роль",
+    },
+    {
+      key: "status",
+      label: "Статус",
+    },
+  ];
+};
 
 // Таблица с поставщиками
 export function SuppliersTable({ onRowClick }) {
@@ -293,6 +418,7 @@ function Badge({ text, color = "blue" }) {
     cyan: "#06b6d4",
     purple: "#a855f7",
     orange: "#f97316",
+    gray: "#6b7280",
   };
 
   return (

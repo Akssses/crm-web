@@ -11,3 +11,5 @@ export { default as Chart } from "./Chart/Chart";
 export { default as UITable } from "./UITable/UITable";
 export { default as Textarea } from "./Textarea/Textarea";
 export { default as State } from "./State/State";
+export { default as FilterModal } from "./FilterModal/FilterModal";
+export { default as FilterButton } from "./FilterButton/FilterButton";

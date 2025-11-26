@@ -273,8 +273,9 @@
 
   &.variant-outline {
     background-color: transparent;
-    color: #1f2937;
-    border: 2px solid var(--border-color);
+    color: #4d4d4d;
+    border: 1px solid var(--border-color);
+    font-weight: 500;
 
     &:hover:not(.disabled) {
       border-color: var(--border-color);

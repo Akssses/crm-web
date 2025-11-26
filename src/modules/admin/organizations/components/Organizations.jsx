@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import s from "../styles/Organizations.module.scss";
-import { CiFilter } from "react-icons/ci";
-import { Button, Container, Input } from "@/ui";
+import { Input, Button } from "@/ui";
 import { TiPlus } from "react-icons/ti";
 import { CiSearch } from "react-icons/ci";
 import { UsersTable } from "../../users/components/Table";
@@ -10,7 +9,7 @@ import AddOrgModal from "./AddOrgModal";
 
 export default function Organizations() {
   const [formData, setFormData] = useState({
-    filter: "",
+    search: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -25,17 +24,16 @@ export default function Organizations() {
   return (
     <div className={s.users}>
       <div className={s.justi}>
-        <Button variant="outline" icon={CiFilter}>
-          Filter
-        </Button>
-        <div className={s.flex}>
+        <div className={s.searchWrapper}>
           <Input
             icon={CiSearch}
             label=""
             placeholder="Поиск..."
-            value={formData.filter}
-            onChange={(val) => handleChange("filter", val)}
+            value={formData.search}
+            onChange={(val) => handleChange("search", val)}
           />
+        </div>
+        <div className={s.flex}>
           <Button icon={TiPlus} onClick={() => setIsModalOpen(true)}>
             Добавить организацию
           </Button>

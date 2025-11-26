@@ -7,8 +7,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 .flex {
   display: flex;
   gap: 20px;
+}
+
+.searchWrapper {
+  flex: 1;
+  max-width: 400px;
 }
