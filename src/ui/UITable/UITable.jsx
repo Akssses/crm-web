@@ -150,14 +150,14 @@ export default function UITable({
       </div>
 
       {/* Footer */}
-      {onAddClick && (
+      {/* {onAddClick && (
         <div className={s.footer}>
           <button className={s.addButton} onClick={onAddClick}>
             <MdAdd size={20} />
             {addButtonText}
           </button>
         </div>
-      )}
+      )} */}
     </>
   );
 }

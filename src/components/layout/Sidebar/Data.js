@@ -45,7 +45,7 @@ export const menuItems = [
     id: "handbook",
     label: "Справочник",
     icon: "/assets/icons/bookmark.svg",
-    href: "#",
+    href: "/admin/directory",
   },
   {
     id: "integration",
