@@ -19,7 +19,7 @@ const ORGANIZATIONS = [
 
 export default function Dashboard() {
   const [filters, setFilters] = useState({
-    period: "week",
+    period: "quarter",
     organization: "all",
   });
 
@@ -36,7 +36,7 @@ export default function Dashboard() {
   };
 
   const handleResetFilters = () => {
-    setFilters({ period: "week", organization: "all" });
+    setFilters({ period: "quarter", organization: "all" });
   };
 
   return (
@@ -53,12 +53,12 @@ export default function Dashboard() {
         <div className={s.firstBlockChildMain}>
           <MyRequests filters={filters} />
           <MyOrders filters={filters} />
-          <Efficiency />
         </div>
 
         <div className={s.secondBlock}>
           <Notifications />
           <MyTasks />
+          <Efficiency />
         </div>
       </div>
     </div>
