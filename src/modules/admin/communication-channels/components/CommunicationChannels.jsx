@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Container, Button } from "@/ui";
 import { FaSave } from "react-icons/fa";
 import TelegramBots from "./blocks/TelegramBots";
@@ -9,52 +10,38 @@ import WebForm from "./blocks/WebForm";
 import s from "../styles/CommunicationChannels.module.scss";
 
 export default function CommunicationChannels() {
-  const [activeTab, setActiveTab] = useState("telegram");
+  const pathname = usePathname();
+  const router = useRouter();
 
   const handleSave = () => {
     console.log("Сохранение настроек каналов связи");
   };
 
   const tabs = [
-    { id: "telegram", label: "Telegram-боты" },
-    { id: "email", label: "Email" },
-    { id: "whatsapp", label: "WhatsApp Business" },
-    { id: "webform", label: "Web-форма" },
+    { id: "telegram", label: "Telegram-боты", path: "/admin/communication-channels/telegram" },
+    { id: "email", label: "Email", path: "/admin/communication-channels/email" },
+    { id: "whatsapp", label: "WhatsApp Business", path: "/admin/communication-channels/whatsapp" },
+    { id: "webform", label: "Web-форма", path: "/admin/communication-channels/webform" },
   ];
 
-  // Читаем hash из URL при загрузке
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const hash = window.location.hash.replace("#", "");
-      if (hash && tabs.some((tab) => tab.id === hash)) {
-        setActiveTab(hash);
-      }
-    }
-  }, []);
+  // Определяем активную вкладку из URL
+  const getActiveTab = () => {
+    if (!pathname) return "telegram";
+    if (pathname.includes("/telegram")) return "telegram";
+    if (pathname.includes("/email")) return "email";
+    if (pathname.includes("/whatsapp")) return "whatsapp";
+    if (pathname.includes("/webform")) return "webform";
+    return "telegram"; // По умолчанию
+  };
 
-  // Обновляем hash при изменении активной вкладки
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.location.hash = activeTab;
-    }
-  }, [activeTab]);
+  const activeTab = getActiveTab();
 
-  // Обработчик изменения hash (для кнопок браузера назад/вперед)
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash && tabs.some((tab) => tab.id === hash)) {
-        setActiveTab(hash);
-      }
-    };
+  const handleNavigate = (path) => {
+    router.push(path);
+  };
 
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
-
-  const handleTabClick = (tabId) => {
-    setActiveTab(tabId);
-    window.location.hash = tabId;
+  const isActive = (tabId) => {
+    return activeTab === tabId;
   };
 
   const renderContent = () => {
@@ -85,17 +72,13 @@ export default function CommunicationChannels() {
 
       <div className={s.navigation}>
         {tabs.map((tab) => (
-          <a
+          <button
             key={tab.id}
-            href={`#${tab.id}`}
-            className={`${s.navItem} ${activeTab === tab.id ? s.active : ""}`}
-            onClick={(e) => {
-              e.preventDefault();
-              handleTabClick(tab.id);
-            }}
+            className={`${s.navItem} ${isActive(tab.id) ? s.active : ""}`}
+            onClick={() => handleNavigate(tab.path)}
           >
             {tab.label}
-          </a>
+          </button>
         ))}
       </div>
 
