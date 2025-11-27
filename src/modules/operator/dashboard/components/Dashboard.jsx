@@ -19,7 +19,7 @@ const ORGANIZATIONS = [
 
 export default function Dashboard() {
   const [filters, setFilters] = useState({
-    period: "quarter",
+    period: "week",
     organization: "all",
   });
 
@@ -53,12 +53,12 @@ export default function Dashboard() {
         <div className={s.firstBlockChildMain}>
           <MyRequests filters={filters} />
           <MyOrders filters={filters} />
+          <Efficiency />
         </div>
 
         <div className={s.secondBlock}>
           <Notifications />
           <MyTasks />
-          <Efficiency />
         </div>
       </div>
     </div>

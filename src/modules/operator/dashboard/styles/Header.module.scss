@@ -23,7 +23,11 @@
 .filters {
   display: flex;
   gap: 12px;
-  min-width: 500px;
+  flex-wrap: wrap;
+
+  :global(.selectWrapper) {
+    min-width: 210px;
+  }
 }
 
 .actions {

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import s from "./StatCard.module.scss";
 import { MdOutlineArrowDownward, MdOutlineArrowUpward } from "react-icons/md";

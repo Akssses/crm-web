@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import s from "../styles/State.module.scss";
 import { FaBox, FaRegUser, FaUsers } from "react-icons/fa";

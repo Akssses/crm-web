@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Statcard } from "@/ui";
 import { MdFolder } from "react-icons/md";
