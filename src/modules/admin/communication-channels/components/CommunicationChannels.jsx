@@ -18,10 +18,26 @@ export default function CommunicationChannels() {
   };
 
   const tabs = [
-    { id: "telegram", label: "Telegram-боты", path: "/admin/communication-channels/telegram" },
-    { id: "email", label: "Email", path: "/admin/communication-channels/email" },
-    { id: "whatsapp", label: "WhatsApp Business", path: "/admin/communication-channels/whatsapp" },
-    { id: "webform", label: "Web-форма", path: "/admin/communication-channels/webform" },
+    {
+      id: "telegram",
+      label: "Telegram-боты",
+      path: "/admin/communication-channels/telegram",
+    },
+    {
+      id: "email",
+      label: "Email",
+      path: "/admin/communication-channels/email",
+    },
+    {
+      id: "whatsapp",
+      label: "WhatsApp Business",
+      path: "/admin/communication-channels/whatsapp",
+    },
+    {
+      id: "webform",
+      label: "Web-форма",
+      path: "/admin/communication-channels/webform",
+    },
   ];
 
   // Определяем активную вкладку из URL
@@ -82,11 +98,7 @@ export default function CommunicationChannels() {
         ))}
       </div>
 
-      <div className={s.content}>
-        {renderContent()}
-      </div>
+      <div className={s.content}>{renderContent()}</div>
     </div>
   );
 }
-
-

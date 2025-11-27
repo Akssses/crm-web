@@ -49,8 +49,6 @@
 
 .botsList {
   margin-top: 16px;
-  width: 100%;
-  overflow-x: auto;
 }
 
 .logsSection {
@@ -82,13 +80,6 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  flex-wrap: wrap;
-  min-width: fit-content;
-  
-  button {
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
 }
 
 .modalContent {
@@ -126,5 +117,3 @@
   justify-content: flex-end;
   margin-top: 8px;
 }
-
-

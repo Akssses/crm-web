@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .title {
@@ -17,15 +18,33 @@
   margin: 0;
 }
 
-.link {
-  color: var(--color-blue-600);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: color 0.2s;
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--color-gray-500);
+}
 
-  &:hover {
-    color: var(--color-blue-700);
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: transparent;
+  color: var(--color-gray-600);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &.active {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #1d4ed8;
   }
 }
 
@@ -35,71 +54,183 @@
   gap: 16px;
 }
 
-.item {
-  display: flex;
-  gap: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--color-gray-200);
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-green-500);
-  margin-top: 6px;
-  flex-shrink: 0;
-}
-
-.content {
-  flex: 1;
+.itemCard {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 16px;
+  background: var(--bg-primary);
 }
 
-.top {
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+
+  &.critical {
+    border-left: 4px solid #f97316;
+    padding-left: 12px;
+  }
+
+  &.overdue {
+    border-left-color: #ef4444;
+  }
+}
+
+.itemHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
+}
+
+.companyBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .company {
   font-weight: 600;
   color: var(--color-gray-900);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .status {
-  padding: 4px 8px;
-  border-radius: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
   font-size: 12px;
-  font-weight: 500;
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--color-green-700);
-  white-space: nowrap;
+  font-weight: 600;
+  width: fit-content;
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+}
+
+.statusDanger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+}
+
+.statusWarning {
+  background: rgba(251, 191, 36, 0.15);
+  color: #b45309;
+}
+
+.statusMuted {
+  background: rgba(156, 163, 175, 0.2);
+  color: #374151;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  span {
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--color-gray-100);
+    color: var(--color-gray-600);
+  }
+}
+
+.requestId {
+  font-weight: 600;
+  color: var(--color-gray-400);
+  font-size: 12px;
 }
 
 .description {
-  color: var(--color-gray-600);
+  color: var(--color-gray-700);
   font-size: 14px;
   margin: 0;
 }
 
-.bottom {
+.slaRow {
   display: flex;
   justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+}
+
+.progress {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-gray-200);
+  overflow: hidden;
+}
+
+.progressValue {
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa 0%, #2563eb 100%);
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.progressLabel {
   font-size: 12px;
-}
-
-.time {
-  color: var(--color-gray-500);
-}
-
-.sla {
+  font-weight: 600;
   color: var(--color-gray-600);
-  font-weight: 500;
+}
+
+.createdAt {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  white-space: nowrap;
+}
+
+.cardActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.empty {
+  padding: 24px;
+  border: 1px dashed var(--border-color);
+  border-radius: 16px;
+  text-align: center;
+  color: var(--color-gray-500);
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .itemCard {
+    padding: 12px;
+  }
+
+  .slaRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardActions {
+    width: 100%;
+
+    :global(button) {
+      flex: 1;
+    }
+  }
 }

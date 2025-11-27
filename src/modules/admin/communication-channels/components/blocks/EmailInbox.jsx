@@ -1,7 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { Container, Button, Input, Select, Switch } from "@/ui";
-import { FaCheckCircle, FaExclamationTriangle, FaTimesCircle } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaTimesCircle,
+} from "react-icons/fa";
 import { UITable } from "@/ui";
 import s from "../../styles/blocks/EmailInbox.module.scss";
 
@@ -30,7 +34,11 @@ export default function EmailInbox() {
       case "connected":
         return { icon: FaCheckCircle, color: "green", text: "Подключено" };
       case "warning":
-        return { icon: FaExclamationTriangle, color: "yellow", text: "Внимание: требуется проверка" };
+        return {
+          icon: FaExclamationTriangle,
+          color: "yellow",
+          text: "Внимание: требуется проверка",
+        };
       case "disconnected":
         return { icon: FaTimesCircle, color: "red", text: "Не подключено" };
       default:
@@ -87,7 +95,14 @@ export default function EmailInbox() {
       key: "status",
       label: "Статус",
       render: (value) => (
-        <span style={{ color: value === "Успешно" || value === "Обработано" ? "#10b981" : "#ef4444" }}>
+        <span
+          style={{
+            color:
+              value === "Успешно" || value === "Обработано"
+                ? "#10b981"
+                : "#ef4444",
+          }}
+        >
           {value}
         </span>
       ),
@@ -248,7 +263,9 @@ export default function EmailInbox() {
               <Switch
                 label="Автоматическое извлечение вложений"
                 checked={settings.autoExtractAttachments}
-                onChange={(checked) => handleChange("autoExtractAttachments", checked)}
+                onChange={(checked) =>
+                  handleChange("autoExtractAttachments", checked)
+                }
               />
             </div>
           </div>
@@ -268,5 +285,3 @@ export default function EmailInbox() {
     </Container>
   );
 }
-
-
