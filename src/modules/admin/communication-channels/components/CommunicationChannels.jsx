@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Button } from "@/ui";
 import { FaSave } from "react-icons/fa";
 import TelegramBots from "./blocks/TelegramBots";
@@ -21,6 +21,41 @@ export default function CommunicationChannels() {
     { id: "whatsapp", label: "WhatsApp Business" },
     { id: "webform", label: "Web-форма" },
   ];
+
+  // Читаем hash из URL при загрузке
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && tabs.some((tab) => tab.id === hash)) {
+        setActiveTab(hash);
+      }
+    }
+  }, []);
+
+  // Обновляем hash при изменении активной вкладки
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.location.hash = activeTab;
+    }
+  }, [activeTab]);
+
+  // Обработчик изменения hash (для кнопок браузера назад/вперед)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && tabs.some((tab) => tab.id === hash)) {
+        setActiveTab(hash);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  const handleTabClick = (tabId) => {
+    setActiveTab(tabId);
+    window.location.hash = tabId;
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -50,13 +85,17 @@ export default function CommunicationChannels() {
 
       <div className={s.navigation}>
         {tabs.map((tab) => (
-          <button
+          <a
             key={tab.id}
+            href={`#${tab.id}`}
             className={`${s.navItem} ${activeTab === tab.id ? s.active : ""}`}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleTabClick(tab.id);
+            }}
           >
             {tab.label}
-          </button>
+          </a>
         ))}
       </div>
 
