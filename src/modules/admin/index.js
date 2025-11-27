@@ -11,3 +11,4 @@ export { default as Documents } from "./documents/components/Documents";
 export { default as Integrations } from "./integrations/components/Integrations";
 export { default as IntegrationsDeail } from "./integrations/components/detail/IntegrationsDeail";
 export { default as Directory } from "./directory/components/Directory";
+export { default as CommunicationChannels } from "./communication-channels/components/CommunicationChannels";

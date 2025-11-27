@@ -53,4 +53,10 @@ export const menuItems = [
     icon: "/assets/icons/download-circle-05.svg",
     href: "/admin/integrations",
   },
+  {
+    id: "communication-channels",
+    label: "Каналы связи",
+    icon: "/assets/icons/download-circle-05.svg",
+    href: "/admin/communication-channels",
+  },
 ];

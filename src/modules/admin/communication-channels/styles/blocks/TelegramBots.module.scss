@@ -1,0 +1,130 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+
+  &.green {
+    background: #10b98120;
+    color: #10b981;
+  }
+
+  &.yellow {
+    background: #fbbf2420;
+    color: #fbbf24;
+  }
+
+  &.red {
+    background: #ef444420;
+    color: #ef4444;
+  }
+
+  &.gray {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
+}
+
+.botsList {
+  margin-top: 16px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.logsSection {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.logsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h6 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: fit-content;
+  
+  button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.commandsList {
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+
+  h6 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style: disc;
+
+    li {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+  }
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+

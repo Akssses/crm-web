@@ -1,0 +1,138 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+
+  &.green {
+    background: #10b98120;
+    color: #10b981;
+  }
+
+  &.yellow {
+    background: #fbbf2420;
+    color: #fbbf24;
+  }
+
+  &.red {
+    background: #ef444420;
+    color: #ef4444;
+  }
+
+  &.gray {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
+}
+
+.subsection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+
+  h6 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-gray-900);
+  }
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.fieldsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldItem {
+  padding: 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.fieldHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.fieldName {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-gray-900);
+}
+
+.fieldControls {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.switches {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.switchItem {
+  display: flex;
+  align-items: center;
+}
+
+.logsSection {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+
+  h6 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fieldControls {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+}
+
+
