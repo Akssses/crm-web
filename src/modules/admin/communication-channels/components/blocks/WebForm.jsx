@@ -1,7 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { Container, Button, Input, Select, Switch, Textarea } from "@/ui";
-import { FaCheckCircle, FaExclamationTriangle, FaTimesCircle } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaTimesCircle,
+} from "react-icons/fa";
 import { UITable } from "@/ui";
 import s from "../../styles/blocks/WebForm.module.scss";
 
@@ -32,7 +36,11 @@ export default function WebForm() {
       case "connected":
         return { icon: FaCheckCircle, color: "green", text: "Подключено" };
       case "warning":
-        return { icon: FaExclamationTriangle, color: "yellow", text: "Внимание: требуется проверка" };
+        return {
+          icon: FaExclamationTriangle,
+          color: "yellow",
+          text: "Внимание: требуется проверка",
+        };
       case "disconnected":
         return { icon: FaTimesCircle, color: "red", text: "Не подключено" };
       default:
@@ -46,7 +54,9 @@ export default function WebForm() {
     setSettings((prev) => ({ ...prev, [field]: value }));
     // Автогенерация callback URL
     if (field === "formUrl" && value) {
-      const callbackUrl = `${window.location.origin}/api/webhooks/webform/${Date.now()}`;
+      const callbackUrl = `${
+        window.location.origin
+      }/api/webhooks/webform/${Date.now()}`;
       setSettings((prev) => ({ ...prev, callbackUrl }));
     }
   };
@@ -96,7 +106,14 @@ export default function WebForm() {
       key: "status",
       label: "Статус",
       render: (value) => (
-        <span style={{ color: value === "Успешно" || value === "Обработано" ? "#10b981" : "#ef4444" }}>
+        <span
+          style={{
+            color:
+              value === "Успешно" || value === "Обработано"
+                ? "#10b981"
+                : "#ef4444",
+          }}
+        >
           {value}
         </span>
       ),
@@ -142,12 +159,16 @@ export default function WebForm() {
                     <Switch
                       label="Включено"
                       checked={config.enabled}
-                      onChange={(checked) => handleFieldChange(field, "enabled", checked)}
+                      onChange={(checked) =>
+                        handleFieldChange(field, "enabled", checked)
+                      }
                     />
                     <Switch
                       label="Обязательное"
                       checked={config.required}
-                      onChange={(checked) => handleFieldChange(field, "required", checked)}
+                      onChange={(checked) =>
+                        handleFieldChange(field, "required", checked)
+                      }
                     />
                   </div>
                 </div>
@@ -201,7 +222,9 @@ export default function WebForm() {
               <Switch
                 label="Автоматическое назначение оператора"
                 checked={settings.autoAssignOperator}
-                onChange={(checked) => handleChange("autoAssignOperator", checked)}
+                onChange={(checked) =>
+                  handleChange("autoAssignOperator", checked)
+                }
               />
             </div>
           </div>
@@ -242,5 +265,3 @@ export default function WebForm() {
     </Container>
   );
 }
-
-

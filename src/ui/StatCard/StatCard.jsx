@@ -9,12 +9,30 @@ export default function StatCard({
   trend = "down",
   unit = "",
   color = null || "#2563eb",
+  onClick = null,
+  ariaLabel = "",
 }) {
   const isNegative = trend === "down" || change < 0;
   const absChange = Math.abs(change);
+  const isInteractive = typeof onClick === "function";
+
+  const handleKeyDown = (event) => {
+    if (!isInteractive) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onClick?.();
+    }
+  };
 
   return (
-    <div className={s.block}>
+    <div
+      className={`${s.block} ${isInteractive ? s.interactive : ""}`}
+      role={isInteractive ? "button" : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
+      onClick={isInteractive ? onClick : undefined}
+      onKeyDown={handleKeyDown}
+      aria-label={isInteractive ? ariaLabel || title : undefined}
+    >
       <div className={s.card}>
         <div>
           <div className={s.iconWrapper}>

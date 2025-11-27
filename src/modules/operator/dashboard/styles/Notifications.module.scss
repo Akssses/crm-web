@@ -20,6 +20,23 @@
 .item {
   display: flex;
   gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  position: relative;
+
+  &.danger {
+    border-left: 4px solid #ef4444;
+  }
+
+  &.info {
+    border-left: 4px solid #3b82f6;
+  }
+
+  &.success {
+    border-left: 4px solid #10b981;
+  }
 }
 
 .iconWrapper {
@@ -39,6 +56,13 @@
   gap: 4px;
 }
 
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
 .notificationTitle {
   font-weight: 600;
   color: var(--color-gray-900);
@@ -52,8 +76,46 @@
   margin: 0;
 }
 
+.badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
 .time {
   color: var(--color-gray-500);
   font-size: 12px;
   margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    width: 100%;
+
+    :global(button) {
+      flex: 1;
+    }
+  }
 }

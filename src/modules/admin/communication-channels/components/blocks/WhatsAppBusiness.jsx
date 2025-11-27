@@ -1,7 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { Container, Button, Input, Select } from "@/ui";
-import { FaCheckCircle, FaExclamationTriangle, FaTimesCircle, FaPaperPlane } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaTimesCircle,
+  FaPaperPlane,
+} from "react-icons/fa";
 import { UITable } from "@/ui";
 import s from "../../styles/blocks/WhatsAppBusiness.module.scss";
 
@@ -22,7 +27,11 @@ export default function WhatsAppBusiness() {
       case "connected":
         return { icon: FaCheckCircle, color: "green", text: "Подключено" };
       case "warning":
-        return { icon: FaExclamationTriangle, color: "yellow", text: "Внимание: требуется проверка" };
+        return {
+          icon: FaExclamationTriangle,
+          color: "yellow",
+          text: "Внимание: требуется проверка",
+        };
       case "disconnected":
         return { icon: FaTimesCircle, color: "red", text: "Не подключено" };
       default:
@@ -36,7 +45,9 @@ export default function WhatsAppBusiness() {
     setSettings((prev) => ({ ...prev, [field]: value }));
     // Автогенерация webhook URL
     if (field === "apiKey" && value) {
-      const webhookUrl = `${window.location.origin}/api/webhooks/whatsapp/${Date.now()}`;
+      const webhookUrl = `${
+        window.location.origin
+      }/api/webhooks/whatsapp/${Date.now()}`;
       setSettings((prev) => ({ ...prev, webhookUrl, callbackUrl: webhookUrl }));
     }
   };
@@ -142,7 +153,11 @@ export default function WhatsAppBusiness() {
 
         {/* Кнопки действий */}
         <div className={s.buttons}>
-          <Button variant="bgblue" icon={FaPaperPlane} onClick={handleTestMessage}>
+          <Button
+            variant="bgblue"
+            icon={FaPaperPlane}
+            onClick={handleTestMessage}
+          >
             Отправить тестовое сообщение
           </Button>
           <Button variant="outline" onClick={handleReconnect}>
@@ -173,5 +188,3 @@ export default function WhatsAppBusiness() {
     </Container>
   );
 }
-
-

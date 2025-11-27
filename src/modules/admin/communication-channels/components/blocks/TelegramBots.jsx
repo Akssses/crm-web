@@ -1,7 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { Container, Button, Input, Select, Modal } from "@/ui";
-import { FaPlus, FaTrash, FaCheckCircle, FaExclamationTriangle, FaTimesCircle } from "react-icons/fa";
+import {
+  FaPlus,
+  FaTrash,
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaTimesCircle,
+} from "react-icons/fa";
 import { UITable } from "@/ui";
 import s from "../../styles/blocks/TelegramBots.module.scss";
 
@@ -47,7 +53,11 @@ export default function TelegramBots() {
       case "connected":
         return { icon: FaCheckCircle, color: "green", text: "Подключено" };
       case "error":
-        return { icon: FaExclamationTriangle, color: "yellow", text: "Внимание: требуется проверка" };
+        return {
+          icon: FaExclamationTriangle,
+          color: "yellow",
+          text: "Внимание: требуется проверка",
+        };
       case "disconnected":
         return { icon: FaTimesCircle, color: "red", text: "Не подключено" };
       default:
@@ -60,7 +70,9 @@ export default function TelegramBots() {
 
   const handleAddBot = () => {
     // Генерируем webhook URL автоматически
-    const webhookUrl = `${window.location.origin}/api/webhooks/telegram/${Date.now()}`;
+    const webhookUrl = `${
+      window.location.origin
+    }/api/webhooks/telegram/${Date.now()}`;
     setNewBot({ ...newBot, webhookUrl, callbackUrl: webhookUrl });
     setIsAddModalOpen(true);
   };
@@ -105,7 +117,11 @@ export default function TelegramBots() {
         );
       },
     },
-    { key: "lastActivity", label: "Дата последней активности", style: { minWidth: "180px" } },
+    {
+      key: "lastActivity",
+      label: "Дата последней активности",
+      style: { minWidth: "180px" },
+    },
     {
       key: "type",
       label: "Тип канала",
@@ -118,13 +134,18 @@ export default function TelegramBots() {
       style: { minWidth: "280px", flexShrink: 0 },
       render: (_, row) => (
         <div className={s.actions}>
-          <Button size="sm" variant="outline" onClick={() => handleUpdateWebhook(row.id)}>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => handleUpdateWebhook(row.id)}
+          >
             Обновить Webhook
           </Button>
-          <Button size="sm" variant="outline" onClick={() => handleCheckConnection(row.id)}>
-            Проверить
-          </Button>
-          <Button size="sm" variant="outline" onClick={() => handleDeleteBot(row.id)}>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => handleDeleteBot(row.id)}
+          >
             <FaTrash />
           </Button>
         </div>
@@ -220,7 +241,10 @@ export default function TelegramBots() {
               </ul>
             </div>
             <div className={s.modalActions}>
-              <Button variant="outline" onClick={() => setIsAddModalOpen(false)}>
+              <Button
+                variant="outline"
+                onClick={() => setIsAddModalOpen(false)}
+              >
                 Отмена
               </Button>
               <Button variant="primary" onClick={handleSaveBot}>
@@ -251,5 +275,3 @@ export default function TelegramBots() {
     </Container>
   );
 }
-
-
