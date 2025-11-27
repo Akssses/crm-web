@@ -15,7 +15,7 @@ const PERIOD_OPTIONS = [
 
 export default function Header({
   date = "",
-  filters = { period: "quarter", organization: "all" },
+  filters = { period: "week", organization: "all" },
   organizations = [],
   onFiltersChange = () => {},
   onResetFilters = () => {},
@@ -23,21 +23,21 @@ export default function Header({
   return (
     <div className={s.header}>
       <div className={s.left}>
-        {/* <span className={s.date}>
+        <span className={s.date}>
           <CiCalendar size={20} />
           {date}
-        </span> */}
+        </span>
 
         <div className={s.filters}>
           <Select
-            label=""
+            label="Период"
             value={filters.period}
             onChange={(value) => onFiltersChange({ period: value })}
             options={PERIOD_OPTIONS}
             size="sm"
           />
           <Select
-            label=""
+            label="Организация"
             value={filters.organization}
             onChange={(value) => onFiltersChange({ organization: value })}
             options={organizations}
