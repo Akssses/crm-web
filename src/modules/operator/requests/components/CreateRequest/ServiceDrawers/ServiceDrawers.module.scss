@@ -1,0 +1,303 @@
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 24px;
+  font-family: 'Inter', sans-serif;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 16px;
+    background: var(--color-primary);
+    border-radius: 2px;
+  }
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 4px 10px;
+  background: #fef2f2;
+  color: #ef4444;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #fee2e2;
+
+  &.green {
+    background: #ecfdf5;
+    color: #10b981;
+    border-color: #d1fae5;
+  }
+
+  &.blue {
+    background: #eff6ff;
+    color: #3b82f6;
+    border-color: #dbeafe;
+  }
+}
+
+.segment {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.segmentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+.segmentRoute {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+}
+
+.segmentDuration {
+  font-size: 12px;
+  color: #6b7280;
+  background: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.segmentTimes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.time {
+  font-weight: 700;
+  font-size: 16px;
+  color: #111827;
+}
+
+.date {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.segmentMeta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #4b5563;
+  margin-top: 4px;
+}
+
+.passengerList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.passengerItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.passengerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.passengerName {
+  font-weight: 500;
+  font-size: 14px;
+  color: #111827;
+}
+
+.passengerDetails {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.addPassengerBtn {
+  align-self: flex-start;
+  padding: 0;
+  color: var(--color-primary);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #4b5563;
+  padding: 4px 0;
+}
+
+.priceTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.cancellation {
+  font-size: 12px;
+  color: #059669;
+  margin-top: 8px;
+  background: #ecfdf5;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1fae5;
+}
+
+.description {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding-top: 16px;
+  border-top: 1px solid #f3f4f6;
+}
+
+/* Specific Service Styles */
+.hotelRating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fffbeb;
+  color: #b45309;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.amenity {
+  font-size: 12px;
+  color: #4b5563;
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.table th {
+  text-align: left;
+  color: #6b7280;
+  font-weight: 500;
+  padding: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #111827;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}

@@ -1,0 +1,34 @@
+.container {
+  margin-top: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pillSuccess {
+  background: #e1f9f0;
+  color: #0f766e;
+}
+
+.pillDanger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.statusSuccess {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.statusWarning {
+  background: #ffedd5;
+  color: #c2410c;
+}

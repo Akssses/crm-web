@@ -12,12 +12,15 @@ export default function Button({
   type = "button",
   fullWidth = false,
 }) {
+  const isIconOnly = Icon && !children;
+  
   const buttonClasses = [
     s.button,
     s[`variant-${variant}`],
     s[`size-${size}`],
     disabled && s.disabled,
     fullWidth && s.fullWidth,
+    isIconOnly && s.iconOnly,
     className,
   ]
     .filter(Boolean)
@@ -31,7 +34,7 @@ export default function Button({
       onClick={onClick}
     >
       {Icon && <Icon className={s.icon} />}
-      <span className={s.text}>{children}</span>
+      {children && <span className={s.text}>{children}</span>}
     </button>
   );
 }

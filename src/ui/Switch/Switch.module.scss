@@ -1,6 +1,6 @@
 .switchWrapper {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   width: 100%;
 
@@ -27,7 +27,7 @@
   position: relative;
   display: inline-flex;
   flex-shrink: 0;
-  margin-top: 2px;
+  align-items: center;
 }
 
 .input {
@@ -71,7 +71,7 @@
   cursor: pointer;
   background-color: var(--color-gray-300);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 99px;
   transition: all var(--transition-base);
   user-select: none;
 

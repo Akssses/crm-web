@@ -1,5 +1,5 @@
+import Requests from "@/modules/operator/requests/components/Requests";
+
 export default function OperatorRequestsPage() {
-  return <div>Страница заявок оператора.</div>;
+  return <Requests />;
 }
-
-
