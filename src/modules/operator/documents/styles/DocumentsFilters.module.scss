@@ -1,0 +1,51 @@
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.selectWrapper {
+  flex-shrink: 0;
+  min-width: 180px;
+  max-width: 220px;
+  width: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterGroup {
+    width: 100%;
+  }
+
+  .selectWrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+
+    :global(button) {
+      width: 100%;
+    }
+  }
+}

@@ -1,5 +1,5 @@
+import Documents from "@/modules/operator/documents/components/Documents";
+
 export default function OperatorDocumentsPage() {
-  return <div>Страница документов оператора.</div>;
+  return <Documents />;
 }
-
-
