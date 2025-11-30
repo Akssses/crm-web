@@ -1,0 +1,633 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 14px;
+}
+
+.pageTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timerBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #fef3c7;
+  color: #d97706;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  gap: 24px;
+  flex: 1;
+  padding-top: 24px;
+}
+
+/* Left Sidebar */
+.leftSidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.requestCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.requestNumber {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 4px;
+}
+
+.clientName {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 20px;
+}
+
+.infoBlock {
+  padding: 16px 0;
+  border-top: 1px solid #f3f4f6;
+}
+
+.infoLabel {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoValue {
+  font-size: 14px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.infoSub {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.budgetValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.comment {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+  font-style: italic;
+}
+
+.servicesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #374151;
+    padding: 6px 0;
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.createVersionBtn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.versionsBlock {
+  margin-top: 24px;
+}
+
+.versionsLabel {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.versionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #3b82f6;
+  }
+
+  &.active {
+    border-color: #3b82f6;
+    background: #eff6ff;
+  }
+}
+
+.versionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.versionName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.versionPrice {
+  font-size: 13px;
+  color: #3b82f6;
+}
+
+.activeBadge {
+  font-size: 11px;
+  padding: 4px 8px;
+  background: #3b82f6;
+  color: #fff;
+  border-radius: 4px;
+}
+
+/* Main Content */
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+
+  &.active {
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+}
+
+.routeSection {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.routeTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 24px;
+}
+
+.timeline {
+  position: relative;
+}
+
+.serviceCard {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.timelineIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 19px;
+  top: 48px;
+  bottom: -16px;
+  width: 2px;
+  background: #e5e7eb;
+}
+
+.cardContent {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusBadge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusGreen {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.statusOrange {
+  background: #fed7aa;
+  color: #ea580c;
+}
+
+.statusYellow {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.cardDate {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.cardPrice {
+  text-align: right;
+}
+
+.priceValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.priceNote {
+  display: block;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 4px;
+}
+
+.cardSubtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 16px;
+}
+
+.routeInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.routePoint {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.routeLabel {
+  font-size: 11px;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+.routeCity {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.routeTime {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.excursionRoute {
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.routePath {
+  display: block;
+  font-size: 14px;
+  color: #374151;
+  margin-top: 4px;
+}
+
+.cardFeatures {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.feature {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.detailsBtn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.finalDestination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.finalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #c7ffc7;
+  padding: 16px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.finalTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.finalSub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.finalDate {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* Right Sidebar */
+.rightSidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.summaryTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 20px;
+}
+
+.versionHeader {
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.versionLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.versionExpiry {
+  font-size: 12px;
+  color: #f59e0b;
+  margin-top: 4px;
+}
+
+.changeBtn {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.summaryItems {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #374151;
+
+  span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &.muted {
+    color: #9ca3af;
+  }
+}
+
+.summaryTotals {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #6b7280;
+
+  &.grandTotal {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+  }
+}
+
+.timerCard {
+  background: #fef2f2;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.timerHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #dc2626;
+  margin-bottom: 8px;
+}
+
+.timerValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #dc2626;
+  margin-bottom: 4px;
+}
+
+.timerNote {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.timerProgress {
+  height: 6px;
+  background: #fee2e2;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.timerProgressBar {
+  height: 100%;
+  background: #dc2626;
+  border-radius: 3px;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .leftSidebar,
+  .rightSidebar {
+    order: 1;
+  }
+
+  .mainContent {
+    order: 0;
+  }
+}

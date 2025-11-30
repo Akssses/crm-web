@@ -1,40 +1,50 @@
+import { 
+  MdDashboard, 
+  MdAssignment, 
+  MdShoppingCart, 
+  MdPeople, 
+  MdBarChart, 
+  MdNotifications 
+} from "react-icons/md";
+
 export const supervisorMenuItems = [
   {
     id: "dashboard",
     label: "Дашборд",
-    icon: "/assets/icons/home-02.svg",
+    icon: MdDashboard,
     href: "/supervisor/dashboard",
   },
   {
     id: "requests",
     label: "Заявки",
-    icon: "/assets/icons/calendar.svg",
+    icon: MdAssignment,
     href: "/supervisor/requests",
   },
   {
     id: "orders",
     label: "Заказы",
-    icon: "/assets/icons/square-bar-chart-03.svg",
+    icon: MdShoppingCart,
     href: "/supervisor/orders",
   },
   {
     id: "operators",
     label: "Операторы",
-    icon: "/assets/icons/users-01.svg",
+    icon: MdPeople,
     href: "/supervisor/operators",
   },
   {
     id: "analytics",
     label: "Аналитика",
-    icon: "/assets/icons/bar-chart-12.svg",
+    icon: MdBarChart,
     href: "/supervisor/analytics",
   },
   {
     id: "notifications",
     label: "Уведомления",
-    icon: "/assets/icons/bookmark.svg",
+    icon: MdNotifications,
     href: "/supervisor/notifications",
   },
 ];
+
 
 

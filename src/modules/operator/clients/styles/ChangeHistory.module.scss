@@ -1,11 +1,22 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.icon {
+  color: var(--color-gray-400);
 }
 
 .title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--color-gray-900);
   margin: 0;
@@ -14,46 +25,97 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 110px;
+    width: 1px;
+    background: var(--color-gray-200);
+  }
 }
 
 .item {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 16px;
-  background: var(--color-white);
-  border-radius: 12px;
-  border: 1px solid var(--color-gray-200);
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-gray-100);
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
-.content {
+.dateColumn {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  flex: 1;
-}
-
-.action {
-  font-weight: 500;
-  color: var(--color-gray-900);
-  font-size: 14px;
-  margin: 0;
-}
-
-.user {
-  color: var(--color-gray-600);
-  font-size: 13px;
+  align-items: flex-end;
+  width: 90px;
+  flex-shrink: 0;
+  padding-top: 2px;
 }
 
 .date {
-  color: var(--color-gray-500);
   font-size: 13px;
-  white-space: nowrap;
+  font-weight: 500;
+  color: var(--color-gray-900);
 }
 
-@media (max-width: 768px) {
+.time {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 20px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: -5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--color-blue-500);
+  }
+}
+
+.action {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.details {
+  font-size: 13px;
+  color: var(--color-gray-600);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.user {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .list::before {
+    left: 16px;
+  }
+
   .item {
     flex-direction: column;
     gap: 12px;

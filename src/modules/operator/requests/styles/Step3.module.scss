@@ -1,0 +1,241 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkboxGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px 24px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #111827;
+  }
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+  }
+}
+
+.tagsGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+  
+  &.purple { background: #f3e8ff; color: #9333ea; border: 1px solid #e9d5ff; }
+  &.red { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; }
+  &.green { background: #dcfce7; color: #16a34a; border: 1px solid #bbf7d0; }
+  &.blue { background: #dbeafe; color: #2563eb; border: 1px solid #bfdbfe; }
+  &.gray { 
+    background: #f9fafb; 
+    color: #4b5563; 
+    border: 1px dashed #d1d5db;
+    cursor: pointer;
+    &:hover { border-color: #9ca3af; color: #111827; }
+  }
+
+  .removeTag {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    &:hover { opacity: 1; }
+  }
+}
+
+.budgetRow {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.fileUploadArea {
+  border: 2px dashed #e5e7eb;
+  border-radius: 16px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #f9fafb;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #2563eb;
+    background: #eff6ff;
+    
+    .uploadIcon { color: #2563eb; }
+  }
+}
+
+.uploadIcon {
+  font-size: 56px;
+  color: #9ca3af;
+  transition: color 0.2s;
+}
+
+.uploadText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.uploadSubtext {
+  font-size: 14px;
+  color: #6b7280;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: #d1d5db;
+  }
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fileIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+
+  &.pdf { background: #fee2e2; color: #ef4444; }
+  &.doc { background: #dbeafe; color: #2563eb; }
+  &.img { background: #f3e8ff; color: #9333ea; }
+}
+
+.fileName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.fileSize {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.fileStatus {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.statusText {
+  font-size: 13px;
+  font-weight: 500;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ecfdf5;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.removeFile {
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  
+  &:hover { 
+    background: #fee2e2; 
+    color: #ef4444;
+  }
+}

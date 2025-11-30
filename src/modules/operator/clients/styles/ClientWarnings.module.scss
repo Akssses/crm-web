@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.warningsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.warningCard {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid;
+}
+
+.errorCard {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: #fecaca;
+}
+
+.warningCard {
+  background: rgba(245, 158, 11, 0.05);
+  border-color: #fde68a;
+}
+
+.infoCard {
+  background: rgba(59, 130, 246, 0.05);
+  border-color: #bfdbfe;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+}
+
+.errorIcon {
+  color: #ef4444;
+}
+
+.warningIcon {
+  color: #f59e0b;
+}
+
+.infoIcon {
+  color: #3b82f6;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.message {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.details {
+  font-size: 13px;
+  color: var(--color-gray-600);
+  margin: 0;
+}
+
+.date {
+  font-size: 11px;
+  color: var(--color-gray-500);
+  margin-top: 4px;
+}

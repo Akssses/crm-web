@@ -1,58 +1,71 @@
+import { 
+  MdDashboard, 
+  MdAssignment, 
+  MdShoppingCart, 
+  MdPeople, 
+  MdMiscellaneousServices, 
+  MdDescription, 
+  MdAttachMoney, 
+  MdNotifications, 
+  MdChat 
+} from "react-icons/md";
+
 export const operatorMenuItems = [
   {
     id: "dashboard",
     label: "Дашборд",
-    icon: "/assets/icons/home-02.svg",
+    icon: MdDashboard,
     href: "/operator/dashboard",
   },
   {
     id: "requests",
     label: "Заявки",
-    icon: "/assets/icons/calendar.svg",
+    icon: MdAssignment,
     href: "/operator/requests",
   },
   {
     id: "orders",
     label: "Заказы",
-    icon: "/assets/icons/square-bar-chart-03.svg",
+    icon: MdShoppingCart,
     href: "/operator/orders",
   },
   {
     id: "clients",
     label: "Клиенты",
-    icon: "/assets/icons/users-01.svg",
+    icon: MdPeople,
     href: "/operator/clients",
   },
   {
     id: "services",
     label: "Услуги",
-    icon: "/assets/icons/bookmark.svg",
+    icon: MdMiscellaneousServices,
     href: "/operator/services",
   },
   {
     id: "documents",
     label: "Документы",
-    icon: "/assets/icons/calendar.svg",
+    icon: MdDescription,
     href: "/operator/documents",
   },
   {
     id: "finance",
     label: "Финансы",
-    icon: "/assets/icons/bank-02.svg",
+    icon: MdAttachMoney,
     href: "/operator/finance",
   },
   {
     id: "notifications",
     label: "Уведомления",
-    icon: "/assets/icons/download-circle-05.svg",
+    icon: MdNotifications,
     href: "/operator/notifications",
   },
   {
     id: "chat",
     label: "Чат",
-    icon: "/assets/icons/user-01.svg",
+    icon: MdChat,
     href: "/operator/chat",
   },
 ];
+
 
 

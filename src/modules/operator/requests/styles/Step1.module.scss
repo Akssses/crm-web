@@ -1,0 +1,254 @@
+.section {
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px;
+}
+
+.searchFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.clientCard {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.clientAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.clientInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.clientName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.clientContacts {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.clientOrg {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.clientInn {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.clientTags {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tagYellow {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.tagBlue {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.tagGreen {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.passengerActions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.passengersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.passengersCount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.clearLink {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.passengersList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.passengerItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.passengerAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.passengerInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.passengerName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.passengerMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.passengerType {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.docStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.docOk {
+  color: #059669;
+}
+
+.docMissing {
+  color: #dc2626;
+}
+
+.passengerMenu {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.formInput,
+.formSelect {
+  width: 100%;
+}
+
+.formTextarea {
+  width: 100%;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .searchFields,
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .actionButtons,
+  .passengerActions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

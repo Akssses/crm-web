@@ -300,4 +300,8 @@
     display: flex;
     align-items: center;
   }
+
+  &.iconOnly {
+    gap: 0;
+  }
 }
