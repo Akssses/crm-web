@@ -3,6 +3,7 @@
 import React from "react";
 import { UITable } from "@/ui";
 import { useRouter } from "next/navigation";
+import { MdChatBubbleOutline } from "react-icons/md";
 import s from "../styles/RequestsTable.module.scss";
 
 const REQUESTS = [
@@ -32,7 +33,7 @@ const REQUESTS = [
   },
 ];
 
-export default function RequestsTable() {
+export default function RequestsTable({ filters = {}, onChatClick = null }) {
   const router = useRouter();
 
   const columns = [
@@ -88,6 +89,23 @@ export default function RequestsTable() {
         >
           {value}
         </span>
+      ),
+    },
+    {
+      key: "chat",
+      label: "",
+      width: "60px",
+      render: (value, row) => (
+        <button
+          className={s.chatButton}
+          onClick={(e) => {
+            e.stopPropagation();
+            onChatClick?.(row);
+          }}
+          title="Открыть чат"
+        >
+          <MdChatBubbleOutline size={20} />
+        </button>
       ),
     },
   ];

@@ -1,5 +1,5 @@
+import Orders from "@/modules/operator/orders/components/Orders";
+
 export default function OperatorOrdersPage() {
-  return <div>Страница заказов оператора.</div>;
+  return <Orders />;
 }
-
-

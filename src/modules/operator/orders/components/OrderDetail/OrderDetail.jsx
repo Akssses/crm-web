@@ -9,7 +9,7 @@ import FinanceTab from "./tabs/FinanceTab";
 import VersionsTab from "./tabs/VersionsTab";
 import SupplierStatusTab from "./tabs/SupplierStatusTab";
 import RelatedOrdersTab from "./tabs/RelatedOrdersTab";
-import s from "../../styles/RequestDetail.module.scss";
+import s from "../../styles/OrderDetail.module.scss";
 
 const TABS = [
   { id: "general", label: "Общая информация" },
@@ -19,18 +19,17 @@ const TABS = [
   { id: "related", label: "Связанные заказы" },
 ];
 
-export default function RequestDetail() {
+export default function OrderDetail() {
   const router = useRouter();
   const params = useParams();
   const [activeTab, setActiveTab] = useState("general");
-  const request = {
-    id: "A-213-321",
-    status: "Новая",
+  const order = {
+    id: params.id || "ORD-001",
+    status: "В работе",
     timeRemaining: "00:23:14",
-    createdAt: "24.10.2025, 10:47",
-    operator: "Айсулуу М.",
+    createdAt: "15.11.2024, 10:47",
+    operator: "Айгерим М.",
     priorityTags: [
-      { text: "Высокий", color: "pink" },
       { text: "VIP", color: "yellow" },
       { text: "Срочно", color: "red" },
     ],
@@ -39,34 +38,34 @@ export default function RequestDetail() {
   const renderTabContent = () => {
     switch (activeTab) {
       case "general":
-        return <GeneralInfoTab request={request} />;
+        return <GeneralInfoTab order={order} />;
       case "finance":
-        return <FinanceTab request={request} />;
+        return <FinanceTab order={order} />;
       case "versions":
-        return <VersionsTab request={request} />;
+        return <VersionsTab order={order} />;
       case "suppliers":
-        return <SupplierStatusTab request={request} />;
+        return <SupplierStatusTab order={order} />;
       case "related":
-        return <RelatedOrdersTab request={request} />;
+        return <RelatedOrdersTab order={order} />;
       default:
-        return <GeneralInfoTab request={request} />;
+        return <GeneralInfoTab order={order} />;
     }
   };
 
   return (
-    <div className={s.requestDetail}>
+    <div className={s.orderDetail}>
       {/* Header */}
       <header className={s.header}>
         <div className={s.headerLeft}>
           <div className={s.headerChips}>
-            <span className={`${s.chip} ${s.chipBlue}`}>{request.status}</span>
+            <span className={`${s.chip} ${s.chipGreen}`}>{order.status}</span>
             <span className={`${s.chip} ${s.chipOrange}`}>
-              Осталось {request.timeRemaining}
+              Осталось {order.timeRemaining}
             </span>
           </div>
           <div className={s.headerMeta}>
-            <span>Дата создания: {request.createdAt}</span>
-            <span>Ответственный: {request.operator}</span>
+            <span>Дата создания: {order.createdAt}</span>
+            <span>Ответственный: {order.operator}</span>
           </div>
         </div>
         <div className={s.headerRight}>
@@ -74,15 +73,10 @@ export default function RequestDetail() {
             <Button variant="primary" size="sm" icon={MdModeEditOutline}>
               Редактировать
             </Button>
-            <Button variant="primary" size="sm">
-              Конвертировать в заказ
-            </Button>
             <Button
               variant="primary"
               size="sm"
-              onClick={() =>
-                router.push(`/operator/requests/${params.id}/offer`)
-              }
+              onClick={() => router.push(`/operator/orders/${params.id}/offer`)}
             >
               Ком. предложение
             </Button>
@@ -96,7 +90,7 @@ export default function RequestDetail() {
             </Button>
           </div>
           <div className={s.priorityTags}>
-            {request.priorityTags.map((tag, idx) => (
+            {order.priorityTags.map((tag, idx) => (
               <span
                 key={idx}
                 className={`${s.priorityTag} ${s[`priorityTag-${tag.color}`]}`}

@@ -6,6 +6,7 @@ import { Container, Input, Button, Select } from "@/ui";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdAdd } from "react-icons/md";
 import RequestsTable from "./RequestsTable";
+import OrderChatDrawer from "@/modules/operator/orders/components/OrderChatDrawer";
 import s from "../styles/Requests.module.scss";
 
 const ORGANIZATION_OPTIONS = [
@@ -38,6 +39,8 @@ export default function Requests() {
     status: "all",
     service: "all",
   });
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState(null);
 
   const handleCreateRequest = () => {
     router.push("/operator/requests/create");
@@ -45,6 +48,36 @@ export default function Requests() {
 
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleChatClick = (request) => {
+    // Преобразуем данные заявки в формат, который ожидает OrderChatDrawer
+    const orderData = {
+      id: request.id,
+      client: request.organization,
+      organization: request.organization,
+      service: request.service,
+      date: request.date,
+      status: request.status,
+      statusColor:
+        request.statusTone === "success"
+          ? "green"
+          : request.statusTone === "warning"
+          ? "yellow"
+          : "red",
+    };
+
+    // Если панель уже открыта, просто обновляем контекст
+    if (isChatOpen) {
+      setSelectedRequest(orderData);
+    } else {
+      setSelectedRequest(orderData);
+      setIsChatOpen(true);
+    }
+  };
+
+  const handleChatClose = () => {
+    setIsChatOpen(false);
   };
 
   return (
@@ -90,7 +123,13 @@ export default function Requests() {
         </div>
       </div>
 
-      <RequestsTable filters={filters} />
+      <RequestsTable filters={filters} onChatClick={handleChatClick} />
+
+      <OrderChatDrawer
+        isOpen={isChatOpen}
+        onClose={handleChatClose}
+        order={selectedRequest}
+      />
     </div>
   );
 }

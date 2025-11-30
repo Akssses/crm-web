@@ -1,4 +1,4 @@
-.requestDetail {
+.orderDetail {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -42,6 +42,11 @@
 .chipBlue {
   background: var(--color-blue-light);
   color: var(--color-blue);
+}
+
+.chipGreen {
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
 }
 
 .chipOrange {
@@ -723,7 +728,7 @@
 }
 
 @media (max-width: 768px) {
-  .requestDetail {
+  .orderDetail {
     padding: 16px;
   }
 
