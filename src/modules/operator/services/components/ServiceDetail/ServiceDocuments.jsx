@@ -16,7 +16,7 @@ import {
 import { MdFlight, MdDirectionsCar } from "react-icons/md";
 import s from "../../styles/ServiceDetail.module.scss";
 
-export default function ServiceDocuments() {
+export default function ServiceDocuments({ service }) {
   const [expandedServices, setExpandedServices] = useState(["hotel"]);
 
   const toggleService = (serviceId) => {
@@ -140,12 +140,16 @@ export default function ServiceDocuments() {
                           <div className={s.statusCell}>
                             {DocStatusIcon && (
                               <DocStatusIcon
-                                className={`${s.statusIcon} ${s[`statusIcon-${doc.statusColor}`]}`}
+                                className={`${s.statusIcon} ${
+                                  s[`statusIcon-${doc.statusColor}`]
+                                }`}
                                 size={16}
                               />
                             )}
                             <span
-                              className={`${s.statusText} ${s[`status-${doc.statusColor}`]}`}
+                              className={`${s.statusText} ${
+                                s[`status-${doc.statusColor}`]
+                              }`}
                             >
                               {doc.status}
                             </span>
@@ -208,4 +212,3 @@ export default function ServiceDocuments() {
     </Container>
   );
 }
-

@@ -4,6 +4,56 @@
   gap: 16px;
 }
 
+.typeCell {
+  display: flex;
+  align-items: center;
+}
+
+.typeBadge {
+  padding: 4px 10px;
+  background: var(--color-gray-100);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-gray-700);
+}
+
+.serviceCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.serviceTitle {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.serviceSubtitle {
+  font-size: 12px;
+  color: var(--color-gray-600);
+}
+
+.problemIndicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 2px 8px;
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.routeCell {
+  font-size: 13px;
+  color: var(--color-gray-700);
+}
+
 .orderLink {
   color: var(--color-primary);
   font-weight: 500;
@@ -20,15 +70,20 @@
   gap: 8px;
 }
 
-.statusDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.statusIcon-green {
+  color: var(--color-green-dark);
 }
 
-.statusDot-green {
-  background: var(--color-success);
+.statusIcon-yellow {
+  color: var(--color-yellow-dark);
+}
+
+.statusIcon-red {
+  color: var(--color-red-dark);
+}
+
+.statusIcon-orange {
+  color: var(--color-orange-dark);
 }
 
 .statusBadge {
@@ -44,9 +99,94 @@
   color: var(--color-green-dark);
 }
 
+.status-yellow {
+  background: var(--color-yellow-light);
+  color: var(--color-yellow-dark);
+}
+
+.status-red {
+  background: var(--color-red-light);
+  color: var(--color-red-dark);
+}
+
+.status-orange {
+  background: var(--color-orange-light);
+  color: var(--color-orange-dark);
+}
+
+.paymentBadge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.payment-green {
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+}
+
+.payment-yellow {
+  background: var(--color-yellow-light);
+  color: var(--color-yellow-dark);
+}
+
+.payment-red {
+  background: var(--color-red-light);
+  color: var(--color-red-dark);
+}
+
+.slaOk {
+  color: var(--color-green-dark);
+  font-weight: 500;
+}
+
+.slaViolated {
+  color: var(--color-danger-dark);
+  font-weight: 600;
+}
+
+.priceCell {
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--color-gray-300);
+  background: var(--color-white);
+  color: var(--color-gray-600);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--color-gray-100);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &.danger {
+    &:hover {
+      background: var(--color-danger-light);
+      color: var(--color-danger-dark);
+      border-color: var(--color-danger);
+    }
+  }
+}
+
 .footer {
   display: flex;
   justify-content: flex-start;
   padding-top: 12px;
 }
-

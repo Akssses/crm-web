@@ -3,3 +3,44 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.filterGroup {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.selectWrapper {
+  flex: 1;
+  min-width: 180px;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .servicesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 16px;
+  }
+
+  .filterGroup {
+    flex-direction: column;
+  }
+
+  .selectWrapper {
+    width: 100%;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+}

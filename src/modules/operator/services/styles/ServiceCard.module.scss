@@ -1,0 +1,364 @@
+.serviceCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &.hasProblems {
+    border-color: var(--color-danger);
+    background: #fff5f5;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-gray-200);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.serviceTypeBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--color-gray-100);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-gray-700);
+}
+
+.problemIndicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-green {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+}
+
+.status-yellow {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: var(--color-yellow-light);
+  color: var(--color-yellow-dark);
+}
+
+.status-red {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: var(--color-red-light);
+  color: var(--color-red-dark);
+}
+
+.status-orange {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: var(--color-orange-light);
+  color: var(--color-orange-dark);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.serviceTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.serviceSubtitle {
+  font-size: 13px;
+  color: var(--color-gray-600);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.routeInfo,
+.datesInfo {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.routeLabel,
+.datesLabel {
+  font-weight: 500;
+  color: var(--color-gray-600);
+  flex-shrink: 0;
+}
+
+.routeValue,
+.datesValue {
+  color: var(--color-gray-900);
+  word-break: break-word;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.infoItem {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.infoLabel {
+  font-weight: 500;
+  color: var(--color-gray-600);
+  min-width: 90px;
+  flex-shrink: 0;
+}
+
+.infoValue {
+  color: var(--color-gray-900);
+  word-break: break-word;
+  flex: 1;
+  min-width: 0;
+}
+
+.orderLink {
+  color: var(--color-primary);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.statusRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  background: var(--color-gray-50);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.statusItem {
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.statusLabel {
+  color: var(--color-gray-600);
+  flex-shrink: 0;
+}
+
+.statusValue {
+  font-weight: 500;
+  white-space: nowrap;
+
+  &.status-green {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--color-green-light);
+    color: var(--color-green-dark);
+  }
+
+  &.status-yellow {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.status-red {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--color-red-light);
+    color: var(--color-red-dark);
+  }
+
+  &.status-orange {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--color-orange-light);
+    color: var(--color-orange-dark);
+  }
+
+  &.payment-green {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--color-green-light);
+    color: var(--color-green-dark);
+  }
+
+  &.payment-yellow {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.payment-red {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--color-red-light);
+    color: var(--color-red-dark);
+  }
+
+  &.slaOk {
+    color: var(--color-green-dark);
+  }
+
+  &.slaViolated {
+    color: var(--color-danger-dark);
+    font-weight: 600;
+  }
+}
+
+.priceInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--color-blue-light);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.priceLabel {
+  font-size: 13px;
+  color: var(--color-gray-600);
+}
+
+.priceValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.cardActions {
+  display: flex;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-gray-200);
+  flex-wrap: wrap;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray-300);
+  background: var(--color-white);
+  color: var(--color-gray-600);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--color-gray-100);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &.danger {
+    &:hover {
+      background: var(--color-danger-light);
+      color: var(--color-danger-dark);
+      border-color: var(--color-danger);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .headerRight {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statusRow {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .statusItem {
+    width: 100%;
+  }
+
+  .cardActions {
+    justify-content: center;
+  }
+}
