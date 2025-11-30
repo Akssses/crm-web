@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, createContext, useContext } from "react";
+import { usePathname } from "next/navigation";
 import s from "./Sidebar.module.scss";
 import { menuItems as adminMenuItems } from "./Data";
 import { MdKeyboardArrowLeft, MdKeyboardArrowDown } from "react-icons/md";
@@ -31,7 +32,7 @@ export function SidebarProvider({ children }) {
 
 function SidebarComponent({ items = adminMenuItems }) {
   const { isCollapsed, setIsCollapsed } = useSidebar();
-  const [activeItem, setActiveItem] = useState(items?.[0]?.id || "dashboard");
+  const pathname = usePathname();
 
   return (
     <aside className={`${s.sidebar} ${isCollapsed ? s.collapsed : ""}`}>
@@ -56,21 +57,17 @@ function SidebarComponent({ items = adminMenuItems }) {
 
       <nav className={s.menu}>
         {items.map((item) => {
-          const isActive = activeItem === item.id;
+          const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+          const Icon = item.icon;
 
           return (
             <Link
               key={item.id}
               href={item.href}
               className={`${s.menuItem} ${isActive ? s.active : ""}`}
-              onClick={() => setActiveItem(item.id)}
               title={isCollapsed ? item.label : ""}
             >
-              <img
-                src={item.icon}
-                alt={item.label}
-                className={`${s.icon} ${isActive ? s.active : ""}`}
-              />
+              <Icon className={`${s.icon} ${isActive ? s.active : ""}`} size={20} />
               {!isCollapsed && <span className={s.label}>{item.label}</span>}
             </Link>
           );

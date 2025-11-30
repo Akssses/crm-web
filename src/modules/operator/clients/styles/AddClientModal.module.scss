@@ -2,11 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding: 20px 0;
 }
 
 .tabs {
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-gray-200);
+  padding-bottom: 16px;
 }
 
 .tabButton {
@@ -16,53 +19,69 @@
 .avatarSection {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .avatarPlaceholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-gray-100);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 99px;
-  background: var(--color-gray-100);
-  border: 2px dashed var(--color-gray-300);
   color: var(--color-gray-400);
+  border: 1px dashed var(--color-gray-300);
+}
+
+.avatarActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.statusSelect {
+  width: 100%;
+}
+
+.blacklistReason {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 16px;
+  border-radius: 8px;
 }
 
 .formGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 24px;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .phoneInput {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .phoneLabel {
   font-size: 14px;
-  font-weight: 600;
-  color: #1f2937;
+  font-weight: 500;
+  color: var(--color-gray-700);
 }
 
 .phoneInputRow {
   display: flex;
   gap: 8px;
-  align-items: flex-start;
 }
 
 .countryCode {
-  flex-shrink: 0;
   width: 100px;
 }
 
@@ -70,8 +89,21 @@
   flex: 1;
 }
 
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
 .fullWidthTextarea {
-  grid-column: 1 / -1;
+  width: 100%;
 }
 
 .documentsSection {
@@ -84,63 +116,66 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
+  padding: 8px 12px;
   background: var(--color-gray-50);
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--color-gray-200);
 }
 
 .fileName {
-  font-weight: 500;
-  color: var(--color-gray-900);
   font-size: 14px;
+  color: var(--color-gray-900);
 }
 
 .fileInfo {
-  color: var(--color-gray-600);
   font-size: 12px;
+  color: var(--color-gray-500);
 }
 
 .tagsSection {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .tagsLabel {
-  font-weight: 500;
-  color: var(--color-gray-900);
   font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-700);
 }
 
 .tags {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 8px;
 }
 
 .tag {
-  padding: 6px 16px;
-  border: 1px solid var(--color-gray-300);
-  border-radius: 99px;
-  background: var(--color-white);
-  color: var(--color-gray-700);
-  font-size: 14px;
-  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  border: 1px solid var(--color-gray-200);
+  background: white;
+  color: var(--color-gray-600);
   cursor: pointer;
   transition: all 0.2s;
 
-  &.tagActive {
-    background: #016dff;
-    border-color: #016dff;
-    color: var(--color-white);
+  &:hover {
+    border-color: var(--color-blue-500);
+    color: var(--color-blue-600);
   }
+}
+
+.tagActive {
+  background: var(--color-blue-50);
+  border-color: var(--color-blue-500);
+  color: var(--color-blue-600);
 }
 
 .actions {
   display: flex;
-  gap: 12px;
   justify-content: flex-end;
+  gap: 12px;
   padding-top: 20px;
   border-top: 1px solid var(--color-gray-200);
 }

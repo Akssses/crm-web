@@ -1,25 +1,45 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Input, Select, Button, Textarea } from "@/ui";
 import { MdAttachFile, MdPerson, MdBusiness } from "react-icons/md";
+import PassportMaskingField from "./PassportMaskingField";
+import DuplicateWarning from "./DuplicateWarning";
+import VisaInsuranceManager from "./VisaInsuranceManager";
 import s from "../styles/AddClientModal.module.scss";
 
 export default function AddClientModal({ isOpen, onClose, onSubmit }) {
   const [clientType, setClientType] = useState("individual");
   const [selectedTags, setSelectedTags] = useState(["VIP"]);
-  const [uploadedFiles, setUploadedFiles] = useState([
-    { id: 1, name: "документ.jpg", type: "JPG", size: "1.5 MB" },
-  ]);
+  const [status, setStatus] = useState("active");
+  const [blacklistReason, setBlacklistReason] = useState("");
+  const [passport, setPassport] = useState("");
+  const [duplicates, setDuplicates] = useState([]);
+  
+  // Mock duplicate check
+  const checkDuplicates = (field, value) => {
+    if (value === "anna.petrova@gmail.com") {
+      setDuplicates([
+        { id: 1, name: "Анна Петрова", matchType: "email", additionalInfo: "ID: 12345" }
+      ]);
+    } else {
+      setDuplicates([]);
+    }
+  };
 
-  const tags = ["VIP", "Срочно", "Новичок", "Проблемный"];
+  const tags = ["VIP", "Срочно", "Новичок", "Проблемный", "Частые поездки", "Корпоративный"];
+  
+  const statusOptions = [
+    { value: "active", label: "Активный" },
+    { value: "inactive", label: "Не активный" },
+    { value: "blacklist", label: "Чёрный список" },
+    { value: "vip", label: "VIP" },
+  ];
 
   const toggleTag = (tag) => {
     setSelectedTags((prev) => {
       if (prev.includes(tag)) {
-        // Если тег уже выбран, удаляем его из выбранных
         return prev.filter((t) => t !== tag);
       } else {
-        // Если тег не выбран, добавляем его в выбранные
         return [...prev, tag];
       }
     });
@@ -36,9 +56,15 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
       onClose={onClose}
       title="Новый клиент"
       position="right"
-      width="600px"
+      width="800px"
     >
       <div className={s.modalContent}>
+        {/* Duplicate Warning */}
+        <DuplicateWarning 
+          duplicates={duplicates} 
+          onViewClient={(id) => console.log("View client", id)} 
+        />
+
         {/* Client Type Tabs */}
         <div className={s.tabs}>
           <Button
@@ -62,25 +88,43 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
           <div className={s.avatarPlaceholder}>
             <MdPerson size={32} />
           </div>
-          <Button variant="outline" size="sm">
-            {clientType === "individual" ? "Автарка" : "Логотип организации"}
-          </Button>
+          <div className={s.avatarActions}>
+            <Button variant="outline" size="sm">
+              {clientType === "individual" ? "Загрузить фото" : "Загрузить логотип"}
+            </Button>
+            <Select
+              value={status}
+              options={statusOptions}
+              onChange={(e) => setStatus(e.target.value)}
+              className={s.statusSelect}
+            />
+          </div>
         </div>
+
+        {status === "blacklist" && (
+          <div className={s.blacklistReason}>
+            <Input
+              label="Причина добавления в ЧС"
+              value={blacklistReason}
+              onChange={(e) => setBlacklistReason(e.target.value)}
+              placeholder="Укажите причину..."
+              required
+            />
+          </div>
+        )}
 
         {/* Form Fields */}
         <div className={s.formGrid}>
           <div className={s.column}>
             <Input
               label="ФИО"
-              value="John"
-              onChange={() => {}}
               placeholder="Введите ФИО"
+              onChange={() => {}}
             />
             <Input
               label="Контактный e-mail"
-              value="johndoe@mail.com"
-              onChange={() => {}}
               placeholder="Введите email"
+              onChange={(e) => checkDuplicates('email', e.target.value)}
             />
             <Select
               label="Пол"
@@ -91,6 +135,37 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
               ]}
               onChange={() => {}}
             />
+            <PassportMaskingField
+              value={passport}
+              onChange={(e) => setPassport(e.target.value)}
+              label="Паспорт / ИД"
+            />
+          </div>
+          <div className={s.column}>
+            <Input
+              label="Дата рождения"
+              placeholder="dd.mm.yyyy"
+              onChange={() => {}}
+            />
+            <div className={s.phoneInput}>
+              <span className={s.phoneLabel}>Контактный номер телефона</span>
+              <div className={s.phoneInputRow}>
+                <Select
+                  value="+996"
+                  options={[
+                    { value: "+996", label: "+996" },
+                    { value: "+7", label: "+7" },
+                  ]}
+                  onChange={() => {}}
+                  className={s.countryCode}
+                />
+                <Input
+                  placeholder="Введите номер"
+                  className={s.phoneNumber}
+                  onChange={() => {}}
+                />
+              </div>
+            </div>
             <Select
               label="Гражданство"
               placeholder="Выберите страну"
@@ -104,84 +179,27 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
               label="Ответственный оператор"
               value="me"
               options={[
-                { value: "me", label: "Адрей Клауд (Я)" },
+                { value: "me", label: "Андрей Клауд (Я)" },
                 { value: "other", label: "Другой оператор" },
               ]}
               onChange={() => {}}
             />
           </div>
-          <div className={s.column}>
-            <Input
-              label="Дата рождения"
-              placeholder="mm/dd/yyyy"
-              onChange={() => {}}
-            />
-            <div className={s.phoneInput}>
-              <span className={s.phoneLabel}>Контактный номер телефона</span>
-              <div className={s.phoneInputRow}>
-                <Select
-                  value="+1"
-                  options={[
-                    { value: "+1", label: "+1" },
-                    { value: "+996", label: "+996" },
-                    { value: "+7", label: "+7" },
-                  ]}
-                  onChange={() => {}}
-                  className={s.countryCode}
-                />
-                <Input
-                  value="(303) 555-0105"
-                  onChange={() => {}}
-                  placeholder="Введите номер"
-                  className={s.phoneNumber}
-                />
-              </div>
-            </div>
-            <Select
-              label="Организация"
-              placeholder="Выберите организацию"
-              options={[
-                { value: "org1", label: "Организация 1" },
-                { value: "org2", label: "Организация 2" },
-              ]}
-              onChange={() => {}}
-            />
-            <Select
-              label="Источник"
-              value="telegram"
-              options={[
-                { value: "telegram", label: "Telegram" },
-                { value: "website", label: "Сайт" },
-                { value: "phone", label: "Телефон" },
-              ]}
-              onChange={() => {}}
-            />
-          </div>
+        </div>
+
+        {/* Visas and Insurance */}
+        <div className={s.section}>
+          <h4 className={s.sectionTitle}>Визы и страховки</h4>
+          <VisaInsuranceManager />
         </div>
 
         {/* Comment - Full Width */}
         <Textarea
           label="Комментарий"
-          value="Descriptions..."
-          onChange={() => {}}
           placeholder="Введите комментарий"
           className={s.fullWidthTextarea}
+          onChange={() => {}}
         />
-
-        {/* Document Upload */}
-        <div className={s.documentsSection}>
-          <Button variant="outline" icon={MdAttachFile}>
-            Загрузить документы
-          </Button>
-          {uploadedFiles.map((file) => (
-            <div key={file.id} className={s.fileItem}>
-              <span className={s.fileName}>{file.name}</span>
-              <span className={s.fileInfo}>
-                {file.type}, {file.size}
-              </span>
-            </div>
-          ))}
-        </div>
 
         {/* Tags */}
         <div className={s.tagsSection}>
@@ -207,11 +225,12 @@ export default function AddClientModal({ isOpen, onClose, onSubmit }) {
             Отмена
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Создать
+            Создать клиента
           </Button>
         </div>
       </div>
     </Modal>
   );
 }
+
 

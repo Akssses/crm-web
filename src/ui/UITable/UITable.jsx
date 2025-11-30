@@ -81,7 +81,10 @@ export default function UITable({
               <span
                 key={idx}
                 className={s.headerCell}
-                style={{ ...col.style, flex: `1` }}
+                style={{
+                  flex: col.width ? `0 0 ${col.width}` : (col.flex || 1),
+                  ...col.style,
+                }}
               >
                 {col.label}
               </span>
@@ -123,7 +126,10 @@ export default function UITable({
                   <div
                     key={colIdx}
                     className={s.bodyCell}
-                    style={{ ...col.style, flex: `1` }}
+                    style={{
+                      flex: col.width ? `0 0 ${col.width}` : (col.flex || 1),
+                      ...col.style,
+                    }}
                   >
                     {col.render ? (
                       col.render(row[col.key], row, rowIdx)
@@ -148,16 +154,7 @@ export default function UITable({
           )}
         </div>
       </div>
-
-      {/* Footer */}
-      {/* {onAddClick && (
-        <div className={s.footer}>
-          <button className={s.addButton} onClick={onAddClick}>
-            <MdAdd size={20} />
-            {addButtonText}
-          </button>
-        </div>
-      )} */}
     </>
   );
 }
+
