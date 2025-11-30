@@ -11,7 +11,11 @@ export default function ChatDetail() {
   return (
     <div className={s.chatDetail}>
       <ChatSidebar className={s.sidebar} />
-      <ChatMessages className={s.messages} />
+      <ChatMessages
+        className={s.messages}
+        isDetailsOpen={isDetailsOpen}
+        onOpenDetails={() => setIsDetailsOpen(true)}
+      />
       {isDetailsOpen && (
         <ChatDetails
           className={s.details}
@@ -21,4 +25,3 @@ export default function ChatDetail() {
     </div>
   );
 }
-

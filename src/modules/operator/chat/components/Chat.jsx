@@ -15,9 +15,11 @@ import {
   MdStar,
 } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 import s from "../styles/Chat.module.scss";
 
 export default function Chat() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("all");
 
   const tabs = [
@@ -157,7 +159,11 @@ export default function Chat() {
           const MessageIcon = chat.messageIcon;
 
           return (
-            <div key={chat.id} className={s.chatItem}>
+            <div
+              key={chat.id}
+              className={s.chatItem}
+              onClick={() => router.push(`/operator/chat/${chat.id}`)}
+            >
               <div className={s.chatLeft}>
                 <div className={s.chatHeader}>
                   <span className={s.orderId}>{chat.id}</span>
@@ -179,7 +185,9 @@ export default function Chat() {
               <div className={s.chatRight}>
                 <div className={s.time}>{chat.time}</div>
                 <div
-                  className={`${s.statusBadge} ${s[`status-${chat.statusColor}`]}`}
+                  className={`${s.statusBadge} ${
+                    s[`status-${chat.statusColor}`]
+                  }`}
                 >
                   {StatusIcon && (
                     <StatusIcon className={s.statusIcon} size={16} />
@@ -194,4 +202,3 @@ export default function Chat() {
     </div>
   );
 }
-

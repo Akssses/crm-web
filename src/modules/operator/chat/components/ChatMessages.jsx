@@ -8,11 +8,16 @@ import {
   MdSend,
   MdCheckCircle,
   MdWarning,
+  MdInfoOutline,
 } from "react-icons/md";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import s from "../styles/ChatMessages.module.scss";
 
-export default function ChatMessages({ className }) {
+export default function ChatMessages({
+  className,
+  isDetailsOpen,
+  onOpenDetails,
+}) {
   const [activeMessageType, setActiveMessageType] = useState("client");
   const [message, setMessage] = useState("");
 
@@ -72,12 +77,15 @@ export default function ChatMessages({ className }) {
             </span>
             <span className={`${s.slaBadge} ${s.slaRed}`}>SLA +2ч</span>
           </div>
-          <button className={s.iconButton}>
-            <MdSettings size={20} />
-          </button>
-          <button className={s.iconButton}>
-            <MdMoreVert size={20} />
-          </button>
+          {!isDetailsOpen && (
+            <button
+              className={s.detailsButton}
+              onClick={onOpenDetails}
+              title="Открыть детали заявки"
+            >
+              <MdInfoOutline size={20} />
+            </button>
+          )}
         </div>
       </div>
 
@@ -177,17 +185,13 @@ export default function ChatMessages({ className }) {
             <button className={s.actionIconButton}>
               <MdAttachFile size={20} />
             </button>
-            <button className={s.actionIconButton}>
-              <HiOutlineEmojiHappy size={20} />
-            </button>
+
             <Button
               variant="primary"
               icon={MdSend}
               onClick={() => {}}
               className={s.sendButton}
-            >
-              Отправить
-            </Button>
+            ></Button>
           </div>
         </div>
       </div>
