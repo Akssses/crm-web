@@ -23,7 +23,7 @@
 
 .infoGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -43,7 +43,6 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--color-gray-900);
-  max-width: fit-content;
 }
 
 .fieldLink {

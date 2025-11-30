@@ -1,98 +1,226 @@
 "use client";
 import React, { useState } from "react";
 import { Container, UITable, Select, Button } from "@/ui";
-import { MdAdd, MdDownload, MdVisibility } from "react-icons/md";
-import { CiCalendar } from "react-icons/ci";
+import { MdAdd, MdDownload, MdVisibility, MdEdit } from "react-icons/md";
+import { useRouter } from "next/navigation";
 import s from "../styles/PaymentsTable.module.scss";
 
+const PAYMENT_TYPE_OPTIONS = [
+  { value: "all", label: "Все типы" },
+  { value: "payment", label: "Оплата" },
+  { value: "prepayment", label: "Предоплата" },
+  { value: "refund", label: "Возврат" },
+  { value: "withholding", label: "Удержание" },
+  { value: "adjustment", label: "Корректировка" },
+];
+
+const STATUS_OPTIONS = [
+  { value: "all", label: "Все статусы" },
+  { value: "paid", label: "Оплачено" },
+  { value: "partial", label: "Частично оплачено" },
+  { value: "pending", label: "В ожидании" },
+  { value: "cancelled", label: "Отменено" },
+];
+
+const CURRENCY_OPTIONS = [
+  { value: "all", label: "Все валюты" },
+  { value: "KGS", label: "KGS" },
+  { value: "USD", label: "USD" },
+  { value: "RUB", label: "RUB" },
+  { value: "EUR", label: "EUR" },
+];
+
 export default function PaymentsTable() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  const totalItems = 3;
+  const router = useRouter();
+  const [filters, setFilters] = useState({
+    type: "all",
+    status: "all",
+    currency: "all",
+  });
 
   const payments = [
     {
       id: "PAY-001",
-      order: "ORD-123",
+      orderId: "ORD-123",
+      serviceId: "SRV-001",
+      serviceName: "Авиаперелёт (туда)",
       client: "Иван Иванов",
-      type: "Оплата",
-      amount: "32 000 KGS",
-      status: "Подтверждено",
+      type: "payment",
+      typeLabel: "Оплата",
+      amount: 32000,
+      currency: "KGS",
+      exchangeRate: 1,
+      amountInOrderCurrency: 32000,
+      orderCurrency: "KGS",
+      status: "paid",
+      statusLabel: "Оплачено",
       statusColor: "green",
-      date: "10.10.25",
+      date: "10.10.2025",
+      source: "Банковский перевод",
+      paymentDate: "10.10.2025",
     },
     {
       id: "PAY-002",
-      order: "ORD-125",
+      orderId: "ORD-125",
+      serviceId: "SRV-002",
+      serviceName: "Отель",
       client: 'ООО "Бета Трэвел"',
-      type: "Предоплата",
-      amount: "20 000 USD",
-      status: "В ожидании",
+      type: "prepayment",
+      typeLabel: "Предоплата",
+      amount: 20000,
+      currency: "USD",
+      exchangeRate: 89.5,
+      amountInOrderCurrency: 1790000,
+      orderCurrency: "KGS",
+      status: "pending",
+      statusLabel: "В ожидании",
       statusColor: "yellow",
-      date: "11.10.25",
+      date: "11.10.2025",
+      source: "Карта",
+      paymentDate: null,
     },
     {
       id: "PAY-003",
-      order: "ORD-120",
+      orderId: "ORD-120",
+      serviceId: "SRV-003",
+      serviceName: "Трансфер",
       client: 'ООО "Алмаз-Тур"',
-      type: "Оплата",
-      amount: "52 000 KGS",
-      status: "Возврат частичный",
-      statusColor: "red",
-      date: "09.10.25",
+      type: "refund",
+      typeLabel: "Возврат",
+      amount: 15000,
+      currency: "KGS",
+      exchangeRate: 1,
+      amountInOrderCurrency: 15000,
+      orderCurrency: "KGS",
+      status: "partial",
+      statusLabel: "Частично оплачено",
+      statusColor: "orange",
+      date: "09.10.2025",
+      source: "Банковский перевод",
+      paymentDate: "09.10.2025",
     },
   ];
+
+  const filteredPayments = payments.filter((payment) => {
+    if (filters.type !== "all" && payment.type !== filters.type) return false;
+    if (filters.status !== "all" && payment.status !== filters.status)
+      return false;
+    if (filters.currency !== "all" && payment.currency !== filters.currency)
+      return false;
+    return true;
+  });
 
   const columns = [
     {
       key: "id",
       label: "№",
-      render: (value) => (
-        <span className={s.paymentId}>{value}</span>
-      ),
+      flex: 0.8,
+      render: (value) => <span className={s.paymentId}>{value}</span>,
     },
     {
-      key: "order",
+      key: "orderId",
       label: "Заказ",
-      render: (value) => (
-        <span className={s.orderLink}>{value}</span>
-      ),
-    },
-    { key: "client", label: "Клиент" },
-    { key: "type", label: "Тип" },
-    {
-      key: "amount",
-      label: "Сумма",
-      render: (value) => (
-        <span className={s.amount}>{value}</span>
-      ),
-    },
-    {
-      key: "status",
-      label: "Статус",
+      flex: 1.2,
       render: (value, row) => (
         <span
-          className={`${s.statusBadge} ${s[`status-${row.statusColor}`]}`}
+          className={s.orderLink}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push(`/operator/orders/${value}`);
+          }}
         >
           {value}
         </span>
       ),
     },
-    { key: "date", label: "Дата" },
+    {
+      key: "serviceId",
+      label: "Услуга",
+      flex: 1.2,
+      render: (value, row) => (
+        <span
+          className={s.serviceLink}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push(`/operator/services/${value}`);
+          }}
+        >
+          {value}
+        </span>
+      ),
+    },
+    {
+      key: "amount",
+      label: "Сумма",
+      flex: 1.5,
+      render: (value, row) => (
+        <div className={s.amountCell}>
+          <span className={s.amount}>
+            {value.toLocaleString()} {row.currency}
+          </span>
+          {row.currency !== row.orderCurrency && (
+            <span className={s.amountConverted}>
+              ≈ {row.amountInOrderCurrency.toLocaleString()} {row.orderCurrency}
+            </span>
+          )}
+        </div>
+      ),
+    },
+    {
+      key: "statusLabel",
+      label: "Статус",
+      flex: 1.2,
+      render: (value, row) => (
+        <span className={`${s.statusBadge} ${s[`status-${row.statusColor}`]}`}>
+          {value}
+        </span>
+      ),
+    },
+    {
+      key: "date",
+      label: "Дата",
+      flex: 1,
+    },
     {
       key: "actions",
-      label: "Действия",
-      render: () => (
-        <button className={s.actionButton}>
-          <MdVisibility size={20} />
-        </button>
+      label: "",
+      flex: 0.6,
+      render: (value, row) => (
+        <div className={s.actionsCell}>
+          <button
+            className={s.actionButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/operator/finance/payments/${row.id}`);
+            }}
+            title="Просмотр"
+          >
+            <MdVisibility size={18} />
+          </button>
+          <button
+            className={s.actionButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              // TODO: Open edit modal
+            }}
+            title="Редактировать"
+          >
+            <MdEdit size={18} />
+          </button>
+        </div>
       ),
     },
   ];
 
-  const startItem = (currentPage - 1) * itemsPerPage + 1;
-  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const handleAddPayment = () => {
+    // TODO: Open add payment modal
+    console.log("Add payment");
+  };
+
+  const handleExport = () => {
+    // TODO: Export to Excel
+    console.log("Export to Excel");
+  };
 
   return (
     <Container size="full" className={s.container}>
@@ -100,83 +228,45 @@ export default function PaymentsTable() {
         <div className={s.filterGroup}>
           <div className={s.selectWrapper}>
             <Select
-              value="all"
-              options={[
-                { value: "all", label: "Все статусы" },
-                { value: "confirmed", label: "Подтверждено" },
-                { value: "pending", label: "В ожидании" },
-                { value: "refund", label: "Возврат" },
-              ]}
-              onChange={() => {}}
+              value={filters.type}
+              onChange={(value) => setFilters({ ...filters, type: value })}
+              options={PAYMENT_TYPE_OPTIONS}
             />
           </div>
           <div className={s.selectWrapper}>
             <Select
-              value="all"
-              options={[
-                { value: "all", label: "Все валюты" },
-                { value: "kgs", label: "KGS" },
-                { value: "usd", label: "USD" },
-                { value: "rub", label: "RUB" },
-              ]}
-              onChange={() => {}}
+              value={filters.status}
+              onChange={(value) => setFilters({ ...filters, status: value })}
+              options={STATUS_OPTIONS}
             />
           </div>
-          <div className={s.datePicker}>
-            <CiCalendar size={20} />
-            <span>Feb 28, 2024</span>
+          <div className={s.selectWrapper}>
+            <Select
+              value={filters.currency}
+              onChange={(value) => setFilters({ ...filters, currency: value })}
+              options={CURRENCY_OPTIONS}
+            />
           </div>
         </div>
         <div className={s.actions}>
-          <Button variant="primary" icon={MdAdd}>
+          <Button variant="primary" icon={MdAdd} onClick={handleAddPayment}>
             Добавить платёж
           </Button>
-          <Button variant="secondary" icon={MdDownload}>
-            Экспорт
+          <Button variant="secondary" icon={MdDownload} onClick={handleExport}>
+            Экспорт Excel
           </Button>
         </div>
       </div>
 
       <UITable
         columns={columns}
-        rows={payments}
+        rows={filteredPayments}
         showCheckbox={true}
         type="default"
+        onRowClick={(row) =>
+          router.push(`/operator/finance/payments/${row.id}`)
+        }
       />
-
-      <div className={s.footer}>
-        <span className={s.paginationInfo}>
-          Показано {startItem}-{endItem} из {totalItems} записей
-        </span>
-        <div className={s.pagination}>
-          <button
-            className={s.pageButton}
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-          >
-            Предыдущая
-          </button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button
-              key={page}
-              className={`${s.pageButton} ${
-                currentPage === page ? s.pageButtonActive : ""
-              }`}
-              onClick={() => setCurrentPage(page)}
-            >
-              {page}
-            </button>
-          ))}
-          <button
-            className={s.pageButton}
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-          >
-            Следующая
-          </button>
-        </div>
-      </div>
     </Container>
   );
 }
-

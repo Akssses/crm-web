@@ -1,0 +1,255 @@
+.paymentDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-gray-600);
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.headerActions {
+  display: flex;
+  gap: 12px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.infoField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.infoFieldFull {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.infoField label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray-600);
+}
+
+.infoField span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-900);
+}
+
+.link {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.serviceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.serviceId {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.amount {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.amountInputs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.statusBadge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.historySection {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.historyItem {
+  padding: 16px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  border-left: 3px solid var(--color-primary);
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--color-gray-600);
+}
+
+.historyDate {
+  font-weight: 500;
+}
+
+.historyUser {
+  font-weight: 600;
+}
+
+.historyAction {
+  font-size: 14px;
+  color: var(--color-gray-900);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.historyChange {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.historyField {
+  font-weight: 500;
+  color: var(--color-gray-600);
+}
+
+.historyWas {
+  color: var(--color-gray-700);
+  text-decoration: line-through;
+}
+
+.historyArrow {
+  color: var(--color-gray-500);
+}
+
+.historyBecame {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .paymentDetail {
+    padding: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .headerActions {
+    width: 100%;
+    flex-direction: column;
+
+    :global(button) {
+      width: 100%;
+    }
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}

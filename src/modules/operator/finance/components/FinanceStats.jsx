@@ -1,10 +1,13 @@
 "use client";
-
 import React from "react";
 import { Statcard } from "@/ui";
-import { MdFolder } from "react-icons/md";
+import {
+  MdFolder,
+  MdAccountBalanceWallet,
+  MdTrendingUp,
+  MdTrendingDown,
+} from "react-icons/md";
 import { TbCoins } from "react-icons/tb";
-import { MdAccountBalanceWallet } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import s from "../styles/FinanceStats.module.scss";
 
@@ -30,7 +33,7 @@ export default function FinanceStats() {
       id: 3,
       icon: TbCoins,
       title: "Сервисные сборы",
-      unit: "8400 RUB",
+      unit: "8 400 RUB",
       change: 10.5,
       trend: "up",
     },
@@ -50,6 +53,24 @@ export default function FinanceStats() {
       change: 1.5,
       trend: "up",
     },
+    // {
+    //   id: 6,
+    //   icon: MdTrendingDown,
+    //   title: "Задолженность клиентов",
+    //   unit: "125 000 KGS",
+    //   change: -5.2,
+    //   trend: "down",
+    //   color: "danger",
+    // },
+    // {
+    //   id: 7,
+    //   icon: MdTrendingUp,
+    //   title: "Задолженность перед поставщиками",
+    //   unit: "45 000 USD",
+    //   change: 2.1,
+    //   trend: "up",
+    //   color: "warning",
+    // },
   ];
 
   return (

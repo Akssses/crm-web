@@ -102,6 +102,34 @@
   color: var(--color-red-700);
 }
 
+.serviceCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.serviceName {
+  font-weight: 500;
+  color: var(--color-gray-900);
+  font-size: 14px;
+}
+
+.serviceLink {
+  font-size: 12px;
+  color: var(--color-primary);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .actionButton {
   background: none;
   border: none;
@@ -112,10 +140,17 @@
   align-items: center;
   justify-content: center;
   transition: color 0.2s;
+  border-radius: 6px;
 
   &:hover {
-    color: var(--color-blue-600);
+    color: var(--color-primary);
+    background: var(--color-gray-100);
   }
+}
+
+.search {
+  flex: 1;
+  max-width: 300px;
 }
 
 .footer {
@@ -200,4 +235,3 @@
     justify-content: center;
   }
 }
-

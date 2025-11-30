@@ -1,93 +1,218 @@
 "use client";
 import React, { useState } from "react";
 import { Container, UITable, Select, Button } from "@/ui";
-import { MdAdd, MdDownload, MdVisibility } from "react-icons/md";
-import { CiCalendar } from "react-icons/ci";
+import {
+  MdAdd,
+  MdDownload,
+  MdVisibility,
+  MdPictureAsPdf,
+} from "react-icons/md";
+import { useRouter } from "next/navigation";
 import s from "../styles/ReturnsTable.module.scss";
 
+const RETURN_STATUS_OPTIONS = [
+  { value: "all", label: "Все статусы" },
+  { value: "returned", label: "Возвращено" },
+  { value: "partial", label: "Частичный возврат" },
+  { value: "pending", label: "В ожидании" },
+];
+
+const RETURN_SOURCE_OPTIONS = [
+  { value: "all", label: "Все источники" },
+  { value: "to_client", label: "Клиенту" },
+  { value: "from_supplier", label: "От поставщика" },
+  { value: "internal", label: "Внутренний" },
+];
+
+const CURRENCY_OPTIONS = [
+  { value: "all", label: "Все валюты" },
+  { value: "KGS", label: "KGS" },
+  { value: "USD", label: "USD" },
+  { value: "RUB", label: "RUB" },
+  { value: "EUR", label: "EUR" },
+];
+
 export default function ReturnsTable() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  const totalItems = 3;
+  const router = useRouter();
+  const [filters, setFilters] = useState({
+    status: "all",
+    source: "all",
+    currency: "all",
+  });
 
   const returns = [
     {
       id: "RET-001",
-      order: "ORD-123",
+      orderId: "ORD-123",
+      serviceId: "SRV-001",
+      serviceName: "Авиаперелёт (туда)",
       client: "Иван Иванов",
-      type: "Полный возврат",
-      amount: "32 000 KGS",
-      status: "Обработан",
+      type: "full",
+      typeLabel: "Полный возврат",
+      amount: 32000,
+      currency: "KGS",
+      exchangeRate: 1,
+      status: "returned",
+      statusLabel: "Возвращено",
       statusColor: "green",
-      date: "10.10.25",
+      date: "10.10.2025",
       reason: "Отмена заказа клиентом",
+      source: "to_client",
+      sourceLabel: "Клиенту",
     },
     {
       id: "RET-002",
-      order: "ORD-125",
+      orderId: "ORD-125",
+      serviceId: "SRV-002",
+      serviceName: "Отель",
       client: 'ООО "Бета Трэвел"',
-      type: "Частичный возврат",
-      amount: "10 000 USD",
-      status: "В обработке",
+      type: "partial",
+      typeLabel: "Частичный возврат",
+      amount: 10000,
+      currency: "USD",
+      exchangeRate: 89.5,
+      status: "partial",
+      statusLabel: "Частичный возврат",
       statusColor: "yellow",
-      date: "11.10.25",
+      date: "11.10.2025",
       reason: "Изменение условий заказа",
+      source: "from_supplier",
+      sourceLabel: "От поставщика",
     },
     {
       id: "RET-003",
-      order: "ORD-120",
+      orderId: "ORD-120",
+      serviceId: "SRV-003",
+      serviceName: "Трансфер",
       client: 'ООО "Алмаз-Тур"',
-      type: "Частичный возврат",
-      amount: "15 000 KGS",
-      status: "Ожидает",
+      type: "partial",
+      typeLabel: "Частичный возврат",
+      amount: 15000,
+      currency: "KGS",
+      exchangeRate: 1,
+      status: "pending",
+      statusLabel: "В ожидании",
       statusColor: "orange",
-      date: "09.10.25",
+      date: "09.10.2025",
       reason: "Несоответствие услуги",
+      source: "internal",
+      sourceLabel: "Внутренний",
     },
   ];
+
+  const filteredReturns = returns.filter((ret) => {
+    if (filters.status !== "all" && ret.status !== filters.status) return false;
+    if (filters.source !== "all" && ret.source !== filters.source) return false;
+    if (filters.currency !== "all" && ret.currency !== filters.currency)
+      return false;
+    return true;
+  });
 
   const columns = [
     {
       key: "id",
       label: "№",
+      flex: 0.8,
       render: (value) => <span className={s.returnId}>{value}</span>,
     },
     {
-      key: "order",
+      key: "orderId",
       label: "Заказ",
-      render: (value) => <span className={s.orderLink}>{value}</span>,
+      flex: 1.2,
+      render: (value, row) => (
+        <span
+          className={s.orderLink}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push(`/operator/orders/${value}`);
+          }}
+        >
+          {value}
+        </span>
+      ),
     },
-    { key: "client", label: "Клиент" },
-    { key: "type", label: "Тип возврата" },
+    {
+      key: "serviceId",
+      label: "Услуга",
+      flex: 1.2,
+      render: (value, row) => (
+        <span
+          className={s.serviceLink}
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push(`/operator/services/${value}`);
+          }}
+        >
+          {value}
+        </span>
+      ),
+    },
     {
       key: "amount",
       label: "Сумма",
-      render: (value) => <span className={s.amount}>{value}</span>,
+      flex: 1.5,
+      render: (value, row) => (
+        <span className={s.amount}>
+          {value.toLocaleString()} {row.currency}
+        </span>
+      ),
     },
     {
-      key: "status",
+      key: "statusLabel",
       label: "Статус",
+      flex: 1.2,
       render: (value, row) => (
         <span className={`${s.statusBadge} ${s[`status-${row.statusColor}`]}`}>
           {value}
         </span>
       ),
     },
-    { key: "date", label: "Дата" },
+    {
+      key: "date",
+      label: "Дата",
+      flex: 1,
+    },
     {
       key: "actions",
-      label: "Действия",
-      render: () => (
-        <button className={s.actionButton}>
-          <MdVisibility size={20} />
-        </button>
+      label: "",
+      flex: 0.7,
+      render: (value, row) => (
+        <div className={s.actionsCell}>
+          <button
+            className={s.actionButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/operator/finance/returns/${row.id}`);
+            }}
+            title="Просмотр"
+          >
+            <MdVisibility size={18} />
+          </button>
+          <button
+            className={s.actionButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              // TODO: Generate PDF
+              console.log("Generate PDF for return", row.id);
+            }}
+            title="Скачать PDF"
+          >
+            <MdPictureAsPdf size={18} />
+          </button>
+        </div>
       ),
     },
   ];
 
-  const startItem = (currentPage - 1) * itemsPerPage + 1;
-  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const handleAddReturn = () => {
+    // TODO: Open add return modal
+    console.log("Add return");
+  };
+
+  const handleExport = () => {
+    // TODO: Export to Excel
+    console.log("Export to Excel");
+  };
 
   return (
     <Container size="full" className={s.container}>
@@ -95,93 +220,43 @@ export default function ReturnsTable() {
         <div className={s.filterGroup}>
           <div className={s.selectWrapper}>
             <Select
-              value="all"
-              options={[
-                { value: "all", label: "Все статусы" },
-                { value: "processed", label: "Обработан" },
-                { value: "processing", label: "В обработке" },
-                { value: "pending", label: "Ожидает подтверждения" },
-              ]}
-              onChange={() => {}}
+              value={filters.status}
+              onChange={(value) => setFilters({ ...filters, status: value })}
+              options={RETURN_STATUS_OPTIONS}
             />
           </div>
           <div className={s.selectWrapper}>
             <Select
-              value="all"
-              options={[
-                { value: "all", label: "Все валюты" },
-                { value: "kgs", label: "KGS" },
-                { value: "usd", label: "USD" },
-                { value: "rub", label: "RUB" },
-              ]}
-              onChange={() => {}}
+              value={filters.source}
+              onChange={(value) => setFilters({ ...filters, source: value })}
+              options={RETURN_SOURCE_OPTIONS}
             />
           </div>
           <div className={s.selectWrapper}>
             <Select
-              value="all"
-              options={[
-                { value: "all", label: "Все типы" },
-                { value: "full", label: "Полный возврат" },
-                { value: "partial", label: "Частичный возврат" },
-              ]}
-              onChange={() => {}}
+              value={filters.currency}
+              onChange={(value) => setFilters({ ...filters, currency: value })}
+              options={CURRENCY_OPTIONS}
             />
-          </div>
-          <div className={s.datePicker}>
-            <CiCalendar size={20} />
-            <span>Feb 28, 2024</span>
           </div>
         </div>
         <div className={s.actions}>
-          <Button variant="primary" icon={MdAdd}>
+          <Button variant="primary" icon={MdAdd} onClick={handleAddReturn}>
             Добавить возврат
           </Button>
-          <Button variant="secondary" icon={MdDownload}>
-            Экспорт
+          <Button variant="secondary" icon={MdDownload} onClick={handleExport}>
+            Экспорт Excel
           </Button>
         </div>
       </div>
 
       <UITable
         columns={columns}
-        rows={returns}
+        rows={filteredReturns}
         showCheckbox={true}
         type="default"
+        onRowClick={(row) => router.push(`/operator/finance/returns/${row.id}`)}
       />
-
-      <div className={s.footer}>
-        <span className={s.paginationInfo}>
-          Показано {startItem}-{endItem} из {totalItems} записей
-        </span>
-        <div className={s.pagination}>
-          <button
-            className={s.pageButton}
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-          >
-            Предыдущая
-          </button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button
-              key={page}
-              className={`${s.pageButton} ${
-                currentPage === page ? s.pageButtonActive : ""
-              }`}
-              onClick={() => setCurrentPage(page)}
-            >
-              {page}
-            </button>
-          ))}
-          <button
-            className={s.pageButton}
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-          >
-            Следующая
-          </button>
-        </div>
-      </div>
     </Container>
   );
 }

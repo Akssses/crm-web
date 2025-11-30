@@ -12,7 +12,7 @@ export default function ShiftInfo() {
   };
 
   return (
-    <Container size="full" className={s.container}>
+    <Container size="full">
       <h3 className={s.title}>Общая информация о смене</h3>
       <div className={s.content}>
         <div className={s.leftColumn}>
@@ -45,11 +45,15 @@ export default function ShiftInfo() {
           <div className={s.financialBreakdown}>
             <div className={s.financialItem}>
               <span className={s.financialLabel}>Комиссия (5%)</span>
-              <span className={s.financialValue}>{financialData.commission}</span>
+              <span className={s.financialValue}>
+                {financialData.commission}
+              </span>
             </div>
             <div className={s.financialItem}>
               <span className={s.financialLabel}>Сервисные сборы</span>
-              <span className={s.financialValue}>{financialData.serviceFees}</span>
+              <span className={s.financialValue}>
+                {financialData.serviceFees}
+              </span>
             </div>
             <div className={s.financialItem}>
               <span className={s.financialLabel}>Авансы</span>
@@ -73,4 +77,3 @@ export default function ShiftInfo() {
     </Container>
   );
 }
-

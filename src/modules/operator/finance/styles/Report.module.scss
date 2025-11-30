@@ -1,7 +1,95 @@
 .report {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   width: 100%;
 }
 
+.reportHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reportTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.reportActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.exportSelect {
+  min-width: 120px;
+}
+
+.reportStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 10px;
+}
+
+.statLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray-600);
+}
+
+.statValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.statValueDanger {
+  color: var(--color-danger-dark);
+}
+
+.statValueWarning {
+  color: var(--color-warning-dark);
+}
+
+.statValueSuccess {
+  color: var(--color-success-dark);
+}
+
+@media (max-width: 768px) {
+  .report {
+    padding: 16px;
+  }
+
+  .reportHeader {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .reportActions {
+    width: 100%;
+    flex-direction: column;
+
+    :global(button) {
+      width: 100%;
+    }
+  }
+
+  .reportStats {
+    grid-template-columns: 1fr;
+  }
+}
