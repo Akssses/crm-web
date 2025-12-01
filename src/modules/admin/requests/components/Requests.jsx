@@ -1,6 +1,6 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import { Container, UITable, Select, Input, Button } from "@/ui";
+import React, { useEffect, useMemo, useState } from "react";
+import { UITable, Select, Input, Button, Modal } from "@/ui";
 import {
   MdPerson,
   MdBusiness,
@@ -146,13 +146,25 @@ export default function AdminRequests() {
     dateFrom: "",
     dateTo: "",
   });
+  const [assignedOperators, setAssignedOperators] = useState({});
+  const [assignModalRequest, setAssignModalRequest] = useState(null);
+  const [isAssignModalOpen, setAssignModalOpen] = useState(false);
+  const [operatorName, setOperatorName] = useState("");
 
   const handleChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
+  const enhancedRequests = useMemo(() => {
+    return MOCK_REQUESTS.map((request) =>
+      assignedOperators[request.id]
+        ? { ...request, operator: assignedOperators[request.id] }
+        : request
+    );
+  }, [assignedOperators]);
+
   const filteredRequests = useMemo(() => {
-    return MOCK_REQUESTS.filter((request) => {
+    return enhancedRequests.filter((request) => {
       if (
         filters.operator &&
         !request.operator.toLowerCase().includes(filters.operator.toLowerCase())
@@ -182,7 +194,38 @@ export default function AdminRequests() {
         return false;
       return true;
     });
-  }, [filters]);
+  }, [filters, enhancedRequests]);
+
+  const openAssignOperatorModal = (request) => {
+    setAssignModalRequest(request);
+    setOperatorName(assignedOperators[request.id] || "");
+    setAssignModalOpen(true);
+  };
+
+  const closeAssignOperatorModal = () => {
+    setAssignModalOpen(false);
+  };
+
+  useEffect(() => {
+    if (!isAssignModalOpen && assignModalRequest) {
+      const timer = setTimeout(() => {
+        setAssignModalRequest(null);
+        setOperatorName("");
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAssignModalOpen, assignModalRequest]);
+
+  const handleAssignOperator = () => {
+    if (!assignModalRequest || !operatorName.trim()) return;
+
+    setAssignedOperators((prev) => ({
+      ...prev,
+      [assignModalRequest.id]: operatorName.trim(),
+    }));
+    closeAssignOperatorModal();
+  };
 
   const columns = [
     {
@@ -205,11 +248,33 @@ export default function AdminRequests() {
       key: "operator",
       label: "Оператор",
       flex: 1,
-      render: (value) => (
-        <div className={s.cellWithIcon}>
-          <div>{value}</div>
-        </div>
-      ),
+      render: (value, row) => {
+        const normalizedValue =
+          typeof value === "string" ? value.trim() : value;
+        const hasOperator =
+          normalizedValue && normalizedValue !== "—" && normalizedValue !== "-";
+
+        if (!hasOperator) {
+          return (
+            <button
+              type="button"
+              className={s.assignLink}
+              onClick={(e) => {
+                e.stopPropagation();
+                openAssignOperatorModal(row);
+              }}
+            >
+              Назначить
+            </button>
+          );
+        }
+
+        return (
+          <div className={s.cellWithIcon}>
+            <div>{value}</div>
+          </div>
+        );
+      },
     },
     {
       key: "statusLabel",
@@ -346,6 +411,43 @@ export default function AdminRequests() {
         showCheckbox
         onRowClick={(row) => router.push(`/admin/requests/${row.id}`)}
       />
+
+      <Modal
+        isOpen={isAssignModalOpen}
+        onClose={closeAssignOperatorModal}
+        title="Назначить оператора"
+        position="right"
+        size="md"
+      >
+        {assignModalRequest && (
+          <div className={s.assignModalContent}>
+            <p className={s.modalDescription}>
+              Выберите или введите оператора, который будет ответственным за
+              заявку {assignModalRequest.id}.
+            </p>
+
+            <Input
+              label="Имя оператора"
+              placeholder="Например, Айгерим М."
+              value={operatorName}
+              onChange={setOperatorName}
+            />
+
+            <div className={s.modalActions}>
+              <Button variant="outline" onClick={closeAssignOperatorModal}>
+                Отмена
+              </Button>
+              <Button
+                variant="primary"
+                disabled={!operatorName.trim()}
+                onClick={handleAssignOperator}
+              >
+                Назначить
+              </Button>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }

@@ -3,3 +3,6 @@ import AdminRequestDetail from "@/modules/admin/requests/components/RequestDetai
 export default function AdminRequestDetailPage() {
   return <AdminRequestDetail />;
 }
+
+
+
