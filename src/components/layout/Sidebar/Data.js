@@ -1,14 +1,16 @@
-import { 
-  MdDashboard, 
-  MdBusiness, 
-  MdPeople, 
-  MdStorefront, 
-  MdDescription, 
-  MdAttachMoney, 
-  MdBarChart, 
-  MdBook, 
-  MdSettingsInputComponent, 
-  MdChat 
+import {
+  MdDashboard,
+  MdBusiness,
+  MdPeople,
+  MdStorefront,
+  MdDescription,
+  MdAttachMoney,
+  MdBarChart,
+  MdBook,
+  MdSettingsInputComponent,
+  MdChat,
+  MdAssignment,
+  MdReceiptLong,
 } from "react-icons/md";
 
 export const menuItems = [
@@ -17,6 +19,18 @@ export const menuItems = [
     label: "Дашборд",
     icon: MdDashboard,
     href: "/admin/dashboard",
+  },
+  {
+    id: "requests",
+    label: "Заявки",
+    icon: MdAssignment,
+    href: "/admin/requests",
+  },
+  {
+    id: "orders",
+    label: "Заказы",
+    icon: MdReceiptLong,
+    href: "/admin/orders",
   },
   {
     id: "organizations",
@@ -29,6 +43,12 @@ export const menuItems = [
     label: "Пользователи и роли",
     icon: MdPeople,
     href: "/admin/users",
+  },
+  {
+    id: "clients",
+    label: "Клиенты",
+    icon: MdPeople,
+    href: "/admin/clients",
   },
   {
     id: "suppliers",
@@ -73,4 +93,3 @@ export const menuItems = [
     href: "/admin/communication-channels",
   },
 ];
-

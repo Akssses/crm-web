@@ -41,7 +41,7 @@ function SidebarComponent({ items = adminMenuItems }) {
           className={`${s.title} ${isCollapsed ? s.titleCollapsed : ""}`}
           aria-hidden={isCollapsed}
         >
-          ПСЦ Админ
+          ПСЦ CRM
         </h4>
         <button
           className={s.collapseButton}
@@ -57,7 +57,8 @@ function SidebarComponent({ items = adminMenuItems }) {
 
       <nav className={s.menu}>
         {items.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+          const isActive =
+            pathname === item.href || pathname.startsWith(item.href + "/");
           const Icon = item.icon;
 
           return (
@@ -67,7 +68,10 @@ function SidebarComponent({ items = adminMenuItems }) {
               className={`${s.menuItem} ${isActive ? s.active : ""}`}
               title={isCollapsed ? item.label : ""}
             >
-              <Icon className={`${s.icon} ${isActive ? s.active : ""}`} size={20} />
+              <Icon
+                className={`${s.icon} ${isActive ? s.active : ""}`}
+                size={20}
+              />
               {!isCollapsed && <span className={s.label}>{item.label}</span>}
             </Link>
           );
