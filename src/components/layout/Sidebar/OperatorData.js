@@ -1,20 +1,21 @@
-import { 
-  MdDashboard, 
-  MdAssignment, 
-  MdShoppingCart, 
-  MdPeople, 
-  MdMiscellaneousServices, 
-  MdDescription, 
-  MdAttachMoney, 
-  MdNotifications, 
-  MdChat 
+import { BiSolidDashboard } from "react-icons/bi";
+import {
+  MdDashboard,
+  MdAssignment,
+  MdShoppingCart,
+  MdPeople,
+  MdMiscellaneousServices,
+  MdDescription,
+  MdAttachMoney,
+  MdNotifications,
+  MdChat,
 } from "react-icons/md";
 
 export const operatorMenuItems = [
   {
     id: "dashboard",
     label: "Дашборд",
-    icon: MdDashboard,
+    icon: BiSolidDashboard,
     href: "/operator/dashboard",
   },
   {
@@ -66,6 +67,3 @@ export const operatorMenuItems = [
     href: "/operator/chat",
   },
 ];
-
-
-
