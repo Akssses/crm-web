@@ -38,11 +38,10 @@
     align-items: stretch;
   }
 
+  .filters {
+    flex-direction: column;
+  }
   .actions {
     width: 100%;
-
-    :global(button) {
-      flex: 1;
-    }
   }
 }
