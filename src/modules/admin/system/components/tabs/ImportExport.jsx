@@ -35,7 +35,7 @@ const MOCK_IMPORT_LOG = [
     rows: 150,
     success: 140,
     failed: 10,
-    status: "warning",
+    status: "warning", // success, warning, error
     statusText: "Завершено с ошибками",
   },
   {
@@ -48,39 +48,6 @@ const MOCK_IMPORT_LOG = [
     failed: 0,
     status: "success",
     statusText: "Успешно",
-  },
-  {
-    id: 3,
-    date: "2025-11-29 16:45",
-    user: "admin@crm.local",
-    entity: "Платежи",
-    rows: 1200,
-    success: 1200,
-    failed: 0,
-    status: "success",
-    statusText: "Успешно",
-  },
-  {
-    id: 4,
-    date: "2025-11-29 09:20",
-    user: "support@crm.local",
-    entity: "Сотрудники",
-    rows: 12,
-    success: 0,
-    failed: 12,
-    status: "error",
-    statusText: "Ошибка формата",
-  },
-  {
-    id: 5,
-    date: "2025-11-28 14:10",
-    user: "manager@crm.local",
-    entity: "Заказы",
-    rows: 85,
-    success: 82,
-    failed: 3,
-    status: "warning",
-    statusText: "Частичный импорт",
   },
 ];
 

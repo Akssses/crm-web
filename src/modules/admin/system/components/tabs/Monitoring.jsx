@@ -144,6 +144,73 @@ export default function Monitoring() {
           </div>
         </div>
       </div>
+
+      <div className={s.gridTwo}>
+        <div className={s.monitorCard}>
+          <div className={s.monitorHeader}>
+            <div className={s.monitorTitleGroup}>
+              <div className={s.monitorIconWrapper}>
+                <TbChartBar size={20} />
+              </div>
+              <h3 className={s.monitorTitle}>Очереди</h3>
+            </div>
+            <span className={`${s.statusPill} ${s.statusOk}`}>В норме</span>
+          </div>
+          <div className={s.monitorMetricsGrid}>
+            <div className={s.monitorMetric}>
+              <span className={s.metricLabel}>Задачи в очереди</span>
+              <span className={s.metricValue}>12</span>
+            </div>
+            <div className={s.monitorMetric}>
+              <span className={s.metricLabel}>Ошибки</span>
+              <span className={`${s.metricValue} ${s.successText}`}>0</span>
+            </div>
+            <div className={s.monitorMetric}>
+              <span className={s.metricLabel}>Макс. задержка</span>
+              <span className={s.metricValue}>3 мин</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={s.monitorCard}>
+          <div className={s.monitorHeader}>
+            <div className={s.monitorTitleGroup}>
+              <div className={s.monitorIconWrapper}>
+                <TbPlugConnected size={20} />
+              </div>
+              <h3 className={s.monitorTitle}>Интеграции</h3>
+            </div>
+            <span className={`${s.statusPill} ${s.statusWarn}`}>
+              <TbAlertTriangle size={12} />
+              Есть замечания
+            </span>
+          </div>
+          <div className={s.monitorMetricsGrid}>
+            <div className={s.monitorMetric}>
+              <span className={s.metricLabel}>Amadeus</span>
+              <span className={`${s.metricValue} ${s.successText}`}>● OK</span>
+            </div>
+            <div className={s.monitorMetric}>
+              <span className={s.metricLabel}>Sirena</span>
+              <span className={`${s.metricValue} ${s.successText}`}>● OK</span>
+            </div>
+            <div className={s.monitorMetricFull}>
+              <span className={s.metricLabel}>Travelport</span>
+              <span className={`${s.metricValue} ${s.warnText}`}>
+                ● Warning — медленный отклик
+              </span>
+            </div>
+            <div className={s.monitorMetric}>
+              <span className={s.metricLabel}>Платёжные шлюзы</span>
+              <span className={`${s.metricValue} ${s.successText}`}>● OK</span>
+            </div>
+            <div className={s.monitorMetricFull}>
+              <span className={s.metricLabel}>SMS / email / Telegram</span>
+              <span className={`${s.metricValue} ${s.successText}`}>● OK</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
