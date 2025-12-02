@@ -22,94 +22,85 @@ export default function ServiceHeader({ service }) {
     PAYMENT_STATUS_CONFIG[service.paymentStatus] ||
     PAYMENT_STATUS_CONFIG.unpaid;
 
+  const metaCards = [
+    {
+      label: "Заказ",
+      value: service.orderId,
+      link: `/operator/orders/${service.orderId}`,
+    },
+    {
+      label: "Заявка",
+      value: service.requestId,
+      link: `/operator/requests/${service.requestId}`,
+    },
+    { label: "Клиент", value: service.client },
+    { label: "Поставщик", value: service.supplier },
+    { label: "Оператор", value: service.operator },
+    { label: "Пассажир", value: service.passenger },
+  ];
+
+  const timeline = [
+    { label: "Создано", value: service.createdAt },
+    { label: "Дедлайн", value: service.deadline },
+    { label: "SLA", value: service.sla },
+  ];
+
   return (
-    <div className={s.generalInfo}>
-      <h3 className={s.sectionTitle}>Общие данные</h3>
-      <div className={s.infoGrid}>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>ID услуги</span>
-          <span className={s.fieldValue}>{service.id}</span>
+    <div className={s.headerCard}>
+      <div className={s.headerTop}>
+        <div className={s.headerInfo}>
+          <span className={s.typeBadge}>{service.typeLabel}</span>
+          <h1 className={s.headerTitle}>
+            {service.title || service.typeLabel}
+          </h1>
+          <p className={s.headerSubtitle}>
+            <span>ID {service.id}</span>
+            <span>Пассажир: {service.passenger}</span>
+          </p>
         </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Тип услуги</span>
-          <span className={s.fieldValue}>{service.typeLabel}</span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Заказ</span>
-          <Link
-            href={`/operator/orders/${service.orderId}`}
-            className={s.fieldLink}
-          >
-            {service.orderId}
-          </Link>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Клиент</span>
-          <span className={s.fieldValue}>{service.client}</span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Заявка</span>
-          <Link
-            href={`/operator/requests/${service.requestId}`}
-            className={s.fieldLink}
-          >
-            {service.requestId}
-          </Link>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Пассажир</span>
-          <span className={s.fieldValue}>{service.passenger}</span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Поставщик</span>
-          <span className={s.fieldValue}>{service.supplier}</span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Ответственный оператор</span>
-          <span className={s.fieldValue}>{service.operator}</span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Дата создания</span>
-          <span className={s.fieldValue}>{service.createdAt}</span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Статус услуги</span>
+        <div className={s.statusStack}>
           <span
-            className={`${s.fieldValue} ${s[`status-${statusConfig.color}`]}`}
+            className={`${s.statusChip} ${s[`status-${statusConfig.color}`]}`}
           >
             {statusConfig.label}
           </span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Статус поставщика</span>
           <span
-            className={`${s.fieldValue} ${s[`status-${statusConfig.color}`]}`}
-          >
-            {service.supplierStatusLabel}
-          </span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Оплата</span>
-          <span
-            className={`${s.fieldValue} ${s[`payment-${paymentConfig.color}`]}`}
+            className={`${s.statusChip} ${s[`payment-${paymentConfig.color}`]}`}
           >
             {paymentConfig.label}
           </span>
-        </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>SLA</span>
           <span
-            className={`${s.fieldValue} ${
+            className={`${s.statusChip} ${
               service.slaViolated ? s.slaViolated : s.slaOk
             }`}
           >
-            {service.sla}
+            SLA: {service.sla}
           </span>
         </div>
-        <div className={s.infoField}>
-          <span className={s.fieldLabel}>Дедлайн</span>
-          <span className={s.fieldValue}>{service.deadline}</span>
-        </div>
+      </div>
+
+      <div className={s.timelineRow}>
+        {timeline.map((item) => (
+          <div key={item.label} className={s.timelineItem}>
+            <span className={s.timelineLabel}>{item.label}</span>
+            <span className={s.timelineValue}>{item.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className={s.metaGrid}>
+        {metaCards.map((card) => (
+          <div key={card.label} className={s.metaCard}>
+            <span className={s.metaLabel}>{card.label}</span>
+            {card.link ? (
+              <Link href={card.link} className={s.metaLink}>
+                {card.value}
+              </Link>
+            ) : (
+              <span className={s.metaValue}>{card.value}</span>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

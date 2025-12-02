@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Container } from "@/ui";
 import {
   MdFlight,
   MdHotel,
@@ -27,6 +26,13 @@ const SERVICE_ICONS = {
   tour: MdTour,
 };
 
+const SECTIONS = [
+  { id: "main", label: "Основная информация" },
+  { id: "finance", label: "Финансы" },
+  { id: "documents", label: "Документы" },
+  { id: "history", label: "История" },
+];
+
 export default function ServiceDetail() {
   const [activeSection, setActiveSection] = useState("main");
 
@@ -35,6 +41,7 @@ export default function ServiceDetail() {
     id: "SRV-001",
     type: "avia",
     typeLabel: "Авиаперелёт",
+    title: "Бишкек — Дубай (КС-123)",
     requestId: "A-213-321",
     orderId: "ORD-001",
     client: "Петров Иван Сергеевич",
@@ -60,38 +67,17 @@ export default function ServiceDetail() {
 
       {/* Navigation */}
       <div className={s.navigation}>
-        <button
-          className={`${s.navButton} ${
-            activeSection === "main" ? s.active : ""
-          }`}
-          onClick={() => setActiveSection("main")}
-        >
-          Основная информация
-        </button>
-        <button
-          className={`${s.navButton} ${
-            activeSection === "finance" ? s.active : ""
-          }`}
-          onClick={() => setActiveSection("finance")}
-        >
-          Финансы
-        </button>
-        <button
-          className={`${s.navButton} ${
-            activeSection === "documents" ? s.active : ""
-          }`}
-          onClick={() => setActiveSection("documents")}
-        >
-          Документы
-        </button>
-        <button
-          className={`${s.navButton} ${
-            activeSection === "history" ? s.active : ""
-          }`}
-          onClick={() => setActiveSection("history")}
-        >
-          История
-        </button>
+        {SECTIONS.map((section) => (
+          <button
+            key={section.id}
+            className={`${s.navButton} ${
+              activeSection === section.id ? s.active : ""
+            }`}
+            onClick={() => setActiveSection(section.id)}
+          >
+            {section.label}
+          </button>
+        ))}
       </div>
 
       {/* Content */}

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Select } from "@/ui";
-import ServiceCard from "./ServiceCard";
+import ServicesTable from "./ServicesTable";
 import s from "../styles/Services.module.scss";
 
 const MOCK_SERVICES = [
@@ -159,6 +159,10 @@ export default function Services() {
     return true;
   });
 
+  const handleEdit = () => {};
+  const handleDelete = () => {};
+  const handleChat = () => {};
+
   return (
     <div className={s.services}>
       <div className={s.filterGroup}>
@@ -199,10 +203,13 @@ export default function Services() {
         </div>
       </div>
 
-      <div className={s.servicesGrid}>
-        {filteredServices.map((service) => (
-          <ServiceCard key={service.id} service={service} />
-        ))}
+      <div className={s.tableWrapper}>
+        <ServicesTable
+          services={filteredServices}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onChat={handleChat}
+        />
       </div>
     </div>
   );

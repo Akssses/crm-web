@@ -15,7 +15,7 @@ import s from "../styles/ServicesTable.module.scss";
 
 const STATUS_CONFIG = {
   pending: {
-    label: "Ожидает подтверждения",
+    label: "Ожидает",
     color: "yellow",
     icon: MdAccessTime,
   },
@@ -23,7 +23,7 @@ const STATUS_CONFIG = {
   rejected: { label: "Отклонено", color: "red", icon: MdCancel },
   action_required: {
     label: "Требуется действие",
-    color: "orange",
+    color: "yellow",
     icon: MdWarning,
   },
 };
@@ -39,101 +39,8 @@ export default function ServicesTable({ services, onEdit, onDelete, onChat }) {
 
   const columns = [
     {
-      key: "type",
-      label: "Тип",
-      width: "100px",
-      render: (value, row) => (
-        <div className={s.typeCell}>
-          <span className={s.typeBadge}>{row.typeLabel}</span>
-        </div>
-      ),
-    },
-    {
-      key: "title",
-      label: "Услуга",
-      render: (value, row) => (
-        <div className={s.serviceCell}>
-          <div className={s.serviceTitle}>{value}</div>
-          {row.subtitle && (
-            <div className={s.serviceSubtitle}>{row.subtitle}</div>
-          )}
-          {row.hasProblems && (
-            <div className={s.problemIndicator}>
-              <MdWarning size={14} />
-              <span>Проблемы</span>
-            </div>
-          )}
-        </div>
-      ),
-    },
-    {
-      key: "route",
-      label: "Маршрут/Детали",
-      render: (value, row) => (
-        <div className={s.routeCell}>{row.route || row.dates || "—"}</div>
-      ),
-    },
-    {
-      key: "passenger",
-      label: "Пассажир",
-      width: "150px",
-    },
-    {
-      key: "supplier",
-      label: "Поставщик",
-      width: "150px",
-    },
-    {
-      key: "supplierStatus",
-      label: "Статус поставщика",
-      width: "180px",
-      render: (value, row) => {
-        const config = STATUS_CONFIG[value] || STATUS_CONFIG.pending;
-        const Icon = config.icon;
-        return (
-          <div className={s.statusCell}>
-            <Icon size={16} className={s[`statusIcon-${config.color}`]} />
-            <span className={`${s.statusBadge} ${s[`status-${config.color}`]}`}>
-              {config.label}
-            </span>
-          </div>
-        );
-      },
-    },
-    {
-      key: "paymentStatus",
-      label: "Оплата",
-      width: "150px",
-      render: (value) => {
-        const config =
-          PAYMENT_STATUS_CONFIG[value] || PAYMENT_STATUS_CONFIG.unpaid;
-        return (
-          <span className={`${s.paymentBadge} ${s[`payment-${config.color}`]}`}>
-            {config.label}
-          </span>
-        );
-      },
-    },
-    {
-      key: "sla",
-      label: "SLA",
-      width: "100px",
-      render: (value, row) => (
-        <span className={row.slaViolated ? s.slaViolated : s.slaOk}>
-          {value}
-        </span>
-      ),
-    },
-    {
-      key: "price",
-      label: "Стоимость",
-      width: "120px",
-      render: (value) => <span className={s.priceCell}>{value}</span>,
-    },
-    {
       key: "orderId",
       label: "Заказ",
-      width: "120px",
       render: (value) => (
         <span
           className={s.orderLink}
@@ -147,9 +54,51 @@ export default function ServicesTable({ services, onEdit, onDelete, onChat }) {
       ),
     },
     {
+      key: "title",
+      label: "Услуга",
+      width: "250px",
+      render: (value, row) => (
+        <div className={s.serviceCell}>
+          <div className={s.serviceTitle}>{value}</div>
+        </div>
+      ),
+    },
+    {
+      key: "supplier",
+      label: "Поставщик",
+    },
+    {
+      key: "supplierStatus",
+      label: "Статус поставщика",
+      render: (value, row) => {
+        const config = STATUS_CONFIG[value] || STATUS_CONFIG.pending;
+        return (
+          <div className={s.statusCell}>
+            <span className={`${s.statusBadge} ${s[`status-${config.color}`]}`}>
+              {config.label}
+            </span>
+          </div>
+        );
+      },
+    },
+
+    {
+      key: "sla",
+      label: "SLA",
+      render: (value, row) => (
+        <span className={row.slaViolated ? s.slaViolated : s.slaOk}>
+          {value}
+        </span>
+      ),
+    },
+    {
+      key: "price",
+      label: "Стоимость",
+      render: (value) => <span className={s.priceCell}>{value}</span>,
+    },
+    {
       key: "actions",
       label: "Действия",
-      width: "200px",
       render: (value, row) => (
         <div className={s.actionsCell}>
           <button
@@ -188,7 +137,7 @@ export default function ServicesTable({ services, onEdit, onDelete, onChat }) {
   ];
 
   const handleRowClick = (row) => {
-    onEdit?.(row);
+    router.push(`/operator/services/${row.id}`);
   };
 
   return (
