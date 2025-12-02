@@ -57,7 +57,7 @@ export default function Backup() {
           <div className={s.actionsRow}>
             <Button>Создать бэкап</Button>
           </div>
-          <UITable columns={columns} data={MOCK_BACKUPS} />
+          <UITable columns={columns} rows={MOCK_BACKUPS} />
         </div>
       )}
 

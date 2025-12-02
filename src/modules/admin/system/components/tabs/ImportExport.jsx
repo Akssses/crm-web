@@ -202,7 +202,7 @@ export default function ImportExport() {
               />
             </div>
           </div>
-          <UITable columns={columns} data={filteredLog} />
+          <UITable columns={columns} rows={filteredLog} />
         </div>
       )}
     </div>

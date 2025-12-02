@@ -141,7 +141,7 @@ export default function Logs() {
                 { key: "device", label: "Устройство" },
                 { key: "geo", label: "Геолокация" },
               ]}
-              data={MOCK_AUTH_LOGS}
+              rows={MOCK_AUTH_LOGS}
             />
           </>
         )}
@@ -165,7 +165,7 @@ export default function Logs() {
                 { key: "newValue", label: "Новое значение" },
                 { key: "ip", label: "IP" },
               ]}
-              data={MOCK_ACTION_LOGS}
+              rows={MOCK_ACTION_LOGS}
             />
           </>
         )}
@@ -196,7 +196,7 @@ export default function Logs() {
                 { key: "duration", label: "Время" },
                 { key: "error", label: "Ошибка" },
               ]}
-              data={MOCK_API_LOGS}
+              rows={MOCK_API_LOGS}
             />
           </>
         )}
@@ -225,7 +225,7 @@ export default function Logs() {
                 { key: "status", label: "Статус" },
                 { key: "message", label: "Сообщение" },
               ]}
-              data={MOCK_ERROR_LOGS}
+              rows={MOCK_ERROR_LOGS}
             />
           </>
         )}

@@ -37,7 +37,7 @@ export default function ConfigJournal() {
             { key: "description", label: "Описание" },
             { key: "ip", label: "IP" },
           ]}
-          data={MOCK_CONFIG_LOG}
+          rows={MOCK_CONFIG_LOG}
         />
       </div>
     </div>
