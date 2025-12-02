@@ -16,13 +16,7 @@ function LayoutContent({ children }) {
     pathname?.startsWith("/operator/chat/") && pathname !== "/operator/chat";
 
   return (
-    <div
-      className={s.content}
-      style={{
-        marginLeft: isCollapsed ? "80px" : "280px",
-        transition: "margin-left 0.1s ease",
-      }}
-    >
+    <div className={s.content} data-collapsed={isCollapsed}>
       {!isChatDetail && <Header menuItems={operatorMenuItems} />}
       <main className={s.main}>{children}</main>
     </div>

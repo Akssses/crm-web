@@ -12,8 +12,6 @@ import {
   MdCloud,
   MdDescription,
   MdAccessTime,
-  MdCheckCircle,
-  MdErrorOutline,
 } from "react-icons/md";
 import { useParams, useRouter } from "next/navigation";
 import s from "../styles/SupplierDetail.module.scss";
@@ -25,12 +23,6 @@ const TABS = [
   { id: "integration", label: "Интеграция / API" },
   { id: "documents", label: "Документы" },
   { id: "history", label: "История" },
-];
-
-const STATUS_OPTIONS = [
-  { value: "active", label: "Активен" },
-  { value: "blocked", label: "Заблокирован" },
-  { value: "archived", label: "В архиве" },
 ];
 
 export default function SupplierDetail() {
@@ -186,13 +178,6 @@ export default function SupplierDetail() {
       ? s.statusRed
       : s.statusGray;
 
-  const highlightInfo = [
-    { label: "Регион работы", value: supplier.regions },
-    { label: "Сервисы", value: supplier.services.join(", ") },
-    { label: "Часовой пояс", value: supplier.timeZone },
-    { label: "Валюта расчётов", value: supplier.currency },
-  ];
-
   const headerStats = [
     {
       label: "Открытых услуг",
@@ -211,6 +196,14 @@ export default function SupplierDetail() {
       value: supplier.integration.status === "ok" ? "Online" : "Attention",
     },
   ];
+
+  const parseAmount = (value) => {
+    if (typeof value !== "string") return 0;
+    const normalized = value.replace(/\s/g, "").replace(/[^\d.,]/g, "");
+    if (!normalized) return 0;
+    const number = Number(normalized.replace(",", "."));
+    return Number.isFinite(number) ? number : 0;
+  };
 
   const extractPercent = (value) => {
     if (typeof value !== "string") return 0;
@@ -263,15 +256,6 @@ export default function SupplierDetail() {
       case "general":
         return (
           <div className={s.tabStack}>
-            <div className={s.highlightRow}>
-              {highlightInfo.map((item) => (
-                <div key={item.label} className={s.highlightCard}>
-                  <span className={s.highlightLabel}>{item.label}</span>
-                  <span className={s.highlightValue}>{item.value}</span>
-                </div>
-              ))}
-            </div>
-
             <section className={s.blockFullWidth}>
               <div className={s.sectionHeader}>
                 <h3 className={s.blockTitle}>Оперативные показатели</h3>
@@ -420,95 +404,173 @@ export default function SupplierDetail() {
           </div>
         );
 
-      case "finance":
+      case "finance": {
+        const financeHighlights = [
+          { label: "Валюта расчётов", value: supplier.finance.currency },
+          {
+            label: "Комиссия поставщика",
+            value: supplier.finance.commissionSupplier,
+          },
+          {
+            label: "Комиссия агентства",
+            value: supplier.finance.commissionAgency,
+          },
+          {
+            label: "Наценка для клиента",
+            value: supplier.finance.clientMarkup,
+          },
+        ];
+
+        const paymentDetails = [
+          { label: "Условия оплаты", value: supplier.finance.paymentTerms },
+          {
+            label: "Сроки закрытия услуг",
+            value: supplier.finance.closingTerms,
+          },
+        ];
+
+        const limitDetails = [
+          { label: "Штрафы / условия", value: supplier.finance.penalties },
+          { label: "Кредитный лимит", value: supplier.finance.creditLimit },
+          { label: "Минимальный платёж", value: supplier.finance.minPayment },
+        ];
+
+        const balanceMetrics = [
+          {
+            label: "Общая задолженность",
+            value: supplier.finance.balance.totalDebt,
+          },
+          { label: "Просрочено", value: supplier.finance.balance.overdue },
+          { label: "Ожидает оплаты", value: supplier.finance.balance.toBePaid },
+          {
+            label: "Предоплата / депозит",
+            value: supplier.finance.balance.prepaidBalance,
+          },
+        ];
+
+        const timelineEntries = [
+          {
+            label: "Дата обязательного платежа",
+            value: supplier.finance.balance.dueDate,
+          },
+          {
+            label: "Услуг оплачено",
+            value: supplier.finance.balance.paidServices,
+          },
+          {
+            label: "Услуг в работе",
+            value: supplier.finance.balance.unpaidServices,
+          },
+        ];
+
+        const creditLimitValue = parseAmount(supplier.finance.creditLimit);
+        const totalDebtValue = parseAmount(supplier.finance.balance.totalDebt);
+        const debtPercent =
+          creditLimitValue > 0
+            ? Math.min(
+                Math.round((totalDebtValue / creditLimitValue) * 100),
+                100
+              )
+            : 0;
+
         return (
-          <div className={s.twoColumnGrid}>
+          <div className={s.blockStack}>
             <section className={s.block}>
-              <h3 className={s.blockTitle}>Основные параметры</h3>
-              <dl className={s.definitionList}>
-                <div className={s.definitionRow}>
-                  <dt>Валюта расчётов</dt>
-                  <dd>{supplier.finance.currency}</dd>
-                </div>
-                <div className={s.definitionRow}>
-                  <dt>Комиссия поставщика</dt>
-                  <dd>{supplier.finance.commissionSupplier}</dd>
-                </div>
-                <div className={s.definitionRow}>
-                  <dt>Комиссия агентства</dt>
-                  <dd>{supplier.finance.commissionAgency}</dd>
-                </div>
-                <div className={s.definitionRow}>
-                  <dt>Наценка для клиента</dt>
-                  <dd>{supplier.finance.clientMarkup}</dd>
-                </div>
-              </dl>
+              <div className={s.sectionHeader}>
+                <h3 className={s.blockTitle}>Финансовое резюме</h3>
+                <p className={s.sectionCaption}>
+                  Ключевые показатели расчётов и комиссий по поставщику
+                </p>
+              </div>
+              <div className={s.financeHighlights}>
+                {financeHighlights.map((item) => (
+                  <div key={item.label} className={s.financeHighlightCard}>
+                    <span className={s.financeHighlightLabel}>
+                      {item.label}
+                    </span>
+                    <span className={s.financeHighlightValue}>
+                      {item.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </section>
 
-            <section className={s.block}>
-              <h3 className={s.blockTitle}>Оплата и штрафы</h3>
-              <dl className={s.definitionList}>
-                <div className={s.definitionRow}>
-                  <dt>Условия оплаты</dt>
-                  <dd>{supplier.finance.paymentTerms}</dd>
+            <div className={s.financeSplit}>
+              <section className={s.block}>
+                <div className={s.sectionHeader}>
+                  <h3 className={s.blockTitle}>Оплата и закрытие услуг</h3>
+                  <p className={s.sectionCaption}>
+                    Стандартные сроки и сценарии расчётов
+                  </p>
                 </div>
-                <div className={s.definitionRow}>
-                  <dt>Сроки закрытия услуг</dt>
-                  <dd>{supplier.finance.closingTerms}</dd>
-                </div>
-                <div className={s.definitionRow}>
-                  <dt>Штрафы / условия</dt>
-                  <dd>{supplier.finance.penalties}</dd>
-                </div>
-                <div className={s.definitionRow}>
-                  <dt>Кредитный лимит</dt>
-                  <dd>{supplier.finance.creditLimit}</dd>
-                </div>
-                <div className={s.definitionRow}>
-                  <dt>Минимальный платёж</dt>
-                  <dd>{supplier.finance.minPayment}</dd>
-                </div>
-              </dl>
-            </section>
+                <dl className={`${s.definitionList} ${s.financeList}`}>
+                  {paymentDetails.map((detail) => (
+                    <div key={detail.label} className={s.definitionRow}>
+                      <dt>{detail.label}</dt>
+                      <dd>{detail.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
 
-            <section className={s.blockFullWidth}>
-              <h3 className={s.blockTitle}>Задолженность и депозит</h3>
-              <div className={s.metricRow}>
-                <div className={s.metricCard}>
-                  <div className={s.metricLabel}>Общая задолженность</div>
-                  <div className={s.metricValue}>
-                    {supplier.finance.balance.totalDebt}
-                  </div>
+              <section className={s.block}>
+                <div className={s.sectionHeader}>
+                  <h3 className={s.blockTitle}>Лимиты и условия</h3>
+                  <p className={s.sectionCaption}>
+                    Требования к оплате и дополнительные ограничения
+                  </p>
                 </div>
-                <div className={s.metricCard}>
-                  <div className={s.metricLabel}>Просрочено</div>
-                  <div className={s.metricValue}>
-                    {supplier.finance.balance.overdue}
+                <dl className={`${s.definitionList} ${s.financeList}`}>
+                  {limitDetails.map((detail) => (
+                    <div key={detail.label} className={s.definitionRow}>
+                      <dt>{detail.label}</dt>
+                      <dd>{detail.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            </div>
+
+            <section className={s.block}>
+              <div className={s.sectionHeader}>
+                <h3 className={s.blockTitle}>Задолженность и депозит</h3>
+                <p className={s.sectionCaption}>
+                  Текущая нагрузка на кредитный лимит и движение средств
+                </p>
+              </div>
+              <div className={s.financeMetrics}>
+                {balanceMetrics.map((metric) => (
+                  <div key={metric.label} className={s.financeMetricCard}>
+                    <span className={s.financeMetricLabel}>{metric.label}</span>
+                    <span className={s.financeMetricValue}>{metric.value}</span>
                   </div>
+                ))}
+              </div>
+              <div className={s.financeProgress}>
+                <div className={s.financeProgressLabel}>
+                  <span>Использовано кредитного лимита</span>
+                  <span>{debtPercent}%</span>
                 </div>
-                <div className={s.metricCard}>
-                  <div className={s.metricLabel}>Ожидает оплаты</div>
-                  <div className={s.metricValue}>
-                    {supplier.finance.balance.toBePaid}
-                  </div>
-                </div>
-                <div className={s.metricCard}>
-                  <div className={s.metricLabel}>Предоплата / депозит</div>
-                  <div className={s.metricValue}>
-                    {supplier.finance.balance.prepaidBalance}
-                  </div>
+                <div className={s.progressTrack}>
+                  <div
+                    className={s.progressValue}
+                    style={{ width: `${debtPercent}%` }}
+                  />
                 </div>
               </div>
-              <div className={s.metricHint}>
-                Дата обязательного платежа: {supplier.finance.balance.dueDate}
-              </div>
-              <div className={s.metricHint}>
-                Услуг оплачено: {supplier.finance.balance.paidServices}, в
-                работе: {supplier.finance.balance.unpaidServices}
+              <div className={s.financeTimeline}>
+                {timelineEntries.map((entry) => (
+                  <div key={entry.label} className={s.financePill}>
+                    <span className={s.financePillLabel}>{entry.label}</span>
+                    <span className={s.financePillValue}>{entry.value}</span>
+                  </div>
+                ))}
               </div>
             </section>
           </div>
         );
+      }
 
       case "sla": {
         const slaColumns = [
@@ -628,12 +690,9 @@ export default function SupplierDetail() {
               </div>
             </section>
 
-            <section className={s.block}>
+            <section className={s.tableBlock}>
               <div className={s.blockTitleRow}>
                 <h3 className={s.blockTitle}>Открытые услуги на поставщике</h3>
-                <Button variant="outline" size="xs">
-                  Открыть проблемные услуги
-                </Button>
               </div>
               <UITable
                 columns={slaColumns}
@@ -704,7 +763,7 @@ export default function SupplierDetail() {
 
       case "documents": {
         const documentsColumns = [
-          { key: "type", label: "Тип", width: "140px" },
+          { key: "type", label: "Тип" },
           {
             key: "name",
             label: "Название",
@@ -718,20 +777,15 @@ export default function SupplierDetail() {
           {
             key: "updatedAt",
             label: "Обновлён",
-            width: "140px",
             render: (value) => <span className={s.muted}>{value}</span>,
           },
           {
             key: "actions",
             label: "",
-            width: "220px",
             render: (_, row) => (
               <div className={s.tableActions}>
                 <Button variant="outline" size="xs">
                   Скачать
-                </Button>
-                <Button variant="outline" size="xs">
-                  Обновить
                 </Button>
                 <Button variant="outline" size="xs">
                   Архивировать
@@ -749,12 +803,9 @@ export default function SupplierDetail() {
         }));
 
         return (
-          <section className={s.block}>
+          <section className={s.tableBlock}>
             <div className={s.blockTitleRow}>
               <h3 className={s.blockTitle}>Документы поставщика</h3>
-              <Button variant="primary" size="sm">
-                Загрузить документ
-              </Button>
             </div>
             <UITable
               columns={documentsColumns}
@@ -766,43 +817,48 @@ export default function SupplierDetail() {
       }
 
       case "history":
+        const historyColumns = [
+          {
+            key: "date",
+            label: "Дата и время",
+            render: (value) => <span className={s.muted}>{value}</span>,
+          },
+          {
+            key: "user",
+            label: "Пользователь",
+            render: (value) => <span className={s.historyUser}>{value}</span>,
+          },
+          {
+            key: "action",
+            label: "Действие",
+            flex: 1.5,
+            render: (value) => <span className={s.historyAction}>{value}</span>,
+          },
+          {
+            key: "details",
+            label: "Описание",
+            flex: 2,
+            render: (value) => (
+              <span className={s.historyDetails}>{value}</span>
+            ),
+          },
+        ];
+
+        const historyRows = supplier.history.map((entry) => ({
+          id: entry.id,
+          date: entry.date,
+          user: entry.user,
+          action: entry.action,
+          details: entry.details,
+        }));
+
         return (
-          <section className={s.block}>
-            <div className={s.blockTitleRow}>
-              <h3 className={s.blockTitle}>История действий</h3>
-              <div className={s.historyFilters}>
-                <Select
-                  value="all"
-                  onChange={() => {}}
-                  options={[
-                    { value: "all", label: "Все пользователи" },
-                    { value: "admin", label: "Администраторы" },
-                    { value: "finance", label: "Финансы" },
-                  ]}
-                />
-                <Select
-                  value="all"
-                  onChange={() => {}}
-                  options={[
-                    { value: "all", label: "Всё время" },
-                    { value: "7d", label: "7 дней" },
-                    { value: "30d", label: "30 дней" },
-                  ]}
-                />
-              </div>
-            </div>
-            <div className={s.historyList}>
-              {supplier.history.map((h) => (
-                <div key={h.id} className={s.historyItem}>
-                  <div className={s.historyHeader}>
-                    <span className={s.historyDate}>{h.date}</span>
-                    <span className={s.historyUser}>{h.user}</span>
-                  </div>
-                  <div className={s.historyAction}>{h.action}</div>
-                  <div className={s.historyDetails}>{h.details}</div>
-                </div>
-              ))}
-            </div>
+          <section>
+            <UITable
+              columns={historyColumns}
+              rows={historyRows}
+              showCheckbox={false}
+            />
           </section>
         );
 
@@ -829,12 +885,7 @@ export default function SupplierDetail() {
             <Button variant="outline" size="sm" icon={MdEdit}>
               Редактировать
             </Button>
-            <Select
-              value={status}
-              onChange={setStatus}
-              options={STATUS_OPTIONS}
-              className={s.statusSelect}
-            />
+
             <Button variant="outline" size="sm" icon={MdPowerSettingsNew}>
               Деактивировать
             </Button>

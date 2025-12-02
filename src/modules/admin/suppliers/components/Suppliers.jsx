@@ -149,12 +149,6 @@ export default function Suppliers() {
       key: "name",
       label: "Поставщик",
       flex: 1.6,
-      render: (value, row) => (
-        <div className={s.nameCell}>
-          <div className={s.nameMain}>{value}</div>
-          <div className={s.nameMeta}>{row.id}</div>
-        </div>
-      ),
     },
     {
       key: "typeLabel",
@@ -186,16 +180,16 @@ export default function Suppliers() {
       label: "Комиссия / маржа",
       flex: 1.2,
     },
-    {
-      key: "paymentTerms",
-      label: "Условия оплаты",
-      flex: 1.4,
-    },
-    {
-      key: "docsSla",
-      label: "Сроки документов",
-      flex: 1.4,
-    },
+    // {
+    //   key: "paymentTerms",
+    //   label: "Условия оплаты",
+    //   flex: 1.4,
+    // },
+    // {
+    //   key: "docsSla",
+    //   label: "Сроки документов",
+    //   flex: 1.4,
+    // },
     {
       key: "actions",
       label: "",
@@ -227,10 +221,6 @@ export default function Suppliers() {
   return (
     <div className={s.suppliers}>
       <div className={s.header}>
-        <div>
-          <h1>Поставщики</h1>
-          <p>Всего поставщиков: {filteredSuppliers.length}</p>
-        </div>
         <div className={s.headerActions}>
           <Button variant="primary" icon={MdAdd} onClick={handleAddSupplier}>
             Добавить поставщика
@@ -239,12 +229,6 @@ export default function Suppliers() {
       </div>
 
       <div className={s.filters}>
-        <Input
-          label="Название / ID"
-          placeholder="Поиск по названию или ID"
-          value={filters.name}
-          onChange={(value) => handleChange("name", value)}
-        />
         <Select
           label="Тип поставщика"
           value={filters.type}

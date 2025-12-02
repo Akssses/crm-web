@@ -27,6 +27,11 @@
   }
 
   /* SIZES */
+  &.size-xs {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
   &.size-sm {
     padding: 10px 16px;
     font-size: 14px;

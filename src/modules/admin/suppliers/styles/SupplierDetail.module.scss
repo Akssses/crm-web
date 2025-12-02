@@ -17,9 +17,15 @@
   gap: 8px;
 }
 
+.tableBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .title {
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--color-gray-900);
 }
@@ -28,13 +34,13 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-gray-600);
 }
 
 .description {
   max-width: 720px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-gray-700);
   line-height: 1.5;
 }
@@ -50,14 +56,14 @@
   border-radius: 999px;
   border: 1px solid var(--color-gray-200);
   background: var(--color-gray-50);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-600);
 }
 
 .statusBadge {
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -112,12 +118,12 @@
 }
 
 .overviewStatLabel {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
 .overviewStatValue {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--color-gray-900);
 }
@@ -136,7 +142,7 @@
   border: none;
   border-bottom: 2px solid transparent;
   color: var(--color-gray-600);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -200,8 +206,7 @@
 }
 
 .blockTitle {
-  margin: 0;
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 600;
   color: var(--color-gray-900);
 }
@@ -214,7 +219,7 @@
 
 .sectionCaption {
   margin: 0;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
@@ -235,12 +240,119 @@
 }
 
 .highlightLabel {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
 .highlightValue {
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.financeHighlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.financeHighlightCard {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--color-gray-100);
+  background: var(--color-gray-50);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.financeHighlightLabel {
+  font-size: 13px;
+  color: var(--color-gray-500);
+}
+
+.financeHighlightValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.financeSplit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.financeList .definitionRow {
+  background: var(--color-white);
+}
+
+.financeMetrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.financeMetricCard {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray-100);
+  background: var(--color-gray-50);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.financeMetricLabel {
+  font-size: 13px;
+  color: var(--color-gray-500);
+}
+
+.financeMetricValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.financeProgress {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.financeProgressLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--color-gray-600);
+}
+
+.financeTimeline {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.financePill {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray-100);
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.financePillLabel {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.financePillValue {
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-gray-900);
 }
@@ -256,7 +368,7 @@
   display: grid;
   grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
   gap: 16px;
-  font-size: 13px;
+  font-size: 14px;
   padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid var(--color-gray-100);
@@ -303,19 +415,19 @@
 }
 
 .metricLabel {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
 .metricValue {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--color-gray-900);
 }
 
 .metricHint {
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
@@ -354,18 +466,18 @@
 }
 
 .slaCardLabel {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
 .slaCardValue {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--color-gray-900);
 }
 
 .slaCardHint {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
@@ -388,11 +500,11 @@
 .progressCardHeader {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-gray-600);
 
   strong {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-gray-900);
   }
 }
@@ -432,12 +544,12 @@
 }
 
 .slaStatLabel {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-gray-500);
 }
 
 .slaStatValue {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
   color: var(--color-gray-900);
 }
@@ -475,45 +587,19 @@
   text-overflow: ellipsis;
 }
 
-/* History */
-.historyList {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.historyItem {
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid var(--color-gray-200);
-  background: var(--color-white);
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-}
-
-.historyHeader {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--color-gray-500);
-}
-
-.historyDate {
-  font-weight: 500;
-}
-
 .historyUser {
   color: var(--color-gray-600);
 }
 
 .historyAction {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-gray-900);
   margin-top: 4px;
 }
 
 .historyDetails {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-gray-700);
 }
 
