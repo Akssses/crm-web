@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 24px;
   padding-bottom: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .section {
@@ -29,7 +29,7 @@
   gap: 8px;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     width: 4px;
     height: 16px;
@@ -151,6 +151,7 @@
   font-size: 12px;
   color: #4b5563;
   margin-top: 4px;
+  flex-wrap: wrap;
 }
 
 .passengerList {
@@ -300,4 +301,172 @@
 
 .table tr:last-child td {
   border-bottom: none;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 600px) {
+  .drawerContent {
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+
+  .section {
+    gap: 12px;
+    padding-bottom: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 14px;
+
+    &::before {
+      width: 3px;
+      height: 14px;
+    }
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .label {
+    font-size: 11px;
+  }
+
+  .value {
+    font-size: 13px;
+  }
+
+  .segment {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .segmentHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .segmentRoute {
+    font-size: 14px;
+  }
+
+  .segmentDuration {
+    font-size: 11px;
+  }
+
+  .segmentTimes {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .time {
+    font-size: 14px;
+  }
+
+  .segmentMeta {
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .passengerItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .passengerName {
+    font-size: 13px;
+  }
+
+  .passengerDetails {
+    font-size: 11px;
+  }
+
+  .tags {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .priceTotal {
+    font-size: 16px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .table {
+    font-size: 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px;
+  }
+
+  .amenity {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  .description {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .cancellation {
+    font-size: 11px;
+    padding: 6px;
+  }
+
+  .actions {
+    gap: 8px;
+    padding-top: 12px;
+  }
+
+  .hotelRating {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .sectionTitle {
+    font-size: 13px;
+  }
+
+  .infoItem {
+    gap: 2px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .value {
+    font-size: 12px;
+  }
+
+  .tag {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .segment {
+    padding: 10px;
+  }
+
+  .segmentRoute {
+    font-size: 13px;
+  }
+
+  .time {
+    font-size: 13px;
+  }
+
+  .priceTotal {
+    font-size: 14px;
+  }
 }

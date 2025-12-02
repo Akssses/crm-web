@@ -1,5 +1,6 @@
 .container {
   margin-top: 8px;
+  overflow-x: auto;
 }
 
 .pill {
@@ -49,5 +50,31 @@
   &:hover {
     background: var(--color-gray-100);
     color: var(--color-primary);
+  }
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 768px) {
+  .container {
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+
+  .pill {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .chatButton {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 0 -12px;
+    padding: 0 12px;
   }
 }

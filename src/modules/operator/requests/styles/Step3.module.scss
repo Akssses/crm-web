@@ -74,17 +74,36 @@
   font-size: 13px;
   font-weight: 500;
   transition: all 0.2s;
-  
-  &.purple { background: #f3e8ff; color: #9333ea; border: 1px solid #e9d5ff; }
-  &.red { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; }
-  &.green { background: #dcfce7; color: #16a34a; border: 1px solid #bbf7d0; }
-  &.blue { background: #dbeafe; color: #2563eb; border: 1px solid #bfdbfe; }
-  &.gray { 
-    background: #f9fafb; 
-    color: #4b5563; 
+
+  &.purple {
+    background: #f3e8ff;
+    color: #9333ea;
+    border: 1px solid #e9d5ff;
+  }
+  &.red {
+    background: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #fecaca;
+  }
+  &.green {
+    background: #dcfce7;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+  }
+  &.blue {
+    background: #dbeafe;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+  }
+  &.gray {
+    background: #f9fafb;
+    color: #4b5563;
     border: 1px dashed #d1d5db;
     cursor: pointer;
-    &:hover { border-color: #9ca3af; color: #111827; }
+    &:hover {
+      border-color: #9ca3af;
+      color: #111827;
+    }
   }
 
   .removeTag {
@@ -93,7 +112,9 @@
     align-items: center;
     opacity: 0.5;
     transition: opacity 0.2s;
-    &:hover { opacity: 1; }
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
@@ -128,8 +149,10 @@
   &:hover {
     border-color: #2563eb;
     background: #eff6ff;
-    
-    .uploadIcon { color: #2563eb; }
+
+    .uploadIcon {
+      color: #2563eb;
+    }
   }
 }
 
@@ -188,10 +211,20 @@
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  flex-shrink: 0;
 
-  &.pdf { background: #fee2e2; color: #ef4444; }
-  &.doc { background: #dbeafe; color: #2563eb; }
-  &.img { background: #f3e8ff; color: #9333ea; }
+  &.pdf {
+    background: #fee2e2;
+    color: #ef4444;
+  }
+  &.doc {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+  &.img {
+    background: #f3e8ff;
+    color: #9333ea;
+  }
 }
 
 .fileName {
@@ -233,9 +266,143 @@
   padding: 6px;
   border-radius: 6px;
   transition: all 0.2s;
-  
-  &:hover { 
-    background: #fee2e2; 
+
+  &:hover {
+    background: #fee2e2;
     color: #ef4444;
+  }
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .budgetRow {
+    grid-template-columns: 1fr 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+
+  .section {
+    padding: 16px;
+    border-radius: 12px;
+    gap: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .checkboxGroup {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+
+  .budgetRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .fileUploadArea {
+    padding: 32px 16px;
+    gap: 12px;
+  }
+
+  .uploadIcon {
+    font-size: 40px;
+  }
+
+  .uploadText {
+    font-size: 14px;
+  }
+
+  .fileItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .fileInfo {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .fileIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .fileStatus {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tagsGroup {
+    gap: 6px;
+  }
+
+  .tag {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 12px;
+  }
+
+  .checkboxGroup {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .checkboxLabel {
+    font-size: 13px;
+    gap: 8px;
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .fileUploadArea {
+    padding: 24px 12px;
+  }
+
+  .uploadIcon {
+    font-size: 32px;
+  }
+
+  .uploadText {
+    font-size: 13px;
+  }
+
+  .fileName {
+    font-size: 13px;
+  }
+
+  .fileSize {
+    font-size: 11px;
+  }
+
+  .statusText {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .label {
+    font-size: 12px;
   }
 }

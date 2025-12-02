@@ -4,7 +4,7 @@
   padding: 24px;
   background: #fff;
   min-height: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .mainContent {
@@ -40,7 +40,7 @@
   font-size: 13px;
   color: #6b7280;
   align-items: center;
-  margin-left: 32px; // Align with title text (offsetting back arrow)
+  margin-left: 32px;
 
   span {
     display: flex;
@@ -90,6 +90,7 @@
   font-weight: 600;
   color: #111827;
   font-size: 16px;
+  flex-shrink: 0;
 }
 
 .clientName {
@@ -117,6 +118,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .badge {
@@ -124,7 +126,7 @@
   font-weight: 500;
   padding: 4px 8px;
   border-radius: 6px;
-  
+
   &.green {
     background: #dcfce7;
     color: #166534;
@@ -138,7 +140,7 @@
 
 .servicePrice {
   text-align: right;
-  
+
   .price {
     font-size: 20px;
     font-weight: 700;
@@ -239,6 +241,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  flex-shrink: 0;
 }
 
 .recPrice {
@@ -349,10 +352,22 @@
   margin-right: 16px;
   flex-shrink: 0;
 
-  &.blue { background: #dbeafe; color: #2563eb; }
-  &.purple { background: #f3e8ff; color: #9333ea; }
-  &.orange { background: #ffedd5; color: #ea580c; }
-  &.green { background: #dcfce7; color: #16a34a; }
+  &.blue {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+  &.purple {
+    background: #f3e8ff;
+    color: #9333ea;
+  }
+  &.orange {
+    background: #ffedd5;
+    color: #ea580c;
+  }
+  &.green {
+    background: #dcfce7;
+    color: #16a34a;
+  }
 }
 
 .cardRow {
@@ -424,4 +439,254 @@
   font-size: 14px;
   font-weight: 700;
   color: #111827;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .sidebar {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    order: -1;
+  }
+
+  .summaryCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .summaryTitle {
+    grid-column: 1 / -1;
+  }
+
+  .summaryRow {
+    &:nth-child(n + 2):nth-child(-n + 6) {
+      grid-column: 1;
+    }
+  }
+
+  .totalBlock {
+    grid-column: 2;
+    grid-row: 2 / 7;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .totalValue {
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .confirmBtn {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .header {
+    margin-bottom: 8px;
+  }
+
+  .headerLeft {
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .headerInfo {
+    margin-left: 0;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .summaryCard {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .summaryRow {
+    grid-column: 1 !important;
+  }
+
+  .totalBlock {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+  }
+
+  .totalValue {
+    align-items: flex-end;
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .serviceTitle {
+    font-size: 14px;
+  }
+
+  .servicePrice {
+    text-align: left;
+
+    .price {
+      font-size: 18px;
+    }
+  }
+
+  .cardRow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .iconBox {
+    margin-right: 0;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .recContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .recActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .recItemCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .recItemLeft {
+    gap: 12px;
+  }
+
+  .recItemIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+
+  .recItemRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .recommendation {
+    border-radius: 12px;
+  }
+
+  .recHeader {
+    padding: 12px 16px;
+  }
+
+  .recTitle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  .headerLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+
+    h1 {
+      font-size: 18px;
+    }
+  }
+
+  .headerInfo {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .clientCardContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .avatarCircle {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .clientName {
+    font-size: 14px;
+  }
+
+  .clientDetails {
+    font-size: 12px;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .summaryRow {
+    font-size: 13px;
+  }
+
+  .totalBlock {
+    padding: 12px;
+  }
+
+  .totalLabel {
+    font-size: 13px;
+  }
+
+  .totalValue {
+    font-size: 18px;
+  }
+
+  .successTitle {
+    font-size: 14px;
+  }
+
+  .successDetails {
+    font-size: 12px;
+  }
 }

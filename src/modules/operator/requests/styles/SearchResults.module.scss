@@ -88,6 +88,7 @@
   gap: 12px;
   padding: 16px 0;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .serviceTab {
@@ -125,6 +126,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow-x: auto;
 }
 
 .tableHeader {
@@ -137,6 +139,7 @@
   font-weight: 600;
   color: #6b7280;
   align-items: center;
+  min-width: fit-content;
 }
 
 .flightCard {
@@ -151,6 +154,7 @@
   gap: 12px;
   padding: 16px 12px;
   align-items: center;
+  min-width: fit-content;
 }
 
 .gridAvia {
@@ -235,6 +239,7 @@
   background: #f9fafb;
   padding: 16px;
   border-top: 1px solid var(--border-color);
+  overflow-x: auto;
 }
 
 .detailsHeader {
@@ -246,6 +251,7 @@
   font-weight: 600;
   color: #6b7280;
   margin-bottom: 8px;
+  min-width: 700px;
 }
 
 .detailsRow {
@@ -254,6 +260,7 @@
   gap: 12px;
   padding: 12px 0;
   border-top: 1px solid #e5e7eb;
+  min-width: 700px;
 
   &:first-child {
     border-top: none;
@@ -433,4 +440,255 @@
   font-size: 16px;
   flex-shrink: 0;
   color: #3b82f6;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1200px) {
+  .selectedServices {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .resultsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .resultsTabs {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+
+  .tabsLeft {
+    gap: 16px;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .tab {
+    white-space: nowrap;
+  }
+
+  .totalSection {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+  }
+
+  .totalButton {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchResults {
+    gap: 12px;
+  }
+
+  .resultsHeader {
+    gap: 8px;
+  }
+
+  .foundCount {
+    font-size: 16px;
+  }
+
+  .serviceTypeTabs {
+    gap: 8px;
+    padding: 12px 0;
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .serviceTab {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .selectedPanel {
+    padding: 16px;
+  }
+
+  .panelTitle {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .selectedServices {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .selectedService {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .serviceIcon {
+    margin-bottom: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  .serviceInfo {
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  .serviceActions {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .servicePrice {
+    font-size: 16px;
+  }
+
+  .totalSection {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .totalRow {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .totalPrice {
+    font-size: 20px;
+  }
+
+  .flightCard {
+    border-radius: 8px;
+  }
+
+  // Mobile card view for flight rows
+  .flightRow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .gridAvia,
+  .gridTrain,
+  .gridHotel,
+  .gridTransfer,
+  .gridVisa,
+  .gridInsurance,
+  .gridTour,
+  .gridTaxi,
+  .gridLounge {
+    grid-template-columns: 1fr;
+  }
+
+  .col {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px solid #f3f4f6;
+
+    &:last-child {
+      border-bottom: none;
+      justify-content: flex-end;
+      padding-top: 8px;
+    }
+
+    &::before {
+      content: attr(data-label);
+      font-weight: 500;
+      color: #6b7280;
+      font-size: 12px;
+    }
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .flightDetails {
+    padding: 12px;
+  }
+
+  .detailsHeader,
+  .detailsRow {
+    min-width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultsHeaderLeft {
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .tabsLeft {
+    gap: 12px;
+  }
+
+  .tab {
+    font-size: 13px;
+    padding: 10px 0;
+  }
+
+  .serviceTab {
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 4px;
+
+    svg {
+      font-size: 14px;
+    }
+  }
+
+  .selectedService {
+    flex-direction: column;
+  }
+
+  .serviceIcon {
+    margin-bottom: 8px;
+  }
+
+  .serviceActions {
+    position: static;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .removeService {
+    top: 4px;
+    right: 4px;
+  }
+
+  .infoNote {
+    flex-direction: column;
+    gap: 8px;
+
+    p {
+      font-size: 12px;
+    }
+  }
 }

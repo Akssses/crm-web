@@ -8,7 +8,7 @@
 /* 1. Header (Fixed) */
 .header {
   background: #fff;
- padding-bottom: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #e5e7eb;
   flex-shrink: 0;
   display: flex;
@@ -35,6 +35,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .trainName {
@@ -86,6 +87,7 @@
   display: flex;
   gap: 12px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .serviceIcon {
@@ -99,6 +101,7 @@
   align-items: center;
   gap: 12px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .seatLabel {
@@ -121,11 +124,14 @@
   color: #6b7280;
   border-radius: 6px;
   transition: all 0.2s;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 
   &.active {
     background: #fff;
     color: var(--color-primary);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -159,7 +165,7 @@
 
   &:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
   &.active {
@@ -232,7 +238,7 @@
 
 .wagon {
   display: flex;
-  background: #f0fdf4; /* Light green tint for wagon */
+  background: #f0fdf4;
   border: 2px solid #cbd5e1;
   border-radius: 24px;
   padding: 10px;
@@ -245,7 +251,7 @@
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 8px;
-  padding: 0 40px; /* Space for toilets/vestibules */
+  padding: 0 40px;
 }
 
 .coupeBlock {
@@ -297,7 +303,7 @@
   &.upper {
     margin-bottom: 2px;
   }
-  
+
   &.lower {
     margin-top: 2px;
   }
@@ -312,7 +318,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .selectedSeats {
@@ -336,4 +342,244 @@
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 768px) {
+  .header {
+    padding-bottom: 16px;
+  }
+
+  .trainInfo {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .trainNumber {
+    font-size: 20px;
+    gap: 8px;
+  }
+
+  .trainName {
+    font-size: 12px;
+  }
+
+  .routeInfo {
+    font-size: 14px;
+  }
+
+  .timeInfo {
+    gap: 16px;
+  }
+
+  .time {
+    font-size: 18px;
+  }
+
+  .station {
+    font-size: 11px;
+  }
+
+  .seatSelector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .seatButtons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .seatButton {
+    flex: 1;
+    padding: 8px 12px;
+    text-align: center;
+  }
+
+  .content {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .carsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .carCard {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .carNumber {
+    font-size: 16px;
+  }
+
+  .carType {
+    font-size: 11px;
+  }
+
+  .carClass,
+  .freeSeats {
+    font-size: 11px;
+  }
+
+  .carPrice {
+    font-size: 13px;
+  }
+
+  .schemaContainer {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .schemaTitle {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .coupe {
+    grid-template-columns: repeat(5, 1fr);
+    padding: 0 20px;
+    gap: 6px;
+  }
+
+  .seat {
+    width: 32px;
+    height: 28px;
+    font-size: 10px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    align-items: stretch;
+  }
+
+  .selectedSeats {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .seatsList {
+    font-size: 13px;
+  }
+
+  .totalPrice {
+    font-size: 18px;
+  }
+
+  .footerActions {
+    gap: 12px;
+
+    button {
+      flex: 1;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .trainNumber {
+    font-size: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trainName {
+    margin-left: 0;
+  }
+
+  .timeInfo {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .timeBlock {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .time {
+    font-size: 16px;
+  }
+
+  .carsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .carCard {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .carHeader {
+    flex: 1;
+  }
+
+  .carDetails {
+    flex: 1;
+    align-items: flex-end;
+  }
+
+  .services {
+    width: 100%;
+    justify-content: center;
+    padding-top: 8px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 8px;
+  }
+
+  .carPrice {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  .carCard {
+    position: relative;
+    padding-right: 80px;
+  }
+
+  .coupe {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 10px;
+  }
+
+  .coupeBlock {
+    padding-right: 4px;
+  }
+
+  .seat {
+    width: 28px;
+    height: 24px;
+    font-size: 9px;
+  }
+
+  .wagon {
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .footerActions {
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .seatsList {
+    font-size: 12px;
+  }
+
+  .totalPrice {
+    font-size: 16px;
+  }
 }

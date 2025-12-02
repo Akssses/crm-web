@@ -21,6 +21,7 @@
   padding: 24px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   height: fit-content;
+  flex-shrink: 0;
 }
 
 .title {
@@ -47,12 +48,10 @@
 
 .row {
   border-bottom: 1px solid #f3f4f6;
-  
+
   &:last-child {
     border-bottom: none;
   }
-
-
 }
 
 .td {
@@ -71,12 +70,23 @@
 
 .serviceIcon {
   font-size: 20px;
-  
-  &.blue { color: #2563eb; }
-  &.purple { color: #9333ea; }
-  &.orange { color: #ea580c; }
-  &.green { color: #16a34a; }
-  &.red { color: #ef4444; }
+  flex-shrink: 0;
+
+  &.blue {
+    color: #2563eb;
+  }
+  &.purple {
+    color: #9333ea;
+  }
+  &.orange {
+    color: #ea580c;
+  }
+  &.green {
+    color: #16a34a;
+  }
+  &.red {
+    color: #ef4444;
+  }
 }
 
 .operatorSelect {
@@ -92,11 +102,24 @@
   border-radius: 16px;
   font-size: 13px;
   font-weight: 500;
+  white-space: nowrap;
 
-  &.blue { background: #dbeafe; color: #2563eb; }
-  &.green { background: #dcfce7; color: #16a34a; }
-  &.red { background: #fee2e2; color: #ef4444; }
-  &.yellow { background: #fef9c3; color: #ca8a04; }
+  &.blue {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+  &.green {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+  &.red {
+    background: #fee2e2;
+    color: #ef4444;
+  }
+  &.yellow {
+    background: #fef9c3;
+    color: #ca8a04;
+  }
 }
 
 .commentBtn {
@@ -122,7 +145,10 @@
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
-  &:hover { background: #f3f4f6; color: #374151; }
+  &:hover {
+    background: #f3f4f6;
+    color: #374151;
+  }
 }
 
 /* Timeline Styles */
@@ -134,7 +160,7 @@
   padding-left: 8px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 11px;
     top: 8px;
@@ -160,10 +186,18 @@
   z-index: 1;
   outline: 4px solid #fff;
 
-  &.blue { background: #2563eb; }
-  &.green { background: #16a34a; }
-  &.purple { background: #9333ea; }
-  &.orange { background: #ea580c; }
+  &.blue {
+    background: #2563eb;
+  }
+  &.green {
+    background: #16a34a;
+  }
+  &.purple {
+    background: #9333ea;
+  }
+  &.orange {
+    background: #ea580c;
+  }
 }
 
 .timelineDate {
@@ -181,7 +215,7 @@
 .footer {
   position: fixed;
   bottom: 0;
-  left: 280px; /* Sidebar width */
+  left: 280px;
   right: 0;
   background: #fff;
   border-top: 1px solid #e5e7eb;
@@ -189,4 +223,182 @@
   display: flex;
   justify-content: space-between;
   z-index: 10;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 280px;
+  }
+
+  .operatorSelect {
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    padding-bottom: 24px;
+  }
+
+  .sidebar {
+    width: 100%;
+    order: -1;
+  }
+
+  .mainContent {
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 700px;
+  }
+
+  .footer {
+    left: 0;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 16px;
+  }
+
+  .mainContent,
+  .sidebar {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .title {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  // Card view for table on mobile
+  .table {
+    min-width: 100%;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: #f9fafb;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .td {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &::before {
+      content: attr(data-label);
+      font-weight: 500;
+      color: #6b7280;
+      font-size: 12px;
+    }
+  }
+
+  .serviceCell {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 8px;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .operatorSelect {
+    max-width: 100%;
+  }
+
+  .commentBtn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .timeline {
+    gap: 16px;
+  }
+
+  .timelineItem {
+    padding-left: 20px;
+  }
+
+  .timelineDate {
+    font-size: 11px;
+  }
+
+  .timelineText {
+    font-size: 12px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent,
+  .sidebar {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .row {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .serviceCell {
+    font-size: 13px;
+  }
+
+  .serviceIcon {
+    font-size: 18px;
+  }
+
+  .statusBadge {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+
+  .commentBtn {
+    font-size: 11px;
+  }
+
+  .timeline::before {
+    left: 7px;
+  }
+
+  .timelineDot {
+    width: 6px;
+    height: 6px;
+    outline-width: 3px;
+  }
 }
