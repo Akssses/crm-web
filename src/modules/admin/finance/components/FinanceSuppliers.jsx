@@ -64,7 +64,9 @@ export default function FinanceSuppliers() {
       render: (value, row) => (
         <div className={s.supplierNameCell}>
           <div className={s.supplierName}>{value}</div>
-          <div className={s.supplierCurrency}>Валюта расчётов: {row.currency}</div>
+          <div className={s.supplierCurrency}>
+            Валюта расчётов: {row.currency}
+          </div>
         </div>
       ),
     },
@@ -101,6 +103,3 @@ export default function FinanceSuppliers() {
     </div>
   );
 }
-
-
-

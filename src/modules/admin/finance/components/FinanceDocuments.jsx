@@ -58,7 +58,11 @@ export default function FinanceDocuments() {
   });
 
   const filteredTemplates = MOCK_TEMPLATES.filter((tpl) => {
-    if (filters.type !== "all" && tpl.type.toLowerCase().indexOf("счёт") === -1 && filters.type === "invoice") {
+    if (
+      filters.type !== "all" &&
+      tpl.type.toLowerCase().indexOf("счёт") === -1 &&
+      filters.type === "invoice"
+    ) {
       return false;
     }
     if (filters.status !== "all" && tpl.status !== filters.status) {
@@ -153,6 +157,3 @@ export default function FinanceDocuments() {
     </div>
   );
 }
-
-
-

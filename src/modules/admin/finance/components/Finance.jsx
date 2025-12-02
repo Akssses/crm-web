@@ -10,7 +10,6 @@ import StateGrid from "./StateGrid";
 import FinanceSuppliers from "./FinanceSuppliers";
 import FinanceConfiguration from "./FinanceConfiguration";
 
-
 const TABS = [
   { id: "overview", label: "Операции и сводка" },
   { id: "suppliers", label: "Поставщики и задолженность" },

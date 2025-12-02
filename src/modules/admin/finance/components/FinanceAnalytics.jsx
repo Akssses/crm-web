@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import React from "react";
 import { Select, UITable, Statcard } from "@/ui";
 import s from "../styles/Finance.module.scss";
@@ -251,6 +251,3 @@ export default function FinanceAnalytics() {
     </div>
   );
 }
-
-
-
