@@ -1,14 +1,116 @@
-.users {
+.suppliers {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.flex {
-  display: flex;
-  gap: 20px;
-}
-.justi {
+
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-gray-900);
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: var(--color-gray-600);
+    font-size: 14px;
+  }
+}
+
+.headerActions {
+  display: flex;
+  gap: 12px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.nameCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nameMain {
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.nameMeta {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusGreen {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+.statusRed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+.statusGray {
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.rowActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.iconButton {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray-300);
+  background: var(--color-white);
+  color: var(--color-gray-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--color-gray-50);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+@media (max-width: 768px) {
+  .headerActions {
+    width: 100%;
+    flex-direction: column;
+
+    :global(button) {
+      width: 100%;
+    }
+  }
 }

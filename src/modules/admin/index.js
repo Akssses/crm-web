@@ -4,7 +4,6 @@ export { default as Users } from "./users/components/Users";
 export { default as UserDetail } from "./users/components/detail/UserDetail";
 export { default as Organizations } from "./organizations/components/Organizations";
 export { default as OrganizationsDetail } from "./organizations/components/detail/OrganizationsDetail";
-export { default as Suppliers } from "./suppliers/components/Suppliers";
 export { default as Finance } from "./finance/components/Finance";
 export { default as Reports } from "./reports/components/Reports";
 export { default as Documents } from "./documents/components/Documents";
@@ -12,3 +11,4 @@ export { default as Integrations } from "./integrations/components/Integrations"
 export { default as IntegrationsDeail } from "./integrations/components/detail/IntegrationsDeail";
 export { default as Directory } from "./directory/components/Directory";
 export { default as CommunicationChannels } from "./communication-channels/components/CommunicationChannels";
+export { default as Suppliers } from "./suppliers/components/Suppliers";

@@ -148,40 +148,6 @@
   }
 }
 
-.assignLink {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #2563eb;
-  cursor: pointer;
-  text-decoration: underline;
-
-  &:hover {
-    color: #1d4ed8;
-  }
-}
-
-.assignModalContent {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.modalDescription {
-  margin: 0;
-  font-size: 14px;
-  color: var(--color-gray-600);
-  line-height: 1.4;
-}
-
-.modalActions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
-
 @media (max-width: 768px) {
   .headerActions {
     width: 100%;
@@ -192,6 +158,4 @@
     }
   }
 }
-
-
 

@@ -4,5 +4,3 @@ export default function AdminOrderDetailPage() {
   return <AdminOrderDetail />;
 }
 
-
-

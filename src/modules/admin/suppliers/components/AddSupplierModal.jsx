@@ -1,61 +1,79 @@
 "use client";
 import React, { useState } from "react";
-import s from "../styles/Addsuppliermodal.module.scss";
-import { Modal, Input, Select, Button, Tabs } from "@/ui";
-import { FaRegUser } from "react-icons/fa";
-import {
-  tabs,
-  supplierTypes,
-  currencies,
-  serviceTypes,
-  channels,
-  priorities,
-} from "../hooks/Data";
+import { Modal, Input, Select, Button, Textarea } from "@/ui";
+import { MdStorefront } from "react-icons/md";
+import s from "../styles/AddSupplierModal.module.scss";
+
+const TYPE_OPTIONS = [
+  { value: "airline", label: "Авиакомпания" },
+  { value: "hotel", label: "Отель / агрегатор" },
+  { value: "transfer", label: "Трансферы" },
+  { value: "visa", label: "Визовый центр" },
+  { value: "insurance", label: "Страховая" },
+  { value: "railway", label: "ЖД оператор" },
+  { value: "api", label: "API-поставщик" },
+  { value: "local", label: "Локальный партнёр" },
+];
+
+const CURRENCY_OPTIONS = [
+  { value: "USD", label: "USD" },
+  { value: "EUR", label: "EUR" },
+  { value: "KGS", label: "KGS" },
+  { value: "RUB", label: "RUB" },
+];
+
+const SERVICE_OPTIONS = [
+  { value: "avia", label: "Авиа" },
+  { value: "hotel", label: "Отель" },
+  { value: "transfer", label: "Трансфер" },
+  { value: "visa", label: "Виза" },
+  { value: "insurance", label: "Страховка" },
+  { value: "railway", label: "ЖД" },
+  { value: "other", label: "Другое" },
+];
 
 export default function AddSupplierModal({ isOpen, onClose, onSubmit }) {
-  const [activeTab, setActiveTab] = useState("general");
   const [formData, setFormData] = useState({
-    // Общие данные
     name: "",
-    supplierType: "",
-    accountingCurrency: "",
-    commission: "",
-    serviceType: "",
-    serviceAccountingCurrency: "",
-    serviceCommissionPercent: "",
-
-    // Контакты
+    internalCode: "",
+    type: "",
+    shortDescription: "",
+    currency: "",
+    services: [],
+    regions: "",
+    timeZone: "GMT+3",
     contactPerson: "",
-    email: "",
-    phone: "",
-    address: "",
-    communicationChannel: "",
-    chatId: "",
-
-    // Интеграция / API
-    apiEndpoint: "",
-    apiKey: "",
-    apiSecret: "",
-
-    // SLA
-    responseTime: "",
-    uptime: "",
-    notificationChannel: "",
-    supplierPriority: "",
-    commissionAccountType: "",
+    managerEmail: "",
+    techSupportEmail: "",
+    phoneMain: "",
+    phoneDuty: "",
+    website: "",
+    portalUrl: "",
+    workingHours: "",
+    commissionSupplier: "",
+    commissionAgency: "",
+    clientMarkup: "",
     paymentTerms: "",
-
-    // Аналитика
-    averageResponseSpeed: "",
-    confirmationPercent: "",
-    cancellationPercent: "",
-    averageCheck: "",
-    markup: "",
-    lastSynchronization: "",
+    closingTerms: "",
+    penalties: "",
+    creditLimit: "",
+    minPayment: "",
+    apiEnabled: false,
+    baseUrl: "",
+    authType: "",
   });
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleServiceChange = (value) => {
+    setFormData((prev) => ({
+      ...prev,
+      services: prev.services.includes(value)
+        ? prev.services.filter((s) => s !== value)
+        : [...prev.services, value],
+    }));
   };
 
   const handleSubmit = () => {
@@ -67,327 +85,278 @@ export default function AddSupplierModal({ isOpen, onClose, onSubmit }) {
   const resetForm = () => {
     setFormData({
       name: "",
-      supplierType: "",
-      accountingCurrency: "",
-      commission: "",
-      serviceType: "",
-      serviceAccountingCurrency: "",
-      serviceCommissionPercent: "",
+      internalCode: "",
+      type: "",
+      shortDescription: "",
+      currency: "",
+      services: [],
+      regions: "",
+      timeZone: "GMT+3",
       contactPerson: "",
-      email: "",
-      phone: "",
-      address: "",
-      communicationChannel: "",
-      chatId: "",
-      apiEndpoint: "",
-      apiKey: "",
-      apiSecret: "",
-      responseTime: "",
-      uptime: "",
-      notificationChannel: "",
-      supplierPriority: "",
-      commissionAccountType: "",
+      managerEmail: "",
+      techSupportEmail: "",
+      phoneMain: "",
+      phoneDuty: "",
+      website: "",
+      portalUrl: "",
+      workingHours: "",
+      commissionSupplier: "",
+      commissionAgency: "",
+      clientMarkup: "",
       paymentTerms: "",
-      averageResponseSpeed: "",
-      confirmationPercent: "",
-      cancellationPercent: "",
-      averageCheck: "",
-      markup: "",
-      lastSynchronization: "",
+      closingTerms: "",
+      penalties: "",
+      creditLimit: "",
+      minPayment: "",
+      apiEnabled: false,
+      baseUrl: "",
+      authType: "",
     });
-    setActiveTab("general");
   };
 
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
-      title="Новый поставщик"
+      onClose={() => {
+        resetForm();
+        onClose();
+      }}
+      title="Добавить поставщика"
       position="right"
-      width="40%"
-      icon={FaRegUser}
+      size="lg"
+      width="45%"
+      icon={MdStorefront}
     >
       <div className={s.modalContent}>
-        <div className={s.tabs}>
-          {tabs.map((tab) => (
-            <Button
-              key={tab.id}
-              variant={`${activeTab === tab.id ? "bgblue" : "outline"}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </Button>
-          ))}
-        </div>
-        <div className={s.tabContent}>
-          {/* ОБЩИЕ ДАННЫЕ */}
-          {activeTab === "general" && (
-            <>
-              <div className={s.twoColumns}>
-                <Input
-                  label="Название поставщика"
-                  placeholder="Введите поставщика"
-                  value={formData.name}
-                  onChange={(val) => handleChange("name", val)}
-                />
-                <Select
-                  label="Тип поставщика"
-                  options={supplierTypes}
-                  value={formData.supplierType}
-                  onChange={(val) => handleChange("supplierType", val)}
-                  placeholder="Выберите тип"
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Select
-                  label="Валюта расчета"
-                  options={currencies}
-                  value={formData.accountingCurrency}
-                  onChange={(val) => handleChange("accountingCurrency", val)}
-                  placeholder="Выберите валюту"
-                />
-                <Input
-                  label="Комиссия (%)"
-                  placeholder="Введите значение"
-                  value={formData.commission}
-                  onChange={(val) => handleChange("commission", val)}
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Select
-                  label="Типы услуг"
-                  options={serviceTypes}
-                  value={formData.serviceType}
-                  onChange={(val) => handleChange("serviceType", val)}
-                  placeholder="Выберите тип"
-                />
-                <Select
-                  label="Организация"
-                  options={serviceTypes}
-                  value={formData.serviceType}
-                  onChange={(val) => handleChange("serviceType", val)}
-                  placeholder="Выберите тип"
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Select
-                  label="Валюта расчета"
-                  options={currencies}
-                  value={formData.serviceAccountingCurrency}
-                  onChange={(val) =>
-                    handleChange("serviceAccountingCurrency", val)
-                  }
-                  placeholder="Выберите валюту"
-                />
-                <Input
-                  label="Комиссия (%)"
-                  placeholder="%"
-                  value={formData.serviceCommissionPercent}
-                  onChange={(val) =>
-                    handleChange("serviceCommissionPercent", val)
-                  }
-                />
-              </div>
-            </>
-          )}
-
-          {/* КОНТАКТЫ */}
-          {activeTab === "contacts" && (
-            <>
-              <div className={s.twoColumns}>
-                <Input
-                  label="Контактное лицо"
-                  placeholder="ФИО"
-                  value={formData.contactPerson}
-                  onChange={(val) => handleChange("contactPerson", val)}
-                />
-                <Input
-                  label="Email"
-                  placeholder="Email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(val) => handleChange("email", val)}
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Input
-                  label="Телефон"
-                  placeholder="Введите телефон"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(val) => handleChange("phone", val)}
-                />
-                <Input
-                  label="Адрес"
-                  placeholder="Введите адрес"
-                  value={formData.address}
-                  onChange={(val) => handleChange("address", val)}
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Select
-                  label="Канал связи"
-                  options={channels}
-                  value={formData.communicationChannel}
-                  onChange={(val) => handleChange("communicationChannel", val)}
-                  placeholder="Выберите канал"
-                />
-                <Input
-                  label="Чат ID / Email"
-                  placeholder="@User_name"
-                  value={formData.chatId}
-                  onChange={(val) => handleChange("chatId", val)}
-                />
-              </div>
-            </>
-          )}
-
-          {/* ИНТЕГРАЦИЯ / API */}
-          {activeTab === "integration" && (
-            <>
-              <div className={s.twoColumns}>
-                <Input
-                  label="API Endpoint"
-                  placeholder="Введите значение"
-                  value={formData.apiEndpoint}
-                  onChange={(val) => handleChange("apiEndpoint", val)}
-                />
-                <Input
-                  label="API Key"
-                  placeholder="Введите значение"
-                  value={formData.apiKey}
-                  onChange={(val) => handleChange("apiKey", val)}
-                />
-              </div>
-
-              <Input
-                label="API Secret"
-                placeholder="•••••••••"
-                type="password"
-                value={formData.apiSecret}
-                onChange={(val) => handleChange("apiSecret", val)}
-              />
-            </>
-          )}
-
-          {/* SLA */}
-          {activeTab === "sla" && (
-            <>
-              <div className={s.twoColumns}>
-                <Input
-                  label="Время ответа (мин)"
-                  placeholder="Введите значение"
-                  value={formData.responseTime}
-                  onChange={(val) => handleChange("responseTime", val)}
-                />
-                <Input
-                  label="Дедлайн подтверждения (часы)"
-                  placeholder="Введите значение"
-                  value={formData.uptime}
-                  onChange={(val) => handleChange("uptime", val)}
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Select
-                  label="Канал уведомления"
-                  options={channels}
-                  value={formData.notificationChannel}
-                  onChange={(val) => handleChange("notificationChannel", val)}
-                  placeholder="Выберите канал"
-                />
-                <Select
-                  label="Приоритет поставщика"
-                  options={priorities}
-                  value={formData.supplierPriority}
-                  onChange={(val) => handleChange("supplierPriority", val)}
-                  placeholder="Выберите приоритет"
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Select
-                  label="Тип комиссионного расчета"
-                  options={[
-                    { label: "Процент", value: "percent" },
-                    { label: "Фиксированный", value: "fixed" },
-                  ]}
-                  value={formData.commissionAccountType}
-                  onChange={(val) => handleChange("commissionAccountType", val)}
-                  placeholder="Выберите тип"
-                />
-                <Input
-                  label="Условия оплаты"
-                  placeholder="Введите условия"
-                  value={formData.paymentTerms}
-                  onChange={(val) => handleChange("paymentTerms", val)}
-                />
-              </div>
-            </>
-          )}
-
-          {/* АНАЛИТИКА */}
-          {activeTab === "analytics" && (
-            <>
-              <div className={s.twoColumns}>
-                <Input
-                  label="Средняя скорость ответа"
-                  placeholder="Введите значение"
-                  value={formData.averageResponseSpeed}
-                  onChange={(val) => handleChange("averageResponseSpeed", val)}
-                />
-                <Input
-                  label="Процент подтверждений"
-                  placeholder="Введите значение"
-                  value={formData.confirmationPercent}
-                  onChange={(val) => handleChange("confirmationPercent", val)}
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Input
-                  label="Процент аннуляций"
-                  placeholder="Введите значение"
-                  value={formData.cancellationPercent}
-                  onChange={(val) => handleChange("cancellationPercent", val)}
-                />
-                <Input
-                  label="Средний чек"
-                  placeholder="Введите значение"
-                  value={formData.averageCheck}
-                  onChange={(val) => handleChange("averageCheck", val)}
-                />
-              </div>
-
-              <div className={s.twoColumns}>
-                <Input
-                  label="Маржа"
-                  placeholder="Введите значение"
-                  value={formData.markup}
-                  onChange={(val) => handleChange("markup", val)}
-                />
-                <Input
-                  label="Последняя синхронизация"
-                  placeholder="Введите значение"
-                  value={formData.lastSynchronization}
-                  onChange={(val) => handleChange("lastSynchronization", val)}
-                />
-              </div>
-            </>
-          )}
+        <div className={s.section}>
+          <h3 className={s.sectionTitle}>Основная информация</h3>
+          <div className={s.twoColumns}>
+            <Input
+              label="Название поставщика"
+              placeholder="Turkish Airlines"
+              value={formData.name}
+              onChange={(val) => handleChange("name", val)}
+              required
+            />
+            <Input
+              label="Внутренний код"
+              placeholder="THY-AGENCY-01"
+              value={formData.internalCode}
+              onChange={(val) => handleChange("internalCode", val)}
+            />
+            <Select
+              label="Тип поставщика"
+              options={TYPE_OPTIONS}
+              value={formData.type}
+              onChange={(val) => handleChange("type", val)}
+              placeholder="Выберите тип"
+              required
+            />
+            <Select
+              label="Валюта расчётов"
+              options={CURRENCY_OPTIONS}
+              value={formData.currency}
+              onChange={(val) => handleChange("currency", val)}
+              placeholder="Выберите валюту"
+              required
+            />
+          </div>
+          <Textarea
+            label="Краткое описание"
+            placeholder="Национальный авиаперевозчик..."
+            value={formData.shortDescription}
+            onChange={(val) => handleChange("shortDescription", val)}
+            rows={3}
+          />
+          <div className={s.twoColumns}>
+            <Input
+              label="Регионы работы"
+              placeholder="Европа, Ближний Восток"
+              value={formData.regions}
+              onChange={(val) => handleChange("regions", val)}
+            />
+            <Input
+              label="Часовой пояс"
+              placeholder="GMT+3"
+              value={formData.timeZone}
+              onChange={(val) => handleChange("timeZone", val)}
+            />
+          </div>
         </div>
 
-        {/* Actions */}
+        <div className={s.section}>
+          <h3 className={s.sectionTitle}>Контакты</h3>
+          <div className={s.twoColumns}>
+            <Input
+              label="Контактное лицо"
+              placeholder="Ahmet Yılmaz"
+              value={formData.contactPerson}
+              onChange={(val) => handleChange("contactPerson", val)}
+            />
+            <Input
+              label="Email менеджера"
+              type="email"
+              placeholder="agency-support@thy.com"
+              value={formData.managerEmail}
+              onChange={(val) => handleChange("managerEmail", val)}
+            />
+            <Input
+              label="Email техподдержки"
+              type="email"
+              placeholder="api-support@thy.com"
+              value={formData.techSupportEmail}
+              onChange={(val) => handleChange("techSupportEmail", val)}
+            />
+            <Input
+              label="Телефон (общий)"
+              type="tel"
+              placeholder="+90 555 123 45 67"
+              value={formData.phoneMain}
+              onChange={(val) => handleChange("phoneMain", val)}
+            />
+            <Input
+              label="Телефон (дежурный)"
+              type="tel"
+              placeholder="+90 555 987 65 43"
+              value={formData.phoneDuty}
+              onChange={(val) => handleChange("phoneDuty", val)}
+            />
+            <Input
+              label="Рабочие часы"
+              placeholder="Пн–Пт 09:00–19:00 (GMT+3)"
+              value={formData.workingHours}
+              onChange={(val) => handleChange("workingHours", val)}
+            />
+          </div>
+        </div>
+
+        <div className={s.section}>
+          <h3 className={s.sectionTitle}>Онлайн-сервисы</h3>
+          <div className={s.twoColumns}>
+            <Input
+              label="Сайт"
+              type="url"
+              placeholder="https://www.turkishairlines.com"
+              value={formData.website}
+              onChange={(val) => handleChange("website", val)}
+            />
+            <Input
+              label="Личный кабинет"
+              type="url"
+              placeholder="https://agency.thy.com"
+              value={formData.portalUrl}
+              onChange={(val) => handleChange("portalUrl", val)}
+            />
+          </div>
+          <div className={s.servicesGroup}>
+            <label className={s.servicesLabel}>Сферы услуг</label>
+            <div className={s.servicesCheckboxes}>
+              {SERVICE_OPTIONS.map((service) => (
+                <label key={service.value} className={s.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={formData.services.includes(service.value)}
+                    onChange={() => handleServiceChange(service.value)}
+                  />
+                  <span>{service.label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={s.section}>
+          <h3 className={s.sectionTitle}>Финансовые условия</h3>
+          <div className={s.twoColumns}>
+            <Input
+              label="Комиссия поставщика"
+              placeholder="3% + 10 USD"
+              value={formData.commissionSupplier}
+              onChange={(val) => handleChange("commissionSupplier", val)}
+            />
+            <Input
+              label="Комиссия агентства"
+              placeholder="2%"
+              value={formData.commissionAgency}
+              onChange={(val) => handleChange("commissionAgency", val)}
+            />
+            <Input
+              label="Наценка для клиента"
+              placeholder="+5%"
+              value={formData.clientMarkup}
+              onChange={(val) => handleChange("clientMarkup", val)}
+            />
+            <Input
+              label="Условия оплаты"
+              placeholder="Предоплата 100% / 3 дня"
+              value={formData.paymentTerms}
+              onChange={(val) => handleChange("paymentTerms", val)}
+            />
+            <Input
+              label="Сроки закрытия услуг"
+              placeholder="Закрытие услуг до 3 дней после вылета"
+              value={formData.closingTerms}
+              onChange={(val) => handleChange("closingTerms", val)}
+            />
+            <Input
+              label="Кредитный лимит"
+              placeholder="50 000 USD"
+              value={formData.creditLimit}
+              onChange={(val) => handleChange("creditLimit", val)}
+            />
+            <Input
+              label="Минимальный платёж"
+              placeholder="5 000 USD"
+              value={formData.minPayment}
+              onChange={(val) => handleChange("minPayment", val)}
+            />
+          </div>
+          <Textarea
+            label="Штрафы и условия"
+            placeholder="Изменения билета по правилам тарифа..."
+            value={formData.penalties}
+            onChange={(val) => handleChange("penalties", val)}
+            rows={2}
+          />
+        </div>
+
+        <div className={s.section}>
+          <h3 className={s.sectionTitle}>Интеграция / API</h3>
+          <div className={s.twoColumns}>
+            <Select
+              label="Тип авторизации"
+              options={[
+                { value: "OAuth2", label: "OAuth2" },
+                { value: "API Key", label: "API Key" },
+                { value: "Basic Auth", label: "Basic Auth" },
+              ]}
+              value={formData.authType}
+              onChange={(val) => handleChange("authType", val)}
+              placeholder="Выберите тип"
+            />
+            <Input
+              label="Базовый URL"
+              type="url"
+              placeholder="https://api.turkishairlines.com/v1"
+              value={formData.baseUrl}
+              onChange={(val) => handleChange("baseUrl", val)}
+            />
+          </div>
+        </div>
+
         <div className={s.actions}>
-          <Button variant="outline" onClick={onClose}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              resetForm();
+              onClose();
+            }}
+          >
             Отмена
           </Button>
-          <Button onClick={handleSubmit}>Далее</Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Создать поставщика
+          </Button>
         </div>
       </div>
     </Modal>
