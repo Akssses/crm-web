@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Modal, Input, Select, Button, Textarea } from "@/ui";
 import { MdStorefront } from "react-icons/md";
-import s from "../styles/AddSupplierModal.module.scss";
+import s from "../styles/Addsuppliermodal.module.scss";
 
 const TYPE_OPTIONS = [
   { value: "airline", label: "Авиакомпания" },

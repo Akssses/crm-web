@@ -601,37 +601,6 @@
   width: 100%;
 }
 
-@media (max-width: 1200px) {
-  .servicesGrid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 968px) {
-  .servicesGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .serviceFormGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .servicesHeader {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .servicesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .serviceFormGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Form Sections */
 .formSection {
   padding: 10px 0;
@@ -670,13 +639,15 @@
 .passengerControls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0px;
 }
 
 .passengerCount {
   min-width: 30px;
   text-align: center;
+  font-size: 16px;
   font-weight: 600;
+  color: #111827;
 }
 
 .segmentBlock {
@@ -713,47 +684,6 @@
   font-style: italic;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 16px;
-  }
-
-  .steps {
-    flex-direction: column;
-  }
-
-  .step {
-    border-right: none;
-    border-bottom: 1px solid #e5e7eb;
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-
-  .searchFields,
-  .formRow {
-    grid-template-columns: 1fr;
-  }
-
-  .actionButtons,
-  .passengerActions {
-    flex-direction: column;
-
-    button {
-      width: 100%;
-    }
-  }
-
-  .passengersGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .serviceFormGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
 // Passenger Modal Styles
 .passengerModal {
   display: flex;
@@ -787,7 +717,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-
 }
 
 .passengerLabel {
@@ -801,20 +730,6 @@
   font-size: 12px;
   color: #9ca3af;
   margin: 0;
-}
-
-.passengerControls {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-}
-
-.passengerCount {
-  min-width: 30px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: #111827;
 }
 
 .modalBottomSection {
@@ -854,7 +769,234 @@
   border-top: 1px solid #e5e7eb;
 }
 
-
 .searchButtonWrapper {
   padding: 20px 0;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1200px) {
+  .servicesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .servicesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .serviceFormGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .passengerCategories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modalBottomGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .step {
+    flex: 0 0 calc(50% - 8px);
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .steps {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .step {
+    flex: 1;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+    padding-right: 0;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  .searchFields,
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .actionButtons,
+  .passengerActions {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .passengersGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .servicesHeader {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navigation {
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .clientCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .clientContacts {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .passengerCategories {
+    grid-template-columns: 1fr;
+  }
+
+  .categoryColumn {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 16px;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  .modalBottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalCheckboxes {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .modalActions {
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .passengerItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .passengerControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .sectionSubtitle {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .serviceCard {
+    flex-direction: row;
+    justify-content: flex-start;
+    min-height: auto;
+    padding: 16px;
+    gap: 16px;
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  .checkIcon {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .stepNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .stepTitle {
+    font-size: 13px;
+  }
+
+  .stepSubtitle {
+    font-size: 12px;
+  }
+
+  .passengersList {
+    gap: 8px;
+  }
+
+  .passengerItem {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .passengerAvatar {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .passengerName {
+    font-size: 13px;
+  }
+
+  .passengerMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .segmentBlock {
+    padding: 12px;
+  }
 }
