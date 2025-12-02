@@ -12,3 +12,4 @@ export { default as IntegrationsDeail } from "./integrations/components/detail/I
 export { default as Directory } from "./directory/components/Directory";
 export { default as CommunicationChannels } from "./communication-channels/components/CommunicationChannels";
 export { default as Suppliers } from "./suppliers/components/Suppliers";
+export { default as SystemAdmin } from "./system/components/SystemAdmin";

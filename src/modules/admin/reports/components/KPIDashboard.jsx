@@ -1,20 +1,20 @@
 "use client";
 import React from "react";
 import StatCard from "@/ui/StatCard/StatCard";
-import { 
-  TbChartLine, 
+import {
+  TbChartLine,
   TbChartArcs,
   TbClock,
   TbUsers,
   TbCurrencyDollar,
   TbBuildingStore,
-  TbTarget
+  TbTarget,
 } from "react-icons/tb";
-import { 
+import {
   IoCheckmarkCircle,
   IoTimeOutline,
   IoTrendingUp,
-  IoWallet
+  IoWallet,
 } from "react-icons/io5";
 import s from "../styles/KPIDashboard.module.scss";
 
@@ -25,17 +25,42 @@ const MOCK_KPI_DATA = {
     leadToClient: { value: 45.8, trend: 8.1, previous: 37.7 },
   },
   performance: {
-    avgProcessingTime: { value: "2ч 15м", numeric: 135, trend: -12, previous: 147 },
+    avgProcessingTime: {
+      value: "2ч 15м",
+      numeric: 135,
+      trend: -12,
+      previous: 147,
+    },
     slaComplianceOperators: { value: 94.2, trend: 3.1, previous: 91.1 },
     slaComplianceSuppliers: { value: 87.6, trend: -2.4, previous: 90.0 },
     confirmationSpeed: { value: "45м", numeric: 45, trend: -8, previous: 53 },
   },
   financial: {
-    totalRevenue: { value: "2 450 000 ₽", numeric: 2450000, trend: 12.5, previous: 2178571 },
+    totalRevenue: {
+      value: "2 450 000 ₽",
+      numeric: 2450000,
+      trend: 12.5,
+      previous: 2178571,
+    },
     avgMargin: { value: 18.5, trend: 2.3, previous: 16.2 },
-    revenuePerOperator: { value: "185 000 ₽", numeric: 185000, trend: 7.8, previous: 171711 },
-    revenuePerOrg: { value: "320 000 ₽", numeric: 320000, trend: 15.2, previous: 277778 },
-    outstandingDebts: { value: "125 000 ₽", numeric: 125000, trend: -18.5, previous: 153374 },
+    revenuePerOperator: {
+      value: "185 000 ₽",
+      numeric: 185000,
+      trend: 7.8,
+      previous: 171711,
+    },
+    revenuePerOrg: {
+      value: "320 000 ₽",
+      numeric: 320000,
+      trend: 15.2,
+      previous: 277778,
+    },
+    outstandingDebts: {
+      value: "125 000 ₽",
+      numeric: 125000,
+      trend: -18.5,
+      previous: 153374,
+    },
   },
   team: {
     avgOrdersPerOperator: { value: 24.5, trend: 4.2, previous: 23.5 },
@@ -44,7 +69,12 @@ const MOCK_KPI_DATA = {
   },
   suppliers: {
     successRate: { value: 94.8, trend: 2.5, previous: 92.3 },
-    avgConfirmationTime: { value: "1ч 20м", numeric: 80, trend: -15, previous: 95 },
+    avgConfirmationTime: {
+      value: "1ч 20м",
+      numeric: 80,
+      trend: -15,
+      previous: 95,
+    },
     rejectionRate: { value: 5.2, trend: -1.2, previous: 6.4 },
   },
 };
@@ -53,9 +83,7 @@ function KPISection({ title, children }) {
   return (
     <div className={s.kpiSection}>
       <h3 className={s.sectionTitle}>{title}</h3>
-      <div className={s.kpiGrid}>
-        {children}
-      </div>
+      <div className={s.kpiGrid}>{children}</div>
     </div>
   );
 }
@@ -70,17 +98,8 @@ export default function KPIDashboard({ period = "this_month" }) {
 
   return (
     <div className={s.kpiDashboard}>
-      <div className={s.dashboardHeader}>
-        <div>
-          <h2 className={s.dashboardTitle}>KPI Панель</h2>
-          <p className={s.dashboardSubtitle}>
-            Ключевые показатели эффективности за выбранный период
-          </p>
-        </div>
-      </div>
-
       {/* Conversion Metrics */}
-      <KPISection title="📊 Метрики конверсии">
+      <KPISection title="Метрики конверсии">
         <StatCard
           icon={TbChartArcs}
           title={`${data.conversions.kpToOrder.value}%`}
@@ -88,7 +107,7 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={data.conversions.kpToOrder.trend}
           trend={data.conversions.kpToOrder.trend > 0 ? "up" : "down"}
           color="#3b82f6"
-          onClick={() => handleKPIClick('kpToOrder')}
+          onClick={() => handleKPIClick("kpToOrder")}
           ariaLabel="Конверсия коммерческих предложений в заказы"
         />
         <StatCard
@@ -98,7 +117,7 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={Math.abs(data.conversions.serviceConfirmation.trend)}
           trend={data.conversions.serviceConfirmation.trend > 0 ? "up" : "down"}
           color="#10b981"
-          onClick={() => handleKPIClick('serviceConfirmation')}
+          onClick={() => handleKPIClick("serviceConfirmation")}
           ariaLabel="Конверсия услуг в подтверждения"
         />
         <StatCard
@@ -108,13 +127,13 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={data.conversions.leadToClient.trend}
           trend={data.conversions.leadToClient.trend > 0 ? "up" : "down"}
           color="#8b5cf6"
-          onClick={() => handleKPIClick('leadToClient')}
+          onClick={() => handleKPIClick("leadToClient")}
           ariaLabel="Конверсия лидов в клиентов"
         />
       </KPISection>
 
       {/* Performance Metrics */}
-      <KPISection title="⚡ Метрики производительности">
+      <KPISection title="Метрики производительности">
         <StatCard
           icon={TbClock}
           title={data.performance.avgProcessingTime.value}
@@ -122,7 +141,7 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={Math.abs(data.performance.avgProcessingTime.trend)}
           trend="down" // Down is good for time
           color="#f59e0b"
-          onClick={() => handleKPIClick('avgProcessingTime')}
+          onClick={() => handleKPIClick("avgProcessingTime")}
           ariaLabel="Среднее время обработки заявок"
         />
         <StatCard
@@ -130,9 +149,11 @@ export default function KPIDashboard({ period = "this_month" }) {
           title={`${data.performance.slaComplianceOperators.value}%`}
           unit="SLA Операторы"
           change={data.performance.slaComplianceOperators.trend}
-          trend={data.performance.slaComplianceOperators.trend > 0 ? "up" : "down"}
+          trend={
+            data.performance.slaComplianceOperators.trend > 0 ? "up" : "down"
+          }
           color="#06b6d4"
-          onClick={() => handleKPIClick('slaOperators')}
+          onClick={() => handleKPIClick("slaOperators")}
           ariaLabel="Соблюдение SLA операторами"
         />
         <StatCard
@@ -140,9 +161,11 @@ export default function KPIDashboard({ period = "this_month" }) {
           title={`${data.performance.slaComplianceSuppliers.value}%`}
           unit="SLA Поставщики"
           change={Math.abs(data.performance.slaComplianceSuppliers.trend)}
-          trend={data.performance.slaComplianceSuppliers.trend > 0 ? "up" : "down"}
+          trend={
+            data.performance.slaComplianceSuppliers.trend > 0 ? "up" : "down"
+          }
           color="#ec4899"
-          onClick={() => handleKPIClick('slaSuppliers')}
+          onClick={() => handleKPIClick("slaSuppliers")}
           ariaLabel="Соблюдение SLA поставщиками"
         />
         <StatCard
@@ -156,7 +179,7 @@ export default function KPIDashboard({ period = "this_month" }) {
       </KPISection>
 
       {/* Financial Metrics */}
-      <KPISection title="💰 Финансовые метрики">
+      <KPISection title="Финансовые метрики">
         <StatCard
           icon={TbCurrencyDollar}
           title={data.financial.totalRevenue.value}
@@ -164,7 +187,7 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={data.financial.totalRevenue.trend}
           trend={data.financial.totalRevenue.trend > 0 ? "up" : "down"}
           color="#10b981"
-          onClick={() => handleKPIClick('totalRevenue')}
+          onClick={() => handleKPIClick("totalRevenue")}
           ariaLabel="Общая выручка за период"
         />
         <StatCard
@@ -174,7 +197,7 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={data.financial.avgMargin.trend}
           trend={data.financial.avgMargin.trend > 0 ? "up" : "down"}
           color="#3b82f6"
-          onClick={() => handleKPIClick('avgMargin')}
+          onClick={() => handleKPIClick("avgMargin")}
           ariaLabel="Средняя маржинальность"
         />
         <StatCard
@@ -200,13 +223,13 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={Math.abs(data.financial.outstandingDebts.trend)}
           trend="down" // Down is good for debts
           color="#ef4444"
-          onClick={() => handleKPIClick('debts')}
+          onClick={() => handleKPIClick("debts")}
           ariaLabel="Текущие задолженности"
         />
       </KPISection>
 
       {/* Team Metrics */}
-      <KPISection title="👥 Метрики команды">
+      <KPISection title="Метрики команды">
         <StatCard
           icon={TbUsers}
           title={data.team.avgOrdersPerOperator.value}
@@ -222,7 +245,7 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={data.team.teamEfficiency.trend}
           trend={data.team.teamEfficiency.trend > 0 ? "up" : "down"}
           color="#10b981"
-          onClick={() => handleKPIClick('teamEfficiency')}
+          onClick={() => handleKPIClick("teamEfficiency")}
           ariaLabel="Общая эффективность команды"
         />
         <StatCard
@@ -236,7 +259,7 @@ export default function KPIDashboard({ period = "this_month" }) {
       </KPISection>
 
       {/* Supplier Metrics */}
-      <KPISection title="🏢 Метрики поставщиков">
+      <KPISection title="Метрики поставщиков">
         <StatCard
           icon={IoCheckmarkCircle}
           title={`${data.suppliers.successRate.value}%`}
@@ -244,7 +267,7 @@ export default function KPIDashboard({ period = "this_month" }) {
           change={data.suppliers.successRate.trend}
           trend={data.suppliers.successRate.trend > 0 ? "up" : "down"}
           color="#10b981"
-          onClick={() => handleKPIClick('supplierSuccess')}
+          onClick={() => handleKPIClick("supplierSuccess")}
           ariaLabel="Процент успешных подтверждений от поставщиков"
         />
         <StatCard
