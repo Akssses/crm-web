@@ -617,17 +617,261 @@
   width: 100%;
 }
 
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1400px) {
+  .content {
+    grid-template-columns: 260px 1fr 300px;
+    gap: 16px;
+  }
+}
+
 @media (max-width: 1200px) {
   .content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
   }
 
-  .leftSidebar,
-  .rightSidebar {
-    order: 1;
+  .leftSidebar {
+    display: none;
   }
 
   .mainContent {
     order: 0;
+  }
+
+  .rightSidebar {
+    order: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .rightSidebar {
+    order: -1;
+  }
+
+  .summaryCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .summaryTitle {
+    grid-column: 1 / -1;
+  }
+
+  .versionHeader {
+    grid-column: 1 / -1;
+  }
+
+  .summaryItems {
+    grid-column: 1;
+    border-bottom: none;
+  }
+
+  .summaryTotals {
+    grid-column: 2;
+    padding-top: 0;
+  }
+
+  .timerCard {
+    grid-column: 1 / -1;
+  }
+
+  .actionButtons {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .fullWidth {
+    width: auto;
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+
+  .pageTitle {
+    font-size: 16px;
+  }
+
+  .topActions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .timerBadge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .content {
+    padding-top: 16px;
+    gap: 16px;
+  }
+
+  .summaryCard {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .summaryItems,
+  .summaryTotals {
+    grid-column: 1;
+  }
+
+  .summaryTotals {
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .fullWidth {
+    width: 100%;
+  }
+
+  .tabs {
+    padding: 8px;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .routeSection {
+    padding: 16px;
+  }
+
+  .routeTitle {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .serviceCard {
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+
+  .timelineIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .timelineLine {
+    display: none;
+  }
+
+  .cardContent {
+    padding: 16px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cardPrice {
+    text-align: left;
+  }
+
+  .priceValue {
+    font-size: 16px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .routeInfo {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cardFeatures {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .detailsBtn {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .finalDestination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .finalInfo {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .topActions {
+    gap: 8px;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .timerBadge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .summaryRow {
+    font-size: 13px;
+  }
+
+  .totalRow {
+    font-size: 13px;
+
+    &.grandTotal {
+      font-size: 16px;
+    }
+  }
+
+  .timerValue {
+    font-size: 24px;
+  }
+
+  .statusBadge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .cardDate {
+    font-size: 12px;
+  }
+
+  .cardMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }

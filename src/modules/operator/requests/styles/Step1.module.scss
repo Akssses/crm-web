@@ -237,6 +237,14 @@
   margin-top: 24px;
 }
 
+/* ========== RESPONSIVE STYLES ========== */
+
+@media (max-width: 1024px) {
+  .passengerActions {
+    flex-wrap: wrap;
+  }
+}
+
 @media (max-width: 768px) {
   .searchFields,
   .formRow {
@@ -250,5 +258,105 @@
     button {
       width: 100%;
     }
+  }
+
+  .clientCard {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .clientAvatar {
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .clientContacts {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .passengerItem {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .passengerAvatar {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .passengerMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    margin-bottom: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .clientCard {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .clientName {
+    font-size: 14px;
+  }
+
+  .clientContacts {
+    font-size: 13px;
+  }
+
+  .clientOrg,
+  .clientInn {
+    font-size: 12px;
+  }
+
+  .tag {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .passengersList {
+    gap: 8px;
+  }
+
+  .passengerItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .passengerInfo {
+    width: 100%;
+  }
+
+  .passengerMenu {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  .passengerItem {
+    position: relative;
+  }
+
+  .passengersHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .formTextarea {
+    margin-top: 16px;
   }
 }
