@@ -1,7 +1,12 @@
 "use client";
 
 import React from "react";
-import { IoStar, IoStarOutline, IoTrashOutline, IoTimeOutline } from "react-icons/io5";
+import {
+  IoStar,
+  IoStarOutline,
+  IoTrashOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import {
   IoChatbubbleEllipsesOutline,
   IoCheckmarkCircle,
@@ -32,7 +37,7 @@ const ICON_COLOR_MAP = {
 
 const STATUS_CONFIG = {
   "в работе": { color: "#3b82f6", bg: "#dbeafe" },
-  "выполнено": { color: "#10b981", bg: "#d1fae5" },
+  выполнено: { color: "#10b981", bg: "#d1fae5" },
 };
 
 export default function NotificationItem({
@@ -76,7 +81,6 @@ export default function NotificationItem({
             {title}
             {unread && <span className={s.unreadDot}></span>}
           </h4>
-          {important && <span className={s.importantBadge}>Важно</span>}
           {status && (
             <span
               className={s.statusBadge}
@@ -90,7 +94,7 @@ export default function NotificationItem({
           )}
         </div>
         <p className={s.description}>{description}</p>
-        
+
         {comment && (
           <div className={s.comment}>
             <p>{comment}</p>
