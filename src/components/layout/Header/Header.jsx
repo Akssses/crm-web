@@ -1,14 +1,16 @@
 "use client";
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdMenu, MdClose } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { menuItems as adminMenuItems } from "../Sidebar/Data";
+import { useSidebar } from "../Sidebar/Sidebar";
 import s from "./Header.module.scss";
 
 export default function Header({ menuItems = adminMenuItems }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const pathname = usePathname();
+  const { isMobileSidebarOpen, setIsMobileSidebarOpen } = useSidebar();
 
   const resolvedMenuItems = useMemo(() => {
     if (Array.isArray(menuItems) && menuItems.length) {
@@ -59,10 +61,23 @@ export default function Header({ menuItems = adminMenuItems }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const toggleMobileSidebar = () => {
+    setIsMobileSidebarOpen(!isMobileSidebarOpen);
+  };
+
   return (
     <header className={s.header}>
       <div className={s.container}>
-        <h4 className={s.title}>{pageTitle}</h4>
+        <div className={s.leftSection}>
+          <button
+            className={s.burgerButton}
+            onClick={toggleMobileSidebar}
+            aria-label="Toggle menu"
+          >
+            {isMobileSidebarOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
+          </button>
+          <h4 className={s.title}>{pageTitle}</h4>
+        </div>
 
         <div className={s.profileSection} ref={dropdownRef}>
           <button
@@ -88,7 +103,7 @@ export default function Header({ menuItems = adminMenuItems }) {
               <button className={s.dropdownItem}>Настройки</button>
               <button className={s.dropdownItem}>Помощь</button>
               <div className={s.divider}></div>
-              <button className={s.dropdownItem + " " + s.logout}>Выход</button>
+              <button className={`${s.dropdownItem} ${s.logout}`}>Выход</button>
             </div>
           )}
         </div>
