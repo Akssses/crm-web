@@ -17,17 +17,33 @@ export default function Header({ menuItems = adminMenuItems }) {
     return adminMenuItems;
   }, [menuItems]);
 
+  const normalize = (href) => {
+    if (!href) return "";
+    if (href !== "/" && href.endsWith("/")) return href.slice(0, -1);
+    return href;
+  };
+
   const pageTitle = useMemo(() => {
     if (!pathname) {
       return "Профиль";
     }
 
-    const matchedItem = resolvedMenuItems.find((item) => {
-      if (!item.href || item.href === "#") {
-        return false;
-      }
-      return pathname.startsWith(item.href);
-    });
+    const normalizedPath = normalize(pathname);
+
+    const matchedItem = resolvedMenuItems
+      .filter((item) => item.href && item.href !== "#")
+      .reduce((best, item) => {
+        const href = normalize(item.href);
+        if (
+          normalizedPath === href ||
+          (href !== "/" && normalizedPath.startsWith(`${href}/`))
+        ) {
+          if (!best || href.length > best.href.length) {
+            return { href, label: item.label };
+          }
+        }
+        return best;
+      }, null);
 
     return matchedItem?.label || "Профиль";
   }, [pathname, resolvedMenuItems]);

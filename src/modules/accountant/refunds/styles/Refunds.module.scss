@@ -1,0 +1,157 @@
+.refunds {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.search {
+  min-width: 240px;
+}
+
+.section {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.sectionSubtitle {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.summaryCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summaryLabel {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.summaryValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.logList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logItem {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.logMeta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.logMessage {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 500;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.badgeError {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badgeWarning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badgeInfo {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.reportFilters {
+  display: flex;
+  gap: 10px;
+}
+
+.reportTable {
+  margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .search {
+    width: 100%;
+    min-width: auto;
+  }
+}

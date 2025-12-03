@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import s from "./Sidebar.module.scss";
 import { menuItems as adminMenuItems } from "./Data";
@@ -34,6 +34,34 @@ function SidebarComponent({ items = adminMenuItems }) {
   const { isCollapsed, setIsCollapsed } = useSidebar();
   const pathname = usePathname();
 
+  const normalize = (href) => {
+    if (!href) return "";
+    if (href !== "/" && href.endsWith("/")) return href.slice(0, -1);
+    return href;
+  };
+
+  const normalizedPath = normalize(pathname || "/");
+
+  const activeHref = useMemo(() => {
+    return (
+      items
+        .filter((item) => item.href && item.href !== "#")
+        .reduce((best, item) => {
+          const normalizedHref = normalize(item.href);
+          if (
+            normalizedPath === normalizedHref ||
+            (normalizedHref !== "/" &&
+              normalizedPath.startsWith(`${normalizedHref}/`))
+          ) {
+            if (!best || normalizedHref.length > best.length) {
+              return normalizedHref;
+            }
+          }
+          return best;
+        }, null) || null
+    );
+  }, [items, normalizedPath]);
+
   return (
     <aside className={`${s.sidebar} ${isCollapsed ? s.collapsed : ""}`}>
       <div className={`${s.header} ${isCollapsed ? s.headerCollapsed : ""}`}>
@@ -57,8 +85,8 @@ function SidebarComponent({ items = adminMenuItems }) {
 
       <nav className={s.menu}>
         {items.map((item) => {
-          const isActive =
-            pathname === item.href || pathname.startsWith(item.href + "/");
+          const normalizedHref = normalize(item.href);
+          const isActive = activeHref && normalizedHref === activeHref;
           const Icon = item.icon;
 
           return (

@@ -1,9 +1,9 @@
-import { 
-  MdDashboard, 
-  MdDescription, 
-  MdPayment, 
-  MdAssignmentReturn, 
-  MdPeople 
+import {
+  MdDashboard,
+  MdDescription,
+  MdPayment,
+  MdAssignmentReturn,
+  MdPeople,
 } from "react-icons/md";
 
 export const accountantMenuItems = [
@@ -29,7 +29,7 @@ export const accountantMenuItems = [
     id: "returns",
     label: "Возвраты",
     icon: MdAssignmentReturn,
-    href: "/accountant/returns",
+    href: "/accountant/refunds",
   },
   {
     id: "employees",
@@ -38,4 +38,3 @@ export const accountantMenuItems = [
     href: "/accountant/employees",
   },
 ];
-
