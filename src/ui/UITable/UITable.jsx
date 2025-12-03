@@ -57,104 +57,105 @@ export default function UITable({
   return (
     <>
       <div className={s.tableWrapper}>
-        {/* Header */}
-        <div className={s.tableHeader}>
-          <div className={s.headerRow}>
-            {showCheckbox && (
-              <div className={s.checkboxHeader}>
-                <button
-                  className={s.checkbox}
-                  onClick={toggleSelectAll}
-                  title="Выбрать все"
-                >
-                  {isAllSelected ? (
-                    <MdCheckBox className={s.checkboxIcon} />
-                  ) : isPartialSelected ? (
-                    <div className={s.checkboxPartial} />
-                  ) : (
-                    <MdCheckBoxOutlineBlank className={s.checkboxIcon} />
-                  )}
-                </button>
-              </div>
-            )}
-            {columns.map((col, idx) => (
-              <span
-                key={idx}
-                className={s.headerCell}
-                style={{
-                  flex: col.width ? `0 0 ${col.width}` : (col.flex || 1),
-                  ...col.style,
-                }}
-              >
-                {col.label}
-              </span>
-            ))}
-            {onRowAction && <div className={s.actionHeader}></div>}
-          </div>
-        </div>
-
-        {/* Body */}
-        <div className={s.tableBody}>
-          {rows.length === 0 ? (
-            <div className={s.emptyState}>
-              <p>Нет данных для отображения</p>
-            </div>
-          ) : (
-            rows.map((row, rowIdx) => (
-              <div
-                key={rowIdx}
-                className={`${s.bodyRow} ${
-                  selectedRows.includes(rowIdx) ? s.selected : ""
-                } ${onRowClick ? s.clickable : ""}`}
-                onClick={(e) => handleRowClick(row, rowIdx, e)}
-              >
-                {showCheckbox && (
-                  <div className={s.checkboxCell}>
-                    <button
-                      className={s.checkbox}
-                      onClick={() => toggleSelectRow(rowIdx)}
-                    >
-                      {selectedRows.includes(rowIdx) ? (
-                        <MdCheckBox className={s.checkboxIcon} />
-                      ) : (
-                        <MdCheckBoxOutlineBlank className={s.checkboxIcon} />
-                      )}
-                    </button>
-                  </div>
-                )}
-                {columns.map((col, colIdx) => (
-                  <div
-                    key={colIdx}
-                    className={s.bodyCell}
-                    style={{
-                      flex: col.width ? `0 0 ${col.width}` : (col.flex || 1),
-                      ...col.style,
-                    }}
+        <div className={s.tableInner}>
+          {/* Header */}
+          <div className={s.tableHeader}>
+            <div className={s.headerRow}>
+              {showCheckbox && (
+                <div className={s.checkboxHeader}>
+                  <button
+                    className={s.checkbox}
+                    onClick={toggleSelectAll}
+                    title="Выбрать все"
                   >
-                    {col.render ? (
-                      col.render(row[col.key], row, rowIdx)
+                    {isAllSelected ? (
+                      <MdCheckBox className={s.checkboxIcon} />
+                    ) : isPartialSelected ? (
+                      <div className={s.checkboxPartial} />
                     ) : (
-                      <span className={s.cellContent}>{row[col.key]}</span>
+                      <MdCheckBoxOutlineBlank className={s.checkboxIcon} />
                     )}
-                  </div>
-                ))}
-                {onRowAction && (
-                  <div className={s.actionCell}>
-                    <button
-                      className={s.actionButton}
-                      onClick={() => onRowAction(row, rowIdx)}
-                      title="Действия"
-                    >
-                      <MdMoreVert size={20} />
-                    </button>
-                  </div>
-                )}
+                  </button>
+                </div>
+              )}
+              {columns.map((col, idx) => (
+                <span
+                  key={idx}
+                  className={s.headerCell}
+                  style={{
+                    flex: col.width ? `0 0 ${col.width}` : col.flex || 1,
+                    ...col.style,
+                  }}
+                >
+                  {col.label}
+                </span>
+              ))}
+              {onRowAction && <div className={s.actionHeader}></div>}
+            </div>
+          </div>
+
+          {/* Body */}
+          <div className={s.tableBody}>
+            {rows.length === 0 ? (
+              <div className={s.emptyState}>
+                <p>Нет данных для отображения</p>
               </div>
-            ))
-          )}
+            ) : (
+              rows.map((row, rowIdx) => (
+                <div
+                  key={rowIdx}
+                  className={`${s.bodyRow} ${
+                    selectedRows.includes(rowIdx) ? s.selected : ""
+                  } ${onRowClick ? s.clickable : ""}`}
+                  onClick={(e) => handleRowClick(row, rowIdx, e)}
+                >
+                  {showCheckbox && (
+                    <div className={s.checkboxCell}>
+                      <button
+                        className={s.checkbox}
+                        onClick={() => toggleSelectRow(rowIdx)}
+                      >
+                        {selectedRows.includes(rowIdx) ? (
+                          <MdCheckBox className={s.checkboxIcon} />
+                        ) : (
+                          <MdCheckBoxOutlineBlank className={s.checkboxIcon} />
+                        )}
+                      </button>
+                    </div>
+                  )}
+                  {columns.map((col, colIdx) => (
+                    <div
+                      key={colIdx}
+                      className={s.bodyCell}
+                      style={{
+                        flex: col.width ? `0 0 ${col.width}` : col.flex || 1,
+                        ...col.style,
+                      }}
+                    >
+                      {col.render ? (
+                        col.render(row[col.key], row, rowIdx)
+                      ) : (
+                        <span className={s.cellContent}>{row[col.key]}</span>
+                      )}
+                    </div>
+                  ))}
+                  {onRowAction && (
+                    <div className={s.actionCell}>
+                      <button
+                        className={s.actionButton}
+                        onClick={() => onRowAction(row, rowIdx)}
+                        title="Действия"
+                      >
+                        <MdMoreVert size={20} />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </>
   );
 }
-

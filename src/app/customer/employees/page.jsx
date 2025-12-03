@@ -1,5 +1,5 @@
+import Employees from "@/modules/customer/employees/components/Employees";
+
 export default function CustomerEmployeesPage() {
-  return <div>Страница сотрудников заказчика.</div>;
+  return <Employees />;
 }
-
-
