@@ -122,8 +122,12 @@ function SidebarComponent({ items = adminMenuItems }) {
 
         <nav className={s.menu}>
           {items.map((item) => {
+            // Для корневых дашбордов типа "/accountant" считаем активным только точное совпадение,
+            // чтобы дашборд бухгалтера не подсвечивался одновременно с другими страницами.
+            const isRootDashboard = item.href === "/accountant";
             const isActive =
-              pathname === item.href || pathname.startsWith(item.href + "/");
+              pathname === item.href ||
+              (!isRootDashboard && pathname.startsWith(item.href + "/"));
             const Icon = item.icon;
 
             return (
