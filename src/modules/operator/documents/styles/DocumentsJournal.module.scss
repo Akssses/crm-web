@@ -9,6 +9,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -16,10 +17,12 @@
   font-weight: 600;
   color: var(--color-gray-900);
   margin: 0;
+  line-height: 1.3;
 }
 
 .filterWrapper {
   min-width: 200px;
+  flex-shrink: 0;
 }
 
 .actionCell {
@@ -32,11 +35,13 @@
   font-weight: 500;
   color: var(--color-gray-900);
   font-size: 14px;
+  line-height: 1.4;
 }
 
 .documentName {
   font-size: 13px;
   color: var(--color-gray-600);
+  line-height: 1.4;
 }
 
 .serviceCell {
@@ -49,6 +54,7 @@
   font-weight: 500;
   color: var(--color-gray-900);
   font-size: 14px;
+  line-height: 1.4;
 }
 
 .serviceId {
@@ -65,6 +71,11 @@
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
+  width: fit-content;
+
+  svg {
+    flex-shrink: 0;
+  }
 }
 
 .status-green {
@@ -92,13 +103,108 @@
   color: var(--color-gray-700);
 }
 
+// Tablet
+@media (max-width: 992px) {
+  .container {
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .filterWrapper {
+    min-width: 180px;
+  }
+}
+
+// Mobile landscape
 @media (max-width: 768px) {
+  .container {
+    gap: 14px;
+  }
+
   .header {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 16px;
   }
 
   .filterWrapper {
     width: 100%;
+    min-width: auto;
+  }
+
+  .actionText {
+    font-size: 13px;
+  }
+
+  .documentName {
+    font-size: 12px;
+  }
+
+  .serviceName {
+    font-size: 13px;
+  }
+
+  .serviceId {
+    font-size: 11px;
+  }
+
+  .statusBadge {
+    padding: 5px 10px;
+    font-size: 11px;
+    gap: 4px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+// Mobile portrait
+@media (max-width: 480px) {
+  .container {
+    gap: 12px;
+  }
+
+  .header {
+    gap: 10px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .actionText {
+    font-size: 12px;
+  }
+
+  .documentName {
+    font-size: 11px;
+  }
+
+  .serviceName {
+    font-size: 12px;
+  }
+
+  .serviceId {
+    font-size: 10px;
+  }
+
+  .statusBadge {
+    padding: 4px 8px;
+    font-size: 10px;
+    gap: 3px;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
   }
 }

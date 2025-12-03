@@ -1,5 +1,5 @@
 /* ============================================
-   Documents.module.scss - мобильная адаптивность
+   Documents.module.scss - полная мобильная адаптивность
    ============================================ */
 
 .documents {
@@ -18,6 +18,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 16px;
 }
 
@@ -25,16 +26,19 @@
   margin: 0;
   font-size: 28px;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .header p {
   margin: 4px 0 0;
   color: var(--color-gray-600);
+  font-size: 14px;
 }
 
 .headerActions {
   display: flex;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .tabs {
@@ -44,6 +48,11 @@
   border-bottom: 1px solid var(--color-gray-200);
   padding-bottom: 4px;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .tab {
@@ -52,16 +61,21 @@
   background: none;
   color: var(--color-gray-600);
   font-weight: 500;
+  font-size: 14px;
   border-bottom: 2px solid transparent;
   cursor: pointer;
   transition: color 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
-}
 
-.tab.active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  &:hover {
+    color: var(--color-gray-900);
+  }
+
+  &.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
 }
 
 .tabContainer {
@@ -100,6 +114,18 @@
   justify-content: space-between;
   align-items: center;
   color: var(--color-gray-600);
+  font-size: 14px;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-gray-900);
+  }
+
+  span {
+    font-size: 13px;
+  }
 }
 
 .templates {
@@ -109,6 +135,15 @@
   max-height: 640px;
   overflow-y: auto;
   padding-right: 4px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 2px;
+  }
 }
 
 .templateCard {
@@ -122,20 +157,22 @@
   gap: 10px;
   cursor: pointer;
   transition: all 0.2s;
-}
 
-.templateCard:hover {
-  border-color: var(--color-primary);
-}
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 53, 255, 0.05);
+  }
 
-.templateCard.active {
-  border-color: var(--color-primary);
-  box-shadow: 0 8px 20px rgba(0, 53, 255, 0.08);
+  &.active {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 20px rgba(0, 53, 255, 0.08);
+  }
 }
 
 .templateCardHeader {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 12px;
 }
 
@@ -143,11 +180,14 @@
   margin: 0;
   font-weight: 600;
   font-size: 14px;
+  color: var(--color-gray-900);
+  line-height: 1.4;
 }
 
 .templateMeta {
   font-size: 13px;
   color: var(--color-gray-500);
+  margin-top: 2px;
 }
 
 .statusBadge {
@@ -160,6 +200,7 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .statusActive {
@@ -193,6 +234,13 @@
   justify-content: space-between;
   color: var(--color-gray-500);
   font-size: 12px;
+  gap: 8px;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .templateEditor {
@@ -208,29 +256,34 @@
 .editorHeader {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 16px;
   flex-wrap: wrap;
-}
 
-.editorHeader h3 {
-  margin: 0;
-  font-size: 18px;
-}
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-gray-900);
+  }
 
-.editorHeader p {
-  margin: 4px 0 0;
-  color: var(--color-gray-600);
-  font-size: 13px;
+  p {
+    margin: 4px 0 0;
+    color: var(--color-gray-600);
+    font-size: 13px;
+  }
 }
 
 .editorActions {
   display: flex;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .editorToolbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   flex-wrap: wrap;
 }
@@ -240,20 +293,26 @@
   border: 1px solid var(--color-gray-200);
   border-radius: 999px;
   overflow: hidden;
-}
 
-.modeSwitch button {
-  border: none;
-  background: none;
-  padding: 8px 18px;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 13px;
-}
+  button {
+    border: none;
+    background: none;
+    padding: 8px 18px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--color-gray-600);
+    transition: all 0.2s;
 
-.modeSwitch button.active {
-  background: var(--color-primary);
-  color: white;
+    &:hover {
+      background: var(--color-gray-50);
+    }
+
+    &.active {
+      background: var(--color-primary);
+      color: white;
+    }
+  }
 }
 
 .previewActions {
@@ -269,6 +328,12 @@
   max-height: 480px;
   overflow-y: auto;
   font-size: 15px;
+  line-height: 1.6;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
 }
 
 .editorPanels {
@@ -285,13 +350,20 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
 
-.panel h3,
-.panel h4 {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 14px;
+  h3,
+  h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-gray-900);
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-gray-600);
+  }
 }
 
 .variableGroups {
@@ -302,8 +374,9 @@
 
 .groupLabel {
   font-weight: 600;
-  margin-bottom: 6px;
+  margin: 0 0 6px 0;
   font-size: 12px;
+  color: var(--color-gray-700);
 }
 
 .chips {
@@ -318,8 +391,16 @@
   padding: 6px 12px;
   font-size: 12px;
   background: var(--color-gray-50);
+  color: var(--color-gray-700);
   cursor: pointer;
   flex-shrink: 0;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
 }
 
 .blocks {
@@ -334,9 +415,16 @@
   border-radius: 10px;
   padding: 10px;
   background: var(--color-gray-50);
+  color: var(--color-gray-700);
   cursor: pointer;
   text-align: left;
   font-size: 13px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-300);
+  }
 }
 
 .versions {
@@ -351,24 +439,28 @@
   padding: 12px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
-}
 
-.versionCard.activeVersion {
-  border-color: var(--color-primary);
-  background: rgba(0, 53, 255, 0.05);
+  &.activeVersion {
+    border-color: var(--color-primary);
+    background: rgba(0, 53, 255, 0.05);
+  }
 }
 
 .versionLabel {
   margin: 0;
   font-weight: 600;
   font-size: 13px;
+  color: var(--color-gray-900);
 }
 
 .versionMeta {
   color: var(--color-gray-500);
   font-size: 12px;
+  display: block;
+  margin-top: 2px;
 }
 
 .versionChanges {
@@ -422,25 +514,20 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-}
 
-.logList li {
-  color: var(--color-gray-700);
-  font-size: 13px;
+  li {
+    color: var(--color-gray-700);
+    font-size: 13px;
+    line-height: 1.6;
+  }
 }
 
 .panelHeader {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.panelHeader p {
-  margin: 4px 0 0;
-  color: var(--color-gray-600);
-  font-size: 13px;
 }
 
 .signatureList {
@@ -475,17 +562,20 @@
 .signatureInfo {
   flex: 1;
   min-width: 200px;
-}
 
-.signatureInfo span {
-  color: var(--color-gray-600);
-  font-size: 13px;
+  span {
+    color: var(--color-gray-600);
+    font-size: 13px;
+    display: block;
+    margin-top: 2px;
+  }
 }
 
 .signatureName {
   margin: 0;
   font-weight: 600;
   font-size: 14px;
+  color: var(--color-gray-900);
 }
 
 .signatureMeta {
@@ -499,13 +589,15 @@
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 8px;
-}
 
-.signatureTags span {
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--color-gray-100);
-  font-size: 11px;
+  span {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--color-gray-100);
+    color: var(--color-gray-700);
+    font-size: 11px;
+    font-weight: 500;
+  }
 }
 
 .signatureActions {
@@ -525,6 +617,7 @@
   padding: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
 }
@@ -533,22 +626,27 @@
   margin: 0;
   font-weight: 600;
   font-size: 14px;
+  color: var(--color-gray-900);
 }
 
 .watermarkMeta {
   color: var(--color-gray-500);
   font-size: 12px;
+  display: block;
+  margin-top: 4px;
 }
 
 .watermarkText {
   font-weight: 600;
   color: var(--color-primary);
   font-size: 14px;
+  margin: 8px 0 4px;
 }
 
 .watermarkCondition {
   color: var(--color-gray-600);
   font-size: 13px;
+  margin: 0;
 }
 
 .logTable {
@@ -575,25 +673,32 @@
   color: var(--color-gray-600);
 }
 
-.logDescription p {
-  margin: 0;
-  font-size: 13px;
-}
+.logDescription {
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-gray-900);
+  }
 
-.logDescription span {
-  color: var(--color-gray-500);
-  font-size: 12px;
+  span {
+    color: var(--color-gray-500);
+    font-size: 12px;
+    display: block;
+    margin-top: 2px;
+  }
 }
 
 .logDate {
   color: var(--color-gray-600);
   font-size: 13px;
+  text-align: right;
 }
 
 /* ============================================
    МОБИЛЬНАЯ АДАПТАЦИЯ
    ============================================ */
 
+// Large tablet
 @media (max-width: 1200px) {
   .inner {
     gap: 20px;
@@ -601,12 +706,22 @@
 
   .templatesLayout {
     grid-template-columns: 280px 1fr;
+    gap: 20px;
+  }
+
+  .editorPanels {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+// Tablet
 @media (max-width: 992px) {
   .inner {
-    gap: 16px;
+    gap: 18px;
+  }
+
+  .header h1 {
+    font-size: 24px;
   }
 
   .templatesLayout {
@@ -617,48 +732,57 @@
     max-height: 400px;
   }
 
+  .templates {
+    max-height: 350px;
+  }
+
   .editorPanels {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .formGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+// Mobile landscape
 @media (max-width: 768px) {
-  .documents {
-    padding: 16px;
-  }
-
   .inner {
-    gap: 14px;
+    gap: 16px;
   }
 
   .header {
     flex-direction: column;
-    gap: 12px;
     align-items: stretch;
+    gap: 12px;
   }
 
   .header h1 {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .headerActions {
     width: 100%;
-    flex-direction: column;
-  }
 
-  :global(.headerActions button) {
-    width: 100%;
-    font-size: 12px;
+    button {
+      flex: 1;
+    }
   }
 
   .tabs {
-    gap: 6px;
-    padding-bottom: 2px;
+    gap: 4px;
+    padding-bottom: 8px;
+    margin-left: -4px;
+    margin-right: -4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    overflow-x: scroll;
+    width: 40vh;
   }
 
   .tab {
-    padding: 10px 14px;
-    font-size: 12px;
+    padding: 10px 16px;
+    font-size: 13px;
   }
 
   .templateFilters {
@@ -666,16 +790,12 @@
     gap: 12px;
   }
 
-  .templatesLayout {
-    gap: 16px;
-  }
-
   .templates {
     max-height: 300px;
   }
 
   .templateCard {
-    padding: 12px;
+    padding: 14px;
     gap: 8px;
   }
 
@@ -684,31 +804,77 @@
   }
 
   .templateMeta {
+    font-size: 12px;
+  }
+
+  .statusBadge {
+    padding: 3px 10px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .templateTag {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  .templateFooter {
     font-size: 11px;
   }
 
   .templateEditor {
     padding: 16px;
-    gap: 12px;
+    gap: 14px;
   }
 
   .editorHeader {
     gap: 12px;
+
+    h3 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 12px;
+    }
   }
 
-  .editorHeader h3 {
-    font-size: 16px;
+  .editorActions {
+    width: 100%;
+    flex-wrap: wrap;
   }
 
   .editorToolbar {
+    flex-direction: column;
+    align-items: stretch;
     gap: 12px;
+  }
+
+  .modeSwitch {
+    width: 100%;
+
+    button {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+  }
+
+  .previewActions {
+    width: 100%;
+    flex-wrap: wrap;
+
+    button {
+      flex: 1;
+      font-size: 12px;
+    }
   }
 
   .wysiwyg {
     min-height: 200px;
-    max-height: 350px;
+    max-height: 300px;
     padding: 12px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .editorPanels {
@@ -717,7 +883,7 @@
   }
 
   .panel {
-    padding: 12px;
+    padding: 14px;
     gap: 12px;
   }
 
@@ -727,8 +893,26 @@
   }
 
   .blockButton {
-    padding: 8px;
+    padding: 8px 10px;
     font-size: 12px;
+  }
+
+  .versionCard {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .versionLabel {
+    font-size: 12px;
+  }
+
+  .versionActions {
+    width: 100%;
+
+    button {
+      flex: 1;
+      font-size: 11px;
+    }
   }
 
   .formGrid {
@@ -748,67 +932,53 @@
 
   .regenerationActions {
     flex-direction: column-reverse;
-  }
+    gap: 10px;
 
-  :global(.regenerationActions button) {
-    width: 100%;
-    font-size: 12px;
+    button {
+      width: 100%;
+    }
   }
 
   .signatureCard {
     flex-direction: column;
     align-items: flex-start;
-    padding: 12px;
+    padding: 14px;
+    gap: 12px;
   }
 
   .signatureInfo {
-    min-width: auto;
     width: 100%;
+    min-width: auto;
   }
 
   .signatureActions {
     width: 100%;
-  }
 
-  :global(.signatureActions button) {
-    flex: 1;
-    font-size: 12px;
+    button {
+      flex: 1;
+    }
   }
 
   .watermarkCard {
     flex-direction: column;
-    gap: 10px;
+    padding: 14px;
   }
 
   .logRow {
     grid-template-columns: 1fr;
+    padding: 12px 14px;
     gap: 8px;
   }
 
-  .logType {
-    font-size: 10px;
-  }
-
-  .logDescription p {
-    font-size: 12px;
-  }
-
   .logDate {
-    font-size: 11px;
+    text-align: left;
   }
 }
 
-@media (max-width: 640px) {
-  .documents {
-    padding: 12px;
-  }
-
+// Mobile portrait
+@media (max-width: 480px) {
   .inner {
     gap: 12px;
-  }
-
-  .header {
-    gap: 10px;
   }
 
   .header h1 {
@@ -816,36 +986,50 @@
   }
 
   .tabs {
-    gap: 4px;
+    gap: 2px;
   }
 
   .tab {
     padding: 8px 12px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .templateFilters {
-    grid-template-columns: 1fr;
-  }
-
-  .templateCard {
-    padding: 10px;
-  }
-
-  .templateName {
-    font-size: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .templates {
     max-height: 250px;
   }
 
-  .templateEditor {
+  .templateCard {
     padding: 12px;
+    gap: 6px;
   }
 
-  .editorHeader {
-    gap: 10px;
+  .templateName {
+    font-size: 12px;
+  }
+
+  .templateMeta {
+    font-size: 11px;
+  }
+
+  .templateTag {
+    padding: 2px 8px;
+    font-size: 10px;
+  }
+
+  .templateFooter {
+    font-size: 10px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .templateEditor {
+    padding: 12px;
+    gap: 12px;
   }
 
   .editorHeader h3 {
@@ -856,14 +1040,21 @@
     font-size: 11px;
   }
 
+  .modeSwitch button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
   .wysiwyg {
     min-height: 150px;
     max-height: 250px;
+    padding: 10px;
+    font-size: 13px;
   }
 
-  .modeSwitch button {
-    padding: 6px 12px;
-    font-size: 11px;
+  .panel {
+    padding: 12px;
+    gap: 10px;
   }
 
   .chip {
@@ -871,60 +1062,74 @@
     font-size: 10px;
   }
 
-  .statusBadge {
-    padding: 3px 10px;
+  .groupLabel {
+    font-size: 11px;
+  }
+
+  .blockButton {
+    padding: 7px 8px;
     font-size: 11px;
   }
 
   .versionCard {
-    flex-direction: column;
+    padding: 10px;
   }
 
   .versionLabel {
-    font-size: 12px;
-  }
-
-  .formGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .logList li {
     font-size: 11px;
   }
-}
 
-@media (max-width: 480px) {
-  .inner {
-    gap: 10px;
-  }
-
-  .header h1 {
-    font-size: 16px;
-  }
-
-  .tab {
-    padding: 6px 10px;
+  .versionMeta {
     font-size: 10px;
   }
 
-  .templateCard {
-    padding: 8px;
+  .versionChanges {
+    font-size: 11px;
   }
 
-  .templates {
-    max-height: 200px;
+  .signatureCard {
+    padding: 12px;
   }
 
-  .editorHeader h3 {
-    font-size: 14px;
+  .signatureIcon {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 
-  .chip {
-    padding: 3px 6px;
-    font-size: 9px;
+  .signatureName {
+    font-size: 13px;
   }
 
-  .wysiwyg {
-    min-height: 120px;
+  .watermarkCard {
+    padding: 12px;
+  }
+
+  .watermarkTitle {
+    font-size: 13px;
+  }
+
+  .logRow {
+    padding: 10px 12px;
+  }
+
+  .logType {
+    font-size: 10px;
+  }
+
+  .logDescription p {
+    font-size: 12px;
+  }
+
+  .logDescription span {
+    font-size: 11px;
+  }
+
+  .logDate {
+    font-size: 11px;
   }
 }
