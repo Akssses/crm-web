@@ -31,4 +31,3 @@ export default function ClientHeader({ clientName = 'ООО "Asia Travel"' }) {
     </div>
   );
 }
-

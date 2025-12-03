@@ -734,8 +734,30 @@
 }
 
 @media (max-width: 768px) {
+  .documentActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .serviceHeaderLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .detailItem {
+    justify-content: space-between;
+  }
+  .infoRow {
+    display: flex;
+
+    justify-content: space-between;
+  }
+  .metaGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
   .serviceDetail {
-    padding: 16px;
+    padding: 0px;
   }
 
   .generalInfo {
@@ -749,6 +771,8 @@
 
   .navigation {
     padding: 0 12px;
+    overflow-x: scroll;
+    width: 40vh;
   }
 
   .navButton {
@@ -757,7 +781,7 @@
   }
 
   .content {
-    padding: 16px;
+    padding: 0px;
   }
 
   .actionsFooter {
