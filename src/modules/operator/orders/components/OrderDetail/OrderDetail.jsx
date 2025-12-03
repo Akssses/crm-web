@@ -70,38 +70,38 @@ export default function OrderDetail({ context = "operator" }) {
           </div>
         </div>
         {!isCustomerContext && (
-          <div className={s.headerRight}>
-            <div className={s.headerButtons}>
-              <Button variant="primary" size="sm" icon={MdModeEditOutline}>
-                Редактировать
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => router.push(`/operator/orders/${params.id}/offer`)}
-              >
-                Ком. предложение
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                icon={MdChat}
-                onClick={() => router.push(`/operator/chat/${params.id}`)}
-              >
-                Чат
-              </Button>
-            </div>
-            <div className={s.priorityTags}>
-              {order.priorityTags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className={`${s.priorityTag} ${s[`priorityTag-${tag.color}`]}`}
-                >
-                  {tag.text}
-                </span>
-              ))}
-            </div>
+        <div className={s.headerRight}>
+          <div className={s.headerButtons}>
+            <Button variant="primary" size="sm" icon={MdModeEditOutline}>
+              Редактировать
+            </Button>
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => router.push(`/operator/orders/${params.id}/offer`)}
+            >
+              Ком. предложение
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              icon={MdChat}
+              onClick={() => router.push(`/operator/chat/${params.id}`)}
+            >
+              Чат
+            </Button>
           </div>
+          <div className={s.priorityTags}>
+            {order.priorityTags.map((tag, idx) => (
+              <span
+                key={idx}
+                className={`${s.priorityTag} ${s[`priorityTag-${tag.color}`]}`}
+              >
+                {tag.text}
+              </span>
+            ))}
+          </div>
+        </div>
         )}
       </header>
 

@@ -104,6 +104,12 @@ export default function Payments() {
         </div>
 
         <div className={s.flex}>
+          <Input
+            icon={IoSearchOutline}
+            placeholder="Поиск по номеру, заказу или клиенту..."
+            value={search}
+            onChange={setSearch}
+          />
           <Button variant="outline" icon={MdFileDownload}>
             Экспорт
           </Button>

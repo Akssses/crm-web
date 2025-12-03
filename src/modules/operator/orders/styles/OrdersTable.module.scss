@@ -1,5 +1,12 @@
 .container {
   margin-top: 8px;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container :global(.tableInner) {
+  min-width: 720px;
 }
 
 .amount {
