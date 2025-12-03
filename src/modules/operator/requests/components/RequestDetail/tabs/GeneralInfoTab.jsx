@@ -14,7 +14,34 @@ import Link from "next/link";
 import { Button } from "@/ui";
 import s from "../../../styles/RequestDetail.module.scss";
 
-export default function GeneralInfoTab({ request }) {
+const REQUIRED_DOCS = [
+  {
+    id: 1,
+    title: "Паспорт сотрудника",
+    meta: "Иванов И.И.",
+    status: "Не загружен",
+    statusTone: "danger",
+    actionLabel: "Загрузить паспорт",
+  },
+  {
+    id: 2,
+    title: "Доверенность",
+    meta: "Для оплаты билетов",
+    status: "Ожидает подтверждения",
+    statusTone: "warning",
+    actionLabel: "Подписать",
+  },
+  {
+    id: 3,
+    title: "Паспорт сопровождающего",
+    meta: "Смирнова О.А.",
+    status: "Загружено",
+    statusTone: "success",
+    actionLabel: "Открыть файл",
+  },
+];
+
+export default function GeneralInfoTab({ request, showDocumentUploads = false }) {
   return (
     <>
       {/* Info blocks */}
@@ -80,6 +107,49 @@ export default function GeneralInfoTab({ request }) {
           </div>
         </div>
       </section>
+
+      {showDocumentUploads && (
+        <section className={s.docsUploadSection}>
+          <div>
+            <div className={s.servicesTitle}>Документы заказчика</div>
+            <p className={s.docsUploadSubtitle}>
+              Здесь вы можете загрузить паспорта, доверенности и другие документы,
+              необходимые для оформления поездки. После загрузки они автоматически
+              отправятся вашему менеджеру.
+            </p>
+          </div>
+          <div className={s.docsUploadGrid}>
+            {REQUIRED_DOCS.map((doc) => (
+              <div key={doc.id} className={s.docsUploadCard}>
+                <div className={s.docsUploadTitle}>{doc.title}</div>
+                <div className={s.docsUploadMeta}>{doc.meta}</div>
+                <span
+                  className={`${s.docsUploadStatus} ${
+                    doc.statusTone === "danger"
+                      ? s.statusDanger
+                      : doc.statusTone === "warning"
+                      ? s.statusWarning
+                      : s.statusSuccess
+                  }`}
+                >
+                  {doc.status}
+                </span>
+                <div className={s.docsUploadActions}>
+                  <Button
+                    variant={doc.statusTone === "success" ? "outline" : "primary"}
+                    size="sm"
+                  >
+                    {doc.actionLabel}
+                  </Button>
+                  <Button variant="ghost" size="sm">
+                    История
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Services in order */}
       <section className={s.servicesSection}>

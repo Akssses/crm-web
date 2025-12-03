@@ -19,10 +19,11 @@ const TABS = [
   { id: "related", label: "Связанные заказы" },
 ];
 
-export default function RequestDetail() {
+export default function RequestDetail({ context = "operator" }) {
   const router = useRouter();
   const params = useParams();
   const [activeTab, setActiveTab] = useState("general");
+  const isCustomerContext = context === "customer";
   const request = {
     id: "A-213-321",
     status: "Новая",
@@ -39,7 +40,12 @@ export default function RequestDetail() {
   const renderTabContent = () => {
     switch (activeTab) {
       case "general":
-        return <GeneralInfoTab request={request} />;
+        return (
+          <GeneralInfoTab
+            request={request}
+            showDocumentUploads={isCustomerContext}
+          />
+        );
       case "finance":
         return <FinanceTab request={request} />;
       case "versions":

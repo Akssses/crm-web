@@ -38,6 +38,21 @@
   color: white;
 }
 
+.status-warning {
+  background: #f59e0b;
+  color: #fff7ed;
+}
+
+.status-success {
+  background: #16a34a;
+  color: #ecfdf5;
+}
+
+.status-info {
+  background: #3b82f6;
+  color: #eff6ff;
+}
+
 .chatButton {
   display: flex;
   align-items: center;

@@ -115,6 +115,101 @@
   gap: 16px;
 }
 
+.docsUploadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.docsUploadContainer {
+  border-radius: 16px;
+  border: 1px solid var(--color-gray-200);
+  background: var(--color-white);
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.docsUploadSubtitle {
+  font-size: 13px;
+  color: var(--color-gray-600);
+  max-width: 560px;
+  line-height: 1.5;
+}
+
+.docsUploadGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.docsUploadCard {
+  border-radius: 14px;
+  border: 1px dashed var(--color-gray-300);
+  padding: 16px;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  }
+}
+
+.docsUploadTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.docsUploadMeta {
+  font-size: 13px;
+  color: var(--color-gray-600);
+}
+
+.docsUploadStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.statusDanger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.statusWarning {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.statusSuccess {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.docsUploadActions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .docsUploadGrid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
 .sectionTitle {
   display: flex;
   align-items: center;

@@ -34,6 +34,34 @@
   color: #c2410c;
 }
 
+.statusInfo {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.routePill {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 120px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #312e81;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.routePercent {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.routeLabel {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
 .chatButton {
   display: flex;
   align-items: center;

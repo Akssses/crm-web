@@ -1,5 +1,5 @@
+import CustomerOrders from "@/modules/customer/orders/components/Orders";
+
 export default function CustomerOrdersPage() {
-  return <div>Страница заказов заказчика.</div>;
+  return <CustomerOrders />;
 }
-
-

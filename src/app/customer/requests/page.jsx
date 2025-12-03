@@ -1,5 +1,5 @@
+import CustomerRequests from "@/modules/customer/requests/components/Requests";
+
 export default function CustomerRequestsPage() {
-  return <div>Страница заявок заказчика.</div>;
+  return <CustomerRequests />;
 }
-
-
