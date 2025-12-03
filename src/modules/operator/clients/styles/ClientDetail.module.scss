@@ -1,3 +1,4 @@
+/* ClientDetail.module.scss - основной контейнер */
 .clientDetail {
   display: flex;
   flex-direction: column;
@@ -5,3 +6,15 @@
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .clientDetail {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .clientDetail {
+    gap: 12px;
+    padding: 0;
+  }
+}

@@ -835,6 +835,10 @@
 }
 
 @media (max-width: 768px) {
+  .serviceParam {
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .requestDetail {
     padding: 16px;
     gap: 16px;
@@ -852,13 +856,14 @@
   }
 
   .headerButtons {
-    width: 100%;
-    flex-wrap: wrap;
+    // width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 
-    :global(button) {
-      flex: 1;
-      min-width: calc(50% - 4px);
-    }
+    // :global(button) {
+    //   flex: 1;
+    //   min-width: calc(50% - 4px);
+    // }
   }
 
   .headerMeta {
@@ -922,7 +927,8 @@
   }
 
   .financeTable {
-    overflow-x: auto;
+    overflow-x: scroll;
+    width: 40vh;
   }
 
   .financeRow {
@@ -934,7 +940,7 @@
   }
 
   .supplierRow {
-    flex-direction: column;
+    justify-content: space-between;
     gap: 4px;
   }
 
@@ -955,81 +961,5 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-  }
-}
-
-@media (max-width: 480px) {
-  .requestDetail {
-    padding: 12px;
-  }
-
-  .title {
-    font-size: 20px;
-  }
-
-  .chip {
-    padding: 4px 10px;
-    font-size: 12px;
-  }
-
-  .headerButtons {
-    :global(button) {
-      width: 100%;
-      min-width: 100%;
-    }
-  }
-
-  .infoCard {
-    padding: 16px;
-    border-radius: 12px;
-  }
-
-  .sectionTitle {
-    font-size: 14px;
-  }
-
-  .infoRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .infoValue {
-    text-align: left;
-  }
-
-  .serviceIcon {
-    width: 36px;
-    height: 36px;
-    padding: 8px;
-  }
-
-  .serviceType {
-    font-size: 14px;
-  }
-
-  .servicePrice {
-    font-size: 20px;
-  }
-
-  .financeSummary {
-    grid-template-columns: 1fr;
-  }
-
-  .summaryCard {
-    padding: 12px;
-  }
-
-  .summaryValue {
-    font-size: 16px;
-  }
-
-  .priorityTags {
-    width: 100%;
-  }
-
-  .priorityTag {
-    font-size: 11px;
-    padding: 3px 8px;
   }
 }

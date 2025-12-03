@@ -11,7 +11,7 @@ import {
 import { IoSearchOutline } from "react-icons/io5";
 import s from "../styles/ChatSidebar.module.scss";
 
-export default function ChatSidebar({ className }) {
+export default function ChatSidebar({ className, onChatSelect }) {
   const [activeTab, setActiveTab] = useState("all");
 
   const tabs = [
@@ -56,6 +56,12 @@ export default function ChatSidebar({ className }) {
     },
   ];
 
+  const handleChatClick = (chatId) => {
+    if (onChatSelect) {
+      onChatSelect(chatId);
+    }
+  };
+
   return (
     <div className={`${s.sidebar} ${className || ""}`}>
       <div className={s.header}>
@@ -88,7 +94,11 @@ export default function ChatSidebar({ className }) {
 
       <div className={s.chatList}>
         {chats.map((chat) => (
-          <div key={chat.id} className={s.chatItem}>
+          <div
+            key={chat.id}
+            className={s.chatItem}
+            onClick={() => handleChatClick(chat.id)}
+          >
             <div className={s.chatHeader}>
               <div className={s.chatTitle}>
                 <span className={s.orderId}>{chat.id}</span>

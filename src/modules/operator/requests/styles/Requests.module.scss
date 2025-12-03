@@ -70,12 +70,11 @@
 
   .selectWrapper {
     flex: 1;
-    min-width: calc(50% - 6px);
+    min-width: 200px;
   }
 
   .actions {
     width: 100%;
-    flex-direction: column;
     gap: 8px;
   }
 
@@ -85,21 +84,6 @@
   }
 
   .actions button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .requests {
-    gap: 12px;
-  }
-
-  .filterGroup {
-    gap: 8px;
-  }
-
-  .selectWrapper {
-    width: 100%;
-    min-width: 100%;
+    width: 30%;
   }
 }

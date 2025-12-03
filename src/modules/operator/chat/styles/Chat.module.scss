@@ -224,15 +224,54 @@
   color: var(--color-gray-500);
 }
 
+// Tablet
+@media (max-width: 1024px) {
+  .header {
+    gap: 16px;
+  }
+
+  .searchInput {
+    width: 250px;
+  }
+
+  .chatItem {
+    padding: 14px;
+  }
+}
+
+// Mobile landscape
 @media (max-width: 768px) {
+  .chat {
+    gap: 16px;
+  }
+
   .header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .tab {
+    padding: 8px 16px;
+    font-size: 13px;
+    text-align: center;
   }
 
   .headerRight {
     width: 100%;
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .datePicker {
+    width: 100%;
+    justify-content: center;
   }
 
   .searchInput {
@@ -240,12 +279,37 @@
   }
 
   .chatItem {
-    flex-direction: column;
+    padding: 12px;
+  }
+
+  .chatHeader {
+    flex-wrap: wrap;
+  }
+
+  .orderId,
+  .clientName {
+    font-size: 15px;
+  }
+
+  .location {
+    font-size: 13px;
+  }
+
+  .message {
+    font-size: 13px;
   }
 
   .chatRight {
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     margin-left: 0;
-    margin-top: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .statusBadge {
+    padding: 4px 10px;
+    font-size: 11px;
   }
 }

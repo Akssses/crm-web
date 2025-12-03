@@ -58,7 +58,7 @@
   color: #f97316;
 }
 
-// Tags
+/* Tags */
 .tagsCell {
   display: flex;
   align-items: center;
@@ -88,7 +88,7 @@
   font-size: 13px;
 }
 
-// Warnings
+/* Warnings */
 .warningsCell {
   display: flex;
   align-items: center;
@@ -101,7 +101,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  
+
   &:hover {
     color: #d97706;
   }
@@ -129,7 +129,7 @@
   opacity: 0.3;
 }
 
-// Metrics
+/* Metrics */
 .metric {
   font-weight: 600;
   color: var(--color-gray-900);
@@ -163,4 +163,138 @@
   border-top: 1px solid var(--color-gray-200);
 }
 
+/* ============================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ
+   ============================================ */
 
+@media (max-width: 1024px) {
+  .container {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    gap: 12px;
+  }
+
+  /* Скрываем некоторые колонки на планшетах */
+  :global(.UITable) {
+    font-size: 13px;
+  }
+
+  .statusBadge {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  .tag {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+
+  .metric {
+    font-size: 14px;
+  }
+
+  .dateText {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    gap: 12px;
+  }
+
+  /* На мобильных телефонах переходим на вертикальный вывод */
+  :global(.UITable) {
+    font-size: 12px;
+  }
+
+  :global(.UITable thead) {
+    display: none;
+  }
+
+  :global(.UITable tbody) {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  :global(.UITable tr) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 8px;
+    background: white;
+  }
+
+  :global(.UITable td) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border: none;
+  }
+
+  :global(.UITable td::before) {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-gray-600);
+    min-width: 100px;
+  }
+
+  .statusBadge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .tag {
+    padding: 2px 5px;
+    font-size: 9px;
+  }
+
+  .actionButton {
+    padding: 6px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    padding-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  :global(.UITable tr) {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  :global(.UITable td) {
+    padding: 2px 0;
+    font-size: 11px;
+  }
+
+  :global(.UITable td::before) {
+    min-width: 80px;
+    font-size: 11px;
+  }
+
+  .statusBadge {
+    padding: 2px 6px;
+    font-size: 9px;
+  }
+
+  .tagsCell {
+    max-width: 150px;
+  }
+
+  .metric {
+    font-size: 12px;
+  }
+}

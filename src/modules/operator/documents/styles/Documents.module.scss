@@ -1,3 +1,7 @@
+/* ============================================
+   Documents.module.scss - мобильная адаптивность
+   ============================================ */
+
 .documents {
   display: flex;
   justify-content: center;
@@ -15,17 +19,17 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
+}
 
-  h1 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 500;
-  }
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+}
 
-  p {
-    margin: 4px 0 0;
-    color: var(--color-gray-600);
-  }
+.header p {
+  margin: 4px 0 0;
+  color: var(--color-gray-600);
 }
 
 .headerActions {
@@ -39,6 +43,7 @@
   overflow-x: auto;
   border-bottom: 1px solid var(--color-gray-200);
   padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tab {
@@ -50,11 +55,13 @@
   border-bottom: 2px solid transparent;
   cursor: pointer;
   transition: color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
-  &.active {
-    color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
-  }
+.tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
 }
 
 .tabContainer {
@@ -80,10 +87,6 @@
   grid-template-columns: 320px 1fr;
   gap: 24px;
   align-items: flex-start;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .templateList {
@@ -118,16 +121,16 @@
   flex-direction: column;
   gap: 10px;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.2s;
+}
 
-  &:hover {
-    border-color: var(--color-primary);
-  }
+.templateCard:hover {
+  border-color: var(--color-primary);
+}
 
-  &.active {
-    border-color: var(--color-primary);
-    box-shadow: 0 8px 20px rgba(0, 53, 255, 0.08);
-  }
+.templateCard.active {
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(0, 53, 255, 0.08);
 }
 
 .templateCardHeader {
@@ -139,6 +142,7 @@
 .templateName {
   margin: 0;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .templateMeta {
@@ -176,7 +180,6 @@
 
 .templateTag {
   display: inline-flex;
-  align-items: center;
   padding: 4px 12px;
   border-radius: 999px;
   background: var(--color-gray-100);
@@ -207,15 +210,17 @@
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+}
 
-  h3 {
-    margin: 0;
-  }
+.editorHeader h3 {
+  margin: 0;
+  font-size: 18px;
+}
 
-  p {
-    margin: 4px 0 0;
-    color: var(--color-gray-600);
-  }
+.editorHeader p {
+  margin: 4px 0 0;
+  color: var(--color-gray-600);
+  font-size: 13px;
 }
 
 .editorActions {
@@ -235,19 +240,20 @@
   border: 1px solid var(--color-gray-200);
   border-radius: 999px;
   overflow: hidden;
+}
 
-  button {
-    border: none;
-    background: none;
-    padding: 8px 18px;
-    font-weight: 500;
-    cursor: pointer;
+.modeSwitch button {
+  border: none;
+  background: none;
+  padding: 8px 18px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 13px;
+}
 
-    &.active {
-      background: var(--color-primary);
-      color: var(--color-white);
-    }
-  }
+.modeSwitch button.active {
+  background: var(--color-primary);
+  color: white;
 }
 
 .previewActions {
@@ -279,11 +285,13 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
 
-  h3,
-  h4 {
-    margin-top: 0;
-  }
+.panel h3,
+.panel h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 14px;
 }
 
 .variableGroups {
@@ -295,6 +303,7 @@
 .groupLabel {
   font-weight: 600;
   margin-bottom: 6px;
+  font-size: 12px;
 }
 
 .chips {
@@ -307,9 +316,10 @@
   border: 1px dashed var(--color-gray-300);
   border-radius: 999px;
   padding: 6px 12px;
-  font-size: 13px;
+  font-size: 12px;
   background: var(--color-gray-50);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .blocks {
@@ -326,6 +336,7 @@
   background: var(--color-gray-50);
   cursor: pointer;
   text-align: left;
+  font-size: 13px;
 }
 
 .versions {
@@ -342,31 +353,34 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+}
 
-  &.activeVersion {
-    border-color: var(--color-primary);
-    background: rgba(0, 53, 255, 0.05);
-  }
+.versionCard.activeVersion {
+  border-color: var(--color-primary);
+  background: rgba(0, 53, 255, 0.05);
 }
 
 .versionLabel {
   margin: 0;
   font-weight: 600;
+  font-size: 13px;
 }
 
 .versionMeta {
   color: var(--color-gray-500);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .versionChanges {
   margin: 4px 0 0;
   color: var(--color-gray-700);
+  font-size: 12px;
 }
 
 .versionActions {
   display: flex;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .tabContent {
@@ -408,10 +422,11 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
 
-  li {
-    color: var(--color-gray-700);
-  }
+.logList li {
+  color: var(--color-gray-700);
+  font-size: 13px;
 }
 
 .panelHeader {
@@ -419,11 +434,13 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: flex-start;
+}
 
-  p {
-    margin: 4px 0 0;
-    color: var(--color-gray-600);
-  }
+.panelHeader p {
+  margin: 4px 0 0;
+  color: var(--color-gray-600);
+  font-size: 13px;
 }
 
 .signatureList {
@@ -452,37 +469,43 @@
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
+  flex-shrink: 0;
 }
 
 .signatureInfo {
   flex: 1;
+  min-width: 200px;
+}
 
-  span {
-    color: var(--color-gray-600);
-  }
+.signatureInfo span {
+  color: var(--color-gray-600);
+  font-size: 13px;
 }
 
 .signatureName {
   margin: 0;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .signatureMeta {
   margin: 4px 0;
   color: var(--color-gray-500);
+  font-size: 12px;
 }
 
 .signatureTags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-top: 8px;
+}
 
-  span {
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--color-gray-100);
-    font-size: 12px;
-  }
+.signatureTags span {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-gray-100);
+  font-size: 11px;
 }
 
 .signatureActions {
@@ -509,20 +532,23 @@
 .watermarkTitle {
   margin: 0;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .watermarkMeta {
   color: var(--color-gray-500);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .watermarkText {
   font-weight: 600;
   color: var(--color-primary);
+  font-size: 14px;
 }
 
 .watermarkCondition {
   color: var(--color-gray-600);
+  font-size: 13px;
 }
 
 .logTable {
@@ -540,60 +566,365 @@
   grid-template-columns: 120px 1fr 180px;
   gap: 12px;
   align-items: center;
-
-  @media (max-width: 960px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .logType {
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--color-gray-600);
 }
 
-.logDescription {
-  p {
-    margin: 0;
-  }
+.logDescription p {
+  margin: 0;
+  font-size: 13px;
+}
 
-  span {
-    color: var(--color-gray-500);
-  }
+.logDescription span {
+  color: var(--color-gray-500);
+  font-size: 12px;
 }
 
 .logDate {
   color: var(--color-gray-600);
-  font-size: 14px;
+  font-size: 13px;
+}
+
+/* ============================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .inner {
+    gap: 20px;
+  }
+
+  .templatesLayout {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .inner {
+    gap: 16px;
+  }
+
+  .templatesLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .templateList {
+    max-height: 400px;
+  }
+
+  .editorPanels {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
   .documents {
-    padding: 20px 16px 32px;
+    padding: 16px;
+  }
+
+  .inner {
+    gap: 14px;
   }
 
   .header {
     flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .header h1 {
+    font-size: 22px;
   }
 
   .headerActions {
     width: 100%;
     flex-direction: column;
-
-    :global(button) {
-      width: 100%;
-    }
   }
 
-  .previewActions,
-  .editorActions,
-  .regenerationActions {
-    flex-direction: column;
+  :global(.headerActions button) {
     width: 100%;
+    font-size: 12px;
+  }
 
-    :global(button) {
-      width: 100%;
-    }
+  .tabs {
+    gap: 6px;
+    padding-bottom: 2px;
+  }
+
+  .tab {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .templateFilters {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .templatesLayout {
+    gap: 16px;
+  }
+
+  .templates {
+    max-height: 300px;
+  }
+
+  .templateCard {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .templateName {
+    font-size: 13px;
+  }
+
+  .templateMeta {
+    font-size: 11px;
+  }
+
+  .templateEditor {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .editorHeader {
+    gap: 12px;
+  }
+
+  .editorHeader h3 {
+    font-size: 16px;
+  }
+
+  .editorToolbar {
+    gap: 12px;
+  }
+
+  .wysiwyg {
+    min-height: 200px;
+    max-height: 350px;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .editorPanels {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .panel {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .chip {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .blockButton {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .switchGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .checkGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .regenerationActions {
+    flex-direction: column-reverse;
+  }
+
+  :global(.regenerationActions button) {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .signatureCard {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .signatureInfo {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .signatureActions {
+    width: 100%;
+  }
+
+  :global(.signatureActions button) {
+    flex: 1;
+    font-size: 12px;
+  }
+
+  .watermarkCard {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .logRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .logType {
+    font-size: 10px;
+  }
+
+  .logDescription p {
+    font-size: 12px;
+  }
+
+  .logDate {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 640px) {
+  .documents {
+    padding: 12px;
+  }
+
+  .inner {
+    gap: 12px;
+  }
+
+  .header {
+    gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .tabs {
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .templateFilters {
+    grid-template-columns: 1fr;
+  }
+
+  .templateCard {
+    padding: 10px;
+  }
+
+  .templateName {
+    font-size: 12px;
+  }
+
+  .templates {
+    max-height: 250px;
+  }
+
+  .templateEditor {
+    padding: 12px;
+  }
+
+  .editorHeader {
+    gap: 10px;
+  }
+
+  .editorHeader h3 {
+    font-size: 15px;
+  }
+
+  .editorHeader p {
+    font-size: 11px;
+  }
+
+  .wysiwyg {
+    min-height: 150px;
+    max-height: 250px;
+  }
+
+  .modeSwitch button {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .chip {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .statusBadge {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  .versionCard {
+    flex-direction: column;
+  }
+
+  .versionLabel {
+    font-size: 12px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .logList li {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+  }
+
+  .tab {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .templateCard {
+    padding: 8px;
+  }
+
+  .templates {
+    max-height: 200px;
+  }
+
+  .editorHeader h3 {
+    font-size: 14px;
+  }
+
+  .chip {
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+
+  .wysiwyg {
+    min-height: 120px;
   }
 }

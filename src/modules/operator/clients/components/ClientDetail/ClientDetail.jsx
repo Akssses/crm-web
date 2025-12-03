@@ -18,14 +18,14 @@ export default function ClientDetail() {
       type: "warning",
       message: "Потенциальный дубликат (2 совпадения)",
       details: "Найдены клиенты с похожими данными",
-      date: "2024-11-28"
+      date: "2024-11-28",
     },
     {
       type: "error",
       message: "Есть долг по оплатам",
       details: "Задолженность: 45,000 KGS",
-      date: "2024-11-25"
-    }
+      date: "2024-11-25",
+    },
   ];
 
   return (
@@ -43,6 +43,3 @@ export default function ClientDetail() {
     </div>
   );
 }
-
-
-
