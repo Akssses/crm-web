@@ -874,95 +874,284 @@ export function LegalDocumentsTable() {
 
   return <UITable columns={columns} rows={data} showCheckbox={false} />;
 }
-export function TransactionsTable({ onRowClick }) {
+export function TransactionsTable({ onRowClick, filters = {} }) {
   const transactionsData = [
     {
       id: "PAY-2025-101",
       orderId: "#ORD-145",
-      client: "Фио клиента",
+      client: "Иван Петров",
       organization: "Asia Travel",
+      service: "Командировка (авиа+отель)",
       operationType: "Оплата",
-      sum: "54,000 RUB",
+      sum: "54 000",
+      currency: "RUB",
+      paidAmount: "54 000",
+      debtAmount: "0",
+      overpayAmount: "0",
       status: "Оплачено",
       statusColor: "green",
+      paymentStatus: "paid",
       date: "23.10.2025",
       paymentMethod: "Банковская карта",
-      currency: "RUB",
-      commission: "1500",
+      source: "pos",
+      operator: "Айгерим М.",
+      commission: "1 500",
       exchangeRate: "1 USD = 89.5 KGS",
     },
     {
       id: "PAY-2025-102",
       orderId: "#ORD-145",
-      client: "Фио клиента",
+      client: "Иван Петров",
       organization: "Asia Travel",
+      service: "Авиа",
       operationType: "Задолженность",
-      sum: "34,450 RUB",
+      sum: "34 450",
+      currency: "RUB",
+      paidAmount: "20 000",
+      debtAmount: "14 450",
+      overpayAmount: "0",
       status: "Просрочено",
       statusColor: "pink",
+      paymentStatus: "debt",
       date: "22.10.2025",
-      paymentMethod: "Кредит",
-      currency: "RUB",
-      commission: "1200",
+      paymentMethod: "Банковский перевод",
+      source: "bank",
+      operator: "Бахыт К.",
+      commission: "1 200",
       exchangeRate: "1 USD = 89.5 KGS",
     },
     {
       id: "PAY-2025-103",
       orderId: "#ORD-145",
-      client: "Фио клиента",
+      client: "Иван Петров",
       organization: "Asia Travel",
-      operationType: "Оплата",
-      sum: "12,500 RUB",
+      service: "Отель",
+      operationType: "Возврат",
+      sum: "12 500",
+      currency: "RUB",
+      paidAmount: "0",
+      debtAmount: "0",
+      overpayAmount: "0",
       status: "Возврат",
       statusColor: "orange",
+      paymentStatus: "refund",
       date: "21.10.2025",
       paymentMethod: "Банковская карта",
-      currency: "RUB",
+      source: "pos",
+      operator: "Айгерим М.",
       commission: "500",
       exchangeRate: "1 USD = 89.5 KGS",
     },
     {
       id: "PAY-2025-104",
       orderId: "#ORD-145",
-      client: "Фио клиента",
+      client: "Иван Петров",
       organization: "Asia Travel",
+      service: "Командировка (авиа+отель)",
       operationType: "Оплата",
-      sum: "12,500 RUB",
+      sum: "20 000",
+      currency: "RUB",
+      paidAmount: "10 000",
+      debtAmount: "10 000",
+      overpayAmount: "0",
       status: "Частично",
       statusColor: "purple",
+      paymentStatus: "partial",
       date: "20.10.2025",
       paymentMethod: "Банковская карта",
-      currency: "RUB",
       commission: "500",
       exchangeRate: "1 USD = 89.5 KGS",
+    },
+    {
+      id: "PAY-2025-105",
+      orderId: "#ORD-200",
+      client: "ООО «Техносервис»",
+      organization: "Техносервис",
+      service: "Авиа",
+      operationType: "Оплата",
+      sum: "75 000",
+      currency: "KGS",
+      paidAmount: "80 000",
+      debtAmount: "0",
+      overpayAmount: "5 000",
+      status: "Переплата",
+      statusColor: "cyan",
+      paymentStatus: "overpay",
+      date: "24.10.2025",
+      paymentMethod: "Касса",
+      source: "cash",
+      operator: "Айсулуу А.",
+      commission: "0",
+      exchangeRate: "—",
+    },
+    {
+      id: "PAY-2025-106",
+      orderId: "#ORD-201",
+      client: "ООО «Техносервис»",
+      organization: "Техносервис",
+      service: "Авиа",
+      operationType: "Оплата",
+      sum: "42 000",
+      currency: "RUB",
+      paidAmount: "0",
+      debtAmount: "42 000",
+      overpayAmount: "0",
+      status: "Ошибка платежа",
+      statusColor: "red",
+      paymentStatus: "error",
+      date: "24.10.2025",
+      paymentMethod: "Банковская карта",
+      source: "pos",
+      operator: "Руслан Р.",
+      commission: "0",
+      exchangeRate: "1 USD = 93.1 RUB",
+    },
+    {
+      id: "PAY-2025-107",
+      orderId: "#ORD-202",
+      client: "ООО «Ром»",
+      organization: "Ром",
+      service: "Отель",
+      operationType: "Оплата",
+      sum: "18 000",
+      currency: "EUR",
+      paidAmount: "18 000",
+      debtAmount: "0",
+      overpayAmount: "0",
+      status: "Ожидает подтверждения",
+      statusColor: "yellow",
+      paymentStatus: "pending",
+      date: "25.10.2025",
+      paymentMethod: "Банковский перевод",
+      source: "bank",
+      operator: "Айгерим М.",
+      commission: "50",
+      exchangeRate: "1 EUR = 97.3 RUB",
     },
   ];
 
   const columns = [
+    // {
+    //   key: "id",
+    //   label: "ID платежа",
+    //   render: (value) => (
+    //     <span style={{ color: "#3b82f6", fontWeight: "600" }}>{value}</span>
+    //   ),
+    // },
     {
       key: "orderId",
-      label: "ID Заказа",
-      render: (value) => <span>{value}</span>,
+      label: "Заказ",
     },
-    { key: "client", label: "Клиент" },
+    // { key: "client", label: "Контрагент" },
     { key: "organization", label: "Организация" },
-    { key: "operationType", label: "Тип операции" },
+    { key: "service", label: "Услуга" },
     {
       key: "sum",
       label: "Сумма",
-      render: (value) => <span style={{ fontWeight: "600" }}>{value}</span>,
+      render: (value, row) => (
+        <span style={{ fontWeight: 600 }}>
+          {value} {row.currency}
+        </span>
+      ),
     },
     {
+      key: "paidAmount",
+      label: "Оплачено",
+      render: (value, row) => (
+        <span style={{ color: "#16a34a", fontWeight: 600 }}>
+          {value} {row.currency}
+        </span>
+      ),
+    },
+    // {
+    //   key: "debtAmount",
+    //   label: "Задолженность",
+    //   render: (value, row) =>
+    //     value !== "0" ? (
+    //       <span style={{ color: "#b91c1c", fontWeight: 600 }}>
+    //         {value} {row.currency}
+    //       </span>
+    //     ) : (
+    //       "-"
+    //     ),
+    // },
+    // {
+    //   key: "overpayAmount",
+    //   label: "Переплата",
+    //   render: (value, row) =>
+    //     value !== "0" ? (
+    //       <span style={{ color: "#0ea5e9", fontWeight: 600 }}>
+    //         {value} {row.currency}
+    //       </span>
+    //     ) : (
+    //       "-"
+    //     ),
+    // },
+    {
       key: "status",
-      label: "Статус",
+      label: "Статус платежа",
       render: (value, row) => <Badge text={value} color={row.statusColor} />,
     },
+    { key: "currency", label: "Валюта" },
+    // { key: "paymentMethod", label: "Метод оплаты" },
+    // { key: "source", label: "Источник" },
+    { key: "operator", label: "Оператор" },
+    { key: "date", label: "Дата" },
   ];
+
+  const filteredRows = React.useMemo(() => {
+    const { organization, service, currency, status, source, search } =
+      filters || {};
+    return transactionsData.filter((row) => {
+      if (organization && organization !== "all") {
+        const key =
+          organization === "asia"
+            ? "Asia Travel"
+            : organization === "techno"
+            ? "Техносервис"
+            : null;
+        if (key && row.organization !== key) return false;
+      }
+      if (service && service !== "all") {
+        if (service === "avia" && !row.service?.toLowerCase().includes("авиа"))
+          return false;
+        if (
+          service === "hotel" &&
+          !row.service?.toLowerCase().includes("отель")
+        )
+          return false;
+      }
+      if (currency && currency !== "all" && row.currency !== currency) {
+        return false;
+      }
+      if (status && status !== "all" && row.paymentStatus !== status) {
+        return false;
+      }
+      if (source && source !== "all" && row.source !== source) {
+        return false;
+      }
+      if (search) {
+        const q = String(search).toLowerCase();
+        const haystack = [
+          row.id,
+          row.orderId,
+          row.client,
+          row.organization,
+          row.service,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [transactionsData, filters]);
 
   return (
     <UITable
       columns={columns}
-      rows={transactionsData}
+      rows={filteredRows}
       showCheckbox={true}
       onRowClick={(row) => onRowClick?.(row)}
     />

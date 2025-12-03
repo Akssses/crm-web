@@ -18,7 +18,8 @@ export default function TransactionInfoModal({
     { id: "general", label: "Общие данные" },
     { id: "payments", label: "Расчёты и связи" },
     { id: "documents", label: "Документы" },
-    { id: "refunds", label: "Возвраты и коррективки" },
+    { id: "history", label: "История изменений" },
+    { id: "refunds", label: "Возвраты и корректировки" },
   ];
 
   const InfoRow = ({ label, value, isBold = false }) => (
@@ -60,7 +61,7 @@ export default function TransactionInfoModal({
       onClose={onClose}
       title="Информация транзакции"
       position="right"
-      width="40%"
+      width="50%"
       icon={BsBank}
     >
       <div className={s.modalContent}>
@@ -141,23 +142,44 @@ export default function TransactionInfoModal({
               <div className={s.infoGroup}>
                 <InfoRow
                   label="Сумма заказа"
-                  value={transaction?.orderSum || "50,000 KGS"}
+                  value={transaction?.orderSum || "50 000 RUB"}
                 />
                 <InfoRow
                   label="Оплачено"
-                  value={transaction?.paid || "45,200 KGS"}
+                  value={transaction?.paidAmount || "45 200 RUB"}
                 />
                 <InfoRow
-                  label="Остаток"
-                  value={transaction?.balance || "4,800 KGS"}
+                  label="Задолженность"
+                  value={transaction?.debtAmount || "4 800 RUB"}
+                />
+                <InfoRow
+                  label="Переплата"
+                  value={transaction?.overpayAmount || "0 RUB"}
+                />
+                <InfoRow
+                  label="Комиссия платёжной системы"
+                  value={transaction?.psCommission || "350 RUB"}
                 />
                 <InfoRow
                   label="Комиссия агента"
-                  value={transaction?.agentCommission || "1,500 KGS"}
+                  value={transaction?.agentCommission || "1 500 RUB"}
                 />
                 <InfoRow
-                  label="Чистая сумма"
-                  value={transaction?.netSum || "43,700 KGS"}
+                  label="Чистая сумма к зачислению"
+                  value={transaction?.netSum || "43 700 RUB"}
+                  isBold
+                />
+                <InfoRow
+                  label="Статья учёта"
+                  value={transaction?.glAccount || "Доходы по авиаперевозкам"}
+                />
+                <InfoRow
+                  label="Источник платежа"
+                  value={transaction?.sourceLabel || "Эквайринг (Tinkoff)"}
+                />
+                <InfoRow
+                  label="Привязанные услуги"
+                  value={transaction?.services || "Авиа, Отель"}
                 />
               </div>
             )}
@@ -169,7 +191,24 @@ export default function TransactionInfoModal({
               </div>
             )}
 
-            {/* ВОЗВРАТЫ И КОРРЕКТИВКИ */}
+            {activeTab === "history" && (
+              <div className={s.infoGroup}>
+                <InfoRow
+                  label="23.10.2025 12:45"
+                  value="Платёж подтверждён банком, проведён в CRM"
+                />
+                <InfoRow
+                  label="23.10.2025 12:20"
+                  value="Получен callback от эквайринга, статус 'успешно'"
+                />
+                <InfoRow
+                  label="23.10.2025 12:18"
+                  value="Создан платёж по заказу ORD-145, инициатор — оператор"
+                />
+              </div>
+            )}
+
+            {/* ВОЗВРАТЫ И КОРРЕКТИРОВКИ */}
             {activeTab === "refunds" && (
               <div className={s.infoGroup}>
                 <div style={{ padding: "20px", textAlign: "center" }}>
