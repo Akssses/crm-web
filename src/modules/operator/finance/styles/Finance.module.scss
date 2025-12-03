@@ -20,8 +20,41 @@
   border: 1px solid var(--color-gray-200);
 }
 
+// Large tablet
+@media (max-width: 1200px) {
+  .finance {
+    gap: 18px;
+  }
+
+  .bottomSection {
+    gap: 18px;
+  }
+}
+
+// Tablet
 @media (max-width: 1024px) {
+  .finance {
+    gap: 16px;
+  }
+
   .bottomSection {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+// Mobile landscape
+@media (max-width: 768px) {
+  .finance {
+    gap: 14px;
+  }
+
+  .bottomSection {
+    gap: 14px;
+  }
+
+  .placeholder {
+    padding: 30px 20px;
+    font-size: 14px;
   }
 }

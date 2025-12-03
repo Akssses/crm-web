@@ -18,6 +18,7 @@
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+  flex: 1;
 }
 
 .selectWrapper {
@@ -49,6 +50,7 @@
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .paymentId {
@@ -57,7 +59,8 @@
   font-size: 14px;
 }
 
-.orderLink {
+.orderLink,
+.serviceLink {
   color: var(--color-blue-600);
   font-weight: 500;
   font-size: 14px;
@@ -92,41 +95,14 @@
   color: var(--color-yellow-700);
 }
 
+.status-orange {
+  background: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+}
+
 .status-red {
   background: rgba(239, 68, 68, 0.1);
   color: var(--color-red-700);
-}
-
-.serviceCell {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.serviceName {
-  font-weight: 500;
-  color: var(--color-gray-900);
-  font-size: 14px;
-}
-
-.serviceLink {
-  font-size: 12px;
-  color: var(--color-primary);
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.typeBadge {
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--color-gray-100);
-  color: var(--color-gray-700);
-  font-size: 12px;
-  font-weight: 500;
-  display: inline-block;
 }
 
 .amountCell {
@@ -164,90 +140,113 @@
   }
 }
 
-.search {
-  flex: 1;
-  max-width: 300px;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-gray-200);
-}
-
-.paginationInfo {
-  color: var(--color-gray-600);
-  font-size: 14px;
-}
-
-.pagination {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.pageButton {
-  padding: 8px 12px;
-  border: 1px solid var(--color-gray-300);
-  border-radius: 6px;
-  background: var(--color-white);
-  color: var(--color-gray-700);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  min-width: 40px;
-
-  &:hover:not(:disabled) {
-    background: var(--color-gray-50);
-    border-color: var(--color-gray-400);
+// Tablet
+@media (max-width: 992px) {
+  .container {
+    gap: 16px;
   }
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .filters {
+    gap: 16px;
+  }
+
+  .selectWrapper {
+    min-width: 140px;
+    max-width: 180px;
   }
 }
 
-.pageButtonActive {
-  background: var(--color-blue-600);
-  color: var(--color-white);
-  border-color: var(--color-blue-600);
-
-  &:hover {
-    background: var(--color-blue-700);
-    border-color: var(--color-blue-700);
-  }
-}
-
+// Mobile landscape
 @media (max-width: 768px) {
+  .container {
+    gap: 14px;
+  }
+
   .filters {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .filterGroup {
     width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .selectWrapper {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
   }
 
   .actions {
     width: 100%;
-    justify-content: stretch;
 
     button {
       flex: 1;
     }
   }
 
-  .footer {
-    flex-direction: column;
-    align-items: stretch;
+  .paymentId,
+  .orderLink,
+  .serviceLink {
+    font-size: 13px;
   }
 
-  .pagination {
-    justify-content: center;
+  .statusBadge {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  .amount {
+    font-size: 13px;
+  }
+
+  .amountConverted {
+    font-size: 11px;
+  }
+}
+
+// Mobile portrait
+@media (max-width: 480px) {
+  .container {
+    gap: 12px;
+  }
+
+  .filters {
+    gap: 10px;
+  }
+
+  .filterGroup {
+    gap: 8px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .paymentId,
+  .orderLink,
+  .serviceLink {
+    font-size: 12px;
+  }
+
+  .statusBadge {
+    padding: 2px 8px;
+    font-size: 10px;
+  }
+
+  .amount {
+    font-size: 12px;
+  }
+
+  .actionButton {
+    padding: 2px;
   }
 }
