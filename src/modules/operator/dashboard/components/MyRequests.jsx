@@ -37,7 +37,7 @@ const REQUESTS = [
   },
   {
     id: "REQ-1260",
-    company: 'ПСЦ Тревел Хаб',
+    company: "ПСЦ Тревел Хаб",
     status: "В работе",
     description: "Бронирование отеля для делегации",
     createdAt: "2025-10-24T17:10:00Z",
@@ -93,7 +93,9 @@ const formatRemaining = (ms) => {
   return `${minutes} мин`;
 };
 
-export default function MyRequests({ filters = { period: "week", organization: "all" } }) {
+export default function MyRequests({
+  filters = { period: "week", organization: "all" },
+}) {
   const router = useRouter();
   const [now, setNow] = useState(Date.now());
   const [activeStatus, setActiveStatus] = useState("all");
@@ -103,12 +105,16 @@ export default function MyRequests({ filters = { period: "week", organization: "
     return () => clearInterval(intervalId);
   }, []);
 
-  const periodStart = useMemo(() => getPeriodStart(filters.period), [filters.period]);
+  const periodStart = useMemo(
+    () => getPeriodStart(filters.period),
+    [filters.period]
+  );
 
   const filteredRequests = useMemo(() => {
     return REQUESTS.filter((request) => {
       const matchesOrganization =
-        filters.organization === "all" || request.organizationId === filters.organization;
+        filters.organization === "all" ||
+        request.organizationId === filters.organization;
       const matchesPeriod = new Date(request.createdAt) >= periodStart;
       const matchesStatus =
         activeStatus === "all"
@@ -166,10 +172,17 @@ export default function MyRequests({ filters = { period: "week", organization: "
           const created = new Date(request.createdAt).getTime();
           const totalSlaDuration = deadline - created;
           const remainingMs = deadline - now;
-          const elapsed = Math.max(0, Math.min(totalSlaDuration, totalSlaDuration - remainingMs));
-          const progress = Math.min(100, Math.round((elapsed / totalSlaDuration) * 100));
+          const elapsed = Math.max(
+            0,
+            Math.min(totalSlaDuration, totalSlaDuration - remainingMs)
+          );
+          const progress = Math.min(
+            100,
+            Math.round((elapsed / totalSlaDuration) * 100)
+          );
           const isOverdue = remainingMs <= 0;
-          const isCritical = request.priority === "critical" || request.priority === "danger";
+          const isCritical =
+            request.priority === "critical" || request.priority === "danger";
 
           const statusTone = STATUS_TONES[request.status];
 
@@ -187,7 +200,14 @@ export default function MyRequests({ filters = { period: "week", organization: "
                     <span className={s.company}>{request.company}</span>
                     <span
                       className={`${s.status} ${
-                        statusTone ? s[`status${statusTone.charAt(0).toUpperCase() + statusTone.slice(1)}`] : ""
+                        statusTone
+                          ? s[
+                              `status${
+                                statusTone.charAt(0).toUpperCase() +
+                                statusTone.slice(1)
+                              }`
+                            ]
+                          : ""
                       }`}
                     >
                       {request.status}
@@ -215,12 +235,18 @@ export default function MyRequests({ filters = { period: "week", organization: "
                     </div>
                     <span className={s.progressLabel}>
                       {isOverdue
-                        ? `Просрочено на ${formatRemaining(Math.abs(remainingMs))}`
+                        ? `Просрочено на ${formatRemaining(
+                            Math.abs(remainingMs)
+                          )}`
                         : `Осталось ${formatRemaining(remainingMs)}`}
                     </span>
                   </div>
                   <span className={s.createdAt}>
-                    Создано {new Date(request.createdAt).toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" })}
+                    Создано{" "}
+                    {new Date(request.createdAt).toLocaleTimeString("ru-RU", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </span>
                 </div>
               </button>

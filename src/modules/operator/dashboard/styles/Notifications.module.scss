@@ -107,8 +107,8 @@
 
 @media (max-width: 768px) {
   .meta {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .actions {

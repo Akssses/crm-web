@@ -13,9 +13,34 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
 
-  @media (max-width: 768px) {
-    padding: 12px 16px;
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.burgerButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
 
@@ -27,6 +52,7 @@
   font-size: 22px;
   font-weight: 400;
   color: var(--text-primary);
+  margin: 0;
 }
 
 .profileButton {
@@ -37,6 +63,7 @@
   border: none;
   cursor: pointer;
   border-radius: 8px;
+  padding: 4px 8px;
   transition: all var(--transition-base);
 
   &:hover {
@@ -56,6 +83,13 @@
   font-weight: 700;
   font-size: 16px;
   flex-shrink: 0;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .userInfo {
@@ -81,6 +115,7 @@
   font-size: 12px;
   color: var(--text-tertiary);
   padding: 0;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -158,31 +193,106 @@
   margin: 4px 0;
 }
 
+// Tablet
+@media (max-width: 1024px) {
+  .burgerButton {
+    display: flex;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}
+
+// Mobile
 @media (max-width: 768px) {
+  .header {
+    margin: 0 16px;
+  }
+
   .container {
-    padding: 12px 16px;
+    height: 60px;
+    padding: 0;
+  }
+
+  .leftSection {
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .burgerButton {
+    display: flex;
+    width: 36px;
+    height: 36px;
   }
 
   .title {
     font-size: 18px;
-  }
-
-  .userName {
-    font-size: 13px;
-  }
-
-  .userRole {
-    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .profileButton {
     gap: 8px;
-    padding: 6px 8px;
+    padding: 4px;
   }
 
   .avatar {
     width: 32px;
     height: 32px;
     font-size: 14px;
+  }
+
+  .userInfo {
+    display: none;
+  }
+
+  .arrowIcon {
+    display: none;
+  }
+
+  .dropdown {
+    right: -8px;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin: 0 12px;
+  }
+
+  .container {
+    height: 56px;
+  }
+
+  .leftSection {
+    gap: 8px;
+  }
+
+  .burgerButton {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .dropdown {
+    right: -12px;
   }
 }

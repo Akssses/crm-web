@@ -64,14 +64,9 @@
   gap: 4px;
 }
 
-@media (max-width: 1024px) {
-  .main {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 600px) {
   .main {
     grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
   }
 }
