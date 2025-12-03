@@ -1,7 +1,6 @@
+// UITable.module.scss
 .tableWrapper {
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   border-radius: 12px;
   background-color: var(--bg-primary);
 
@@ -42,6 +41,8 @@
   color: var(--text-tertiary);
   text-align: left;
   white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 120px;
 }
 
 .checkboxHeader {
@@ -85,6 +86,10 @@
   &:last-child {
     border-bottom: none;
   }
+
+  &.clickable {
+    cursor: pointer;
+  }
 }
 
 .bodyCell {
@@ -96,18 +101,21 @@
   min-height: 56px;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-shrink: 0;
+  min-width: 120px;
 
   @media (max-width: 768px) {
     padding: 12px;
     font-size: 13px;
+    min-width: 100px;
   }
 
   @media (max-width: 480px) {
     padding: 10px 8px;
     font-size: 12px;
+    min-width: 90px;
   }
 }
-
 
 .checkboxCell {
   padding: 12px 8px;
@@ -139,7 +147,6 @@
   width: 100%;
 }
 
-
 .checkbox {
   background: none;
   border: none;
@@ -149,8 +156,10 @@
   align-items: center;
   justify-content: center;
   color: var(--color-gray-300);
+  transition: all var(--transition-base);
+
   &:hover {
-    color: var(--color-gray-300);
+    color: var(--color-primary);
   }
 
   &:active {
@@ -193,42 +202,10 @@
   color: var(--text-tertiary);
   transition: all var(--transition-base);
   border-radius: 4px;
+  flex-shrink: 0;
 
   &:hover {
     color: var(--text-primary);
-    background-color: var(--bg-secondary);
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.footer {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-}
-
-.addButton {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-secondary);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: all var(--transition-base);
-
-  &:hover {
-    color: var(--color-primary);
     background-color: var(--bg-secondary);
   }
 
@@ -248,30 +225,18 @@
 /* Responsive */
 @media (max-width: 768px) {
   .headerCell {
+    padding: 8px 10px;
     font-size: 11px;
+    min-width: 100px;
   }
 
   .bodyCell {
+    padding: 12px 10px;
     font-size: 13px;
+    min-width: 100px;
   }
 
   .bodyRow {
     min-height: 48px;
-  }
-}
-
-@media (max-width: 480px) {
-  .headerCell {
-    padding: 8px 6px;
-    font-size: 10px;
-  }
-
-  .bodyCell {
-    padding: 8px 6px;
-    font-size: 12px;
-  }
-
-  .bodyRow {
-    min-height: 44px;
   }
 }

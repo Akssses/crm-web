@@ -10,7 +10,7 @@ import {
 } from "react-icons/md";
 import s from "../styles/ChatDetails.module.scss";
 
-export default function ChatDetails({ className, onClose }) {
+export default function ChatDetails({ className, onClose, isOpen }) {
   const files = [
     { name: "Паспорт_Иван.pdf", size: "124 KB" },
     { name: "Ваучер_отель.pdf", size: "89 KB" },
@@ -44,9 +44,7 @@ export default function ChatDetails({ className, onClose }) {
           </div>
           <div className={s.field}>
             <span className={s.label}>SLA</span>
-            <span className={`${s.slaText} ${s.slaRed}`}>
-              Просрочено на 2ч
-            </span>
+            <span className={`${s.slaText} ${s.slaRed}`}>Просрочено на 2ч</span>
           </div>
         </div>
 
@@ -145,4 +143,3 @@ export default function ChatDetails({ className, onClose }) {
     </div>
   );
 }
-

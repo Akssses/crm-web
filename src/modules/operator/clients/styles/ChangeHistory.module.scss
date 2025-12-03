@@ -1,42 +1,22 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.icon {
-  color: var(--color-gray-400);
-}
-
-.title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-gray-900);
-  margin: 0;
-}
+/* ============================================
+   ChangeHistory.module.scss
+   ============================================ */
 
 .list {
   display: flex;
   flex-direction: column;
   gap: 0;
   position: relative;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    bottom: 10px;
-    left: 110px;
-    width: 1px;
-    background: var(--color-gray-200);
-  }
+.list::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 110px;
+  width: 1px;
+  background: var(--color-gray-200);
 }
 
 .item {
@@ -44,10 +24,6 @@
   gap: 24px;
   padding: 16px 0;
   border-bottom: 1px solid var(--color-gray-100);
-
-  &:last-child {
-    border-bottom: none;
-  }
 }
 
 .dateColumn {
@@ -77,18 +53,18 @@
   gap: 4px;
   padding-left: 20px;
   position: relative;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: -5px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: white;
-    border: 2px solid var(--color-blue-500);
-  }
+.content::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--color-blue-500);
 }
 
 .action {
@@ -111,14 +87,94 @@
   margin-top: 4px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .container {
+    gap: 14px;
+  }
+
   .list::before {
     left: 16px;
   }
 
   .item {
-    flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    padding: 12px 0;
+  }
+
+  .dateColumn {
+    width: 70px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+  .time {
+    font-size: 11px;
+  }
+
+  .content {
+    padding-left: 16px;
+  }
+
+  .action {
+    font-size: 13px;
+  }
+
+  .details {
+    font-size: 12px;
   }
 }
 
+@media (max-width: 640px) {
+  .container {
+    gap: 12px;
+  }
+
+  .list::before {
+    left: 12px;
+  }
+
+  .item {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .dateColumn {
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .content {
+    padding-left: 20px;
+  }
+
+  .action {
+    font-size: 12px;
+  }
+
+  .details {
+    font-size: 11px;
+  }
+
+  .user {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .list::before {
+    left: 8px;
+  }
+
+  .content {
+    padding-left: 16px;
+  }
+
+  .action {
+    font-size: 11px;
+  }
+}

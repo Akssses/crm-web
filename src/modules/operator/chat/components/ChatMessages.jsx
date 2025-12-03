@@ -9,6 +9,7 @@ import {
   MdCheckCircle,
   MdWarning,
   MdInfoOutline,
+  MdArrowBack,
 } from "react-icons/md";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import s from "../styles/ChatMessages.module.scss";
@@ -17,6 +18,8 @@ export default function ChatMessages({
   className,
   isDetailsOpen,
   onOpenDetails,
+  onBack,
+  isMobile,
 }) {
   const [activeMessageType, setActiveMessageType] = useState("client");
   const [message, setMessage] = useState("");
@@ -65,6 +68,11 @@ export default function ChatMessages({
       {/* Chat Header */}
       <div className={s.header}>
         <div className={s.headerLeft}>
+          {isMobile && (
+            <button className={s.backButton} onClick={onBack}>
+              <MdArrowBack size={20} />
+            </button>
+          )}
           <div className={s.chatInfo}>
             <h3 className={s.clientName}>Иван Петров</h3>
             <span className={s.orderInfo}>ORD-145 • Тур в Турцию</span>

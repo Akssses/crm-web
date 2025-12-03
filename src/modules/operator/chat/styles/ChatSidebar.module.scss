@@ -231,3 +231,172 @@
   align-items: center;
   justify-content: center;
 }
+
+// Tablet
+@media (max-width: 1024px) {
+  .header {
+    padding-bottom: 16px;
+  }
+
+  .tabs {
+    padding-top: 16px;
+  }
+
+  .chatList {
+    padding-top: 16px;
+    padding-right: 16px;
+  }
+
+  .chatItem {
+    padding: 14px;
+  }
+}
+
+// Mobile landscape
+@media (max-width: 768px) {
+  .header {
+    padding: 16px;
+    padding-bottom: 12px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .search {
+    padding: 12px 16px;
+  }
+
+  .tabs {
+    padding: 12px 16px 0;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab {
+    padding: 8px 16px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .chatList {
+    padding: 12px 16px;
+  }
+
+  .chatItem {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  .chatHeader {
+    gap: 10px;
+  }
+
+  .orderId {
+    font-size: 15px;
+  }
+
+  .clientName {
+    font-size: 13px;
+  }
+
+  .lastMessage {
+    font-size: 12px;
+  }
+}
+
+// Mobile portrait
+@media (max-width: 480px) {
+  .header {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .addButton {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .search {
+    padding: 10px 12px;
+  }
+
+  .tabs {
+    padding: 10px 12px 0;
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .badge {
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+
+  .chatList {
+    padding: 10px 12px;
+  }
+
+  .chatItem {
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+
+  .chatHeader {
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .orderId {
+    font-size: 14px;
+  }
+
+  .clientName {
+    font-size: 12px;
+  }
+
+  .statusBadge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .slaBadge {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+
+  .chatFooter {
+    gap: 8px;
+  }
+
+  .lastMessage {
+    font-size: 11px;
+  }
+
+  .time {
+    font-size: 11px;
+  }
+
+  .unreadBadge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
+}

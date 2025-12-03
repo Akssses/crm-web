@@ -19,6 +19,26 @@
   gap: 16px;
 }
 
+.backButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--color-gray-300);
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-400);
+  }
+}
+
 .chatInfo {
   display: flex;
   flex-direction: column;
@@ -294,4 +314,257 @@
 
 .sendButton {
   flex-shrink: 0;
+}
+
+// Tablet
+@media (max-width: 1024px) {
+  .messagesList {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .inputSection {
+    padding: 16px;
+  }
+
+  .messageBubble {
+    max-width: 75%;
+  }
+}
+
+// Mobile landscape
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 16px;
+  }
+
+  .headerLeft {
+    gap: 12px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .backButton {
+    display: flex;
+  }
+
+  .chatInfo {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .clientName {
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .orderInfo {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .headerRight {
+    gap: 8px;
+  }
+
+  .badges {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+  }
+
+  .statusBadge,
+  .slaBadge {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .detailsButton {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .messagesList {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .messageBubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .author {
+    font-size: 12px;
+  }
+
+  .time {
+    font-size: 11px;
+  }
+
+  .systemMessage {
+    font-size: 12px;
+  }
+
+  .messageActions {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .actionLink {
+    font-size: 12px;
+  }
+
+  .inputSection {
+    padding: 12px;
+  }
+
+  .messageTypeTabs {
+    gap: 6px;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .typeTab {
+    padding: 8px 16px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .inputWrapper {
+    gap: 8px;
+  }
+
+  .textarea {
+    min-height: 50px;
+  }
+
+  .actionIconButton {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+// Mobile portrait
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .clientName {
+    font-size: 15px;
+  }
+
+  .orderInfo {
+    font-size: 11px;
+  }
+
+  .badges {
+    display: none;
+  }
+
+  .detailsButton {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .messagesList {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .messageBubble {
+    max-width: 90%;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .author {
+    font-size: 11px;
+  }
+
+  .time {
+    font-size: 10px;
+  }
+
+  .systemMessage {
+    font-size: 11px;
+    padding: 6px 0;
+  }
+
+  .messageActions {
+    gap: 6px;
+  }
+
+  .actionLink {
+    font-size: 11px;
+  }
+
+  .inputSection {
+    padding: 10px;
+  }
+
+  .messageTypeTabs {
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .typeTab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .inputWrapper {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .textarea {
+    width: 100%;
+    min-height: 80px;
+  }
+
+  .inputActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .actionIconButton {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .sendButton {
+    flex: 1;
+  }
 }
