@@ -43,6 +43,14 @@
   display: flex;
   gap: 8px;
   padding-top: 20px;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 12px;
 }
 
 .tab {
@@ -91,6 +99,23 @@
   border: 2px solid var(--color-white);
 }
 
+.filterChip {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--color-gray-200);
+  background: var(--color-white);
+  font-size: 12px;
+  color: var(--color-gray-600);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &.active {
+    background: var(--color-blue-light);
+    border-color: var(--color-blue);
+    color: var(--color-blue);
+  }
+}
+
 .chatList {
   flex: 1;
   overflow-y: auto;
@@ -108,6 +133,11 @@
 
   &:hover {
     background: var(--color-gray-100);
+  }
+
+  &.chatItemActive {
+    border: 1px solid var(--color-primary);
+    background: var(--color-blue-light);
   }
 }
 
@@ -137,6 +167,16 @@
   font-weight: 500;
   font-size: 14px;
   color: var(--color-gray-700);
+}
+
+.location {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.handler {
+  font-size: 12px;
+  color: var(--color-gray-500);
 }
 
 .badges {
@@ -170,6 +210,21 @@
   color: var(--color-green-dark);
 }
 
+.status-red {
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+}
+
+.status-orange {
+  background: var(--color-warning-light);
+  color: var(--color-warning-dark);
+}
+
+.status-gray {
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
 .slaBadge {
   padding: 2px 8px;
   border-radius: 8px;
@@ -186,6 +241,21 @@
 .sla-green {
   background: var(--color-green-light);
   color: var(--color-green-dark);
+}
+
+.sla-yellow {
+  background: var(--color-yellow-light);
+  color: var(--color-yellow-dark);
+}
+
+.sla-blue {
+  background: var(--color-blue-light);
+  color: var(--color-blue);
+}
+
+.sla-orange {
+  background: var(--color-warning-light);
+  color: var(--color-warning-dark);
 }
 
 .chatFooter {
@@ -210,6 +280,31 @@
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: var(--color-gray-100);
+  font-size: 11px;
+  color: var(--color-gray-600);
+}
+
+.emptyState {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gray-500);
+  font-size: 13px;
 }
 
 .time {

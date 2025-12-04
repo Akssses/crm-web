@@ -97,6 +97,31 @@
   color: var(--color-yellow-dark);
 }
 
+.statusRed {
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+}
+
+.statusGreen {
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+}
+
+.statusBlue {
+  background: var(--color-blue-light);
+  color: var(--color-blue);
+}
+
+.statusOrange {
+  background: var(--color-warning-light);
+  color: var(--color-warning-dark);
+}
+
+.statusGray {
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
 .slaText {
   font-size: 14px;
   font-weight: 500;
@@ -104,6 +129,22 @@
 
 .slaRed {
   color: var(--color-danger-dark);
+}
+
+.slaGreen {
+  color: var(--color-green-dark);
+}
+
+.slaYellow {
+  color: var(--color-yellow-dark);
+}
+
+.slaBlue {
+  color: var(--color-blue);
+}
+
+.slaOrange {
+  color: var(--color-warning-dark);
 }
 
 .clientInfo {

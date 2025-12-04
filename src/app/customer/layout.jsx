@@ -7,9 +7,12 @@ import Sidebar, {
 } from "@/components/layout/Sidebar/Sidebar";
 import Header from "@/components/layout/Header/Header";
 import { customerMenuItems } from "@/components/layout/Sidebar/CustomerData";
+import { usePathname } from "next/navigation";
 
 function LayoutContent({ children }) {
   const { isCollapsed } = useSidebar();
+  const pathname = usePathname();
+  const isChatRoute = pathname?.startsWith("/customer/chat");
 
   return (
     <div
@@ -19,7 +22,7 @@ function LayoutContent({ children }) {
         transition: "margin-left 0.1s ease",
       }}
     >
-      <Header menuItems={customerMenuItems} />
+      {!isChatRoute && <Header menuItems={customerMenuItems} />}
       <main className={s.main}>{children}</main>
     </div>
   );

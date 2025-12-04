@@ -50,7 +50,13 @@ const columns = [
     key: "rating",
     label: "Рейтинг",
     render: (value) => (
-      <span style={{ fontWeight: 600, color: value >= 4.5 ? "#16a34a" : value >= 4.0 ? "#f59e0b" : "#dc2626" }}>
+      <span
+        style={{
+          fontWeight: 600,
+          color:
+            value >= 4.5 ? "#16a34a" : value >= 4.0 ? "#f59e0b" : "#dc2626",
+        }}
+      >
         {value.toFixed(1)} / 5
       </span>
     ),
@@ -62,7 +68,12 @@ const columns = [
     key: "issues",
     label: "Инциденты",
     render: (value) => (
-      <span style={{ fontWeight: 500, color: value > 8 ? "#dc2626" : value > 3 ? "#f97316" : "#16a34a" }}>
+      <span
+        style={{
+          fontWeight: 500,
+          color: value > 8 ? "#dc2626" : value > 3 ? "#f97316" : "#16a34a",
+        }}
+      >
         {value}
       </span>
     ),
@@ -79,23 +90,33 @@ export default function SupervisorSuppliers() {
       <Container size="full">
         <h2 className={s.sectionTitle}>Контроль поставщиков</h2>
         <p style={{ color: "#6b7280", marginBottom: 16 }}>
-          Рейтинг и показатели поставщиков: подтверждения, SLA, инциденты. Эти данные используются в отчетах
-          супервизора и при выборе партнёров.
+          Рейтинг и показатели поставщиков: подтверждения, SLA, инциденты. Эти
+          данные используются в отчетах супервизора и при выборе партнёров.
         </p>
 
-        <div style={{ display: "flex", justifyContent: "space-between", gap: 16, marginBottom: 16 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 16,
+            marginBottom: 16,
+          }}
+        >
           <div style={{ maxWidth: 260 }}>
-            <Select value={ratingFilter} onChange={setRatingFilter} options={RATING_FILTERS} />
-          </div>
-          <div style={{ width: 320 }}>
-            <Chart />
+            <Select
+              value={ratingFilter}
+              onChange={setRatingFilter}
+              options={RATING_FILTERS}
+            />
           </div>
         </div>
 
-        <UITable columns={columns} rows={filteredSuppliers} showCheckbox={false} />
+        <UITable
+          columns={columns}
+          rows={filteredSuppliers}
+          showCheckbox={false}
+        />
       </Container>
     </div>
   );
 }
-
-

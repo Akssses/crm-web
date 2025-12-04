@@ -1,20 +1,36 @@
 "use client";
 import React from "react";
 import { Button } from "@/ui";
-import {
-  MdClose,
-  MdEdit,
-  MdCheckCircle,
-  MdNotifications,
-  MdDownload,
-} from "react-icons/md";
+import { MdClose, MdDownload } from "react-icons/md";
 import s from "../styles/ChatDetails.module.scss";
 
-export default function ChatDetails({ className, onClose, isOpen }) {
-  const files = [
-    { name: "Паспорт_Иван.pdf", size: "124 KB" },
-    { name: "Ваучер_отель.pdf", size: "89 KB" },
-  ];
+const FieldList = ({ fields }) => {
+  if (!fields?.length) return null;
+
+  return fields.map((field) => (
+    <div key={field.label} className={s.field}>
+      <span className={s.label}>{field.label}</span>
+      <span className={s.value}>{field.value}</span>
+    </div>
+  ));
+};
+
+const getToneClass = (prefix, tone) => {
+  if (!tone) return "";
+  const normalized = tone.charAt(0).toUpperCase() + tone.slice(1);
+  return s[`${prefix}${normalized}`] || "";
+};
+
+export default function ChatDetails({
+  className,
+  onClose,
+  details,
+}) {
+  if (!details) {
+    return null;
+  }
+
+  const { request, client, service, finance, files = [], actions = [] } = details;
 
   return (
     <div className={`${s.details} ${className || ""}`}>
@@ -26,119 +42,109 @@ export default function ChatDetails({ className, onClose, isOpen }) {
       </div>
 
       <div className={s.content}>
-        {/* Request Overview */}
-        <div className={s.section}>
-          <div className={s.field}>
-            <span className={s.label}>Номер заявки</span>
-            <span className={s.value}>ORD-145</span>
-          </div>
-          <div className={s.field}>
-            <span className={s.label}>Статус</span>
-            <span className={`${s.statusBadge} ${s.statusYellow}`}>
-              В работе
-            </span>
-          </div>
-          <div className={s.field}>
-            <span className={s.label}>Оператор</span>
-            <span className={s.value}>А Айгерим</span>
-          </div>
-          <div className={s.field}>
-            <span className={s.label}>SLA</span>
-            <span className={`${s.slaText} ${s.slaRed}`}>Просрочено на 2ч</span>
-          </div>
-        </div>
-
-        {/* Client Information */}
-        <div className={s.section}>
-          <h4 className={s.sectionTitle}>Клиент</h4>
-          <div className={s.clientInfo}>
-            <span className={s.clientName}>Иван Петров</span>
-            <span className={s.clientType}>Постоянный клиент</span>
-          </div>
-          <div className={s.contactInfo}>
-            <div className={s.contactItem}>
-              <span className={s.contactLabel}>Телефон:</span>
-              <span className={s.contactValue}>+996 700 123 456</span>
+        {request && (
+          <div className={s.section}>
+            <div className={s.field}>
+              <span className={s.label}>Номер заявки</span>
+              <span className={s.value}>{request.number}</span>
             </div>
-            <div className={s.contactItem}>
-              <span className={s.contactLabel}>Email:</span>
-              <span className={s.contactValue}>ivan@example.com</span>
-            </div>
-            <div className={s.contactItem}>
-              <span className={s.contactLabel}>Telegram:</span>
-              <span className={s.contactValue}>@ivan_petrov</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Service Information */}
-        <div className={s.section}>
-          <h4 className={s.sectionTitle}>Услуга</h4>
-          <div className={s.field}>
-            <span className={s.label}>Направление</span>
-            <span className={s.value}>Турция, Анталья</span>
-          </div>
-          <div className={s.field}>
-            <span className={s.label}>Даты</span>
-            <span className={s.value}>15-25 мая 2025</span>
-          </div>
-          <div className={s.field}>
-            <span className={s.label}>Туристы</span>
-            <span className={s.value}>2 взрослых</span>
-          </div>
-          <div className={s.field}>
-            <span className={s.label}>Отель</span>
-            <span className={s.value}>Club Hotel Sera 5*</span>
-          </div>
-          <div className={s.field}>
-            <span className={s.label}>Стоимость</span>
-            <span className={s.value}>$2,450</span>
-          </div>
-        </div>
-
-        {/* Files */}
-        <div className={s.section}>
-          <h4 className={s.sectionTitle}>Файлы</h4>
-          <div className={s.filesList}>
-            {files.map((file, idx) => (
-              <div key={idx} className={s.fileItem}>
-                <span className={s.fileName}>{file.name}</span>
-                <span className={s.fileSize}>{file.size}</span>
-                <button className={s.downloadButton}>
-                  <MdDownload size={16} />
-                </button>
+            {request.status && (
+              <div className={s.field}>
+                <span className={s.label}>Статус</span>
+                <span className={`${s.statusBadge} ${getToneClass("status", request.status.tone)}`}>
+                  {request.status.label}
+                </span>
               </div>
-            ))}
+            )}
+            {request.owner && (
+              <div className={s.field}>
+                <span className={s.label}>Ответственный</span>
+                <span className={s.value}>{request.owner}</span>
+              </div>
+            )}
+            {request.sla && (
+              <div className={s.field}>
+                <span className={s.label}>SLA</span>
+                <span className={`${s.slaText} ${getToneClass("sla", request.sla.tone)}`}>
+                  {request.sla.label}
+                </span>
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
-        {/* Quick Actions */}
-        <div className={s.actions}>
-          <Button
-            variant="primary"
-            icon={MdEdit}
-            className={s.actionButton}
-            onClick={() => {}}
-          >
-            Создать корректировку
-          </Button>
-          <Button
-            variant="success"
-            icon={MdCheckCircle}
-            className={s.actionButton}
-            onClick={() => {}}
-          >
-            Подтвердить заказ
-          </Button>
-          <Button
-            variant="yellow"
-            icon={MdNotifications}
-            className={s.actionButton}
-            onClick={() => {}}
-          >
-            Напомнить клиенту
-          </Button>
-        </div>
+        {client && (
+          <div className={s.section}>
+            <h4 className={s.sectionTitle}>Клиент</h4>
+            {client.name && (
+              <div className={s.clientInfo}>
+                <span className={s.clientName}>{client.name}</span>
+                {client.type && <span className={s.clientType}>{client.type}</span>}
+              </div>
+            )}
+            {client.contacts?.length && (
+              <div className={s.contactInfo}>
+                {client.contacts.map((contact) => (
+                  <div key={contact.label} className={s.contactItem}>
+                    <span className={s.contactLabel}>{contact.label}:</span>
+                    <span className={s.contactValue}>{contact.value}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {service?.length > 0 && (
+          <div className={s.section}>
+            <h4 className={s.sectionTitle}>Услуга</h4>
+            <FieldList fields={service} />
+          </div>
+        )}
+
+        {finance?.length > 0 && (
+          <div className={s.section}>
+            <h4 className={s.sectionTitle}>Финансы</h4>
+            <FieldList fields={finance} />
+          </div>
+        )}
+
+        {files.length > 0 && (
+          <div className={s.section}>
+            <h4 className={s.sectionTitle}>Файлы</h4>
+            <div className={s.filesList}>
+              {files.map((file) => (
+                <div key={file.name} className={s.fileItem}>
+                  <span className={s.fileName}>{file.name}</span>
+                  {file.size && <span className={s.fileSize}>{file.size}</span>}
+                  <button className={s.downloadButton}>
+                    <MdDownload size={16} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {actions.length > 0 && (
+          <div className={s.actions}>
+            {actions.map((action) => {
+              const Icon = action.icon;
+              return (
+                <Button
+                  key={action.id}
+                  variant={action.variant || "primary"}
+                  icon={Icon}
+                  className={s.actionButton}
+                  disabled={action.disabled}
+                  onClick={action.onClick}
+                >
+                  {action.label}
+                </Button>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

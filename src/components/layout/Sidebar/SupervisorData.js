@@ -8,6 +8,7 @@ import {
   MdAutoMode,
   MdStorefront,
   MdHistory,
+  MdChat,
 } from "react-icons/md";
 
 export const supervisorMenuItems = [
@@ -64,6 +65,12 @@ export const supervisorMenuItems = [
     label: "Авто-распределение",
     icon: MdAutoMode,
     href: "/supervisor/auto-routing",
+  },
+  {
+    id: "chat",
+    label: "Чат",
+    icon: MdChat,
+    href: "/supervisor/chat",
   },
 ];
 
