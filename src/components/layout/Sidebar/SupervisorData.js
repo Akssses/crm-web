@@ -1,10 +1,13 @@
-import { 
-  MdDashboard, 
-  MdAssignment, 
-  MdShoppingCart, 
-  MdPeople, 
-  MdBarChart, 
-  MdNotifications 
+import {
+  MdDashboard,
+  MdAssignment,
+  MdShoppingCart,
+  MdPeople,
+  MdBarChart,
+  MdNotifications,
+  MdAutoMode,
+  MdStorefront,
+  MdHistory,
 } from "react-icons/md";
 
 export const supervisorMenuItems = [
@@ -33,6 +36,12 @@ export const supervisorMenuItems = [
     href: "/supervisor/operators",
   },
   {
+    id: "suppliers",
+    label: "Поставщики",
+    icon: MdStorefront,
+    href: "/supervisor/suppliers",
+  },
+  {
     id: "analytics",
     label: "Аналитика",
     icon: MdBarChart,
@@ -43,6 +52,18 @@ export const supervisorMenuItems = [
     label: "Уведомления",
     icon: MdNotifications,
     href: "/supervisor/notifications",
+  },
+  {
+    id: "activity-log",
+    label: "История действий",
+    icon: MdHistory,
+    href: "/supervisor/activity-log",
+  },
+  {
+    id: "auto-routing",
+    label: "Авто-распределение",
+    icon: MdAutoMode,
+    href: "/supervisor/auto-routing",
   },
 ];
 

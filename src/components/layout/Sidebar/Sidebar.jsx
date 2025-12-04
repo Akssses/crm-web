@@ -79,6 +79,17 @@ function SidebarComponent({ items = adminMenuItems }) {
   } = useSidebar();
   const pathname = usePathname();
 
+  const roleTitles = {
+    admin: "ПСЦ Админ",
+    accountant: "ПСЦ Бухгалтер",
+    operator: "ПСЦ Оператор",
+    customer: "ПСЦ Клиент",
+    supervisor: "ПСЦ Супервизор",
+  };
+
+  const rootSegment = pathname?.split("/")[1] || "";
+  const portalTitle = roleTitles[rootSegment] || "ПСЦ CRM";
+
   const handleLinkClick = () => {
     // Закрываем мобильный sidebar при клике на ссылку
     if (window.innerWidth <= 768) {
@@ -106,7 +117,7 @@ function SidebarComponent({ items = adminMenuItems }) {
             className={`${s.title} ${isCollapsed ? s.titleCollapsed : ""}`}
             aria-hidden={isCollapsed}
           >
-            ПСЦ CRM
+            {portalTitle}
           </h4>
           <button
             className={s.collapseButton}

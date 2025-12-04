@@ -1,5 +1,9 @@
+"use client";
+
+import SupervisorOperators from "@/modules/supervisor/operators/components/Operators";
+
 export default function SupervisorOperatorsPage() {
-  return <div>Страница операторов супервизора.</div>;
+  return <SupervisorOperators />;
 }
 
 

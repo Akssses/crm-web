@@ -1,5 +1,6 @@
-export default function SupervisorHomePage() {
-  return <div>Добро пожаловать в панель супервизора.</div>;
-}
+import SupervisorDashboard from "@/modules/supervisor/dashboard/components/Dashboard";
 
+export default function SupervisorHomePage() {
+  return <SupervisorDashboard />;
+}
 
