@@ -17,6 +17,7 @@ export default function UITable({
   onAddClick = null,
   onRowAction = null,
   onRowClick = null,
+  onSelectionChange = null,
   addButtonText = "Добавить",
   enableCardView = true,
   responsiveBreakpoint = 768,
@@ -25,20 +26,18 @@ export default function UITable({
   const [isCardMode, setIsCardMode] = useState(false);
 
   const toggleSelectAll = () => {
-    if (selectedRows.length === rows.length) {
-      setSelectedRows([]);
-    } else {
-      setSelectedRows(rows.map((_, i) => i));
-    }
+    const newSelection = selectedRows.length === rows.length ? [] : rows.map((_, i) => i);
+    setSelectedRows(newSelection);
+    onSelectionChange?.(newSelection);
   };
 
   const toggleSelectRow = (index) => {
     setSelectedRows((prev) => {
-      if (prev.includes(index)) {
-        return prev.filter((i) => i !== index);
-      } else {
-        return [...prev, index];
-      }
+      const newSelection = prev.includes(index)
+        ? prev.filter((i) => i !== index)
+        : [...prev, index];
+      onSelectionChange?.(newSelection);
+      return newSelection;
     });
   };
 

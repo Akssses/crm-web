@@ -11,7 +11,7 @@ import Systema from "./Systema";
 export default function Dashboard() {
   return (
     <div className={s.dashboard}>
-      <Date date={"Feb 28, 2024"} />
+      {/* <Date date={"Feb 28, 2024"} /> */}
       <State />
       <div className={s.flex}>
         <Schedule />

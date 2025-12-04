@@ -32,7 +32,7 @@ const SERVICE_OPTIONS = [
   { value: "visa", label: "Визы" },
 ];
 
-export default function Requests() {
+export default function Requests({ hideCreateButton = false }) {
   const router = useRouter();
   const [filters, setFilters] = useState({
     organization: "all",
@@ -112,14 +112,16 @@ export default function Requests() {
             icon={IoSearchOutline}
             className={s.search}
           />
-          <Button
-            variant="bgblue"
-            size="md"
-            icon={MdAdd}
-            onClick={handleCreateRequest}
-          >
-            Новая заявка
-          </Button>
+          {!hideCreateButton && (
+            <Button
+              variant="bgblue"
+              size="md"
+              icon={MdAdd}
+              onClick={handleCreateRequest}
+            >
+              Новая заявка
+            </Button>
+          )}
         </div>
       </div>
 
