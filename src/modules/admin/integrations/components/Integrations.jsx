@@ -14,10 +14,12 @@ import OrganizationsIntegration from "./OrganizationsIntegration";
 import QueueManagement from "./QueueManagement";
 import DiagnosticsPanel from "./DiagnosticsPanel";
 import s from "../styles/Integrations.module.scss";
+import { useRouter } from "next/navigation";
 
 export default function Integrations() {
   const [activeTab, setActiveTab] = useState("overview");
   const [search, setSearch] = useState("");
+  const router = useRouter();
 
   const tabs = [
     { id: "overview", label: "Обзор" },
@@ -48,7 +50,11 @@ export default function Integrations() {
             <Button variant="bggray100" icon={MdNotifications}>
               Уведомления
             </Button>
-            <Button variant="bggray100" icon={IoMdSettings}>
+            <Button
+              variant="bggray100"
+              icon={IoMdSettings}
+              onClick={() => router.push("/admin/integrations/settings")}
+            >
               Настройки FinanceHub
             </Button>
           </div>
