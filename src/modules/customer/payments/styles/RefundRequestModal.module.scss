@@ -1,0 +1,51 @@
+.refundRequestModal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-700);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.filesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.fileItem {
+  padding: 8px 12px;
+  background: var(--color-gray-50);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--color-gray-700);
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray-200);
+}

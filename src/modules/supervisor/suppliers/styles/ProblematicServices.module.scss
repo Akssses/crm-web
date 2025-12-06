@@ -1,7 +1,8 @@
-.reverseExchange {
+.problematicServices {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-height: 500px;
 }
 
 .toolbar {
@@ -28,14 +29,29 @@
   background: var(--color-white);
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--color-gray-200);
+  max-height: 600px;
+  overflow-y: auto;
 }
 
-.statusCell {
+.problemCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.problemLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-900);
+}
+
+.severityCell {
   display: flex;
   align-items: center;
 }
 
-.statusBadge {
+.severityBadge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -44,51 +60,33 @@
   font-size: 12px;
   font-weight: 600;
 
-  &.status-green {
-    background: var(--color-success-light);
-    color: var(--color-success-dark);
+  &.severity-red {
+    background: var(--color-danger-light);
+    color: var(--color-danger-dark);
   }
 
-  &.status-yellow {
+  &.severity-yellow {
     background: var(--color-yellow-light);
     color: var(--color-yellow-dark);
   }
 
-  &.status-blue {
-    background: var(--color-blue-light);
-    color: var(--color-blue-dark);
-  }
-
-  &.status-red {
-    background: var(--color-danger-light);
-    color: var(--color-danger-dark);
+  &.severity-orange {
+    background: var(--color-orange-light);
+    color: var(--color-orange-dark);
   }
 }
 
-.amountCell {
+.actionsCell {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.paidAmount {
-  font-size: 12px;
-  color: var(--color-gray-500);
-}
-
-.processedCell {
-  display: flex;
+  gap: 8px;
   align-items: center;
 }
 
-.processedIcon {
-  color: var(--color-success-dark);
-}
-
-.notProcessed {
-  color: var(--color-yellow-dark);
-  font-weight: 500;
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray-200);
 }
 

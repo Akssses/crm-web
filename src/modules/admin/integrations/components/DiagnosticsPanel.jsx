@@ -85,9 +85,7 @@ export default function DiagnosticsPanel() {
           Состояние сервисов
         </button>
         <button
-          className={`${s.tab} ${
-            activeTab === "discrepancies" ? s.active : ""
-          }`}
+          className={`${s.tab} ${activeTab === "discrepancies" ? s.active : ""}`}
           onClick={() => setActiveTab("discrepancies")}
         >
           Расхождения данных
@@ -101,14 +99,9 @@ export default function DiagnosticsPanel() {
       </div>
 
       <div className={s.content}>
-        {activeTab === "services" && (
-          <ServicesStatus services={MOCK_SERVICES} />
-        )}
+        {activeTab === "services" && <ServicesStatus services={MOCK_SERVICES} />}
         {activeTab === "discrepancies" && (
-          <DiscrepanciesList
-            discrepancies={MOCK_DISCREPANCIES}
-            search={search}
-          />
+          <DiscrepanciesList discrepancies={MOCK_DISCREPANCIES} search={search} />
         )}
         {activeTab === "metrics" && <MetricsView />}
       </div>
@@ -136,10 +129,8 @@ function ServicesStatus({ services }) {
             <div key={idx} className={s.serviceCard}>
               <div className={s.serviceHeader}>
                 <h4 className={s.serviceName}>{service.name}</h4>
-                <span
-                  className={`${s.statusBadge} ${s[`status-${config.color}`]}`}
-                >
-                  <Icon size={16} />
+                <span className={`${s.statusBadge} ${s[`status-${config.color}`]}`}>
+                  <Icon size={12} />
                   {config.label}
                 </span>
               </div>
@@ -290,3 +281,4 @@ function MetricsView() {
     </div>
   );
 }
+

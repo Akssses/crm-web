@@ -12,6 +12,7 @@ import {
   MdHistory,
   MdSyncAlt,
   MdChat,
+  MdSettingsInputComponent,
 } from "react-icons/md";
 
 export const accountantMenuItems = [
@@ -92,5 +93,11 @@ export const accountantMenuItems = [
     label: "Чат",
     icon: MdChat,
     href: "/accountant/chat",
+  },
+  {
+    id: "integrations",
+    label: "CMS Интеграции",
+    icon: MdSettingsInputComponent,
+    href: "/accountant/integrations",
   },
 ];

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useMemo } from "react";
-import { Button, Input, Modal, Select, UITable } from "@/ui";
+import { Button, Input, Select, UITable } from "@/ui";
 import {
   MdRefresh,
   MdError,
@@ -91,7 +91,9 @@ export default function MonitoringPanel() {
       key: "timestamp",
       label: "Время",
       flex: 1,
-      render: (value) => <div className={s.timestampCell}>{value}</div>,
+      render: (value) => (
+        <div className={s.timestampCell}>{value}</div>
+      ),
     },
     {
       key: "organization",
@@ -116,11 +118,7 @@ export default function MonitoringPanel() {
         const config = {
           success: { icon: MdCheckCircle, color: "green", label: "Успешно" },
           error: { icon: MdError, color: "red", label: "Ошибка" },
-          warning: {
-            icon: MdWarning,
-            color: "yellow",
-            label: "Предупреждение",
-          },
+          warning: { icon: MdWarning, color: "yellow", label: "Предупреждение" },
         }[value] || { icon: MdInfoOutline, color: "gray", label: value };
         const Icon = config.icon;
         return (
@@ -137,7 +135,11 @@ export default function MonitoringPanel() {
       key: "responseTime",
       label: "Время ответа",
       flex: 0.8,
-      render: (value) => <div className={s.responseTimeCell}>{value}ms</div>,
+      render: (value) => (
+        <div className={s.responseTimeCell}>
+          {value}ms
+        </div>
+      ),
     },
     {
       key: "actions",
@@ -224,7 +226,11 @@ export default function MonitoringPanel() {
       </div>
 
       <div className={s.tableBlock}>
-        <UITable columns={columns} rows={filteredLogs} showCheckbox={false} />
+        <UITable
+          columns={columns}
+          rows={filteredLogs}
+          showCheckbox={false}
+        />
       </div>
 
       {selectedLog && (
@@ -244,7 +250,7 @@ function PayloadModal({ log, isOpen, onClose }) {
       isOpen={isOpen}
       onClose={onClose}
       size="lg"
-      width="500px"
+      width="900px"
       title={`Payload: ${log.id}`}
     >
       <div className={s.payloadModal}>
@@ -289,3 +295,4 @@ function PayloadModal({ log, isOpen, onClose }) {
     </Modal>
   );
 }
+

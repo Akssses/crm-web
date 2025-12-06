@@ -1,7 +1,31 @@
-.reverseExchange {
+.refundsList {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.headerInfo {
+  flex: 1;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 4px 0;
+}
+
+.sectionDescription {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  margin: 0;
 }
 
 .toolbar {
@@ -28,6 +52,13 @@
   background: var(--color-white);
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--color-gray-200);
+}
+
+.amountCell {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-gray-900);
 }
 
 .statusCell {
@@ -65,30 +96,48 @@
   }
 }
 
-.amountCell {
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.refundDetailModal {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 14px;
-  font-weight: 500;
+  gap: 24px;
 }
 
-.paidAmount {
-  font-size: 12px;
-  color: var(--color-gray-500);
-}
-
-.processedCell {
+.detailSection {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 12px;
+  background: var(--color-gray-50);
+  border-radius: 8px;
 }
 
-.processedIcon {
-  color: var(--color-success-dark);
+.detailLabel {
+  font-weight: 600;
+  color: var(--color-gray-700);
 }
 
-.notProcessed {
-  color: var(--color-yellow-dark);
+.detailValue {
+  color: var(--color-gray-900);
   font-weight: 500;
 }
 
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray-200);
+}

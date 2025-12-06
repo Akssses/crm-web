@@ -104,11 +104,11 @@ export default function ChatDetail({ role = CHAT_ROLES.OPERATOR }) {
         />
       )}
       {isDetailsOpen && (
-        <ChatDetails
-          className={`${s.details} ${isDetailsOpen ? s.open : ""}`}
-          onClose={() => setIsDetailsOpen(false)}
+      <ChatDetails
+        className={`${s.details} ${isDetailsOpen ? s.open : ""}`}
+        onClose={() => setIsDetailsOpen(false)}
           details={conversation.details || roleConfig.details}
-        />
+      />
       )}
     </div>
   );
