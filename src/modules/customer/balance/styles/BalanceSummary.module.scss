@@ -1,0 +1,165 @@
+.balanceSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.balanceCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.balanceCard {
+  padding: 24px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.cardCurrency {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  font-weight: 500;
+}
+
+.cardAmount {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  line-height: 1.2;
+
+  &.cardAmountFrozen {
+    color: var(--color-yellow-dark);
+  }
+
+  &.cardAmountPending {
+    color: var(--color-blue-dark);
+  }
+
+  &.cardAmountOverpayment {
+    color: var(--color-success-dark);
+  }
+
+  &.cardAmountDebt {
+    color: var(--color-danger-dark);
+  }
+}
+
+.cardDescription {
+  font-size: 13px;
+  color: var(--color-gray-600);
+  margin: 0;
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.creditInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.creditRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-gray-100);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.creditLabel {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  font-weight: 500;
+}
+
+.creditValue {
+  font-size: 14px;
+  color: var(--color-gray-900);
+  font-weight: 600;
+
+  &.creditValueDanger {
+    color: var(--color-danger-dark);
+  }
+}
+
+.notifications {
+  padding: 20px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+}
+
+.notificationsTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 16px 0;
+}
+
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+
+  &.notification-info {
+    background: var(--color-blue-light);
+    color: var(--color-blue-dark);
+  }
+
+  &.notification-warning {
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+}
+
+.notificationContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notificationMessage {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.notificationDate {
+  font-size: 12px;
+  opacity: 0.8;
+}
