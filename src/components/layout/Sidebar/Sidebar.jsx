@@ -79,6 +79,17 @@ function SidebarComponent({ items = adminMenuItems }) {
   } = useSidebar();
   const pathname = usePathname();
 
+  const roleTitles = {
+    admin: "ПСЦ Админ",
+    accountant: "ПСЦ Бухгалтер",
+    operator: "ПСЦ Оператор",
+    customer: "ПСЦ Клиент",
+    supervisor: "ПСЦ Супервизор",
+  };
+
+  const rootSegment = pathname?.split("/")[1] || "";
+  const portalTitle = roleTitles[rootSegment] || "ПСЦ CRM";
+
   const handleLinkClick = () => {
     // Закрываем мобильный sidebar при клике на ссылку
     if (window.innerWidth <= 768) {
@@ -106,7 +117,7 @@ function SidebarComponent({ items = adminMenuItems }) {
             className={`${s.title} ${isCollapsed ? s.titleCollapsed : ""}`}
             aria-hidden={isCollapsed}
           >
-            ПСЦ CRM
+            {portalTitle}
           </h4>
           <button
             className={s.collapseButton}
@@ -122,8 +133,12 @@ function SidebarComponent({ items = adminMenuItems }) {
 
         <nav className={s.menu}>
           {items.map((item) => {
+            // Для корневых дашбордов типа "/accountant" считаем активным только точное совпадение,
+            // чтобы дашборд бухгалтера не подсвечивался одновременно с другими страницами.
+            const isRootDashboard = item.href === "/accountant";
             const isActive =
-              pathname === item.href || pathname.startsWith(item.href + "/");
+              pathname === item.href ||
+              (!isRootDashboard && pathname.startsWith(item.href + "/"));
             const Icon = item.icon;
 
             return (

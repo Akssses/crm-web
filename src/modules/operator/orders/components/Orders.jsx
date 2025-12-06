@@ -32,7 +32,7 @@ const STATUS_OPTIONS = [
   { value: "cancelled", label: "Отменен" },
 ];
 
-export default function Orders() {
+export default function Orders({ hideCreateButton = false }) {
   const [searchValue, setSearchValue] = useState("");
   const [filters, setFilters] = useState({
     organization: "all",
@@ -100,14 +100,16 @@ export default function Orders() {
             onChange={setSearchValue}
             className={s.search}
           />
-          <Button
-            variant="bgblue"
-            size="md"
-            icon={MdAdd}
-            onClick={handleAddOrder}
-          >
-            Добавить заказ
-          </Button>
+          {!hideCreateButton && (
+            <Button
+              variant="bgblue"
+              size="md"
+              icon={MdAdd}
+              onClick={handleAddOrder}
+            >
+              Добавить заказ
+            </Button>
+          )}
         </div>
       </div>
 

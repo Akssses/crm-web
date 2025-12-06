@@ -7,9 +7,12 @@ import Sidebar, {
 } from "@/components/layout/Sidebar/Sidebar";
 import Header from "@/components/layout/Header/Header";
 import { supervisorMenuItems } from "@/components/layout/Sidebar/SupervisorData";
+import { usePathname } from "next/navigation";
 
 function LayoutContent({ children }) {
   const { isCollapsed } = useSidebar();
+  const pathname = usePathname();
+  const isChatRoute = pathname?.startsWith("/supervisor/chat");
 
   return (
     <div
@@ -19,7 +22,7 @@ function LayoutContent({ children }) {
         transition: "margin-left 0.1s ease",
       }}
     >
-      <Header menuItems={supervisorMenuItems} />
+      {!isChatRoute && <Header menuItems={supervisorMenuItems} />}
       <main className={s.main}>{children}</main>
     </div>
   );

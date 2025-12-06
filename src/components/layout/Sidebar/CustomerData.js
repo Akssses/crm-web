@@ -4,6 +4,7 @@ import {
   MdShoppingCart, 
   MdPeople, 
   MdPayment, 
+  MdAccountBalance,
   MdDescription, 
   MdNotifications, 
   MdChat 
@@ -39,6 +40,12 @@ export const customerMenuItems = [
     label: "Оплаты",
     icon: MdPayment,
     href: "/customer/payments",
+  },
+  {
+    id: "balance",
+    label: "Баланс",
+    icon: MdAccountBalance,
+    href: "/customer/balance",
   },
   {
     id: "documents",

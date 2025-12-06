@@ -1,5 +1,8 @@
-export default function SupervisorOrdersPage() {
-  return <div>Страница заказов супервизора.</div>;
-}
+"use client";
 
+import Orders from "@/modules/operator/orders/components/Orders";
+
+export default function SupervisorOrdersPage() {
+  return <Orders hideCreateButton />;
+}
 

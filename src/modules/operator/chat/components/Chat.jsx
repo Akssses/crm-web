@@ -1,108 +1,41 @@
 "use client";
 import React, { useState } from "react";
-import { Container, Input, Button } from "@/ui";
+import { Container, Input } from "@/ui";
 import { CiCalendar } from "react-icons/ci";
 import {
-  MdEmail,
-  MdSettings,
-  MdCheckCircle,
-  MdChatBubbleOutline,
-  MdWifiOff,
-  MdFolder,
-  MdFlight,
   MdWarning,
   MdAccessTime,
   MdStar,
+  MdWifiOff,
+  MdFolder,
+  MdCheckCircle,
 } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import s from "../styles/Chat.module.scss";
+import { CHAT_ROLES, getRoleConfig } from "../constants/roleConfigs";
 
-export default function Chat() {
+const roleRoutePrefix = {
+  [CHAT_ROLES.OPERATOR]: "/operator/chat",
+  [CHAT_ROLES.SUPERVISOR]: "/supervisor/chat",
+  [CHAT_ROLES.ADMIN]: "/admin/chat",
+  [CHAT_ROLES.CUSTOMER]: "/customer/chat",
+  [CHAT_ROLES.ACCOUNTANT]: "/accountant/chat",
+};
+
+export default function Chat({ role = CHAT_ROLES.OPERATOR }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("all");
+  const roleConfig = getRoleConfig(role);
+  const sidebar = roleConfig.sidebar || {};
+  const tabs = sidebar.tabs || [];
+  const filters = sidebar.filters || [];
+  const chats = sidebar.chats || [];
+  const meta = roleConfig.meta || {};
+  const routePrefix = roleRoutePrefix[role] || roleRoutePrefix[CHAT_ROLES.OPERATOR];
 
-  const tabs = [
-    { id: "all", label: "Все" },
-    { id: "my", label: "Мои" },
-    { id: "no-connection", label: "Без связи" },
-    { id: "archive", label: "Архив" },
-  ];
-
-  const chats = [
-    {
-      id: "ORD-145",
-      clientName: "Иван Петров",
-      location: "Турция, Анталья",
-      message: "Нужно изменить дату вылета",
-      messageIcon: MdEmail,
-      time: "14:33",
-      status: "Просрочено",
-      statusColor: "red",
-      sla: "-24ч",
-      slaColor: "red",
-    },
-    {
-      id: "ORD-144",
-      clientName: "Мария Сидорова",
-      location: "Италия, Рим",
-      message: "КП отправлено клиенту",
-      messageIcon: MdSettings,
-      time: "13:07",
-      status: "В работе",
-      statusColor: "yellow",
-    },
-    {
-      id: "ORD-143",
-      clientName: "Алексей Козлов",
-      location: "Египет, Хургада",
-      message: "Подтверждение брони получено",
-      messageIcon: MdCheckCircle,
-      time: "12:45",
-      status: "В срок",
-      statusColor: "green",
-    },
-    {
-      id: "ORD-142",
-      clientName: "Елена Васильева",
-      location: "Греция, Крит",
-      message: "Добрый день! Хочу уточнить по туру...",
-      messageIcon: MdChatBubbleOutline,
-      time: "11:28",
-      status: "Новое",
-      statusColor: "blue",
-    },
-    {
-      id: "ORD-141",
-      clientName: "Дмитрий Смирнов",
-      location: "Таиланд, Пхукет",
-      message: "Нет связи",
-      messageIcon: MdWifiOff,
-      time: "10:15",
-      status: "Нет связи",
-      statusColor: "orange",
-    },
-    {
-      id: "ORD-140",
-      clientName: "Анна Кузнецова",
-      location: "Испания, Барселона",
-      message: "Заявка закрыта успешно",
-      messageIcon: MdFolder,
-      time: "09:42",
-      status: "Архив",
-      statusColor: "gray",
-    },
-    {
-      id: "ORD-139",
-      clientName: "Павел Морозов",
-      location: "ОАЭ, Дубай",
-      message: "Вопрос по трансферу из аэропорта",
-      messageIcon: MdFlight,
-      time: "08:55",
-      status: "В срок",
-      statusColor: "green",
-    },
-  ];
+  const [activeTab, setActiveTab] = useState(tabs[0]?.id || "all");
+  const [activeFilters, setActiveFilters] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   const getStatusIcon = (statusColor) => {
     switch (statusColor) {
@@ -123,6 +56,56 @@ export default function Chat() {
     }
   };
 
+  const handleFilterToggle = (filterId) => {
+    setActiveFilters((prev) =>
+      prev.includes(filterId)
+        ? prev.filter((id) => id !== filterId)
+        : [...prev, filterId]
+    );
+  };
+
+  const normalizedSearch = searchValue.toLowerCase();
+
+  const filteredChats = chats.filter((chat) => {
+    const matchesSearch =
+      !normalizedSearch ||
+      chat.id.toLowerCase().includes(normalizedSearch) ||
+      chat.clientName?.toLowerCase().includes(normalizedSearch) ||
+      chat.location?.toLowerCase().includes(normalizedSearch);
+
+    const matchesTab = (() => {
+      switch (activeTab) {
+        case "unread":
+          return chat.unread > 0;
+        case "sla":
+          return chat.slaColor === "red" || chat.statusColor === "red";
+        case "archive":
+          return chat.status === "Архив";
+        case "my":
+          return chat.handler?.toLowerCase().includes("айгерим") ?? true;
+        default:
+          return true;
+      }
+    })();
+
+    const matchesFilters =
+      !activeFilters.length ||
+      activeFilters.every((filterId) => {
+        const normalizedFilter = filterId.toLowerCase();
+        return (chat.tags || []).some((tag) => {
+          const normalizedTag = tag.toLowerCase();
+          return (
+            normalizedTag.includes(normalizedFilter) ||
+            normalizedFilter.includes(normalizedTag)
+          );
+        });
+      });
+
+    return matchesSearch && matchesTab && matchesFilters;
+  });
+
+  const DateIcon = meta.dateIcon || CiCalendar;
+
   return (
     <div className={s.chat}>
       {/* Header with Tabs and Search */}
@@ -140,21 +123,40 @@ export default function Chat() {
         </div>
         <div className={s.headerRight}>
           <div className={s.datePicker}>
-            <CiCalendar size={20} />
-            <span>Feb 28, 2024</span>
+            <DateIcon size={20} />
+            <div className={s.dateCol}>
+              {meta.dateLabel && <span className={s.dateLabel}>{meta.dateLabel}</span>}
+              <span>{meta.dateValue || "Сегодня"}</span>
+            </div>
           </div>
           <Input
             icon={IoSearchOutline}
             placeholder="Поиск..."
-            onChange={() => {}}
+            value={searchValue}
+            onChange={(value) => setSearchValue(value)}
             className={s.searchInput}
           />
         </div>
       </div>
+      {!!filters.length && (
+        <div className={s.filterRow}>
+          {filters.map((filter) => (
+            <button
+              key={filter.id}
+              className={`${s.filterChip} ${
+                activeFilters.includes(filter.id) ? s.active : ""
+              }`}
+              onClick={() => handleFilterToggle(filter.id)}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Chat List */}
       <div className={s.chatList}>
-        {chats.map((chat) => {
+        {filteredChats.map((chat) => {
           const StatusIcon = getStatusIcon(chat.statusColor);
           const MessageIcon = chat.messageIcon;
 
@@ -162,7 +164,7 @@ export default function Chat() {
             <div
               key={chat.id}
               className={s.chatItem}
-              onClick={() => router.push(`/operator/chat/${chat.id}`)}
+              onClick={() => router.push(`${routePrefix}/${chat.id}`)}
             >
               <div className={s.chatLeft}>
                 <div className={s.chatHeader}>
@@ -178,7 +180,7 @@ export default function Chat() {
                 </div>
                 <div className={s.location}>{chat.location}</div>
                 <div className={s.message}>
-                  <MessageIcon className={s.messageIcon} size={16} />
+                  {MessageIcon && <MessageIcon className={s.messageIcon} size={16} />}
                   <span>{chat.message}</span>
                 </div>
               </div>
@@ -198,6 +200,9 @@ export default function Chat() {
             </div>
           );
         })}
+        {!filteredChats.length && (
+          <div className={s.emptyState}>Нет заявок по текущим фильтрам</div>
+        )}
       </div>
     </div>
   );

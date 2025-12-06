@@ -92,4 +92,10 @@ export const menuItems = [
     icon: MdChat,
     href: "/admin/communication-channels",
   },
+  {
+    id: "chat",
+    label: "Чат",
+    icon: MdChat,
+    href: "/admin/chat",
+  },
 ];

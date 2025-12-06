@@ -1,0 +1,184 @@
+.paymentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.orderSummary {
+  padding: 20px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summaryTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summaryLabel {
+  font-size: 12px;
+  color: var(--color-gray-600);
+  font-weight: 500;
+}
+
+.summaryValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+
+  &.summaryValueSuccess {
+    color: var(--color-success-dark);
+  }
+
+  &.summaryValueWarning {
+    color: var(--color-yellow-dark);
+  }
+
+  &.summaryValueDanger {
+    color: var(--color-danger-dark);
+  }
+}
+
+.riskWarning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--color-yellow-light);
+  border-radius: 8px;
+  color: var(--color-yellow-dark);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tableBlock {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-gray-200);
+}
+
+.amountCell {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-gray-900);
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.status-green {
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+
+  &.status-yellow {
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.status-blue {
+    background: var(--color-blue-light);
+    color: var(--color-blue-dark);
+  }
+
+  &.status-red {
+    background: var(--color-danger-light);
+    color: var(--color-danger-dark);
+  }
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.paymentDetailModal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--color-gray-50);
+  border-radius: 8px;
+}
+
+.detailLabel {
+  font-weight: 600;
+  color: var(--color-gray-700);
+}
+
+.detailValue {
+  color: var(--color-gray-900);
+  font-weight: 500;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray-200);
+}

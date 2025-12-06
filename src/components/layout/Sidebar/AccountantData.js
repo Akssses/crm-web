@@ -1,9 +1,18 @@
-import { 
-  MdDashboard, 
-  MdDescription, 
-  MdPayment, 
-  MdAssignmentReturn, 
-  MdPeople 
+import {
+  MdDashboard,
+  MdDescription,
+  MdPayment,
+  MdAssignmentReturn,
+  MdPeople,
+  MdBusiness,
+  MdCurrencyExchange,
+  MdAccountBalance,
+  MdBarChart,
+  MdNotifications,
+  MdHistory,
+  MdSyncAlt,
+  MdChat,
+  MdSettingsInputComponent,
 } from "react-icons/md";
 
 export const accountantMenuItems = [
@@ -20,6 +29,18 @@ export const accountantMenuItems = [
     href: "/accountant/document",
   },
   {
+    id: "finance",
+    label: "Финансы",
+    icon: MdAccountBalance,
+    href: "/accountant/finance",
+  },
+  {
+    id: "suppliers-payouts",
+    label: "Выплаты поставщикам",
+    icon: MdBusiness,
+    href: "/accountant/suppliers",
+  },
+  {
     id: "payments",
     label: "Платежи",
     icon: MdPayment,
@@ -29,7 +50,37 @@ export const accountantMenuItems = [
     id: "returns",
     label: "Возвраты",
     icon: MdAssignmentReturn,
-    href: "/accountant/returns",
+    href: "/accountant/refunds",
+  },
+  {
+    id: "currency",
+    label: "Валюты и курсы",
+    icon: MdCurrencyExchange,
+    href: "/accountant/currency",
+  },
+  {
+    id: "reports",
+    label: "Отчёты",
+    icon: MdBarChart,
+    href: "/accountant/reports",
+  },
+  {
+    id: "notifications",
+    label: "Уведомления",
+    icon: MdNotifications,
+    href: "/accountant/notifications",
+  },
+  {
+    id: "activity-log",
+    label: "Журнал действий",
+    icon: MdHistory,
+    href: "/accountant/activity-log",
+  },
+  {
+    id: "import-export",
+    label: "Импорт / экспорт",
+    icon: MdSyncAlt,
+    href: "/accountant/import-export",
   },
   {
     id: "employees",
@@ -37,5 +88,16 @@ export const accountantMenuItems = [
     icon: MdPeople,
     href: "/accountant/employees",
   },
+  {
+    id: "chat",
+    label: "Чат",
+    icon: MdChat,
+    href: "/accountant/chat",
+  },
+  {
+    id: "integrations",
+    label: "CMS Интеграции",
+    icon: MdSettingsInputComponent,
+    href: "/accountant/integrations",
+  },
 ];
-

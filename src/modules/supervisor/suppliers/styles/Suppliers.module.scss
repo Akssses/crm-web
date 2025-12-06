@@ -1,0 +1,161 @@
+.suppliers {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.headerInfo {
+  flex: 1;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 8px 0;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.tableBlock {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-gray-200);
+}
+
+.supplierNameCell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.supplierName {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-gray-900);
+}
+
+.supplierMeta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.supplierType {
+  display: inline-flex;
+  align-items: center;
+}
+
+.supplierStatus {
+  display: inline-flex;
+  align-items: center;
+}
+
+.rating {
+  font-weight: 600;
+  font-size: 14px;
+
+  &.ratingHigh {
+    color: var(--color-success-dark);
+  }
+
+  &.ratingMedium {
+    color: var(--color-yellow-dark);
+  }
+
+  &.ratingLow {
+    color: var(--color-danger-dark);
+  }
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.status-green {
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+
+  &.status-yellow {
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.status-red {
+    background: var(--color-danger-light);
+    color: var(--color-danger-dark);
+  }
+
+  &.status-gray {
+    background: var(--color-gray-200);
+    color: var(--color-gray-700);
+  }
+}
+
+.issues {
+  font-weight: 500;
+  font-size: 14px;
+
+  &.issuesHigh {
+    color: var(--color-danger-dark);
+  }
+
+  &.issuesMedium {
+    color: var(--color-yellow-dark);
+  }
+
+  &.issuesLow {
+    color: var(--color-success-dark);
+  }
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

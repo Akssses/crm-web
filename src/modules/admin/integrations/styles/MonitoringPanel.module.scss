@@ -1,0 +1,169 @@
+.monitoringPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.tableBlock {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.timestampCell {
+  font-size: 13px;
+  color: var(--color-gray-700);
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.status-green {
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+
+  &.status-red {
+    background: var(--color-danger-light);
+    color: var(--color-danger-dark);
+  }
+
+  &.status-yellow {
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.status-blue {
+    background: var(--color-blue-light);
+    color: var(--color-blue-dark);
+  }
+}
+
+.responseTimeCell {
+  font-size: 14px;
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.payloadModal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.payloadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.payloadCode {
+  background: var(--color-gray-50);
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--color-gray-900);
+  overflow-x: auto;
+  margin: 0;
+  font-family: "Courier New", monospace;
+}
+
+.errorDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.errorMessage {
+  color: var(--color-danger-dark);
+  font-weight: 600;
+  margin: 0;
+}
+
+.errorField {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.errorLabel {
+  font-weight: 600;
+  color: var(--color-gray-700);
+}
+
+.errorValue {
+  color: var(--color-gray-900);
+}
+
+.errorData {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.errorDataCode {
+  background: var(--color-gray-50);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin: 0;
+  font-family: "Courier New", monospace;
+}
+
+.diagnostics {
+  padding: 16px;
+  background: var(--color-yellow-light);
+  border-radius: 8px;
+}
+
+.diagnosticText {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-gray-900);
+}
+

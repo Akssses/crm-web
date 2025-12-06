@@ -6,9 +6,12 @@ import Sidebar, {
   useSidebar,
 } from "@/components/layout/Sidebar/Sidebar";
 import Header from "@/components/layout/Header/Header";
+import { usePathname } from "next/navigation";
 
 function LayoutContent({ children }) {
   const { isCollapsed } = useSidebar();
+  const pathname = usePathname();
+  const isChatRoute = pathname?.startsWith("/admin/chat");
 
   return (
     <div
@@ -18,7 +21,7 @@ function LayoutContent({ children }) {
         transition: "margin-left 0.1s ease",
       }}
     >
-      <Header />
+      {!isChatRoute && <Header />}
       <main className={s.main}>{children}</main>
     </div>
   );

@@ -1,0 +1,124 @@
+.transactionsHistory {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.tableBlock {
+  overflow: hidden;
+}
+
+.amountCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+
+  &.amountPositive {
+    color: var(--color-success-dark);
+  }
+
+  &.amountNegative {
+    color: var(--color-danger-dark);
+  }
+}
+
+.amountIcon {
+  flex-shrink: 0;
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.status-green {
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+
+  &.status-yellow {
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.status-red {
+    background: var(--color-danger-light);
+    color: var(--color-danger-dark);
+  }
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.transactionDetailModal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--color-gray-50);
+  border-radius: 8px;
+}
+
+.detailLabel {
+  font-weight: 600;
+  color: var(--color-gray-700);
+}
+
+.detailValue {
+  color: var(--color-gray-900);
+  font-weight: 500;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray-200);
+}

@@ -1,0 +1,203 @@
+.diagnosticsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--color-gray-200);
+  overflow-x: auto;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-gray-600);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--color-gray-900);
+  }
+
+  &.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+}
+
+.content {
+  flex: 1;
+}
+
+.servicesStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.servicesList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.serviceCard {
+  padding: 20px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.serviceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.serviceName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.status-green {
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+
+  &.status-yellow {
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.status-red {
+    background: var(--color-danger-light);
+    color: var(--color-danger-dark);
+  }
+}
+
+.serviceMetrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-gray-200);
+  font-size: 22px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.metricLabel {
+  color: var(--color-gray-600);
+  font-weight: 500;
+}
+
+.metricValue {
+  color: var(--color-gray-900);
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.discrepanciesList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.tableBlock {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+}
+
+.metricsView {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.metricCard {
+  padding: 24px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metricTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-gray-700);
+  margin: 0;
+}
+
+.metricValue {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.metricSublabel {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  margin: 0;
+}

@@ -1,0 +1,175 @@
+.certificatesManagement {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.tableBlock {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.expiresCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.daysLeft {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.status-green {
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+  }
+
+  &.status-yellow {
+    background: var(--color-yellow-light);
+    color: var(--color-yellow-dark);
+  }
+
+  &.status-red {
+    background: var(--color-danger-light);
+    color: var(--color-danger-dark);
+  }
+}
+
+.updatedCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.updatedBy {
+  font-size: 12px;
+  color: var(--color-gray-500);
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.uploadModal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.uploadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fileLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileUploadArea {
+  padding: 40px;
+  border: 2px dashed var(--color-gray-300);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: var(--color-primary);
+    background: var(--color-gray-50);
+  }
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.historyModal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--color-gray-50);
+  border-radius: 8px;
+  gap: 16px;
+}
+
+.historyDate {
+  font-size: 14px;
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+.historyAction {
+  font-size: 14px;
+  color: var(--color-gray-900);
+  font-weight: 600;
+}
+
+.historyUser {
+  font-size: 13px;
+  color: var(--color-gray-600);
+}
+
+.historyValue {
+  font-size: 13px;
+  color: var(--color-gray-500);
+  font-family: "Courier New", monospace;
+}
+

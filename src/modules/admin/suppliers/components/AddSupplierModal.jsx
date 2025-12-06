@@ -166,7 +166,7 @@ export default function AddSupplierModal({ isOpen, onClose, onSubmit }) {
             placeholder="Национальный авиаперевозчик..."
             value={formData.shortDescription}
             onChange={(val) => handleChange("shortDescription", val)}
-            rows={3}
+            minRows={3}
           />
           <div className={s.twoColumns}>
             <Input
@@ -316,7 +316,7 @@ export default function AddSupplierModal({ isOpen, onClose, onSubmit }) {
             placeholder="Изменения билета по правилам тарифа..."
             value={formData.penalties}
             onChange={(val) => handleChange("penalties", val)}
-            rows={2}
+            minRows={2}
           />
         </div>
 

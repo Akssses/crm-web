@@ -12,12 +12,11 @@ import { operatorMenuItems } from "@/components/layout/Sidebar/OperatorData";
 function LayoutContent({ children }) {
   const { isCollapsed } = useSidebar();
   const pathname = usePathname();
-  const isChatDetail =
-    pathname?.startsWith("/operator/chat/") && pathname !== "/operator/chat";
+  const isChatRoute = pathname?.startsWith("/operator/chat");
 
   return (
     <div className={s.content} data-collapsed={isCollapsed}>
-      {!isChatDetail && <Header menuItems={operatorMenuItems} />}
+      {!isChatRoute && <Header menuItems={operatorMenuItems} />}
       <main className={s.main}>{children}</main>
     </div>
   );

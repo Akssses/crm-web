@@ -1,5 +1,6 @@
-export default function SupervisorNotificationsPage() {
-  return <div>Страница уведомлений супервизора.</div>;
-}
+import Notifications from "@/modules/operator/notifications/components/Notifications";
 
+export default function SupervisorNotificationsPage() {
+  return <Notifications />;
+}
 
