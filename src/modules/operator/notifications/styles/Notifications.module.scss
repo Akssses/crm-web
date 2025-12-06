@@ -4,3 +4,31 @@
   gap: 20px;
   width: 100%;
 }
+
+// Large tablet
+@media (max-width: 1200px) {
+  .notifications {
+    gap: 18px;
+  }
+}
+
+// Tablet
+@media (max-width: 1024px) {
+  .notifications {
+    gap: 16px;
+  }
+}
+
+// Mobile landscape
+@media (max-width: 768px) {
+  .notifications {
+    gap: 14px;
+  }
+}
+
+// Mobile portrait
+@media (max-width: 480px) {
+  .notifications {
+    gap: 12px;
+  }
+}

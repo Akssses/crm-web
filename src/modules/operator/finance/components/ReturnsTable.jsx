@@ -250,13 +250,18 @@ export default function ReturnsTable() {
         </div>
       </div>
 
-      <UITable
-        columns={columns}
-        rows={filteredReturns}
-        showCheckbox={true}
-        type="default"
-        onRowClick={(row) => router.push(`/operator/finance/returns/${row.id}`)}
-      />
+      <div>
+        {" "}
+        <UITable
+          columns={columns}
+          rows={filteredReturns}
+          showCheckbox={true}
+          type="default"
+          onRowClick={(row) =>
+            router.push(`/operator/finance/returns/${row.id}`)
+          }
+        />
+      </div>
     </Container>
   );
 }
