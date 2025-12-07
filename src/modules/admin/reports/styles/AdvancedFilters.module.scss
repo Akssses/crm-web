@@ -53,7 +53,7 @@
   gap: 12px;
 
   & > * {
-    min-width: 0; // Prevent overflow
+    min-width: 0;
   }
 }
 
@@ -78,29 +78,140 @@
   background: rgba(59, 130, 246, 0.1);
   padding: 6px 12px;
   border-radius: 6px;
+  white-space: nowrap;
 }
 
 .actionButtons {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .filterSections {
+    max-height: 450px;
+    gap: 20px;
+  }
+
+  .filterSection {
+    gap: 10px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
 @media (max-width: 768px) {
+  .filterModal {
+    gap: 20px;
+    padding: 4px 0;
+  }
+
+  .filterSections {
+    max-height: 400px;
+    gap: 16px;
+    padding-right: 4px;
+  }
+
+  .filterSection {
+    gap: 10px;
+  }
+
+  .sectionTitle {
+    font-size: 13px;
+  }
+
   .filterRow {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .filterActions {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
+    padding-top: 12px;
+  }
+
+  .filterInfo {
+    justify-content: center;
+  }
+
+  .activeCount {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 
   .actionButtons {
     width: 100%;
-    
+    flex-direction: row;
+
     button {
       flex: 1;
+      min-width: 0;
     }
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .filterModal {
+    gap: 16px;
+  }
+
+  .filterSections {
+    max-height: 350px;
+    gap: 12px;
+  }
+
+  .filterSection {
+    gap: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 12px;
+    padding-bottom: 6px;
+  }
+
+  .filterRow {
+    gap: 8px;
+  }
+
+  .filterActions {
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .activeCount {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .filterModal {
+    gap: 12px;
+  }
+
+  .filterSections {
+    max-height: 300px;
+    gap: 10px;
+  }
+
+  .sectionTitle {
+    font-size: 11px;
+  }
+
+  .actionButtons {
+    gap: 6px;
   }
 }

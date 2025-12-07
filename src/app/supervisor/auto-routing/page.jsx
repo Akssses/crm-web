@@ -8,7 +8,7 @@ import {
   MdOutlineGroups,
   MdTimeline,
 } from "react-icons/md";
-import s from "@/modules/accountant/document/styles/Document.module.scss";
+import s from "./SupervisorAutoRoutingSettings.module.scss";
 
 export default function SupervisorAutoRoutingSettingsPage() {
   const [bySpecialization, setBySpecialization] = useState(true);
@@ -30,46 +30,30 @@ export default function SupervisorAutoRoutingSettingsPage() {
 
   return (
     <Container size="full">
-      <div style={{ marginBottom: 24 }}>
-        <h2 style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <div className={s.header}>
+        <h2>
           <MdAutoMode /> Настройки авто-распределения заявок
         </h2>
-        <p style={{ color: "#6b7280", marginTop: 4 }}>
+        <p>
           Управляйте логикой распределения заявок между операторами: по
           специализации, загруженности, опыту и SLA.
         </p>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.1fr 0.9fr",
-          gap: 24,
-          marginBottom: 24,
-        }}
-      >
-        <section
-          style={{
-            borderRadius: 12,
-            border: "1px solid #e5e7eb",
-            padding: 20,
-            backgroundColor: "#ffffff",
-          }}
-        >
-          <h3 style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <div className={s.mainGrid}>
+        <section className={s.section}>
+          <h3>
             <MdOutlineGroups /> Основные правила
           </h3>
-          <p style={{ color: "#6b7280", margin: "4px 0 16px" }}>
+          <p>
             Определите, как система будет выбирать оператора для новой заявки.
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <label style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className={s.settingsList}>
+            <label className={s.settingItem}>
               <div>
-                <p style={{ fontWeight: 500 }}>По специализации</p>
-                <p style={{ fontSize: 12, color: "#6b7280" }}>
-                  Направлять заявки операторам с нужным типом услуг
-                </p>
+                <p>По специализации</p>
+                <p>Направлять заявки операторам с нужным типом услуг</p>
               </div>
               <Switch
                 checked={bySpecialization}
@@ -77,60 +61,43 @@ export default function SupervisorAutoRoutingSettingsPage() {
               />
             </label>
 
-            <label style={{ display: "flex", justifyContent: "space-between" }}>
+            <label className={s.settingItem}>
               <div>
-                <p style={{ fontWeight: 500 }}>По загруженности</p>
-                <p style={{ fontSize: 12, color: "#6b7280" }}>
-                  Отдавать приоритет менее загруженным операторам
-                </p>
+                <p>По загруженности</p>
+                <p>Отдавать приоритет менее загруженным операторам</p>
               </div>
               <Switch checked={byWorkload} onChange={setByWorkload} />
             </label>
 
-            <label style={{ display: "flex", justifyContent: "space-between" }}>
+            <label className={s.settingItem}>
               <div>
-                <p style={{ fontWeight: 500 }}>По опыту</p>
-                <p style={{ fontSize: 12, color: "#6b7280" }}>
-                  Сложные услуги — более опытным операторам
-                </p>
+                <p>По опыту</p>
+                <p>Сложные услуги — более опытным операторам</p>
               </div>
               <Switch checked={byExperience} onChange={setByExperience} />
             </label>
           </div>
         </section>
 
-        <section
-          style={{
-            borderRadius: 12,
-            border: "1px solid #e5e7eb",
-            padding: 20,
-            backgroundColor: "#ffffff",
-          }}
-        >
-          <h3 style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <section className={s.section}>
+          <h3>
             <MdTimeline /> SLA и время отклика
           </h3>
-          <p style={{ color: "#6b7280", margin: "4px 0 16px" }}>
-            Настройки приоритета SLA и скорости реакции.
-          </p>
+          <p>Настройки приоритета SLA и скорости реакции.</p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <label style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className={s.settingsList}>
+            <label className={s.settingItem}>
               <div>
-                <p style={{ fontWeight: 500 }}>С учетом SLA</p>
-                <p style={{ fontSize: 12, color: "#6b7280" }}>
-                  Повышать приоритет заявок с риском срыва SLA
-                </p>
+                <p>С учетом SLA</p>
+                <p>Повышать приоритет заявок с риском срыва SLA</p>
               </div>
               <Switch checked={respectSLA} onChange={setRespectSLA} />
             </label>
 
-            <label style={{ display: "flex", justifyContent: "space-between" }}>
+            <label className={s.settingItem}>
               <div>
-                <p style={{ fontWeight: 500 }}>По времени отклика</p>
-                <p style={{ fontSize: 12, color: "#6b7280" }}>
-                  Учитывать среднее время ответа оператора
-                </p>
+                <p>По времени отклика</p>
+                <p>Учитывать среднее время ответа оператора</p>
               </div>
               <Switch
                 checked={respectResponseTime}
@@ -141,24 +108,16 @@ export default function SupervisorAutoRoutingSettingsPage() {
         </section>
       </div>
 
-      <section
-        style={{
-          borderRadius: 12,
-          border: "1px solid #e5e7eb",
-          padding: 20,
-          backgroundColor: "#ffffff",
-          marginBottom: 20,
-        }}
-      >
-        <h3 style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <section className={s.servicesSection}>
+        <h3>
           <MdTune /> Типы услуг и исключения
         </h3>
-        <p style={{ color: "#6b7280", margin: "4px 0 16px" }}>
+        <p>
           Настройте, какие типы услуг участвуют в авто-распределении, а какие
           требуют ручного назначения.
         </p>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+        <div className={s.checkboxGroup}>
           <Checkbox
             checked={serviceTypes.includes("all")}
             onChange={() => handleServiceTypesChange("all")}
@@ -187,12 +146,10 @@ export default function SupervisorAutoRoutingSettingsPage() {
         </div>
       </section>
 
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 12 }}>
+      <div className={s.actions}>
         <Button variant="outline">Отменить изменения</Button>
         <Button variant="primary">Сохранить настройки</Button>
       </div>
     </Container>
   );
 }
-
-

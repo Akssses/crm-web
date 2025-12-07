@@ -9,14 +9,26 @@
   margin-left: 280px;
   display: flex;
   flex-direction: column;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.1s ease;
+
+  &[data-collapsed="true"] {
+    margin-left: 80px;
+  }
 
   @media (max-width: 1024px) {
     margin-left: 240px;
+
+    &[data-collapsed="true"] {
+      margin-left: 80px;
+    }
   }
 
   @media (max-width: 768px) {
     margin-left: 0;
+
+    &[data-collapsed="true"] {
+      margin-left: 0;
+    }
   }
 }
 
@@ -34,5 +46,3 @@
     padding: 16px;
   }
 }
-
-

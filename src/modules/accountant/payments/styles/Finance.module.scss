@@ -17,3 +17,12 @@
   align-items: center;
   gap: 10px;
 }
+@media screen and (max-width: 700px) {
+  .justi {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .filterGroup {
+    flex-wrap: wrap;
+  }
+}

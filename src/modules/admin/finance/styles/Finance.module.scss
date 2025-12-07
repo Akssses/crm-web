@@ -36,6 +36,20 @@
   border-bottom: 1px solid var(--color-gray-200);
   overflow-x: auto;
   background: var(--color-white);
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 3px;
+  }
 }
 
 .tab {
@@ -164,6 +178,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  // ❗ ВАЖНО: НЕ ограничиваем overflow здесь!
+  // overflow НЕ hidden, НЕ auto - даем таблице свободу!
 }
 
 .analyticsStats {
@@ -296,6 +312,21 @@
   border-bottom: 1px solid var(--color-gray-200);
   padding-bottom: 0;
   margin-bottom: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 3px;
+  }
 }
 
 .configSubTab {
@@ -326,6 +357,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  // ❗ ВАЖНО: overflow НЕ hidden!
 }
 
 .modalForm {
@@ -373,21 +405,81 @@
   border-top: 1px solid var(--color-gray-200);
 }
 
+// ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ =====
 @media (max-width: 768px) {
   .finance {
-    padding: 16px;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .tabs {
+    overflow-x: scroll;
+    width: 40vh;
   }
 
   .toolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .searchWrapper {
     max-width: 100%;
   }
 
+  .filterGroup {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .selectWrapper {
+    min-width: 100%;
+  }
+
   .configSubTabs {
-    overflow-x: auto;
+    overflow-x: scroll;
+    width: 40vh;
+  }
+
+  .configSubTab {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .settingsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .analyticsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .configSubTab {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .tab {
+    padding: 8px 14px;
+    font-size: 13px;
   }
 }

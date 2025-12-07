@@ -18,6 +18,8 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  flex: 1;
+  min-width: 120px;
 }
 
 .statLabel {
@@ -41,6 +43,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .filterGroup {
@@ -48,6 +51,7 @@
   gap: 12px;
   align-items: center;
   flex: 1;
+  flex-wrap: wrap;
 }
 
 .searchInput {
@@ -74,6 +78,7 @@
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 
   &.priority-high {
     background: var(--color-danger-light);
@@ -104,6 +109,7 @@
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 
   &.status-green {
     background: var(--color-success-light);
@@ -139,3 +145,198 @@
   flex-wrap: wrap;
 }
 
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .queueManagement {
+    gap: 20px;
+  }
+
+  .statsBar {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .statItem {
+    min-width: 100px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .filterGroup {
+    gap: 10px;
+  }
+
+  .searchInput {
+    min-width: 200px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
+@media (max-width: 768px) {
+  .queueManagement {
+    gap: 16px;
+  }
+
+  .statsBar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .statItem {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: auto;
+    width: 100%;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-gray-200);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  .statLabel {
+    font-size: 13px;
+  }
+
+  .statValue {
+    font-size: 22px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .filterGroup {
+    flex-direction: column;
+    gap: 8px;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  .searchInput {
+    max-width: 100%;
+    min-width: auto;
+  }
+
+  .actionsCell {
+    gap: 6px;
+
+    button {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .queueManagement {
+    gap: 12px;
+  }
+
+  .statsBar {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .statItem {
+    padding-bottom: 10px;
+  }
+
+  .statLabel {
+    font-size: 12px;
+  }
+
+  .statValue {
+    font-size: 18px;
+  }
+
+  .toolbar {
+    gap: 8px;
+
+    > button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .filterGroup {
+    gap: 8px;
+  }
+
+  .priorityBadge,
+  .statusBadge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .attemptsCell {
+    font-size: 13px;
+  }
+
+  .actionsCell {
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+
+    button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .statsBar {
+    padding: 10px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+
+  .priorityBadge,
+  .statusBadge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
+/* ===== LANDSCAPE ОРИЕНТАЦИЯ ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .statsBar {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .statItem {
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: none;
+    padding-bottom: 0;
+    border-right: 1px solid var(--color-gray-200);
+    padding-right: 12px;
+
+    &:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+  }
+}

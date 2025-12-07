@@ -15,13 +15,7 @@ function LayoutContent({ children }) {
   const isChatRoute = pathname?.startsWith("/supervisor/chat");
 
   return (
-    <div
-      className={s.content}
-      style={{
-        marginLeft: isCollapsed ? "80px" : "280px",
-        transition: "margin-left 0.1s ease",
-      }}
-    >
+    <div className={s.content} data-collapsed={isCollapsed}>
       {!isChatRoute && <Header menuItems={supervisorMenuItems} />}
       <main className={s.main}>{children}</main>
     </div>
@@ -38,5 +32,3 @@ export default function Layout({ children }) {
     </SidebarProvider>
   );
 }
-
-

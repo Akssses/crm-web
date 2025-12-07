@@ -10,6 +10,20 @@
   border-bottom: 1px solid var(--color-gray-200);
   overflow-x: auto;
   flex-wrap: wrap;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 2px;
+  }
 }
 
 .tab {
@@ -23,6 +37,7 @@
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
+  flex-shrink: 0;
 
   &:hover {
     color: var(--color-gray-900);
@@ -64,6 +79,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
 .serviceName {
@@ -81,6 +97,8 @@
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
 
   &.status-green {
     background: var(--color-success-light);
@@ -104,7 +122,6 @@
   gap: 8px;
   padding-top: 16px;
   border-top: 1px solid var(--color-gray-200);
-  font-size: 22px;
 }
 
 .metric {
@@ -112,6 +129,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  gap: 8px;
 }
 
 .metricLabel {
@@ -200,4 +218,188 @@
   font-size: 12px;
   color: var(--color-gray-500);
   margin: 0;
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .diagnosticsPanel {
+    gap: 20px;
+  }
+
+  .servicesList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .metricCard {
+    padding: 20px;
+  }
+
+  .metricValue {
+    font-size: 20px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
+@media (max-width: 768px) {
+  .diagnosticsPanel {
+    gap: 16px;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .servicesList {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .serviceCard {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .serviceName {
+    font-size: 15px;
+  }
+
+  .statusBadge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .serviceMetrics {
+    gap: 6px;
+    padding-top: 12px;
+  }
+
+  .metric {
+    font-size: 13px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .searchInput {
+    max-width: 100%;
+    min-width: auto;
+  }
+
+  .actions {
+    justify-content: stretch;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .metricCard {
+    padding: 16px;
+  }
+
+  .metricTitle {
+    font-size: 13px;
+  }
+
+  .metricValue {
+    font-size: 18px;
+  }
+
+  .metricSublabel {
+    font-size: 11px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .diagnosticsPanel {
+    gap: 12px;
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .serviceCard {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .serviceName {
+    font-size: 14px;
+  }
+
+  .serviceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .metric {
+    font-size: 12px;
+  }
+
+  .metricCard {
+    padding: 14px;
+  }
+
+  .metricValue {
+    font-size: 16px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .serviceCard {
+    padding: 12px;
+  }
+
+  .statusBadge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .metricCard {
+    padding: 12px;
+  }
+
+  .metricTitle {
+    font-size: 12px;
+  }
+
+  .metricValue {
+    font-size: 15px;
+  }
+}
+
+/* ===== LANDSCAPE ОРИЕНТАЦИЯ ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .servicesList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
