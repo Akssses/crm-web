@@ -1,9 +1,14 @@
 "use client";
 
-import Reports from "@/modules/admin/reports/components/Reports";
+import dynamic from "next/dynamic";
+const Reports = dynamic(
+  () => import("@/modules/admin/reports/components/Reports"),
+  {
+    ssr: false,
+    loading: () => <p>Загрузка...</p>,
+  }
+);
 
 export default function AccountantReportsPage() {
   return <Reports />;
 }
-
-

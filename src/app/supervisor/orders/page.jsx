@@ -1,8 +1,15 @@
 "use client";
 
-import Orders from "@/modules/operator/orders/components/Orders";
+import dynamic from "next/dynamic";
+
+const Orders = dynamic(
+  () => import("@/modules/operator/orders/components/Orders"),
+  {
+    ssr: false,
+    loading: () => <p>Загрузка...</p>,
+  }
+);
 
 export default function SupervisorOrdersPage() {
-  return <Orders hideCreateButton />;
+  return <Orders />;
 }
-
