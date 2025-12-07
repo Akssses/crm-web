@@ -94,6 +94,7 @@
   font-size: 11px;
   font-weight: 600;
   white-space: nowrap;
+  flex-shrink: 0;
 
   &.positive {
     background: rgba(16, 185, 129, 0.1);
@@ -137,27 +138,228 @@
   }
 }
 
+/* ===== АДАПТИВ ДЛЯ БОЛЬШИХ ПЛАНШЕТОВ ===== */
 @media (max-width: 1200px) {
   .kpiGrid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
   }
 
-  .kpiCard.size-lg {
-    grid-column: span 1;
+  .kpiCard {
+    padding: 14px;
+
+    &.size-lg {
+      grid-column: span 1;
+    }
+  }
+
+  .kpiValue {
+    font-size: 24px;
   }
 }
 
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .kpiDashboard {
+    gap: 28px;
+  }
+
+  .kpiSection {
+    gap: 14px;
+  }
+
+  .sectionTitle {
+    font-size: 15px;
+  }
+
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .kpiCard {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .kpiValue {
+    font-size: 22px;
+  }
+
+  .dashboardTitle {
+    font-size: 22px;
+  }
+
+  .dashboardSubtitle {
+    font-size: 13px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
 @media (max-width: 768px) {
+  .kpiDashboard {
+    gap: 24px;
+    padding: 0;
+  }
+
+  .kpiSection {
+    gap: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 14px;
+    gap: 6px;
+  }
+
   .kpiGrid {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .kpiCard {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .kpiHeader {
+    gap: 6px;
+  }
+
+  .kpiTitle {
+    font-size: 12px;
+  }
+
+  .trendBadge {
+    padding: 3px 6px;
+    font-size: 10px;
   }
 
   .kpiValue {
     font-size: 24px;
   }
 
+  .kpiSubtitle {
+    font-size: 11px;
+  }
+
+  .kpiAction {
+    font-size: 11px;
+    padding-top: 6px;
+  }
+
   .dashboardHeader {
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .dashboardTitle {
+    font-size: 20px;
+  }
+
+  .dashboardSubtitle {
+    font-size: 13px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .kpiDashboard {
+    gap: 20px;
+  }
+
+  .kpiSection {
+    gap: 10px;
+  }
+
+  .sectionTitle {
+    font-size: 13px;
+  }
+
+  .kpiGrid {
+    gap: 8px;
+  }
+
+  .kpiCard {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .kpiTitle {
+    font-size: 11px;
+  }
+
+  .kpiValue {
+    font-size: 20px;
+  }
+
+  .kpiSubtitle {
+    font-size: 10px;
+  }
+
+  .dashboardTitle {
+    font-size: 18px;
+  }
+
+  .dashboardSubtitle {
+    font-size: 12px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .kpiDashboard {
     gap: 16px;
+  }
+
+  .kpiSection {
+    gap: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 12px;
+  }
+
+  .kpiGrid {
+    gap: 8px;
+  }
+
+  .kpiCard {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .kpiTitle {
+    font-size: 11px;
+  }
+
+  .trendBadge {
+    padding: 2px 6px;
+    font-size: 9px;
+  }
+
+  .kpiValue {
+    font-size: 18px;
+  }
+
+  .kpiSubtitle {
+    font-size: 10px;
+  }
+
+  .dashboardTitle {
+    font-size: 16px;
+  }
+}
+
+/* ===== LANDSCAPE ОРИЕНТАЦИЯ ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  .kpiGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

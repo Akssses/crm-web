@@ -10,15 +10,10 @@
   gap: 16px;
 }
 
-// Text Fields
 .fieldsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .fieldGroup {
@@ -76,9 +71,11 @@
   font-size: 12px;
   color: #9ca3af;
 }
+
 .flex {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .filterSelect {
@@ -211,18 +208,12 @@
   }
 }
 
-// Pagination
 .pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 12px;
   border-top: 1px solid #e5e7eb;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 12px;
-  }
 }
 
 .paginationInfo {
@@ -262,16 +253,11 @@
   }
 }
 
-// Tasks Section
 .statsCards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 16px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .statItem {
@@ -346,9 +332,9 @@
   gap: 10px;
   padding: 4px 8px;
   border-radius: 50px;
+  white-space: nowrap;
 }
 
-// Alerts Section
 .alertsList {
   display: flex;
   flex-direction: column;
@@ -390,6 +376,7 @@
 .alertRole {
   display: flex;
   gap: 20px;
+
   span {
     display: flex;
     align-items: center;
@@ -408,7 +395,6 @@
   }
 }
 
-// Notifications Section
 .notificationsList {
   display: flex;
   flex-direction: column;
@@ -453,6 +439,7 @@
   gap: 8px;
   font-size: 12px;
   color: #6b7280;
+  flex-wrap: wrap;
 }
 
 .roleIcon {
@@ -471,12 +458,12 @@
   color: #9ca3af;
 }
 
-// Toggle Switch
 .toggle {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   position: relative;
+  flex-shrink: 0;
 }
 
 .toggle input {
@@ -521,21 +508,266 @@
   }
 }
 
-// Media Queries
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .container {
+    gap: 16px;
+  }
+
+  .logsHeader,
+  .logRow {
+    grid-template-columns: 150px 200px 180px 180px 1fr 70px;
+    font-size: 11px;
+  }
+
+  .statsCards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
 @media (max-width: 768px) {
   .container {
-    gap: 24px;
+    gap: 16px;
   }
 
   .fieldsGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .tasksGrid {
-    grid-template-columns: 1fr;
+  .flex {
+    flex-direction: column;
+    gap: 12px;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  .logsHeader {
+    display: none;
+  }
+
+  .logsBody {
+    max-height: 400px;
+  }
+
+  .logRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 8px;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .logTime,
+  .logDocType,
+  .logService,
+  .logStatus,
+  .logMessage {
+    width: 100%;
+  }
+
+  .logActions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .paginationButtons {
+    justify-content: center;
   }
 
   .statsCards {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .statItem {
+    padding: 14px;
+  }
+
+  .tasksGrid {
+    gap: 12px;
+  }
+
+  .taskCard {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .taskIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .taskTitle {
+    font-size: 13px;
+  }
+
+  .taskSubtitle {
+    font-size: 11px;
+  }
+
+  .alertsList,
+  .notificationsList {
+    gap: 12px;
+  }
+
+  .alertItem,
+  .notificationItem {
+    padding-top: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .alertRole {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .notificationRole {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .container {
+    gap: 12px;
+  }
+
+  .section {
+    gap: 12px;
+  }
+
+  .fieldInput {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .fieldLabel {
+    font-size: 13px;
+  }
+
+  .logsBody {
+    max-height: 300px;
+  }
+
+  .logRow {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .paginationBtn {
+    min-width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .statsCards {
+    gap: 8px;
+  }
+
+  .statItem {
+    padding: 12px;
+  }
+
+  .statLabel p {
+    font-size: 12px;
+  }
+
+  .statItem h3 {
+    font-size: 18px;
+  }
+
+  .taskCard {
+    padding: 12px;
+  }
+
+  .taskIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .taskTitle {
+    font-size: 12px;
+  }
+
+  .taskStatus {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  .alertTitle,
+  .notificationTitle {
+    font-size: 13px;
+  }
+
+  .alertDescription,
+  .notificationDescription {
+    font-size: 12px;
+  }
+
+  .toggleSlider {
+    width: 42px;
+    height: 24px;
+
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .toggle input:checked + .toggleSlider::after,
+  .toggle input:checked ~ .toggleSlider::after {
+    left: 20px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .fieldInput {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .logRow {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .paginationBtn {
+    min-width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .taskIcon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ===== LANDSCAPE ОРИЕНТАЦИЯ ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .statsCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .logsBody {
+    max-height: 250px;
   }
 }

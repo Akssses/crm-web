@@ -2,44 +2,32 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-
-  @media (max-width: 768px) {
-    padding: 12px;
-    gap: 16px;
-  }
 }
+
 .flex {
   display: flex;
   gap: 20px;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
 }
 
 .tabs {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .controls {
   display: flex;
   gap: 12px;
   align-items: center;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    gap: 8px;
-  }
+  flex-wrap: wrap;
 }
 
 .filterBadge {
@@ -57,7 +45,6 @@
   border-radius: 9px;
 }
 
-
 .content {
   display: flex;
   flex-direction: column;
@@ -68,14 +55,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .statCard {
@@ -92,11 +71,6 @@
     background: #f3f4f6;
     border-color: #d1d5db;
   }
-
-  @media (max-width: 768px) {
-    padding: 12px;
-    gap: 10px;
-  }
 }
 
 .statIcon {
@@ -110,12 +84,6 @@
   color: #3b82f6;
   flex-shrink: 0;
   font-size: 20px;
-
-  @media (max-width: 768px) {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
 }
 
 .statContent {
@@ -135,10 +103,6 @@
   font-size: 18px;
   font-weight: 700;
   color: #1f2937;
-
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
 }
 
 .statUnit {
@@ -163,8 +127,252 @@
     color: #9ca3af;
   }
 }
+
 .colum {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .analytics {
+    gap: 20px;
+  }
+
+  .tabs {
+    gap: 12px;
+  }
+
+  .flex {
+    gap: 16px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .statCard {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .statIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
+@media (max-width: 768px) {
+  .analytics {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .tabs {
+    width: 45vh;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f3f4f6;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 2px;
+    }
+
+    button {
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+  }
+
+  .controls {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .flex {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .statCard {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .statIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+
+  .statUnit {
+    font-size: 11px;
+  }
+
+  .content {
+    gap: 16px;
+  }
+
+  .colum {
+    gap: 16px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .analytics {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .header {
+    gap: 10px;
+  }
+
+  .tabs {
+    gap: 6px;
+
+    button {
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 8px;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .statCard {
+    padding: 12px;
+  }
+
+  .statIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+
+  .content {
+    gap: 12px;
+  }
+
+  .flex {
+    gap: 10px;
+  }
+
+  .colum {
+    gap: 12px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .analytics {
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .tabs {
+    button {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
+
+  .statCard {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .statIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .statLabel {
+    font-size: 10px;
+  }
+
+  .statValue {
+    font-size: 14px;
+  }
+}
+
+/* ===== LANDSCAPE ОРИЕНТАЦИЯ ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .statsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .flex {
+    flex-direction: row;
+    gap: 12px;
+
+    > * {
+      flex: 1;
+    }
+  }
+}
+
+@media (max-width: 480px) and (orientation: landscape) {
+  .statsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

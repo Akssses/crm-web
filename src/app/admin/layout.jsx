@@ -7,6 +7,7 @@ import Sidebar, {
 } from "@/components/layout/Sidebar/Sidebar";
 import Header from "@/components/layout/Header/Header";
 import { usePathname } from "next/navigation";
+import { operatorMenuItems } from "@/components/layout/Sidebar/OperatorData";
 
 function LayoutContent({ children }) {
   const { isCollapsed } = useSidebar();
@@ -14,14 +15,8 @@ function LayoutContent({ children }) {
   const isChatRoute = pathname?.startsWith("/admin/chat");
 
   return (
-    <div
-      className={s.content}
-      style={{
-        marginLeft: isCollapsed ? "80px" : "280px",
-        transition: "margin-left 0.1s ease",
-      }}
-    >
-      {!isChatRoute && <Header />}
+    <div className={s.content} data-collapsed={isCollapsed}>
+      {!isChatRoute && <Header menuItems={operatorMenuItems} />}
       <main className={s.main}>{children}</main>
     </div>
   );

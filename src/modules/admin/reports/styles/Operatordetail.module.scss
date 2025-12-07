@@ -8,11 +8,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+  }
 }
 
 .headerActions {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .mainContent {
@@ -39,16 +49,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 32px;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
 }
 
 .infoColumn {
@@ -89,6 +89,13 @@
   padding-top: 16px;
   border-top: 2px solid #e5e7eb;
   margin-top: 16px;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+  }
 }
 
 .totalLabel {
@@ -125,16 +132,6 @@
   font-size: 12px;
   font-weight: 600;
   color: #6b7280;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 80px 120px 120px 100px 100px 100px 80px;
-    font-size: 11px;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 70px 100px 100px 80px 80px 80px 70px;
-    padding: 10px 12px;
-  }
 }
 
 .tableBody {
@@ -179,17 +176,6 @@
   &:last-child {
     border-bottom: none;
   }
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 80px 120px 120px 100px 100px 100px 80px;
-    font-size: 12px;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 70px 100px 100px 80px 80px 80px 70px;
-    padding: 10px 12px;
-    font-size: 11px;
-  }
 }
 
 // Table Columns
@@ -221,8 +207,289 @@
   }
 }
 
-// Highlight
 .highlight {
   color: #10b981;
   font-weight: 600;
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .detail {
+    gap: 16px;
+  }
+
+  .headerTop {
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .headerActions {
+    gap: 12px;
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .infoColumn {
+    gap: 14px;
+  }
+
+  .value {
+    font-size: 15px;
+  }
+
+  .totalAmount {
+    font-size: 22px;
+  }
+
+  .sectionTitle {
+    font-size: 15px;
+  }
+
+  .headerRow {
+    grid-template-columns: 80px 120px 120px 100px 100px 100px 80px;
+    font-size: 11px;
+    padding: 10px 12px;
+  }
+
+  .tableRow {
+    grid-template-columns: 80px 120px 120px 100px 100px 100px 80px;
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
+@media (max-width: 768px) {
+  .detail {
+    gap: 16px;
+  }
+
+  .headerTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    h2 {
+      font-size: 16px;
+    }
+  }
+
+  .headerActions {
+    width: 100%;
+    gap: 10px;
+
+    button {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  .mainContent {
+    gap: 16px;
+  }
+
+  .section {
+    gap: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 14px;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .infoColumn {
+    gap: 12px;
+  }
+
+  .label {
+    font-size: 11px;
+  }
+
+  .value {
+    font-size: 14px;
+  }
+
+  .totalSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-top: 12px;
+
+    h3 {
+      font-size: 14px;
+    }
+  }
+
+  .totalAmount {
+    font-size: 20px;
+  }
+
+  .headerRow {
+    grid-template-columns: 70px 100px 100px 80px 80px 80px 70px;
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  .tableRow {
+    grid-template-columns: 70px 100px 100px 80px 80px 80px 70px;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .tableBody {
+    max-height: 350px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .detail {
+    gap: 12px;
+  }
+
+  .headerTop {
+    gap: 10px;
+
+    h2 {
+      font-size: 15px;
+    }
+  }
+
+  .headerActions {
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .mainContent {
+    gap: 12px;
+  }
+
+  .section {
+    gap: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 13px;
+  }
+
+  .infoGrid {
+    gap: 16px;
+  }
+
+  .infoColumn {
+    gap: 10px;
+  }
+
+  .infoRow {
+    gap: 3px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .value {
+    font-size: 14px;
+  }
+
+  .totalSection {
+    padding-top: 10px;
+    margin-top: 10px;
+
+    h3 {
+      font-size: 13px;
+    }
+  }
+
+  .totalAmount {
+    font-size: 18px;
+  }
+
+  .tableWrapper {
+    border-radius: 8px;
+  }
+
+  .headerRow,
+  .tableRow {
+    display: none; // Скрываем таблицу на мобильных, используем UITable card mode
+  }
+
+  .tableBody {
+    max-height: 300px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .detail {
+    gap: 10px;
+  }
+
+  .headerTop {
+    h2 {
+      font-size: 14px;
+    }
+  }
+
+  .headerActions {
+    gap: 6px;
+
+    button {
+      font-size: 13px;
+      padding: 8px;
+    }
+  }
+
+  .infoGrid {
+    gap: 12px;
+  }
+
+  .infoColumn {
+    gap: 8px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .value {
+    font-size: 13px;
+  }
+
+  .totalAmount {
+    font-size: 16px;
+  }
+
+  .sectionTitle {
+    font-size: 12px;
+  }
+}
+
+/* ===== LANDSCAPE ОРИЕНТАЦИЯ ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .infoGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .headerActions {
+    flex-direction: row;
+
+    button {
+      flex: 1;
+    }
+  }
 }

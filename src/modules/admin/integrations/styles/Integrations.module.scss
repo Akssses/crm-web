@@ -14,6 +14,7 @@
 .headerActions {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .tabs {
@@ -21,6 +22,20 @@
   gap: 8px;
   border-bottom: 1px solid var(--color-gray-200);
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 2px;
+  }
 }
 
 .tab {
@@ -34,6 +49,7 @@
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
+  flex-shrink: 0;
 
   &:hover {
     color: var(--color-gray-900);
@@ -60,6 +76,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .searchInput {
@@ -278,15 +295,18 @@
   color: var(--color-gray-500);
   margin-top: 4px;
 }
+
 .justi {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .flex {
   display: flex;
   gap: 20px;
 }
+
 .pageHeader {
   display: flex;
   flex-direction: column;
@@ -298,11 +318,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 .headerInfo {
@@ -311,22 +326,9 @@
   gap: 16px;
 }
 
-.statusBadge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 24px;
-  background: rgba(16, 185, 129, 0.1);
-  border-radius: 6px;
-  color: #10b981;
-  font-weight: 600;
-  font-size: 14px;
-}
-
 .headerMeta {
   display: flex;
   flex-direction: column;
-
   gap: 8px;
 
   .metaLabel {
@@ -335,19 +337,10 @@
   }
 }
 
-// Stats Grid
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .statCard {
@@ -380,19 +373,12 @@
   color: #9ca3af;
 }
 
-// Search Area
 .searchArea {
   display: flex;
   gap: 12px;
   align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 12px;
-  }
 }
 
-// Section
 .section {
   display: flex;
   flex-direction: column;
@@ -400,14 +386,6 @@
   padding-bottom: 16px;
 }
 
-.sectionTitle {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-// Scenarios Grid
 .scenariosGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -446,92 +424,260 @@
   display: flex;
 }
 
-// Services Grid
-.servicesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.serviceCard {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.serviceHeader {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.serviceNumber {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: #fce7f3;
-  border-radius: 6px;
-  color: #ec4899;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.serviceInfo {
-  flex: 1;
-  min-width: 0;
-
-  h4 {
-    margin: 0 0 2px 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1f2937;
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ ===== */
+@media (max-width: 1024px) {
+  .integrations {
+    gap: 16px;
   }
 
-  p {
-    margin: 0;
-    font-size: 12px;
-    color: #9ca3af;
+  .servicesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
   }
-}
 
-.serviceStatus {
-  display: flex;
-  padding: 6px 12px;
-  border-radius: 50px;
-}
-
-.serviceFields {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 8px;
-  border-top: 1px solid #e5e7eb;
-}
-
-.fieldRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  gap: 8px;
-}
-
-.fieldLabel {
-  color: #6b7280;
-  font-weight: 500;
-}
-
-.fieldValue {
-  color: #1f2937;
-  font-weight: 600;
-  text-align: right;
-}
-
-// Responsive
-@media (max-width: 768px) {
   .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .scenariosGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ ===== */
+@media (max-width: 768px) {
+  .integrations {
+    gap: 16px;
+  }
+
+  .header {
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .headerTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .headerActions {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .tabs {
+    width: 45vh;
+    overflow-x: scroll;
+  }
+
+  .tab {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .overview {
+    gap: 16px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .searchInput {
+    max-width: 100%;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .serviceCard {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .serviceNumber {
+    width: 45px;
+    height: 45px;
+  }
+
+  .serviceInfo {
+    h4 {
+      font-size: 13px;
+    }
+
+    p {
+      font-size: 11px;
+    }
+  }
+
+  .serviceFields {
+    gap: 6px;
+    padding-top: 10px;
+  }
+
+  .fieldRow {
+    font-size: 11px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .statCard {
+    padding: 12px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .scenariosGrid {
+    gap: 12px;
+  }
+
+  .scenarioCard {
+    padding: 16px;
+  }
+
+  .notificationsList {
+    max-height: 400px;
+  }
+
+  .notificationItem {
+    padding: 12px;
+  }
+
+  .modalFooter {
+    flex-direction: column-reverse;
+    gap: 8px;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 480px) {
+  .integrations {
+    gap: 12px;
+  }
+
+  .header {
+    gap: 12px;
+  }
+
+  .tab {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .serviceCard {
+    padding: 14px;
+  }
+
+  .serviceNumber {
+    width: 40px;
+    height: 40px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .statCard {
+    padding: 12px;
+  }
+
+  .statLabel {
+    font-size: 10px;
+  }
+
+  .statValue {
+    font-size: 18px;
+  }
+
+  .statSublabel {
+    font-size: 11px;
+  }
+
+  .scenarioCard {
+    padding: 14px;
+  }
+
+  .scenarioTitle h4 {
+    font-size: 12px;
+  }
+
+  .notificationItem {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .notificationIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .notificationTitle {
+    font-size: 13px;
+  }
+
+  .notificationMessage {
+    font-size: 12px;
+  }
+}
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ ===== */
+@media (max-width: 360px) {
+  .serviceCard {
+    padding: 12px;
+  }
+
+  .serviceNumber {
+    width: 36px;
+    height: 36px;
+  }
+
+  .statusBadge {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .statValue {
+    font-size: 16px;
+  }
+}
+
+/* ===== LANDSCAPE ОРИЕНТАЦИЯ ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .statsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .scenariosGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }

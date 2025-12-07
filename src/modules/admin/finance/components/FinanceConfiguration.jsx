@@ -119,7 +119,7 @@ export default function FinanceConfiguration() {
     orderType: "all",
     serviceType: "all",
   });
-  
+
   // Modal states
   const [isRuleModalOpen, setIsRuleModalOpen] = useState(false);
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
@@ -288,7 +288,12 @@ export default function FinanceConfiguration() {
               </Button>
             </div>
             <div className={s.tableBlock}>
-              <UITable columns={rulesColumns} rows={filteredRules} showCheckbox={false} />
+              <UITable
+                enableCardView={false}
+                columns={rulesColumns}
+                rows={filteredRules}
+                showCheckbox={false}
+              />
             </div>
           </>
         );
@@ -297,9 +302,10 @@ export default function FinanceConfiguration() {
         return (
           <>
             <p className={s.sectionDescription}>
-              Глобальные комиссии агентства и поставщиков, индивидуальные правила
-              по организациям, поставщикам и типам услуг. Приоритеты правил,
-              распределение комиссий между операторами и правила округления.
+              Глобальные комиссии агентства и поставщиков, индивидуальные
+              правила по организациям, поставщикам и типам услуг. Приоритеты
+              правил, распределение комиссий между операторами и правила
+              округления.
             </p>
             <div className={s.settingsGrid}>
               <div className={s.settingsCard}>
@@ -308,10 +314,21 @@ export default function FinanceConfiguration() {
                   Базовый процент комиссии агентства, применяется если не задано
                   специфичное правило.
                 </p>
-                <div style={{ fontSize: "24px", fontWeight: "700", color: "var(--color-primary)", marginBottom: "8px" }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: "var(--color-primary)",
+                    marginBottom: "8px",
+                  }}
+                >
                   5%
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setIsCommissionModalOpen(true)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsCommissionModalOpen(true)}
+                >
                   Изменить
                 </Button>
               </div>
@@ -321,18 +338,29 @@ export default function FinanceConfiguration() {
                   Стандартное правило округления итоговых сумм в заказах и
                   транзакциях.
                 </p>
-                <div style={{ fontSize: "16px", fontWeight: "600", color: "var(--color-gray-900)", marginBottom: "8px" }}>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "var(--color-gray-900)",
+                    marginBottom: "8px",
+                  }}
+                >
                   До 1 ₽ обычное
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setIsCommissionModalOpen(true)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsCommissionModalOpen(true)}
+                >
                   Изменить
                 </Button>
               </div>
               <div className={s.settingsCard}>
                 <h3>Распределение комиссий</h3>
                 <p>
-                  Правила распределения комиссий между операторами, менеджерами и
-                  подразделениями. Приоритеты применения правил.
+                  Правила распределения комиссий между операторами, менеджерами
+                  и подразделениями. Приоритеты применения правил.
                 </p>
               </div>
             </div>
@@ -366,8 +394,8 @@ export default function FinanceConfiguration() {
         return (
           <>
             <p className={s.sectionDescription}>
-              НДС, сервисные сборы, спецрежимы, признак облагаемых услуг, правила
-              по организациям и типам услуг.
+              НДС, сервисные сборы, спецрежимы, признак облагаемых услуг,
+              правила по организациям и типам услуг.
             </p>
             <div className={s.settingsGrid}>
               <div className={s.settingsCard}>
@@ -376,23 +404,45 @@ export default function FinanceConfiguration() {
                   Основная ставка налога на добавленную стоимость для расчёта
                   налогооблагаемой базы.
                 </p>
-                <div style={{ fontSize: "24px", fontWeight: "700", color: "var(--color-primary)", marginBottom: "8px" }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: "var(--color-primary)",
+                    marginBottom: "8px",
+                  }}
+                >
                   20%
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setIsTaxModalOpen(true)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsTaxModalOpen(true)}
+                >
                   Изменить
                 </Button>
               </div>
               <div className={s.settingsCard}>
                 <h3>Сервисный сбор</h3>
                 <p style={{ marginBottom: "12px" }}>
-                  Дополнительный процент сервисного сбора, добавляемый к стоимости
-                  услуг.
+                  Дополнительный процент сервисного сбора, добавляемый к
+                  стоимости услуг.
                 </p>
-                <div style={{ fontSize: "24px", fontWeight: "700", color: "var(--color-primary)", marginBottom: "8px" }}>
+                <div
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: "var(--color-primary)",
+                    marginBottom: "8px",
+                  }}
+                >
                   2%
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setIsTaxModalOpen(true)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsTaxModalOpen(true)}
+                >
                   Изменить
                 </Button>
               </div>
@@ -402,10 +452,21 @@ export default function FinanceConfiguration() {
                   Специальный налоговый режим для организации: общий, УСН,
                   патентная система.
                 </p>
-                <div style={{ fontSize: "16px", fontWeight: "600", color: "var(--color-gray-900)", marginBottom: "8px" }}>
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "var(--color-gray-900)",
+                    marginBottom: "8px",
+                  }}
+                >
                   Общая система (ОСН)
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setIsTaxModalOpen(true)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsTaxModalOpen(true)}
+                >
                   Изменить
                 </Button>
               </div>
@@ -421,12 +482,14 @@ export default function FinanceConfiguration() {
   return (
     <div className={s.configSection}>
       <h2 className={s.sectionTitle}>Конфигурация и правила</h2>
-      
+
       <div className={s.configSubTabs}>
         {SUB_TABS.map((tab) => (
           <button
             key={tab.id}
-            className={`${s.configSubTab} ${activeSubTab === tab.id ? s.active : ""}`}
+            className={`${s.configSubTab} ${
+              activeSubTab === tab.id ? s.active : ""
+            }`}
             onClick={() => setActiveSubTab(tab.id)}
           >
             {tab.label}
@@ -434,9 +497,7 @@ export default function FinanceConfiguration() {
         ))}
       </div>
 
-      <div className={s.configContent}>
-        {renderSubTabContent()}
-      </div>
+      <div className={s.configContent}>{renderSubTabContent()}</div>
 
       {/* Modals */}
       <FinanceRuleModal

@@ -7,12 +7,14 @@ export default function Modal({
   onClose = null,
   title = "",
   children = null,
-  position = "right",
+  position = "right", // 'right' | 'left' | 'center'
   width = "600px",
-  size = "md",
+  size = "md", // 'sm' | 'md' | 'lg' | 'xl' | 'full'
   showOverlay = true,
   className = "",
   icon: Icon = null,
+  closeOnOverlayClick = true,
+  closeOnEscape = true,
 }) {
   const modalClasses = [
     s.modal,
@@ -25,7 +27,7 @@ export default function Modal({
     .join(" ");
 
   const handleOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
+    if (closeOnOverlayClick && e.target === e.currentTarget) {
       onClose?.();
     }
   };
@@ -33,7 +35,7 @@ export default function Modal({
   // Закрытие при нажатии ESC
   React.useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape" && isOpen) {
+      if (closeOnEscape && e.key === "Escape" && isOpen) {
         onClose?.();
       }
     };
@@ -47,7 +49,12 @@ export default function Modal({
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, closeOnEscape]);
+
+  // Не рендерим ничего, если модалка не открыта (оптимизация)
+  if (!isOpen && !document.querySelector(`.${s.modal}.${s.open}`)) {
+    return null;
+  }
 
   return (
     <>
@@ -60,20 +67,28 @@ export default function Modal({
         />
       )}
 
-      <div className={modalClasses} style={{ width }}>
+      <div
+        className={modalClasses}
+        style={{
+          // На десктопе применяем width, на мобилке игнорируется через !important
+          width: position === "center" ? undefined : width,
+        }}
+      >
         <div className={s.header}>
           <p>
-            {" "}
             {Icon && <Icon size={18} className={s.icon} />}
             {title}
           </p>
-          <button
-            className={s.closeButton}
-            onClick={onClose}
-            aria-label="Close modal"
-          >
-            <IoMdClose size={24} />
-          </button>
+          {onClose && (
+            <button
+              className={s.closeButton}
+              onClick={onClose}
+              aria-label="Закрыть модальное окно"
+              type="button"
+            >
+              <IoMdClose size={24} />
+            </button>
+          )}
         </div>
 
         {/* Content */}

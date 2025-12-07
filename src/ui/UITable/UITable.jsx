@@ -26,7 +26,8 @@ export default function UITable({
   const [isCardMode, setIsCardMode] = useState(false);
 
   const toggleSelectAll = () => {
-    const newSelection = selectedRows.length === rows.length ? [] : rows.map((_, i) => i);
+    const newSelection =
+      selectedRows.length === rows.length ? [] : rows.map((_, i) => i);
     setSelectedRows(newSelection);
     onSelectionChange?.(newSelection);
   };
