@@ -339,7 +339,7 @@
   }
 
   .contactItem {
-    flex-direction: column;
+    justify-content: space-between;
     gap: 4px;
   }
 
@@ -419,7 +419,7 @@
   }
 
   .field {
-    margin-bottom: 10px;
+    justify-content: space-between;
     gap: 4px;
   }
 

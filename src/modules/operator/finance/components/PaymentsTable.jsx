@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Container, UITable, Select, Button } from "@/ui";
+import { Container, Select, Button, UITable } from "@/ui";
 import { MdAdd, MdDownload, MdVisibility, MdEdit } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import s from "../styles/PaymentsTable.module.scss";
@@ -257,16 +257,18 @@ export default function PaymentsTable() {
           </Button>
         </div>
       </div>
-
-      <UITable
-        columns={columns}
-        rows={filteredPayments}
-        showCheckbox={true}
-        type="default"
-        onRowClick={(row) =>
-          router.push(`/operator/finance/payments/${row.id}`)
-        }
-      />
+      <div>
+        {" "}
+        <UITable
+          columns={columns}
+          rows={filteredPayments}
+          showCheckbox={true}
+          type="default"
+          onRowClick={(row) =>
+            router.push(`/operator/finance/payments/${row.id}`)
+          }
+        />
+      </div>
     </Container>
   );
 }
