@@ -33,6 +33,9 @@ export function SidebarProvider({ children }) {
 
   // Закрываем sidebar при изменении размера экрана на desktop
   useEffect(() => {
+    // Проверка на клиентскую сторону
+    if (typeof window === "undefined") return;
+
     const handleResize = () => {
       if (window.innerWidth > 768) {
         setIsMobileSidebarOpen(false);
@@ -45,6 +48,10 @@ export function SidebarProvider({ children }) {
 
   // Блокируем скролл body когда sidebar открыт на мобильных
   useEffect(() => {
+    // Проверка на клиентскую сторону
+    if (typeof window === "undefined" || typeof document === "undefined")
+      return;
+
     if (isMobileSidebarOpen && window.innerWidth <= 768) {
       document.body.style.overflow = "hidden";
     } else {
@@ -91,6 +98,9 @@ function SidebarComponent({ items = adminMenuItems }) {
   const portalTitle = roleTitles[rootSegment] || "ПСЦ CRM";
 
   const handleLinkClick = () => {
+    // Проверка на клиентскую сторону
+    if (typeof window === "undefined") return;
+
     // Закрываем мобильный sidebar при клике на ссылку
     if (window.innerWidth <= 768) {
       setIsMobileSidebarOpen(false);
